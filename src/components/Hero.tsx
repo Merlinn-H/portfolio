@@ -18,7 +18,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mb-4 text-xs tracking-[0.4em] uppercase text-[#d4a853]"
+            className="mb-4 text-xs tracking-[0.4em] uppercase text-[#d30000]"
           >
             Producteur Audiovisuel &amp; Chargé de Projets Culturels
           </motion.p>
@@ -49,13 +49,13 @@ export default function Hero() {
           >
             <a
               href="#projets"
-              className="px-8 py-3 bg-[#d4a853] text-[#080808] text-sm font-semibold tracking-wide uppercase hover:bg-[#e0b96a] transition-colors duration-300"
+              className="px-8 py-3 bg-[#d30000] text-white text-sm font-semibold tracking-wide uppercase hover:bg-[#ff1a1a] transition-colors duration-300"
             >
               Voir mes projets
             </a>
             <a
               href="#contact"
-              className="px-8 py-3 border border-[#f5f5f0]/20 text-[#f5f5f0]/70 text-sm font-semibold tracking-wide uppercase hover:border-[#d4a853] hover:text-[#d4a853] transition-colors duration-300"
+              className="px-8 py-3 border border-[#f5f5f0]/20 text-[#f5f5f0]/70 text-sm font-semibold tracking-wide uppercase hover:border-[#d30000] hover:text-[#d30000] transition-colors duration-300"
             >
               Me contacter
             </a>
@@ -78,7 +78,7 @@ export default function Hero() {
               priority
             />
             {/* Cadre décoratif */}
-            <div className="absolute -bottom-3 -right-3 w-full h-full border border-[#d4a853]/40 pointer-events-none" />
+            <div className="absolute -bottom-3 -right-3 w-full h-full border border-[#d30000]/40 pointer-events-none" />
           </div>
         </motion.div>
 
@@ -97,7 +97,7 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.5 }}
-          className="w-px h-10 bg-gradient-to-b from-[#d4a853] to-transparent"
+          className="w-px h-10 bg-gradient-to-b from-[#d30000] to-transparent"
         />
       </motion.div>
     </section>

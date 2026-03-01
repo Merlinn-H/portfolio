@@ -15,7 +15,7 @@ export default function Contact() {
         transition={{ duration: 0.6 }}
         className="text-center"
       >
-        <p className="text-xs tracking-[0.4em] uppercase text-[#d4a853] mb-4">
+        <p className="text-xs tracking-[0.4em] uppercase text-[#d30000] mb-4">
           Contact
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0] mb-6">
@@ -31,7 +31,7 @@ export default function Contact() {
             href="mailto:hugopezzo@outlook.com"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block px-10 py-4 bg-[#d4a853] text-[#080808] text-sm font-semibold tracking-widest uppercase hover:bg-[#e0b96a] transition-colors duration-300"
+            className="inline-block px-10 py-4 bg-[#d30000] text-white text-sm font-semibold tracking-widest uppercase hover:bg-[#ff1a1a] transition-colors duration-300"
           >
             hugopezzo@outlook.com
           </motion.a>
@@ -41,7 +41,7 @@ export default function Contact() {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block px-10 py-4 border border-[#f5f5f0]/20 text-[#f5f5f0]/70 text-sm font-semibold tracking-widest uppercase hover:border-[#d4a853] hover:text-[#d4a853] transition-colors duration-300"
+            className="inline-block px-10 py-4 border border-[#f5f5f0]/20 text-[#f5f5f0]/70 text-sm font-semibold tracking-widest uppercase hover:border-[#d30000] hover:text-[#d30000] transition-colors duration-300"
           >
             LinkedIn
           </motion.a>

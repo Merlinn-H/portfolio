@@ -53,7 +53,7 @@ function VideoModal({ youtubeId, onClose }: { youtubeId: string; onClose: () => 
       >
         <button
           onClick={onClose}
-          className="absolute -top-10 right-0 text-xs tracking-widest uppercase text-[#f5f5f0]/50 hover:text-[#d4a853] transition-colors duration-300"
+          className="absolute -top-10 right-0 text-xs tracking-widest uppercase text-[#f5f5f0]/50 hover:text-[#d30000] transition-colors duration-300"
         >
           Fermer ✕
         </button>
@@ -88,10 +88,10 @@ function ProjectCard({
       animate={parentInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
       onClick={project.youtubeId ? onPlay : undefined}
-      className={`group relative border border-[#f5f5f0]/10 p-8 hover:border-[#d4a853]/50 transition-colors duration-500 overflow-hidden ${project.youtubeId ? "cursor-pointer" : ""}`}
+      className={`group relative border border-[#f5f5f0]/10 p-8 hover:border-[#d30000]/50 transition-colors duration-500 overflow-hidden ${project.youtubeId ? "cursor-pointer" : ""}`}
     >
       <div className="flex items-start justify-between mb-6">
-        <span className="text-xs tracking-[0.3em] uppercase text-[#d4a853]">
+        <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">
           {project.category}
         </span>
         <div className="flex items-center gap-3">
@@ -102,7 +102,7 @@ function ProjectCard({
         </div>
       </div>
 
-      <h3 className="text-2xl font-semibold text-[#f5f5f0] mb-3 group-hover:text-[#d4a853] transition-colors duration-300">
+      <h3 className="text-2xl font-semibold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
         {project.title}
       </h3>
 
@@ -121,7 +121,7 @@ function ProjectCard({
         ))}
       </div>
 
-      <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d4a853] group-hover:w-full transition-all duration-500" />
+      <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-500" />
     </motion.div>
   );
 }
@@ -140,7 +140,7 @@ export default function Projects() {
         transition={{ duration: 0.6 }}
         className="mb-16"
       >
-        <p className="text-xs tracking-[0.4em] uppercase text-[#d4a853] mb-4">
+        <p className="text-xs tracking-[0.4em] uppercase text-[#d30000] mb-4">
           Portfolio
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0]">

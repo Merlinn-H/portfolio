@@ -46,7 +46,7 @@ export default function Experience() {
         transition={{ duration: 0.6 }}
         className="mb-16"
       >
-        <p className="text-xs tracking-[0.4em] uppercase text-[#d4a853] mb-4">
+        <p className="text-xs tracking-[0.4em] uppercase text-[#d30000] mb-4">
           Parcours
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0]">
@@ -65,13 +65,13 @@ export default function Experience() {
               transition={{ delay: 0.2 + index * 0.15, duration: 0.6 }}
               className="relative"
             >
-              <div className="absolute -left-10 top-1.5 w-2 h-2 rounded-full bg-[#d4a853]" />
+              <div className="absolute -left-10 top-1.5 w-2 h-2 rounded-full bg-[#d30000]" />
               <div className="flex items-start justify-between mb-2 gap-4">
                 <div>
                   <h3 className="text-lg font-semibold text-[#f5f5f0]">
                     {exp.title}
                   </h3>
-                  <p className="text-sm text-[#d4a853]">{exp.company}</p>
+                  <p className="text-sm text-[#d30000]">{exp.company}</p>
                 </div>
                 <span className="text-xs text-[#f5f5f0]/30 whitespace-nowrap">
                   {exp.period}
