@@ -36,7 +36,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="text-lg text-[#f5f5f0]/50 max-w-md leading-relaxed mb-10"
+            className="text-xl text-[#f5f5f0]/60 max-w-md leading-relaxed mb-10 italic"
+            style={{ fontFamily: "var(--font-cormorant)" }}
           >
             Chaque projet est une histoire. Je suis là pour la raconter.
           </motion.p>
