@@ -1,51 +1,12 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const skillCategories = [
-  {
-    category: "Production & Logistique",
-    skills: [
-      "Planification de tournages",
-      "Réservation logements & transports",
-      "Gestion de budget",
-      "Organisation plateau",
-    ],
-  },
-  {
-    category: "Coordination d'équipes",
-    skills: [
-      "Fédération de talents",
-      "Gestion des deadlines",
-      "Communication avec les artistes",
-      "Suivi de projet",
-    ],
-  },
-  {
-    category: "Polyvalence & Leadership",
-    skills: [
-      "Adaptabilité",
-      "Respect des deadlines",
-      "Prise d'initiative",
-      "Travail sous pression",
-    ],
-  },
-  {
-    category: "Outils & Langues",
-    skills: [
-      "Anglais professionnel",
-      "Espagnol technique",
-      "Suite Adobe (Ps, Ai, Pr, Lr)",
-      "DaVinci Resolve",
-      "Canva · Google / Office",
-      "Unreal Engine",
-    ],
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Skills() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { text } = useLanguage();
 
   return (
     <section id="competences" className="py-32 px-8 max-w-6xl mx-auto">
@@ -57,15 +18,15 @@ export default function Skills() {
         className="mb-16"
       >
         <p className="text-sm tracking-[0.4em] uppercase text-[#d30000] mb-4">
-          Expertise
+          {text.skills.label}
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0]">
-          Compétences
+          {text.skills.title}
         </h2>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-        {skillCategories.map((cat, catIndex) => (
+        {text.skills.categories.map((cat, catIndex) => (
           <motion.div
             key={cat.category}
             initial={{ opacity: 0, y: 30 }}

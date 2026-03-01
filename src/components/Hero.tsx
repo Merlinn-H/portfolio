@@ -1,8 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const { text } = useLanguage();
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-8">
       <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-16 max-w-5xl w-full">
@@ -20,7 +23,7 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="mb-4 text-sm tracking-[0.4em] uppercase text-[#d30000]"
           >
-            Producteur Audiovisuel &amp; Chargé de Projets Culturels
+            {text.hero.label}
           </motion.p>
 
           <motion.h1
@@ -39,7 +42,7 @@ export default function Hero() {
             className="text-xl text-[#f5f5f0]/60 max-w-md leading-relaxed mb-10 italic"
             style={{ fontFamily: "var(--font-cormorant)" }}
           >
-            Chaque projet est une histoire. Je suis là pour la raconter.
+            {text.hero.tagline}
           </motion.p>
 
           <motion.div
@@ -52,13 +55,13 @@ export default function Hero() {
               href="#projets"
               className="px-8 py-3 bg-[#d30000] text-white text-sm font-semibold tracking-wide uppercase hover:bg-[#ff1a1a] transition-colors duration-300"
             >
-              Voir mes projets
+              {text.hero.cta_projects}
             </a>
             <a
               href="#contact"
               className="px-8 py-3 border border-[#f5f5f0]/20 text-[#f5f5f0]/70 text-sm font-semibold tracking-wide uppercase hover:border-[#d30000] hover:text-[#d30000] transition-colors duration-300"
             >
-              Me contacter
+              {text.hero.cta_contact}
             </a>
           </motion.div>
         </motion.div>
@@ -93,7 +96,7 @@ export default function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs tracking-[0.3em] uppercase text-[#f5f5f0]/30">
-          Scroll
+          {text.hero.scroll}
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}

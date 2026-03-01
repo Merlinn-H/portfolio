@@ -1,10 +1,12 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { text } = useLanguage();
 
   return (
     <section id="contact" className="py-32 px-8 max-w-6xl mx-auto">
@@ -16,14 +18,13 @@ export default function Contact() {
         className="text-center"
       >
         <p className="text-sm tracking-[0.4em] uppercase text-[#d30000] mb-4">
-          Contact
+          {text.contact.label}
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0] mb-6">
-          Travaillons ensemble
+          {text.contact.title}
         </h2>
         <p className="text-[#f5f5f0]/50 max-w-md mx-auto mb-12 leading-relaxed">
-          Vous avez un projet audiovisuel ? Je suis disponible pour des
-          collaborations et de nouvelles aventures créatives.
+          {text.contact.desc}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

@@ -1,41 +1,12 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const experiences = [
-  {
-    title: "Fondateur & Producteur",
-    company: "POSTMERIDIAN — Montpellier",
-    period: "Mai 2024 — Actuellement",
-    description:
-      "Création et gestion d'un studio de développement de jeux vidéo (PC / Unreal Engine). Supervision artistique, budgétaire et logistique, coordination d'une équipe créative (graphistes, développeurs, compositeurs).",
-  },
-  {
-    title: "Chargé de Production & Communication",
-    company: "489Productions — Montpellier",
-    period: "Avril 2023 — Actuellement",
-    description:
-      "Organisation et gestion de tournages (fiction, publicité, documentaire). Production de contenus digitaux. Suivi administratif : rédaction de contrats, suivi de factures, coordination avec les partenaires.",
-  },
-  {
-    title: "Chargé / Directeur de Production",
-    company: "JRCinéma · Productions Uriel Rosen · QUIDAM STUDIOS LTD. — Laissac",
-    period: "Juin 2017 — Septembre 2023",
-    description:
-      "Coordination d'équipes, gestion des plannings et budgets, logistique de tournage. Aide à la conception de dossiers de financement (régions / CNC). Production de 4 courts-métrages dont 2 sélectionnés en festivals régionaux et nationaux.",
-  },
-  {
-    title: "Chargé de Communication Digitale",
-    company: "CarFT — Lyon",
-    period: "Oct. 2022 — Mars 2023",
-    description:
-      "Développement et exécution de la stratégie de contenus. Production de +15 vidéos courtes et 2 formats longs. Gestion d'un calendrier éditorial pour une audience organique : 100K vues, 300K impressions.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Experience() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { text } = useLanguage();
 
   return (
     <section id="parcours" className="py-32 px-8 max-w-6xl mx-auto">
@@ -47,23 +18,23 @@ export default function Experience() {
         className="mb-16"
       >
         <p className="text-sm tracking-[0.4em] uppercase text-[#d30000] mb-4">
-          Parcours
+          {text.experience.label}
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0] mb-8">
-          Expériences
+          {text.experience.title}
         </h2>
         <p
           className="text-lg text-[#f5f5f0]/50 max-w-2xl leading-relaxed italic"
           style={{ fontFamily: "var(--font-cormorant)" }}
         >
-          Professionnel de la production audiovisuelle et vidéoludique, spécialisé en coordination administrative et logistique de projets culturels et artistiques. Fort de 7 ans d'expérience en gestion d'équipes, suivi budgétaire et production de contenus, mon parcours allie rigueur administrative et créativité, avec une capacité à fédérer des talents autour de projets ambitieux.
+          {text.experience.summary}
         </p>
       </motion.div>
 
       <div className="relative max-w-2xl">
         <div className="absolute left-0 top-0 bottom-0 w-px bg-[#f5f5f0]/10" />
         <div className="space-y-12 pl-10">
-          {experiences.map((exp, index) => (
+          {text.experience.items.map((exp, index) => (
             <motion.div
               key={exp.title + exp.period}
               initial={{ opacity: 0, x: -20 }}

@@ -1,22 +1,26 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-
-const links = [
-  { href: "/#projets", id: "projets", label: "Projets" },
-  { href: "/#competences", id: "competences", label: "Compétences" },
-  { href: "/#parcours", id: "parcours", label: "Parcours" },
-  { href: "/#gaming", id: "gaming", label: "Gaming" },
-  { href: "/#contact", id: "contact", label: "Contact" },
-];
+import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const pathname = usePathname();
   const is489 = pathname === "/489productions";
   const isMain = pathname === "/" || pathname === "/films";
   const [activeSection, setActiveSection] = useState<string>("");
+  const [langOpen, setLangOpen] = useState(false);
+  const langRef = useRef<HTMLDivElement>(null);
+  const { locale, setLocale, text } = useLanguage();
+
+  const links = [
+    { href: "/#projets", id: "projets", label: text.nav.projects },
+    { href: "/#competences", id: "competences", label: text.nav.skills },
+    { href: "/#parcours", id: "parcours", label: text.nav.experience },
+    { href: "/#gaming", id: "gaming", label: text.nav.gaming },
+    { href: "/#contact", id: "contact", label: text.nav.contact },
+  ];
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -37,6 +41,19 @@ export default function Navbar() {
 
     return () => observer.disconnect();
   }, [pathname]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const otherLocale = locale === "fr" ? "en" : "fr";
 
   return (
     <motion.nav
@@ -86,7 +103,7 @@ export default function Navbar() {
       </a>
 
       {/* Nav links with active section indicator */}
-      <ul className="hidden md:flex gap-7">
+      <ul className="hidden md:flex gap-7 mr-8">
         {links.map((link) => {
           const isActive = pathname === "/" && activeSection === link.id;
           return (
@@ -110,6 +127,45 @@ export default function Navbar() {
           );
         })}
       </ul>
+
+      {/* Language switcher */}
+      <div ref={langRef} className="relative hidden md:block">
+        <button
+          onClick={() => setLangOpen((v) => !v)}
+          className="text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-1.5 border border-[#f5f5f0]/10 hover:border-[#d30000]/40 px-3 py-1.5"
+        >
+          {locale.toUpperCase()}
+          <motion.span
+            animate={{ rotate: langOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="text-[10px]"
+          >
+            ▾
+          </motion.span>
+        </button>
+
+        <AnimatePresence>
+          {langOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.15 }}
+              className="absolute right-0 top-full mt-2 border border-[#f5f5f0]/10 bg-[#080808]"
+            >
+              <button
+                onClick={() => {
+                  setLocale(otherLocale);
+                  setLangOpen(false);
+                }}
+                className="block w-full px-4 py-2 text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] hover:bg-[#d30000]/5 transition-colors duration-200 whitespace-nowrap"
+              >
+                {otherLocale.toUpperCase()}
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.nav>
   );
 }

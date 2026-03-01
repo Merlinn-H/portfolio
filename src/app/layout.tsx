@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Open_Sans, Cormorant_Garamond } from "next/font/google";
+import { Providers } from "@/components/Providers";
 import "./globals.css";
 
 const geist = Geist({
@@ -33,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`${geist.variable} ${openSans.variable} ${cormorant.variable} antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

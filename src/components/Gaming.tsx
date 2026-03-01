@@ -1,33 +1,12 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const games = [
-  {
-    title: "Path of Exile",
-    genre: "ARPG",
-    description: "La complexité des systèmes qui s'entremêlent.",
-  },
-  {
-    title: "TFT",
-    genre: "Auto-battler",
-    description: "La stratégie sans me prendre la tête.",
-  },
-  {
-    title: "Into The Breach",
-    genre: "Stratégie",
-    description: "La micro stratégie où je me prends la tête et je dois réfléchir.",
-  },
-  {
-    title: "Factorio",
-    genre: "Simulation",
-    description: "THE FACTORY MUST GROW.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Gaming() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const { text } = useLanguage();
 
   return (
     <section id="gaming" className="py-32 px-8 max-w-6xl mx-auto">
@@ -39,15 +18,15 @@ export default function Gaming() {
         className="mb-16"
       >
         <p className="text-sm tracking-[0.4em] uppercase text-[#d30000] mb-4">
-          Côté perso
+          {text.gaming.label}
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0]">
-          Jeux Vidéo
+          {text.gaming.title}
         </h2>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {games.map((game, index) => (
+        {text.gaming.games.map((game, index) => (
           <motion.div
             key={game.title}
             initial={{ opacity: 0, y: 30 }}
