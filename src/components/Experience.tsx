@@ -46,12 +46,18 @@ export default function Experience() {
         transition={{ duration: 0.6 }}
         className="mb-16"
       >
-        <p className="text-xs tracking-[0.4em] uppercase text-[#d30000] mb-4">
+        <p className="text-sm tracking-[0.4em] uppercase text-[#d30000] mb-4">
           Parcours
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0]">
+        <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0] mb-8">
           Expériences
         </h2>
+        <p
+          className="text-lg text-[#f5f5f0]/50 max-w-2xl leading-relaxed italic"
+          style={{ fontFamily: "var(--font-cormorant)" }}
+        >
+          Professionnel de la production audiovisuelle et vidéoludique, spécialisé en coordination administrative et logistique de projets culturels et artistiques. Fort de 7 ans d'expérience en gestion d'équipes, suivi budgétaire et production de contenus, mon parcours allie rigueur administrative et créativité, avec une capacité à fédérer des talents autour de projets ambitieux.
+        </p>
       </motion.div>
 
       <div className="relative max-w-2xl">

@@ -98,7 +98,7 @@ export default function Productions() {
             Production audiovisuelle
           </p>
           <h2
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            className="text-4xl md:text-5xl font-bold text-white mb-6"
             style={{ fontFamily: "var(--font-open-sans)" }}
           >
             489Productions
