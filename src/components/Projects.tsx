@@ -35,9 +35,6 @@ export default function Projects() {
           className="group relative border border-[#d30000]/30 p-8 overflow-hidden cursor-pointer hover:border-[#d30000]/70 transition-colors duration-500 flex items-center justify-between gap-8"
           style={{ background: "rgba(13,0,0,0.6)" }}
         >
-          <div className="shrink-0 w-32 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-            <Image src="/logo-489.png" alt="489Productions" width={400} height={200} className="w-full h-auto object-contain" />
-          </div>
           <div className="flex-1 min-w-0">
             <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] block mb-4">
               Production audiovisuelle
@@ -51,6 +48,9 @@ export default function Projects() {
             <p className="text-sm text-white/50 leading-relaxed">
               Réalisation, production audiovisuelle et conseil. Courts-métrages, clips, documentaires et podcasts.
             </p>
+          </div>
+          <div className="shrink-0 w-32 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            <Image src="/logo-489.png" alt="489Productions" width={400} height={200} className="w-full h-auto object-contain" />
           </div>
           <span className="text-xs text-[#f5f5f0]/30 tracking-wider shrink-0 self-center">→ Voir la page complète</span>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-700" />
