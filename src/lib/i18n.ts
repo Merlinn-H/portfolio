@@ -105,6 +105,67 @@ export const t = {
       title: "Travaillons ensemble",
       desc: "Vous avez un projet audiovisuel ? Je suis disponible pour des collaborations et de nouvelles aventures créatives.",
     },
+    productions_page: {
+      back: "← Retour au portfolio",
+      label: "Production audiovisuelle",
+      about: "Studio de production audiovisuelle basé à Montpellier. Nous accompagnons artistes, marques et porteurs de projets de la première idée jusqu'à la livraison finale.",
+      cta_label: "Vous avez un projet ? Parlons-en.",
+      cta_button: "Nous contacter",
+      services: [
+        {
+          number: "01",
+          title: "Réalisation",
+          description: "Courts-métrages, clips musicaux, documentaires. Conception et réalisation de vos projets de A à Z.",
+        },
+        {
+          number: "02",
+          title: "Production",
+          description: "Production audiovisuelle et podcasts. Gestion complète du projet, du budget au rendu final.",
+        },
+        {
+          number: "03",
+          title: "Conseil",
+          description: "Accompagnement et conseil en production audiovisuelle. On vous guide à chaque étape de votre projet.",
+        },
+      ],
+    },
+    films_page: {
+      back: "← Retour au portfolio",
+      title: "Courts-métrages",
+      watch: "▶ Voir le film",
+      close: "Fermer ✕",
+      films: [
+        {
+          title: "Pineapple Pie",
+          year: "2023",
+          roles: ["Assistant Réalisateur", "Chargé de Production"],
+          description: [
+            "Court-métrage de fiction tourné avec un budget très limité. J'ai notamment sourcé une voiture spécifique pour le tournage et veillé au bon déroulement de chaque journée sur le plateau.",
+          ],
+          youtubeId: "jvVDXyiLuFI",
+        },
+        {
+          title: "Au Cœur de l'Aliénation",
+          year: "2021",
+          roles: ["Acteur", "Chargé de Production", "Assistant de Pré-Production"],
+          description: [
+            "SynExplorer offre aux Êtres d'autres mondes une expérience virtuelle immersive : \"Vibrez-la, Vivez-la.\" Un nouveau havre de paix, mais où les formes imaginées sont encore instables.",
+            "Afin de rendre ces créations palpables, tangibles et stables, les opérateurs abaissent la fréquence de la simulation.",
+            "C'est alors qu'une forme non-créée prend le contrôle total de SynExplorer.",
+          ],
+          youtubeId: "3Ef50Mpe00M",
+        },
+        {
+          title: "Résonance",
+          year: "2019",
+          roles: ["Acteur", "Directeur de Production"],
+          description: [
+            "Film expérimental — essai d'une caméra et perfectionnement de techniques de montage et d'effets visuels.",
+          ],
+          youtubeId: "FHO5qU7-4og",
+        },
+      ],
+    },
     footer: "© 2025 Hugo Pezzo — Tous droits réservés",
   },
   en: {
@@ -116,7 +177,7 @@ export const t = {
       contact: "Contact",
     },
     hero: {
-      label: "Audiovisual Producer & Cultural Project Manager",
+      label: "Film Producer & Cultural Project Manager",
       tagline: "Every project is a story. I'm here to tell it.",
       cta_projects: "See my projects",
       cta_contact: "Contact me",
@@ -210,6 +271,67 @@ export const t = {
       label: "Contact",
       title: "Let's work together",
       desc: "Got an audiovisual project? I'm available for collaborations and new creative adventures.",
+    },
+    productions_page: {
+      back: "← Back to portfolio",
+      label: "Audiovisual production",
+      about: "Audiovisual production studio based in Montpellier. We accompany artists, brands and project owners from the first idea to the final delivery.",
+      cta_label: "Got a project? Let's talk.",
+      cta_button: "Contact us",
+      services: [
+        {
+          number: "01",
+          title: "Direction",
+          description: "Short films, music videos, documentaries. Full conception and direction of your projects from A to Z.",
+        },
+        {
+          number: "02",
+          title: "Production",
+          description: "Audiovisual production and podcasts. Complete project management, from budget to final delivery.",
+        },
+        {
+          number: "03",
+          title: "Consulting",
+          description: "Guidance and consulting in audiovisual production. We support you at every stage of your project.",
+        },
+      ],
+    },
+    films_page: {
+      back: "← Back to portfolio",
+      title: "Short Films",
+      watch: "▶ Watch the film",
+      close: "Close ✕",
+      films: [
+        {
+          title: "Pineapple Pie",
+          year: "2023",
+          roles: ["Assistant Director", "Production Manager"],
+          description: [
+            "Fiction short film shot on a very limited budget. I sourced a specific car for the shoot and ensured the smooth running of each day on set.",
+          ],
+          youtubeId: "jvVDXyiLuFI",
+        },
+        {
+          title: "Au Cœur de l'Aliénation",
+          year: "2021",
+          roles: ["Actor", "Production Manager", "Pre-Production Assistant"],
+          description: [
+            "SynExplorer offers Beings from other worlds an immersive virtual experience: \"Feel it, Live it.\" A new haven of peace, but where imagined forms are still unstable.",
+            "To make these creations tangible and stable, operators lower the simulation frequency.",
+            "That is when an uncreated form takes total control of SynExplorer.",
+          ],
+          youtubeId: "3Ef50Mpe00M",
+        },
+        {
+          title: "Résonance",
+          year: "2019",
+          roles: ["Actor", "Production Director"],
+          description: [
+            "Experimental film — testing a camera and perfecting editing and visual effects techniques.",
+          ],
+          youtubeId: "FHO5qU7-4og",
+        },
+      ],
     },
     footer: "© 2025 Hugo Pezzo — All rights reserved",
   },

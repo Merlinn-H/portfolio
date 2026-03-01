@@ -3,40 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import { useLanguage } from "@/context/LanguageContext";
 
-const films = [
-  {
-    title: "Pineapple Pie",
-    year: "2023",
-    roles: ["Assistant Réalisateur", "Chargé de Production"],
-    description: [
-      "Court-métrage de fiction tourné avec un budget très limité. J'ai notamment sourcé une voiture spécifique pour le tournage et veillé au bon déroulement de chaque journée sur le plateau.",
-    ],
-    youtubeId: "jvVDXyiLuFI",
-  },
-  {
-    title: "Au Cœur de l'Aliénation",
-    year: "2021",
-    roles: ["Acteur", "Chargé de Production", "Assistant de Pré-Production"],
-    description: [
-      "SynExplorer offre aux Êtres d'autres mondes une expérience virtuelle immersive : \"Vibrez-la, Vivez-la.\" Un nouveau havre de paix, mais où les formes imaginées sont encore instables.",
-      "Afin de rendre ces créations palpables, tangibles et stables, les opérateurs abaissent la fréquence de la simulation.",
-      "C'est alors qu'une forme non-créée prend le contrôle total de SynExplorer.",
-    ],
-    youtubeId: "3Ef50Mpe00M",
-  },
-  {
-    title: "Résonance",
-    year: "2019",
-    roles: ["Acteur", "Directeur de Production"],
-    description: [
-      "Film expérimental — essai d'une caméra et perfectionnement de techniques de montage et d'effets visuels.",
-    ],
-    youtubeId: "FHO5qU7-4og",
-  },
-];
-
-function VideoModal({ youtubeId, title, onClose }: { youtubeId: string; title: string; onClose: () => void }) {
+function VideoModal({ youtubeId, title, onClose, closeLabel }: { youtubeId: string; title: string; onClose: () => void; closeLabel: string }) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -59,7 +28,7 @@ function VideoModal({ youtubeId, title, onClose }: { youtubeId: string; title: s
           onClick={onClose}
           className="absolute -top-10 right-0 text-xs tracking-widest uppercase text-[#f5f5f0]/50 hover:text-[#d30000] transition-colors duration-300"
         >
-          Fermer ✕
+          {closeLabel}
         </button>
         <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
           <iframe
@@ -77,6 +46,8 @@ function VideoModal({ youtubeId, title, onClose }: { youtubeId: string; title: s
 
 export default function Films() {
   const [activeVideo, setActiveVideo] = useState<{ id: string; title: string } | null>(null);
+  const { text } = useLanguage();
+  const p = text.films_page;
 
   return (
     <main className="bg-[#080808] min-h-screen">
@@ -104,7 +75,7 @@ export default function Films() {
             href="/#projets"
             className="text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-2"
           >
-            ← Retour au portfolio
+            {p.back}
           </Link>
         </motion.div>
 
@@ -119,13 +90,13 @@ export default function Films() {
             Hugo Pezzo
           </p>
           <h1 className="text-5xl md:text-7xl font-bold text-[#f5f5f0]">
-            Courts-métrages
+            {p.title}
           </h1>
         </motion.div>
 
         {/* Films list */}
         <div className="flex flex-col gap-px border-t border-[#f5f5f0]/10">
-          {films.map((film, index) => (
+          {p.films.map((film, index) => (
             <motion.div
               key={film.title}
               initial={{ opacity: 0, y: 20 }}
@@ -142,7 +113,7 @@ export default function Films() {
                   {film.year}
                 </span>
                 <span className="text-xs text-[#f5f5f0]/30 tracking-wider shrink-0">
-                  ▶ Voir le film
+                  {p.watch}
                 </span>
               </div>
 
@@ -180,6 +151,7 @@ export default function Films() {
             youtubeId={activeVideo.id}
             title={activeVideo.title}
             onClose={() => setActiveVideo(null)}
+            closeLabel={p.close}
           />
         )}
       </AnimatePresence>

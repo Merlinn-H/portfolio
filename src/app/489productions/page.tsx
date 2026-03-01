@@ -3,24 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-
-const services = [
-  {
-    number: "01",
-    title: "Réalisation",
-    description: "Courts-métrages, clips musicaux, documentaires. Conception et réalisation de vos projets de A à Z.",
-  },
-  {
-    number: "02",
-    title: "Production",
-    description: "Production audiovisuelle et podcasts. Gestion complète du projet, du budget au rendu final.",
-  },
-  {
-    number: "03",
-    title: "Conseil",
-    description: "Accompagnement et conseil en production audiovisuelle. On vous guide à chaque étape de votre projet.",
-  },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 function FilmStrip({ side }: { side: "left" | "right" }) {
   return (
@@ -33,6 +16,9 @@ function FilmStrip({ side }: { side: "left" | "right" }) {
 }
 
 export default function ProductionsPage() {
+  const { text } = useLanguage();
+  const p = text.productions_page;
+
   return (
     <main className="relative min-h-screen overflow-hidden" style={{ background: "#0d0000" }}>
       <Navbar />
@@ -73,7 +59,7 @@ export default function ProductionsPage() {
           className="mb-16"
         >
           <Link href="/#projets" className="text-xs tracking-widest uppercase text-white/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-2">
-            ← Retour au portfolio
+            {p.back}
           </Link>
         </motion.div>
 
@@ -85,7 +71,7 @@ export default function ProductionsPage() {
           className="mb-20 text-center"
         >
           <p className="text-xs tracking-[0.6em] uppercase text-[#d30000] mb-8">
-            Production audiovisuelle
+            {p.label}
           </p>
           <div className="flex justify-center mb-8">
             <Image src="/logo-489.png" alt="489Productions" width={320} height={160} className="h-20 w-auto object-contain" />
@@ -106,12 +92,12 @@ export default function ProductionsPage() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-center text-white/50 max-w-2xl mx-auto mb-24 leading-relaxed"
         >
-          Studio de production audiovisuelle basé à Montpellier. Nous accompagnons artistes, marques et porteurs de projets de la première idée jusqu'à la livraison finale.
+          {p.about}
         </motion.p>
 
         {/* Services */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
-          {services.map((service, index) => (
+          {p.services.map((service, index) => (
             <motion.div
               key={service.number}
               initial={{ opacity: 0, y: 30 }}
@@ -137,13 +123,13 @@ export default function ProductionsPage() {
           className="text-center"
         >
           <p className="text-white/30 mb-8 text-sm tracking-widest uppercase">
-            Vous avez un projet ? Parlons-en.
+            {p.cta_label}
           </p>
           <a
             href="mailto:hugopezzo@outlook.com"
             className="inline-block px-12 py-4 bg-[#d30000] text-white text-sm font-semibold tracking-widest uppercase hover:bg-[#ff1a1a] transition-colors duration-300"
           >
-            Nous contacter
+            {p.cta_button}
           </a>
         </motion.div>
 
