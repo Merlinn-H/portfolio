@@ -17,7 +17,7 @@ export default function Experience() {
         transition={{ duration: 0.6 }}
         className="mb-16"
       >
-        <p className="text-sm tracking-[0.4em] uppercase text-[#d30000] mb-4">
+        <p className="text-xs tracking-[0.4em] uppercase text-[#d30000] mb-4">
           {text.experience.label}
         </p>
         <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0] mb-8">
