@@ -5,7 +5,7 @@ import { Locale, t } from "@/lib/i18n";
 type LanguageContextType = {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  text: typeof t.fr;
+  text: (typeof t)[Locale];
 };
 
 const LanguageContext = createContext<LanguageContextType>({
