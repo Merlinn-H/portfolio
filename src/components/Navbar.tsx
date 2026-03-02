@@ -60,7 +60,7 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-5"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-5 relative"
       style={{
         backdropFilter: "blur(16px)",
         background: "rgba(8,8,8,0.88)",
@@ -89,21 +89,21 @@ export default function Navbar() {
       {/* Separator */}
       <div className="w-px h-4 bg-white/15 mr-6 hidden md:block" />
 
-      {/* Name — highlighted on main page & /films */}
+      {/* Name — centered absolutely, highlighted on main page & /films */}
       <a
         href="/"
-        className={`mr-auto px-2 py-1 transition-all duration-300 border ${
+        className={`absolute left-1/2 -translate-x-1/2 px-2 py-1 transition-all duration-300 border ${
           isMain
             ? "border-[#d30000] text-[#f5f5f0]"
             : "border-transparent text-[#f5f5f0]/50 hover:text-[#f5f5f0]"
         }`}
         style={{ fontFamily: "var(--font-open-sans)", fontWeight: 700 }}
       >
-        <span className="text-xs tracking-widest uppercase">Hugo Pezzo</span>
+        <span className="text-sm tracking-widest uppercase">Hugo Pezzo</span>
       </a>
 
       {/* Nav links with active section indicator */}
-      <ul className="hidden md:flex gap-7 mr-8">
+      <ul className="hidden md:flex gap-7 mr-8 ml-auto">
         {links.map((link) => {
           const isActive = pathname === "/" && activeSection === link.id;
           return (

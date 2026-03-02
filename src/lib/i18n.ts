@@ -20,6 +20,7 @@ export const t = {
       label: "Portfolio",
       title: "Mes Projets",
       see_page: "→ Voir la page complète",
+      explore: "— Cliquer pour explorer",
       films_count: "→ 3 films",
       productions: {
         label: "Production audiovisuelle",
@@ -187,6 +188,7 @@ export const t = {
       label: "Portfolio",
       title: "My Projects",
       see_page: "→ See full page",
+      explore: "— Click to explore",
       films_count: "→ 3 films",
       productions: {
         label: "Audiovisual production",

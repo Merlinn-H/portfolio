@@ -21,9 +21,10 @@ export default function Projects() {
         <p className="text-xs tracking-[0.4em] uppercase text-[#d30000] mb-4">
           {text.projects.label}
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0]">
+        <h2 className="text-4xl md:text-5xl font-bold text-[#f5f5f0] mb-3">
           {text.projects.title}
         </h2>
+        <p className="text-xs tracking-widest text-[#f5f5f0]/20">{text.projects.explore}</p>
       </motion.div>
 
       <div className="flex flex-col gap-4">
@@ -54,7 +55,6 @@ export default function Projects() {
           <div className="shrink-0 w-32 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
             <Image src="/logo-489.png" alt="489Productions" width={400} height={200} className="w-full h-auto object-contain" />
           </div>
-          <span className="text-xs text-[#f5f5f0]/30 tracking-wider shrink-0 self-center">{text.projects.see_page}</span>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-700" />
         </motion.a>
 
