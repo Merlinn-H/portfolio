@@ -28,7 +28,7 @@ export const t = {
       },
       postmeridian: {
         label: "Studio de jeux vidéo",
-        desc: "Fondation et direction d'un studio indépendant de développement de jeux vidéo sur PC (Unreal Engine). Supervision complète : artistique, budgétaire, logistique et coordination d'une équipe créative pluridisciplinaire.",
+        desc: "Fondé en 2024, Postmeridian est un studio de développement de jeux vidéo basé entre la France et le Canada, qui développe actuellement son premier projet original.",
         tags: ["Production", "Direction", "Unreal Engine", "Gestion d'équipe"],
       },
       films: {
@@ -196,7 +196,7 @@ export const t = {
       },
       postmeridian: {
         label: "Video game studio",
-        desc: "Founding and managing an independent video game development studio for PC (Unreal Engine). Full oversight: artistic, budgetary, logistical and coordination of a multidisciplinary creative team.",
+        desc: "Founded in 2024, Postmeridian is a game development studio based between France and Canada, currently developing its first original project.",
         tags: ["Production", "Direction", "Unreal Engine", "Team Management"],
       },
       films: {

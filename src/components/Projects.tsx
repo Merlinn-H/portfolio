@@ -98,9 +98,6 @@ export default function Projects() {
           <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
             {text.projects.films.title}
           </h3>
-          <p className="text-sm text-[#f5f5f0]/50 leading-relaxed line-clamp-3">
-            {text.projects.films.desc}
-          </p>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-500" />
         </motion.a>
 
