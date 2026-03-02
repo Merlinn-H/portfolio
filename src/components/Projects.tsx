@@ -59,31 +59,39 @@ export default function Projects() {
         </motion.a>
 
         {/* POSTMERIDIAN */}
-        <motion.div
+        <motion.a
+          href="https://www.postmeridian.co"
+          target="_blank"
+          rel="noopener noreferrer"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500"
+          className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500 flex items-center gap-8"
         >
-          <div className="flex items-start justify-between mb-4">
-            <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">{text.projects.postmeridian.label}</span>
-            <span className="text-xs text-[#f5f5f0]/30">{text.experience.items[0].period}</span>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">{text.projects.postmeridian.label}</span>
+              <span className="text-xs text-[#f5f5f0]/30">{text.experience.items[0].period}</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
+              POSTMERIDIAN
+            </h3>
+            <p className="text-sm text-[#f5f5f0]/50 leading-relaxed max-w-2xl">
+              {text.projects.postmeridian.desc}
+            </p>
+            <div className="flex flex-wrap gap-2 mt-5">
+              {text.projects.postmeridian.tags.map((tag) => (
+                <span key={tag} className="text-xs px-3 py-1 border border-[#f5f5f0]/10 text-[#f5f5f0]/40">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
-            POSTMERIDIAN
-          </h3>
-          <p className="text-sm text-[#f5f5f0]/50 leading-relaxed max-w-2xl">
-            {text.projects.postmeridian.desc}
-          </p>
-          <div className="flex flex-wrap gap-2 mt-5">
-            {text.projects.postmeridian.tags.map((tag) => (
-              <span key={tag} className="text-xs px-3 py-1 border border-[#f5f5f0]/10 text-[#f5f5f0]/40">
-                {tag}
-              </span>
-            ))}
+          <div className="shrink-0 w-32 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+            <Image src="/postmeridian.png" alt="POSTMERIDIAN" width={400} height={200} className="w-full h-auto object-contain" />
           </div>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-500" />
-        </motion.div>
+        </motion.a>
 
         {/* Courts-métrages */}
         <motion.a
