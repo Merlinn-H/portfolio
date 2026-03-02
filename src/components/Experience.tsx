@@ -43,14 +43,14 @@ export default function Experience() {
               className="relative"
             >
               <div className="absolute -left-10 top-1.5 w-2 h-2 rounded-full bg-[#d30000]" />
-              <div className="flex items-start justify-between mb-2 gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-2 gap-1 sm:gap-4">
                 <div>
                   <h3 className="text-lg font-semibold text-[#f5f5f0]">
                     {exp.title}
                   </h3>
                   <p className="text-sm text-[#d30000]">{exp.company}</p>
                 </div>
-                <span className="text-xs text-[#f5f5f0]/30 whitespace-nowrap">
+                <span className="text-xs text-[#f5f5f0]/30 sm:whitespace-nowrap shrink-0">
                   {exp.period}
                 </span>
               </div>

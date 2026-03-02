@@ -1,7 +1,21 @@
 @import "tailwindcss";
 
+:root {
+  --color-amber: #e8890c;
+}
+
 html {
   font-size: 18px;
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(calc(100vh + 120px)); }
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 body {

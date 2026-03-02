@@ -33,7 +33,7 @@ export default function Skills() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2 + catIndex * 0.15, duration: 0.6 }}
           >
-            <h3 className="text-xs tracking-[0.3em] uppercase text-[#d30000] mb-6">
+            <h3 className="text-xs tracking-[0.3em] uppercase mb-6" style={{ color: "var(--color-amber)" }}>
               {cat.category}
             </h3>
             <ul className="space-y-3">
@@ -42,7 +42,7 @@ export default function Skills() {
                   key={skill}
                   className="flex items-center gap-3 text-sm text-[#f5f5f0]/70"
                 >
-                  <div className="w-1 h-1 rounded-full bg-[#d30000] shrink-0" />
+                  <div className="w-1 h-1 rounded-full shrink-0" style={{ background: "var(--color-amber)" }} />
                   {skill}
                 </li>
               ))}

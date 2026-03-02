@@ -6,7 +6,7 @@ export const t = {
       projects: "Projets",
       skills: "Compétences",
       experience: "Parcours",
-      gaming: "Gaming",
+      gaming: "Influences",
       contact: "Contact",
     },
     hero: {
@@ -93,12 +93,22 @@ export const t = {
     },
     gaming: {
       label: "Côté perso",
-      title: "Jeux Vidéo",
+      title: "Univers",
+      tabs: { games: "Jeux Vidéo", films: "Films" },
       games: [
-        { title: "Path of Exile", genre: "ARPG", description: "La complexité des systèmes qui s'entremêlent." },
-        { title: "TFT", genre: "Auto-battler", description: "La stratégie sans me prendre la tête." },
-        { title: "Into The Breach", genre: "Stratégie", description: "La micro stratégie où je me prends la tête et je dois réfléchir." },
-        { title: "Factorio", genre: "Simulation", description: "THE FACTORY MUST GROW." },
+        { title: "Path of Exile", genre: "ARPG", logo: "/games/poe.png", accent: "#8B1A1A", url: "https://www.pathofexile.com", description: "Officiellement un jeu. En pratique : 40% sur Path of Building, 25% sur des spreadsheets, 15% à lire des wikis — et peut-être 25% à jouer. Les chiffres ne mentent pas." },
+        { title: "TFT", genre: "Auto-battler", logo: "/games/tft.png", accent: "#C89B3C", url: "https://teamfighttactics.leagueoflegends.com", description: "L'échecs en 8 joueurs. Un carrousel, un choix, et tout s'effondre. La défaite est toujours de la faute du jeu." },
+        { title: "Into The Breach", genre: "Stratégie", logo: "/games/into-the-breach.png", accent: "#2563EB", url: "https://store.steampowered.com/app/590380/Into_the_Breach/", description: "Sauver l'humanité en 8×8 cases. Chaque décision est un puzzle d'horloger — et il n'y a jamais de bonne excuse pour perdre." },
+        { title: "Factorio", genre: "Simulation", logo: "/games/factorio.png", accent: "#EA580C", url: "https://www.factorio.com", description: "Tu poses un convoyeur. Puis un autre. Puis c'est 3h du matin et tu optimises des ratios de circuits électroniques. L'usine doit croître." },
+      ],
+      films: [
+        { title: "Le Syndicat du Crime", director: "John Woo", year: "1986", genre: "Policier", poster: "/films/a-better-tomorrow.jpg", url: "https://letterboxd.com/film/a-better-tomorrow/", description: "Mark Gor en imperméable sous la pluie de Hong Kong. La loyauté comme religion, l'honneur comme seule monnaie qui vaille." },
+        { title: "Yi Yi", director: "Edward Yang", year: "2000", genre: "Drame familial", poster: "/films/yi-yi.jpg", url: "https://letterboxd.com/film/yi-yi/", description: "Edward Yang filme Taipei et la condition humaine sur trois heures. Chaque plan dit ce que les personnages ne peuvent pas se dire." },
+        { title: "Porco Rosso", director: "Hayao Miyazaki", year: "1992", genre: "Animation", poster: "/films/porco-rosso.jpg", url: "https://letterboxd.com/film/porco-rosso/", description: "Un pilote à tête de cochon entre deux guerres. Le film le plus personnel de Miyazaki — sur la liberté, la honte, et l'inutilité magnifique du courage." },
+        { title: "Le Cercle rouge", director: "Jean-Pierre Melville", year: "1970", genre: "Policier", poster: "/films/le-cercle-rouge.jpg", url: "https://letterboxd.com/film/le-cercle-rouge/", description: "Melville distille le polar jusqu'à l'os. Trois hommes, un braquage, peu de mots. Le cinéma comme géométrie pure." },
+        { title: "The Blade", director: "Tsui Hark", year: "1995", genre: "Wuxia", poster: "/films/the-blade.jpg", url: "https://letterboxd.com/film/the-blade-1995/", description: "Tsui Hark réinvente le wuxia dans la boue et le sang. Une violence brute, presque punk — l'antithèse du film de sabre classique." },
+        { title: "Time and Tide", director: "Tsui Hark", year: "2000", genre: "Action", poster: "/films/time-and-tide.jpg", url: "https://letterboxd.com/film/time-and-tide/", description: "Tsui Hark à pleine vitesse — montage haché, caméra ivre, Hong Kong en surrégime. Un film qui ne tient pas en place et qui n'en a aucune envie." },
+        { title: "Perfect Days", director: "Wim Wenders", year: "2023", genre: "Drame", poster: "/films/perfect-days.jpg", url: "https://letterboxd.com/film/perfect-days-2023/", description: "Hirayama nettoie les toilettes de Tokyo avec la grâce d'un moine. Wenders filme la routine comme une forme de sagesse — chaque journée, la même, et pourtant." },
       ],
     },
     contact: {
@@ -174,7 +184,7 @@ export const t = {
       projects: "Projects",
       skills: "Skills",
       experience: "Experience",
-      gaming: "Gaming",
+      gaming: "Influences",
       contact: "Contact",
     },
     hero: {
@@ -261,12 +271,22 @@ export const t = {
     },
     gaming: {
       label: "Personal",
-      title: "Video Games",
+      title: "Universe",
+      tabs: { games: "Video Games", films: "Films" },
       games: [
-        { title: "Path of Exile", genre: "ARPG", description: "The complexity of intertwining systems." },
-        { title: "TFT", genre: "Auto-battler", description: "Strategy without taking it too seriously." },
-        { title: "Into The Breach", genre: "Strategy", description: "The micro-strategy where I overthink every move." },
-        { title: "Factorio", genre: "Simulation", description: "THE FACTORY MUST GROW." },
+        { title: "Path of Exile", genre: "ARPG", logo: "/games/poe.png", accent: "#8B1A1A", url: "https://www.pathofexile.com", description: "Officially a game. In practice: 40% on Path of Building, 25% on spreadsheets, 15% reading wikis — and maybe 25% actually playing. Numbers don't lie." },
+        { title: "TFT", genre: "Auto-battler", logo: "/games/tft.png", accent: "#C89B3C", url: "https://teamfighttactics.leagueoflegends.com", description: "Chess for 8 players. One carousel, one choice, and everything collapses. The loss is always the game's fault." },
+        { title: "Into The Breach", genre: "Strategy", logo: "/games/into-the-breach.png", accent: "#2563EB", url: "https://store.steampowered.com/app/590380/Into_the_Breach/", description: "Save humanity on an 8×8 grid. Every decision is a clockmaker's puzzle — and there's never a good excuse to lose." },
+        { title: "Factorio", genre: "Simulation", logo: "/games/factorio.png", accent: "#EA580C", url: "https://www.factorio.com", description: "You place one belt. Then another. Then it's 3am and you're optimising circuit board ratios. The factory must grow." },
+      ],
+      films: [
+        { title: "A Better Tomorrow", director: "John Woo", year: "1986", genre: "Crime", poster: "/films/a-better-tomorrow.jpg", url: "https://letterboxd.com/film/a-better-tomorrow/", description: "Mark Gor in a trench coat under Hong Kong rain. Loyalty as religion, honour as the only currency worth a damn." },
+        { title: "Yi Yi", director: "Edward Yang", year: "2000", genre: "Family Drama", poster: "/films/yi-yi.jpg", url: "https://letterboxd.com/film/yi-yi/", description: "Edward Yang films Taipei and the human condition over three hours. Every shot says what the characters cannot say to each other." },
+        { title: "Porco Rosso", director: "Hayao Miyazaki", year: "1992", genre: "Animation", poster: "/films/porco-rosso.jpg", url: "https://letterboxd.com/film/porco-rosso/", description: "A pilot with a pig's face caught between two wars. Miyazaki's most personal film — on freedom, shame, and the magnificent futility of courage." },
+        { title: "Le Cercle rouge", director: "Jean-Pierre Melville", year: "1970", genre: "Noir", poster: "/films/le-cercle-rouge.jpg", url: "https://letterboxd.com/film/le-cercle-rouge/", description: "Melville distils noir down to its bones. Three men, a heist, few words. Cinema as pure geometry." },
+        { title: "The Blade", director: "Tsui Hark", year: "1995", genre: "Wuxia", poster: "/films/the-blade.jpg", url: "https://letterboxd.com/film/the-blade-1995/", description: "Tsui Hark reinvents wuxia in mud and blood. Raw, almost punk violence — the antithesis of classical martial arts cinema." },
+        { title: "Time and Tide", director: "Tsui Hark", year: "2000", genre: "Action", poster: "/films/time-and-tide.jpg", url: "https://letterboxd.com/film/time-and-tide/", description: "Tsui Hark at full throttle — rapid cutting, restless camera, Hong Kong in overdrive. A film that refuses to sit still and has no intention of doing so." },
+        { title: "Perfect Days", director: "Wim Wenders", year: "2023", genre: "Drama", poster: "/films/perfect-days.jpg", url: "https://letterboxd.com/film/perfect-days-2023/", description: "Hirayama cleans Tokyo's toilets with the grace of a monk. Wenders films routine as a form of wisdom — each day the same, and yet." },
       ],
     },
     contact: {
