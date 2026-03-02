@@ -71,7 +71,7 @@ export default function Projects() {
           <div className="flex-1 min-w-0">
             <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] block mb-4">{text.projects.postmeridian.label}</span>
             <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
-              POSTMERIDIAN
+              Postmeridian
             </h3>
             <p className="text-sm text-[#f5f5f0]/50 leading-relaxed line-clamp-3">
               {text.projects.postmeridian.desc}
