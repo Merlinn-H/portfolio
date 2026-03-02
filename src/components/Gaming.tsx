@@ -113,7 +113,7 @@ export default function Gaming() {
               href={game ? game.url : film!.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col md:flex-row overflow-hidden relative group border transition-colors duration-500 cursor-pointer h-[320px] md:h-[260px]"
+              className="flex flex-col md:flex-row overflow-hidden relative group border transition-colors duration-500 cursor-pointer md:h-[260px]"
               style={{
                 borderColor: game ? `${game.accent}40` : "rgba(255,255,255,0.1)",
               }}
@@ -136,7 +136,7 @@ export default function Gaming() {
                   </div>
 
                   {/* Mobile: full logo centered */}
-                  <div className="md:hidden flex-1 flex items-center justify-center relative">
+                  <div className="md:hidden h-40 flex items-center justify-center relative shrink-0">
                     <div
                       className="absolute inset-0"
                       style={{ background: `radial-gradient(ellipse at center, ${game.accent}30 0%, transparent 70%)` }}
@@ -145,10 +145,15 @@ export default function Gaming() {
                     <img
                       src={game.logo}
                       alt={game.title}
-                      className="relative z-10 max-h-[160px] max-w-[70%] object-contain opacity-85 drop-shadow-lg"
+                      className="relative z-10 max-h-[120px] max-w-[60%] object-contain opacity-85 drop-shadow-lg"
                       onError={(e) => { e.currentTarget.style.display = "none"; }}
                     />
                   </div>
+
+                  {/* Mobile: description */}
+                  <p className="md:hidden px-5 pb-5 text-sm text-[#f5f5f0]/50 leading-relaxed">
+                    {game.description}
+                  </p>
 
                   {/* Desktop: text content */}
                   <div className="hidden md:flex flex-1 p-10 relative z-10 flex-col justify-center min-w-0">
@@ -197,7 +202,7 @@ export default function Gaming() {
                   </div>
 
                   {/* Mobile: full poster */}
-                  <div className="md:hidden flex-1 flex items-center justify-center overflow-hidden">
+                  <div className="md:hidden h-52 flex items-center justify-center overflow-hidden shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={film.poster}
@@ -206,6 +211,11 @@ export default function Gaming() {
                       onError={(e) => { e.currentTarget.style.display = "none"; }}
                     />
                   </div>
+
+                  {/* Mobile: description */}
+                  <p className="md:hidden px-5 pb-5 text-sm text-[#f5f5f0]/50 leading-relaxed">
+                    {film.description}
+                  </p>
 
                   {/* Desktop: text content */}
                   <div className="hidden md:flex flex-1 p-10 flex-col justify-center min-w-0">
