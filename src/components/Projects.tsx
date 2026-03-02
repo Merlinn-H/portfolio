@@ -45,7 +45,7 @@ export default function Projects() {
               className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-[#d30000] transition-colors duration-300"
               style={{ fontFamily: "var(--font-open-sans)" }}
             >
-              489Productions
+              489 Productions
             </h3>
             <p className="text-sm text-white/50 leading-relaxed">
               {text.projects.productions.desc}
@@ -69,10 +69,7 @@ export default function Projects() {
           className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500 flex items-center gap-8"
         >
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between mb-4">
-              <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">{text.projects.postmeridian.label}</span>
-              <span className="text-xs text-[#f5f5f0]/30">{text.experience.items[0].period}</span>
-            </div>
+            <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] block mb-4">{text.projects.postmeridian.label}</span>
             <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
               POSTMERIDIAN
             </h3>
