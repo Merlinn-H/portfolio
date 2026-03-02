@@ -11,7 +11,7 @@ const geist = Geist({
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["300", "400", "600", "700"],
 });
 
 const cormorant = Cormorant_Garamond({

@@ -105,7 +105,7 @@ export default function Productions() {
           </h2>
           <p
             className="text-2xl md:text-3xl text-white/60 tracking-widest mt-4"
-            style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic" }}
+            style={{ fontFamily: "var(--font-open-sans)", fontStyle: "italic" }}
           >
             Vision. Production. Action!
           </p>
@@ -136,7 +136,7 @@ export default function Productions() {
             >
               <span
                 className="text-5xl font-bold text-[#d30000]/25 mb-4 block"
-                style={{ fontFamily: "var(--font-cormorant)" }}
+                style={{ fontFamily: "var(--font-open-sans)" }}
               >
                 {service.number}
               </span>

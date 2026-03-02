@@ -40,7 +40,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
             className="text-xl text-[#f5f5f0]/60 max-w-md leading-relaxed mb-10 italic"
-            style={{ fontFamily: "var(--font-cormorant)" }}
+            style={{ fontFamily: "var(--font-open-sans)" }}
           >
             {text.hero.tagline}
           </motion.p>

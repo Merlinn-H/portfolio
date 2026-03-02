@@ -25,7 +25,7 @@ export default function Experience() {
         </h2>
         <p
           className="text-lg text-[#f5f5f0]/50 max-w-2xl leading-relaxed italic"
-          style={{ fontFamily: "var(--font-cormorant)" }}
+          style={{ fontFamily: "var(--font-open-sans)" }}
         >
           {text.experience.summary}
         </p>

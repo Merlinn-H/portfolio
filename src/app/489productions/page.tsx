@@ -78,7 +78,7 @@ export default function ProductionsPage() {
           </div>
           <p
             className="text-2xl md:text-3xl text-white/60 tracking-widest"
-            style={{ fontFamily: "var(--font-cormorant)", fontStyle: "italic" }}
+            style={{ fontFamily: "var(--font-open-sans)", fontStyle: "italic" }}
           >
             Vision. Production. Action!
           </p>
@@ -105,7 +105,7 @@ export default function ProductionsPage() {
               transition={{ delay: 0.3 + index * 0.15, duration: 0.6 }}
               className="border border-white/10 p-8 relative group hover:border-[#d30000]/50 transition-colors duration-500"
             >
-              <span className="text-5xl font-bold text-[#d30000]/25 mb-4 block" style={{ fontFamily: "var(--font-cormorant)" }}>
+              <span className="text-5xl font-bold text-[#d30000]/25 mb-4 block" style={{ fontFamily: "var(--font-open-sans)" }}>
                 {service.number}
               </span>
               <h3 className="text-xl font-semibold text-white mb-3">{service.title}</h3>
