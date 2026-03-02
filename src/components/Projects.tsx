@@ -76,13 +76,6 @@ export default function Projects() {
             <p className="text-sm text-[#f5f5f0]/50 leading-relaxed line-clamp-3">
               {text.projects.postmeridian.desc}
             </p>
-            <div className="flex flex-wrap gap-2 mt-5">
-              {text.projects.postmeridian.tags.map((tag) => (
-                <span key={tag} className="text-xs px-3 py-1 border border-[#f5f5f0]/10 text-[#f5f5f0]/40">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
           <div className="shrink-0 w-28 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
             <Image src="/postmeridian.png" alt="POSTMERIDIAN" width={400} height={200} className="w-full h-auto object-contain" />
@@ -108,13 +101,6 @@ export default function Projects() {
           <p className="text-sm text-[#f5f5f0]/50 leading-relaxed line-clamp-3">
             {text.projects.films.desc}
           </p>
-          <div className="flex flex-wrap gap-2 mt-5">
-            {text.projects.films.tags.map((tag) => (
-              <span key={tag} className="text-xs px-3 py-1 border border-[#f5f5f0]/10 text-[#f5f5f0]/40">
-                {tag}
-              </span>
-            ))}
-          </div>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-500" />
         </motion.a>
 
