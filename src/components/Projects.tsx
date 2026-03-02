@@ -40,7 +40,7 @@ export default function Projects() {
         >
           {/* Watermark */}
           <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none">
-            <div className="w-40 md:w-56 opacity-[0.07]">
+            <div className="w-40 md:w-56 opacity-[0.15]">
               <Image src="/logo-489.png" alt="" width={400} height={200} className="w-full h-auto object-contain" aria-hidden />
             </div>
           </div>
@@ -74,7 +74,7 @@ export default function Projects() {
         >
           {/* Watermark */}
           <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none">
-            <div className="w-40 md:w-56 opacity-[0.07]">
+            <div className="w-40 md:w-56 opacity-[0.15]">
               <Image src="/postmeridian.png" alt="" width={400} height={200} className="w-full h-auto object-contain" aria-hidden />
             </div>
           </div>
