@@ -35,10 +35,17 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="group relative border border-[#d30000]/30 p-8 overflow-hidden cursor-pointer hover:border-[#d30000]/70 transition-colors duration-500 flex flex-col md:flex-row md:items-center gap-6 md:gap-8"
+          className="group relative border border-[#d30000]/30 p-8 overflow-hidden cursor-pointer hover:border-[#d30000]/70 transition-colors duration-500"
           style={{ background: "rgba(13,0,0,0.6)" }}
         >
-          <div className="flex-1 min-w-0">
+          {/* Watermark */}
+          <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none">
+            <div className="w-40 md:w-56 opacity-[0.07]">
+              <Image src="/logo-489.png" alt="" width={400} height={200} className="w-full h-auto object-contain" aria-hidden />
+            </div>
+          </div>
+
+          <div className="relative z-10">
             <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] block mb-4">
               {text.projects.productions.label}
             </span>
@@ -48,12 +55,9 @@ export default function Projects() {
             >
               489 Productions
             </h3>
-            <p className="text-sm text-white/50 leading-relaxed line-clamp-3">
+            <p className="text-sm text-white/50 leading-relaxed max-w-lg">
               {text.projects.productions.desc}
             </p>
-          </div>
-          <div className="shrink-0 w-28 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-            <Image src="/logo-489.png" alt="489Productions" width={400} height={200} className="w-full h-auto object-contain" />
           </div>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-700" />
         </motion.a>
@@ -66,19 +70,23 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500 flex flex-col md:flex-row md:items-center gap-6 md:gap-8"
+          className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500"
         >
-          <div className="flex-1 min-w-0">
+          {/* Watermark */}
+          <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none">
+            <div className="w-40 md:w-56 opacity-[0.07]">
+              <Image src="/postmeridian.png" alt="" width={400} height={200} className="w-full h-auto object-contain" aria-hidden />
+            </div>
+          </div>
+
+          <div className="relative z-10">
             <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] block mb-4">{text.projects.postmeridian.label}</span>
             <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
               Postmeridian
             </h3>
-            <p className="text-sm text-[#f5f5f0]/50 leading-relaxed line-clamp-3">
+            <p className="text-sm text-[#f5f5f0]/50 leading-relaxed max-w-lg">
               {text.projects.postmeridian.desc}
             </p>
-          </div>
-          <div className="shrink-0 w-28 md:w-44 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-            <Image src="/postmeridian.png" alt="POSTMERIDIAN" width={400} height={200} className="w-full h-auto object-contain" />
           </div>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-500" />
         </motion.a>
