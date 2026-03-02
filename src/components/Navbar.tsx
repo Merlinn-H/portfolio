@@ -11,6 +11,7 @@ export default function Navbar() {
   const isMain = pathname === "/" || pathname === "/films";
   const [activeSection, setActiveSection] = useState<string>("");
   const [langOpen, setLangOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const { locale, setLocale, text } = useLanguage();
 
@@ -24,7 +25,6 @@ export default function Navbar() {
 
   useEffect(() => {
     if (pathname !== "/") return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -33,14 +33,19 @@ export default function Navbar() {
       },
       { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
     );
-
     links.forEach(({ id }) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
-
     return () => observer.disconnect();
   }, [pathname]);
+
+  // Hide navbar on mobile when scrolling
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -56,116 +61,138 @@ export default function Navbar() {
   const otherLocale = locale === "fr" ? "en" : "fr";
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-5 relative"
-      style={{
-        backdropFilter: "blur(16px)",
-        background: "rgba(8,8,8,0.88)",
-        borderBottom: "1px solid rgba(211,0,0,0.25)",
-        boxShadow: "0 1px 30px rgba(211,0,0,0.06)",
-      }}
-    >
-      {/* 489 logo — highlighted on /489productions */}
-      <a
-        href="/489productions"
-        className={`group flex items-center mr-6 shrink-0 transition-all duration-300 p-1 ${
-          is489
-            ? "opacity-100 border border-[#d30000]"
-            : "opacity-70 hover:opacity-100 border border-transparent"
+    <>
+      <motion.nav
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-5 relative transition-transform duration-300 md:translate-y-0 ${
+          scrolled ? "-translate-y-full" : "translate-y-0"
         }`}
+        style={{
+          backdropFilter: "blur(16px)",
+          background: "rgba(8,8,8,0.88)",
+          borderBottom: "1px solid rgba(211,0,0,0.25)",
+          boxShadow: "0 1px 30px rgba(211,0,0,0.06)",
+        }}
       >
-        <Image
-          src="/alternate-logo.png"
-          alt="489Productions"
-          width={120}
-          height={40}
-          className="h-7 w-auto object-contain"
-        />
-      </a>
-
-      {/* Separator */}
-      <div className="w-px h-4 bg-white/15 mr-6 hidden md:block" />
-
-      {/* Name — centered absolutely, highlighted on main page & /films */}
-      <a
-        href="/"
-        className={`absolute left-1/2 -translate-x-1/2 px-2 py-1 transition-all duration-300 border ${
-          isMain
-            ? "border-[#d30000] text-[#f5f5f0]"
-            : "border-transparent text-[#f5f5f0]/50 hover:text-[#f5f5f0]"
-        }`}
-        style={{ fontFamily: "var(--font-open-sans)", fontWeight: 700 }}
-      >
-        <span className="text-sm tracking-widest uppercase">Hugo Pezzo</span>
-      </a>
-
-      {/* Nav links with active section indicator */}
-      <ul className="hidden md:flex gap-7 mr-8 ml-auto">
-        {links.map((link) => {
-          const isActive = pathname === "/" && activeSection === link.id;
-          return (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className={`text-xs tracking-widest uppercase relative group transition-colors duration-300 ${
-                  isActive
-                    ? "text-[#d30000]"
-                    : "text-[#f5f5f0]/40 hover:text-[#d30000]"
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-px bg-[#d30000] transition-all duration-300 ${
-                    isActive ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
-                />
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Language switcher */}
-      <div ref={langRef} className="relative hidden md:block">
-        <button
-          onClick={() => setLangOpen((v) => !v)}
-          className="text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-1.5 border border-[#f5f5f0]/10 hover:border-[#d30000]/40 px-3 py-1.5"
+        {/* 489 logo — highlighted on /489productions */}
+        <a
+          href="/489productions"
+          className={`group flex items-center mr-6 shrink-0 transition-all duration-300 p-1 ${
+            is489
+              ? "opacity-100 border border-[#d30000]"
+              : "opacity-70 hover:opacity-100 border border-transparent"
+          }`}
         >
-          {locale.toUpperCase()}
-          <motion.span
-            animate={{ rotate: langOpen ? 180 : 0 }}
-            transition={{ duration: 0.2 }}
-            className="text-[10px]"
-          >
-            ▾
-          </motion.span>
-        </button>
+          <Image
+            src="/alternate-logo.png"
+            alt="489Productions"
+            width={120}
+            height={40}
+            className="h-7 w-auto object-contain"
+          />
+        </a>
 
-        <AnimatePresence>
-          {langOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              transition={{ duration: 0.15 }}
-              className="absolute right-0 top-full mt-2 border border-[#f5f5f0]/10 bg-[#080808]"
+        {/* Separator */}
+        <div className="w-px h-4 bg-white/15 mr-6 hidden md:block" />
+
+        {/* Name — centered absolutely, highlighted on main page & /films */}
+        <a
+          href="/"
+          className={`absolute left-1/2 -translate-x-1/2 px-2 py-1 transition-all duration-300 border ${
+            isMain
+              ? "border-[#d30000] text-[#f5f5f0]"
+              : "border-transparent text-[#f5f5f0]/50 hover:text-[#f5f5f0]"
+          }`}
+          style={{ fontFamily: "var(--font-open-sans)", fontWeight: 700 }}
+        >
+          <span className="text-sm tracking-widest uppercase">Hugo Pezzo</span>
+        </a>
+
+        {/* Nav links */}
+        <ul className="hidden md:flex gap-7 mr-8 ml-auto">
+          {links.map((link) => {
+            const isActive = pathname === "/" && activeSection === link.id;
+            return (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className={`text-xs tracking-widest uppercase relative group transition-colors duration-300 ${
+                    isActive
+                      ? "text-[#d30000]"
+                      : "text-[#f5f5f0]/40 hover:text-[#d30000]"
+                  }`}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-[#d30000] transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Desktop language switcher */}
+        <div ref={langRef} className="relative hidden md:block">
+          <button
+            onClick={() => setLangOpen((v) => !v)}
+            className="text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-1.5 border border-[#f5f5f0]/10 hover:border-[#d30000]/40 px-3 py-1.5"
+          >
+            {locale.toUpperCase()}
+            <motion.span
+              animate={{ rotate: langOpen ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
+              className="text-[10px]"
             >
-              <button
-                onClick={() => {
-                  setLocale(otherLocale);
-                  setLangOpen(false);
-                }}
-                className="block w-full px-4 py-2 text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] hover:bg-[#d30000]/5 transition-colors duration-200 whitespace-nowrap"
+              ▾
+            </motion.span>
+          </button>
+
+          <AnimatePresence>
+            {langOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.15 }}
+                className="absolute right-0 top-full mt-2 border border-[#f5f5f0]/10 bg-[#080808]"
               >
-                {otherLocale.toUpperCase()}
-              </button>
-            </motion.div>
-          )}
+                <button
+                  onClick={() => {
+                    setLocale(otherLocale);
+                    setLangOpen(false);
+                  }}
+                  className="block w-full px-4 py-2 text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] hover:bg-[#d30000]/5 transition-colors duration-200 whitespace-nowrap"
+                >
+                  {otherLocale.toUpperCase()}
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </motion.nav>
+
+      {/* Mobile language switcher — floating bottom right */}
+      <div className="fixed bottom-6 right-6 z-50 md:hidden">
+        <AnimatePresence mode="wait">
+          <motion.button
+            key={locale}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.15 }}
+            onClick={() => setLocale(otherLocale)}
+            className="w-12 h-12 flex items-center justify-center bg-[#080808] border border-[#d30000]/50 text-[#f5f5f0]/60 text-xs tracking-widest uppercase"
+            style={{ backdropFilter: "blur(12px)" }}
+          >
+            {locale.toUpperCase()}
+          </motion.button>
         </AnimatePresence>
       </div>
-    </motion.nav>
+    </>
   );
 }
