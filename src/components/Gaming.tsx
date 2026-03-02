@@ -113,7 +113,7 @@ export default function Gaming() {
               href={game ? game.url : film!.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="h-[280px] md:h-[260px] flex overflow-hidden relative group border transition-colors duration-500 cursor-pointer"
+              className="flex flex-col md:flex-row overflow-hidden relative group border transition-colors duration-500 cursor-pointer h-[320px] md:h-[260px]"
               style={{
                 borderColor: game ? `${game.accent}40` : "rgba(255,255,255,0.1)",
               }}
@@ -128,12 +128,34 @@ export default function Gaming() {
                     style={{ background: `radial-gradient(ellipse at 80% 100%, ${game.accent}30 0%, transparent 60%)` }}
                   />
 
-                  {/* Content */}
-                  <div className="flex-1 p-6 md:p-10 relative z-10 flex flex-col justify-center min-w-0">
+                  {/* Mobile: title on top */}
+                  <div className="md:hidden px-5 pt-5 pb-3 relative z-10 shrink-0">
+                    <h3 className="text-xl font-bold text-[#f5f5f0] leading-tight">
+                      {game.title}
+                    </h3>
+                  </div>
+
+                  {/* Mobile: full logo centered */}
+                  <div className="md:hidden flex-1 flex items-center justify-center relative">
+                    <div
+                      className="absolute inset-0"
+                      style={{ background: `radial-gradient(ellipse at center, ${game.accent}30 0%, transparent 70%)` }}
+                    />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={game.logo}
+                      alt={game.title}
+                      className="relative z-10 max-h-[160px] max-w-[70%] object-contain opacity-85 drop-shadow-lg"
+                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                    />
+                  </div>
+
+                  {/* Desktop: text content */}
+                  <div className="hidden md:flex flex-1 p-10 relative z-10 flex-col justify-center min-w-0">
                     <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] mb-4 block">
                       {game.genre}
                     </span>
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-4 leading-tight">
+                    <h3 className="text-3xl font-bold text-[#f5f5f0] mb-4 leading-tight">
                       {game.title}
                     </h3>
                     <p className="text-sm text-[#f5f5f0]/50 leading-relaxed line-clamp-3">
@@ -141,8 +163,8 @@ export default function Gaming() {
                     </p>
                   </div>
 
-                  {/* Logo panel */}
-                  <div className="w-28 md:w-44 shrink-0 relative overflow-hidden border-l border-white/5 flex items-center justify-center">
+                  {/* Desktop: logo panel */}
+                  <div className="hidden md:flex w-44 shrink-0 relative overflow-hidden border-l border-white/5 items-center justify-center">
                     <div
                       className="absolute inset-0"
                       style={{ background: `radial-gradient(ellipse at center, ${game.accent}40 0%, transparent 70%)` }}
@@ -151,7 +173,7 @@ export default function Gaming() {
                     <img
                       src={game.logo}
                       alt={game.title}
-                      className="relative z-10 w-20 md:w-28 h-20 md:h-28 object-contain opacity-85 drop-shadow-lg"
+                      className="relative z-10 w-28 h-28 object-contain opacity-85 drop-shadow-lg"
                       onError={(e) => { e.currentTarget.style.display = "none"; }}
                     />
                   </div>
@@ -167,12 +189,30 @@ export default function Gaming() {
               {/* ── FILM CARD ── */}
               {film && (
                 <>
-                  {/* Content */}
-                  <div className="flex-1 p-6 md:p-10 flex flex-col justify-center min-w-0">
+                  {/* Mobile: title on top */}
+                  <div className="md:hidden px-5 pt-5 pb-3 shrink-0">
+                    <h3 className="text-xl font-bold text-[#f5f5f0] leading-tight">
+                      {film.title}
+                    </h3>
+                  </div>
+
+                  {/* Mobile: full poster */}
+                  <div className="md:hidden flex-1 flex items-center justify-center overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={film.poster}
+                      alt={film.title}
+                      className="h-full w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                    />
+                  </div>
+
+                  {/* Desktop: text content */}
+                  <div className="hidden md:flex flex-1 p-10 flex-col justify-center min-w-0">
                     <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] mb-4 block">
                       {film.genre}
                     </span>
-                    <h3 className="text-xl md:text-3xl font-bold text-[#f5f5f0] mb-2 leading-tight">
+                    <h3 className="text-3xl font-bold text-[#f5f5f0] mb-2 leading-tight">
                       {film.title}
                     </h3>
                     <p className="text-xs text-[#f5f5f0]/30 mb-4 tracking-wider">
@@ -183,8 +223,8 @@ export default function Gaming() {
                     </p>
                   </div>
 
-                  {/* Poster */}
-                  <div className="w-28 md:w-44 shrink-0 relative overflow-hidden">
+                  {/* Desktop: poster */}
+                  <div className="hidden md:block w-44 shrink-0 relative overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={film.poster}
