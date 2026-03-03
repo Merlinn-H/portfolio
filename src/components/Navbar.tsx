@@ -221,7 +221,7 @@ export default function Navbar() {
             >
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-[#f5f5f0]/10">
-                <a href="/" onClick={() => setMobileOpen(false)}>
+                <a href="/489productions" onClick={() => setMobileOpen(false)}>
                   <Image
                     src="/alternate-logo.png"
                     alt="489Productions"
