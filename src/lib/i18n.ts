@@ -114,7 +114,7 @@ export const t = {
     contact: {
       label: "Contact",
       title: "Travaillons ensemble",
-      desc: "Vous avez un projet audiovisuel ? Je suis disponible pour des collaborations et de nouvelles aventures créatives.",
+      desc: "Vous avez un projet ? Je suis disponible pour des collaborations et de nouvelles aventures créatives.",
     },
     productions_page: {
       back: "← Retour au portfolio",
@@ -292,7 +292,7 @@ export const t = {
     contact: {
       label: "Contact",
       title: "Let's work together",
-      desc: "Got an audiovisual project? I'm available for collaborations and new creative adventures.",
+      desc: "Got a project? I'm available for collaborations and new creative adventures.",
     },
     productions_page: {
       back: "← Back to portfolio",
