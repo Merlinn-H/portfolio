@@ -41,13 +41,24 @@ export default function Grain({ opacity = 0.09 }: { opacity?: number }) {
       ctx!.putImageData(imageData, 0, 0);
     }
 
+    function handleVisibility() {
+      if (document.hidden) {
+        cancelAnimationFrame(animId);
+      } else {
+        lastTime = 0;
+        animId = requestAnimationFrame(draw);
+      }
+    }
+
     resize();
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", handleVisibility);
     animId = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 

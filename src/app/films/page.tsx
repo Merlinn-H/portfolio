@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import StaticGrain from "@/components/StaticGrain";
 import { useLanguage } from "@/context/LanguageContext";
 
 function VideoModal({ youtubeId, title, onClose, closeLabel }: { youtubeId: string; title: string; onClose: () => void; closeLabel: string }) {
@@ -53,14 +54,7 @@ export default function Films() {
     <main className="bg-[#080808] min-h-screen">
       <Navbar />
 
-      {/* Film grain */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[9999]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-          opacity: 0.035,
-        }}
-      />
+      <StaticGrain fixed opacity={0.035} />
 
       <div className="max-w-4xl mx-auto px-8 pt-36 pb-24">
 

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 type Tab = "games" | "films";
@@ -141,12 +142,12 @@ export default function Gaming() {
                       className="absolute inset-0"
                       style={{ background: `radial-gradient(ellipse at center, ${game.accent}30 0%, transparent 70%)` }}
                     />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={game.logo}
                       alt={game.title}
+                      width={120}
+                      height={120}
                       className="relative z-10 max-h-[120px] max-w-[60%] object-contain opacity-85 drop-shadow-lg"
-                      onError={(e) => { e.currentTarget.style.display = "none"; }}
                     />
                   </div>
 
@@ -174,12 +175,12 @@ export default function Gaming() {
                       className="absolute inset-0"
                       style={{ background: `radial-gradient(ellipse at center, ${game.accent}40 0%, transparent 70%)` }}
                     />
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={game.logo}
                       alt={game.title}
-                      className="relative z-10 w-28 h-28 object-contain opacity-85 drop-shadow-lg"
-                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      width={112}
+                      height={112}
+                      className="relative z-10 object-contain opacity-85 drop-shadow-lg"
                     />
                   </div>
 
@@ -202,13 +203,12 @@ export default function Gaming() {
                   </div>
 
                   {/* Mobile: full poster */}
-                  <div className="md:hidden h-52 flex items-center justify-center overflow-hidden shrink-0">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                  <div className="md:hidden h-52 relative overflow-hidden shrink-0">
+                    <Image
                       src={film.poster}
                       alt={film.title}
-                      className="h-full w-full object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      fill
+                      className="object-contain opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                     />
                   </div>
 
@@ -235,12 +235,11 @@ export default function Gaming() {
 
                   {/* Desktop: poster */}
                   <div className="hidden md:block w-44 shrink-0 relative overflow-hidden">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={film.poster}
                       alt={film.title}
-                      className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85 transition-opacity duration-500"
-                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      fill
+                      className="object-cover opacity-60 group-hover:opacity-85 transition-opacity duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/70 via-transparent to-transparent pointer-events-none" />
                   </div>

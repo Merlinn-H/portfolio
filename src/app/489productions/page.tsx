@@ -3,17 +3,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import FilmStrip from "@/components/FilmStrip";
+import StaticGrain from "@/components/StaticGrain";
 import { useLanguage } from "@/context/LanguageContext";
-
-function FilmStrip({ side }: { side: "left" | "right" }) {
-  return (
-    <div className={`absolute top-0 bottom-0 ${side === "left" ? "left-0" : "right-0"} w-7 flex flex-col justify-around py-2 opacity-15 pointer-events-none`}>
-      {Array.from({ length: 24 }).map((_, i) => (
-        <div key={i} className="w-4 h-3 border border-white/50 mx-auto rounded-[2px]" />
-      ))}
-    </div>
-  );
-}
 
 export default function ProductionsPage() {
   const { text } = useLanguage();
@@ -23,14 +15,7 @@ export default function ProductionsPage() {
     <main className="relative min-h-screen overflow-hidden" style={{ background: "#0d0000" }}>
       <Navbar />
 
-      {/* Film grain */}
-      <div
-        className="fixed inset-0 pointer-events-none z-[9999]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E")`,
-          opacity: 0.09,
-        }}
-      />
+      <StaticGrain fixed />
 
       {/* Red ambient glow */}
       <div
@@ -38,14 +23,13 @@ export default function ProductionsPage() {
         style={{ background: "radial-gradient(ellipse at center, rgba(211,0,0,0.15) 0%, transparent 70%)" }}
       />
 
-      {/* Film strips */}
       <FilmStrip side="left" />
       <FilmStrip side="right" />
 
       {/* Logo watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <div className="relative w-[70vw] max-w-3xl opacity-[0.04]">
-          <Image src="/logo-489.png" alt="" width={1200} height={600} className="w-full h-auto object-contain select-none" aria-hidden />
+          <Image src="/alternate-logo.png" alt="" width={1200} height={600} className="w-full h-auto object-contain select-none" aria-hidden />
         </div>
       </div>
 
@@ -74,7 +58,7 @@ export default function ProductionsPage() {
             {p.label}
           </p>
           <div className="flex justify-center mb-8">
-            <Image src="/logo-489.png" alt="489Productions" width={320} height={160} className="h-20 w-auto object-contain" />
+            <Image src="/alternate-logo.png" alt="489Productions" width={320} height={160} className="h-20 w-auto object-contain" />
           </div>
           <p
             className="text-2xl md:text-3xl text-white/60 tracking-widest"

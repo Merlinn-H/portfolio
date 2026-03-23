@@ -23,7 +23,7 @@ export default function Home() {
       <Gaming />
       <Contact />
       <footer className="py-8 text-center text-xs text-[#f5f5f0]/20 tracking-widest uppercase border-t border-[#f5f5f0]/5">
-        {text.footer}
+        © {new Date().getFullYear()} {text.footer}
       </footer>
     </main>
   );

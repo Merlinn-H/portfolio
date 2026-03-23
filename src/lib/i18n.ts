@@ -177,7 +177,7 @@ export const t = {
         },
       ],
     },
-    footer: "© 2025 Hugo Pezzo — Tous droits réservés",
+    footer: "Hugo Pezzo — Tous droits réservés",
   },
   en: {
     nav: {
@@ -355,6 +355,6 @@ export const t = {
         },
       ],
     },
-    footer: "© 2025 Hugo Pezzo — All rights reserved",
+    footer: "Hugo Pezzo — All rights reserved",
   },
 } as const;
