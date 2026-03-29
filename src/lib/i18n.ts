@@ -111,6 +111,11 @@ export const t = {
         { title: "Perfect Days", director: "Wim Wenders", year: "2023", genre: "Drame", poster: "/films/perfect-days.jpg", url: "https://letterboxd.com/film/perfect-days-2023/", description: "Hirayama nettoie les toilettes de Tokyo avec la grâce d'un moine. Wenders filme la routine comme une forme de sagesse — chaque journée, la même, et pourtant." },
       ],
     },
+    philosophy: {
+      label: "Philosophie",
+      hint: "Déplacer la souris",
+      text: "Chaque projet est une histoire à raconter — pas seulement un livrable, mais une expérience qui restera dans les mémoires. Je travaille à la jonction de la production audiovisuelle, de la coordination créative et de la direction artistique, pour transformer des idées en œuvres qui résonnent avec leur audience. La rigueur logistique et la sensibilité narrative ne sont pas opposées : elles se renforcent mutuellement. Gérer un tournage, c'est autant anticiper les imprévus que créer l'espace pour que la créativité s'exprime librement. Des courts-métrages aux jeux vidéo, de la publicité aux documentaires — l'histoire change, l'exigence reste la même.",
+    },
     contact: {
       label: "Contact",
       title: "Travaillons ensemble",
@@ -288,6 +293,11 @@ export const t = {
         { title: "Time and Tide", director: "Tsui Hark", year: "2000", genre: "Action", poster: "/films/time-and-tide.jpg", url: "https://letterboxd.com/film/time-and-tide/", description: "Tsui Hark at full throttle — rapid cutting, restless camera, Hong Kong in overdrive. A film that refuses to sit still and has no intention of doing so." },
         { title: "Perfect Days", director: "Wim Wenders", year: "2023", genre: "Drama", poster: "/films/perfect-days.jpg", url: "https://letterboxd.com/film/perfect-days-2023/", description: "Hirayama cleans Tokyo's toilets with the grace of a monk. Wenders films routine as a form of wisdom — each day the same, and yet." },
       ],
+    },
+    philosophy: {
+      label: "Philosophy",
+      hint: "Move your mouse",
+      text: "Every project is a story to tell — not just a deliverable, but an experience that will stay in people's minds. I work at the intersection of audiovisual production, creative coordination, and artistic direction, transforming ideas into works that resonate with their audience. Logistical rigour and narrative sensitivity aren't opposed — they reinforce each other. Managing a shoot means anticipating the unexpected as much as creating space for creativity to flow freely. From short films to video games, from advertising to documentaries — the story changes, the standard stays the same.",
     },
     contact: {
       label: "Contact",
