@@ -49,13 +49,10 @@ export default function Projects() {
             <span className="text-xs tracking-[0.3em] uppercase text-[#d30000] block mb-4">
               {text.projects.productions.label}
             </span>
-            <h3
-              className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-[#d30000] transition-colors duration-300"
-              style={{ fontFamily: "var(--font-open-sans)" }}
-            >
+            <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
               489 Productions
             </h3>
-            <p className="text-sm text-white/50 leading-relaxed max-w-lg">
+            <p className="text-sm text-[#f5f5f0]/50 leading-relaxed max-w-lg">
               {text.projects.productions.desc}
             </p>
           </div>
@@ -99,13 +96,38 @@ export default function Projects() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500"
         >
-          <div className="flex items-start justify-between mb-4">
-            <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">{text.projects.films.label}</span>
-            <span className="text-xs text-[#f5f5f0]/30 tracking-wider">{text.projects.films_count}</span>
+          {/* Thumbnails, same slot as the logos above */}
+          <div className="absolute inset-0 hidden lg:flex items-center justify-end pr-8 pointer-events-none">
+            <div className="flex gap-2 w-64">
+              {text.films_page.films.map((film) => (
+                <div
+                  key={film.youtubeId}
+                  className="relative flex-1 aspect-video overflow-hidden opacity-40 grayscale group-hover:opacity-70 group-hover:grayscale-0 transition-all duration-700"
+                >
+                  <Image
+                    src={`https://img.youtube.com/vi/${film.youtubeId}/mqdefault.jpg`}
+                    alt=""
+                    fill
+                    sizes="96px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
-            {text.projects.films.title}
-          </h3>
+
+          <div className="relative z-10">
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">{text.projects.films.label}</span>
+              <span className="text-xs text-[#f5f5f0]/30 tracking-wider">{text.projects.films_count}</span>
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-[#f5f5f0] mb-3 group-hover:text-[#d30000] transition-colors duration-300">
+              {text.projects.films.title}
+            </h3>
+            <p className="text-sm text-[#f5f5f0]/50 leading-relaxed max-w-lg">
+              {text.projects.films.desc}
+            </p>
+          </div>
           <div className="absolute bottom-0 left-0 h-px w-0 bg-[#d30000] group-hover:w-full transition-all duration-500" />
         </motion.a>
 

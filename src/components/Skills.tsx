@@ -40,9 +40,9 @@ export default function Skills() {
               {cat.skills.map((skill) => (
                 <li
                   key={skill}
-                  className="flex items-center gap-3 text-sm text-[#f5f5f0]/70"
+                  className="flex items-start gap-3 text-sm text-[#f5f5f0]/70"
                 >
-                  <div className="w-1 h-1 rounded-full shrink-0" style={{ background: "var(--color-amber)" }} />
+                  <div className="w-1 h-1 mt-[0.6em] rounded-full shrink-0" style={{ background: "var(--color-amber)" }} />
                   {skill}
                 </li>
               ))}

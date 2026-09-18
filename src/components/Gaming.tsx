@@ -12,6 +12,18 @@ const slideVariants = {
   exit: (d: number) => ({ x: d > 0 ? -160 : 160, opacity: 0, transition: { duration: 0.25 } }),
 };
 
+function Arrow({ dir, onClick, className = "" }: { dir: 1 | -1; onClick: () => void; className?: string }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`shrink-0 w-11 h-11 items-center justify-center border border-white/10 text-white/40 hover:border-[#d30000] hover:text-[#d30000] transition-all duration-300 ${className}`}
+      aria-label={dir === 1 ? "Suivant" : "Précédent"}
+    >
+      {dir === 1 ? "→" : "←"}
+    </button>
+  );
+}
+
 export default function Gaming() {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: "-100px" });
@@ -92,14 +104,9 @@ export default function Gaming() {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.3, duration: 0.6 }}
-        className="relative flex items-center gap-3 md:gap-6"
+        className="relative flex items-center gap-6"
       >
-        {/* Prev */}
-        <button
-          onClick={() => go(-1)}
-          className="shrink-0 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center border border-white/10 text-white/40 hover:border-[#d30000] hover:text-[#d30000] transition-all duration-300"
-          aria-label="Précédent"
-        >←</button>
+        <Arrow dir={-1} onClick={() => go(-1)} className="hidden md:flex" />
 
         {/* Card */}
         <div className="flex-1 overflow-hidden">
@@ -253,26 +260,25 @@ export default function Gaming() {
           </AnimatePresence>
         </div>
 
-        {/* Next */}
-        <button
-          onClick={() => go(1)}
-          className="shrink-0 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center border border-white/10 text-white/40 hover:border-[#d30000] hover:text-[#d30000] transition-all duration-300"
-          aria-label="Suivant"
-        >→</button>
+        <Arrow dir={1} onClick={() => go(1)} className="hidden md:flex" />
       </motion.div>
 
-      {/* Dots */}
-      <div className="flex justify-center gap-2 mt-8">
-        {Array.from({ length: itemCount }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === safeIndex ? "bg-[#d30000] w-5" : "bg-white/20 hover:bg-white/40 w-1.5"
-            }`}
-            aria-label={`Slide ${i + 1}`}
-          />
-        ))}
+      {/* Dots, flanked by the arrows on phones */}
+      <div className="flex items-center justify-center gap-6 mt-8">
+        <Arrow dir={-1} onClick={() => go(-1)} className="flex md:hidden" />
+        <div className="flex justify-center gap-2">
+          {Array.from({ length: itemCount }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${
+                i === safeIndex ? "bg-[#d30000] w-5" : "bg-white/20 hover:bg-white/40 w-1.5"
+              }`}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <Arrow dir={1} onClick={() => go(1)} className="flex md:hidden" />
       </div>
 
     </section>
