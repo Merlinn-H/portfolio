@@ -23,12 +23,13 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-8">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-10 pt-24 pb-16 md:px-20 md:py-0">
 
       {/* Idée 4 — Pluie ambrée */}
       {rainDrops.map((drop, i) => (
         <div
           key={i}
+          aria-hidden
           className="absolute pointer-events-none"
           style={{
             left: drop.left,
@@ -43,14 +44,14 @@ export default function Hero() {
       ))}
 
       {/* Idée 1 — Caractères chinois gauche */}
-      <div className="absolute left-3 md:left-8 top-0 bottom-0 flex flex-col justify-center gap-2 md:gap-3 pointer-events-none select-none z-0">
+      <div aria-hidden className="absolute left-2 md:left-6 top-0 bottom-0 flex flex-col justify-center gap-2 md:gap-3 pointer-events-none select-none z-0">
         {"影像製作故事視覺創".split("").map((char, i) => (
           <motion.span
             key={i}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.8 + i * 0.08, duration: 1 }}
-            className="text-lg md:text-2xl font-bold"
+            className="text-base md:text-2xl font-bold"
             style={{ color: "rgba(232, 137, 12, 0.1)" }}
           >
             {char}
@@ -59,14 +60,14 @@ export default function Hero() {
       </div>
 
       {/* Idée 1 — Caractères chinois droite */}
-      <div className="absolute right-3 md:right-8 top-0 bottom-0 flex flex-col justify-center gap-2 md:gap-3 pointer-events-none select-none z-0">
+      <div aria-hidden className="absolute right-2 md:right-6 top-0 bottom-0 flex flex-col justify-center gap-2 md:gap-3 pointer-events-none select-none z-0">
         {"意導演光影製作".split("").map((char, i) => (
           <motion.span
             key={i}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2 + i * 0.08, duration: 1 }}
-            className="text-lg md:text-2xl font-bold"
+            className="text-base md:text-2xl font-bold"
             style={{ color: "rgba(232, 137, 12, 0.07)" }}
           >
             {char}
@@ -74,7 +75,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-16 max-w-5xl w-full">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-center gap-10 md:gap-16 max-w-5xl w-full">
 
         {/* Texte */}
         <motion.div
@@ -87,7 +88,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="mb-4 text-xs tracking-[0.4em] uppercase text-[#d30000]"
+            className="mb-4 text-xs tracking-[0.25em] md:tracking-[0.4em] uppercase text-[#d30000]"
           >
             {text.hero.label}
           </motion.p>
@@ -105,7 +106,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
-            className="text-xl text-[#f5f5f0]/60 max-w-md leading-relaxed mb-3 italic"
+            className="text-lg md:text-xl text-[#f5f5f0]/60 max-w-md leading-relaxed mb-3 italic"
             style={{ fontFamily: "var(--font-open-sans)" }}
           >
             {text.hero.tagline}
@@ -155,6 +156,7 @@ export default function Hero() {
               src="/photo.jpg"
               alt="Hugo Pezzo"
               fill
+              sizes="(min-width: 768px) 288px, 224px"
               className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               priority
             />

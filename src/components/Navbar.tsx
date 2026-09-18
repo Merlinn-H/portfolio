@@ -65,7 +65,7 @@ export default function Navbar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="fixed top-0 left-0 right-0 z-50 hidden md:flex items-center px-8 py-5"
+        className="fixed top-0 left-0 right-0 z-50 hidden xl:grid grid-cols-[1fr_auto_1fr] gap-x-6 items-center px-8 py-5"
         style={{
           backdropFilter: "blur(16px)",
           background: "rgba(8,8,8,0.88)",
@@ -76,7 +76,7 @@ export default function Navbar() {
         {/* 489 logo */}
         <a
           href="/489productions"
-          className={`group flex items-center mr-6 shrink-0 transition-all duration-300 p-1 ${
+          className={`group flex items-center justify-self-start shrink-0 transition-all duration-300 p-1 ${
             is489
               ? "opacity-100 border border-[#d30000]"
               : "opacity-70 hover:opacity-100 border border-transparent"
@@ -91,13 +91,10 @@ export default function Navbar() {
           />
         </a>
 
-        {/* Separator */}
-        <div className="w-px h-4 bg-white/15 mr-6" />
-
-        {/* Name — centered */}
+        {/* Name — centered column */}
         <a
           href="/"
-          className={`absolute left-1/2 -translate-x-1/2 px-2 py-1 transition-all duration-300 border ${
+          className={`px-2 py-1 transition-all duration-300 border whitespace-nowrap ${
             isMain
               ? "border-[#d30000] text-[#f5f5f0]"
               : "border-transparent text-[#f5f5f0]/50 hover:text-[#f5f5f0]"
@@ -107,69 +104,71 @@ export default function Navbar() {
           <span className="text-sm tracking-widest uppercase">Hugo Pezzo</span>
         </a>
 
-        {/* Nav links */}
-        <ul className="flex gap-7 mr-8 ml-auto">
-          {links.map((link) => {
-            const isActive = pathname === "/" && activeSection === link.id;
-            return (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className={`text-xs tracking-widest uppercase relative group transition-colors duration-300 ${
-                    isActive
-                      ? "text-[#d30000]"
-                      : "text-[#f5f5f0]/40 hover:text-[#d30000]"
-                  }`}
-                >
-                  {link.label}
-                  <span
-                    className={`absolute -bottom-1 left-0 h-px bg-[#d30000] transition-all duration-300 ${
-                      isActive ? "w-full" : "w-0 group-hover:w-full"
+        {/* Nav links + language switcher */}
+        <div className="flex items-center gap-5 justify-self-end">
+          <ul className="flex gap-4">
+            {links.map((link) => {
+              const isActive = pathname === "/" && activeSection === link.id;
+              return (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className={`text-[0.65rem] tracking-[0.12em] uppercase relative group transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#d30000]"
+                        : "text-[#f5f5f0]/40 hover:text-[#d30000]"
                     }`}
-                  />
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+                  >
+                    {link.label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px bg-[#d30000] transition-all duration-300 ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
 
-        {/* Desktop language switcher */}
-        <div ref={langRef} className="relative">
-          <button
-            onClick={() => setLangOpen((v) => !v)}
-            className="text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-1.5 border border-[#f5f5f0]/10 hover:border-[#d30000]/40 px-3 py-1.5"
-          >
-            {locale.toUpperCase()}
-            <motion.span
-              animate={{ rotate: langOpen ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
-              className="text-[10px]"
+          {/* Desktop language switcher */}
+          <div ref={langRef} className="relative">
+            <button
+              onClick={() => setLangOpen((v) => !v)}
+              className="text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-300 flex items-center gap-1.5 border border-[#f5f5f0]/10 hover:border-[#d30000]/40 px-3 py-1.5"
             >
-              ▾
-            </motion.span>
-          </button>
-
-          <AnimatePresence>
-            {langOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.15 }}
-                className="absolute right-0 top-full mt-2 border border-[#f5f5f0]/10 bg-[#080808]"
+              {locale.toUpperCase()}
+              <motion.span
+                animate={{ rotate: langOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-[10px]"
               >
-                <button
-                  onClick={() => {
-                    setLocale(otherLocale);
-                    setLangOpen(false);
-                  }}
-                  className="block w-full px-4 py-2 text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] hover:bg-[#d30000]/5 transition-colors duration-200 whitespace-nowrap"
+                ▾
+              </motion.span>
+            </button>
+
+            <AnimatePresence>
+              {langOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute right-0 top-full mt-2 border border-[#f5f5f0]/10 bg-[#080808]"
                 >
-                  {otherLocale.toUpperCase()}
-                </button>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  <button
+                    onClick={() => {
+                      setLocale(otherLocale);
+                      setLangOpen(false);
+                    }}
+                    className="block w-full px-4 py-2 text-xs tracking-widest uppercase text-[#f5f5f0]/40 hover:text-[#d30000] hover:bg-[#d30000]/5 transition-colors duration-200 whitespace-nowrap"
+                  >
+                    {otherLocale.toUpperCase()}
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </motion.nav>
 
@@ -179,7 +178,7 @@ export default function Navbar() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         onClick={() => setMobileOpen(true)}
-        className="fixed top-5 left-5 z-50 md:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px]"
+        className="fixed top-5 left-5 z-50 xl:hidden w-11 h-11 flex flex-col items-center justify-center gap-[5px]"
         style={{
           backdropFilter: "blur(12px)",
           background: "rgba(8,8,8,0.88)",
@@ -202,7 +201,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-[60] bg-black/70 md:hidden"
+              className="fixed inset-0 z-[60] bg-black/70 xl:hidden"
               onClick={() => setMobileOpen(false)}
             />
 
@@ -212,7 +211,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.28 }}
-              className="fixed top-0 left-0 bottom-0 z-[70] w-72 md:hidden flex flex-col"
+              className="fixed top-0 left-0 bottom-0 z-[70] w-72 xl:hidden flex flex-col"
               style={{
                 backdropFilter: "blur(20px)",
                 background: "rgba(8,8,8,0.97)",

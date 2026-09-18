@@ -114,7 +114,7 @@ export default function Gaming() {
               href={game ? game.url : film!.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col md:flex-row overflow-hidden relative group border transition-colors duration-500 cursor-pointer md:h-[260px]"
+              className="flex flex-col md:flex-row overflow-hidden relative group border transition-colors duration-500 cursor-pointer md:min-h-[280px]"
               style={{
                 borderColor: game ? `${game.accent}40` : "rgba(255,255,255,0.1)",
               }}

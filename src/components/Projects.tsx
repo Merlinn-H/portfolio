@@ -39,8 +39,8 @@ export default function Projects() {
           style={{ background: "rgba(13,0,0,0.6)" }}
         >
           {/* Watermark */}
-          <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none">
-            <div className="w-40 md:w-56 opacity-[0.15]">
+          <div className="absolute inset-0 hidden lg:flex items-center justify-end pr-8 pointer-events-none">
+            <div className="w-56 opacity-[0.15]">
               <Image src="/logo-489.png" alt="" width={400} height={200} className="w-full h-auto object-contain" aria-hidden />
             </div>
           </div>
@@ -73,8 +73,8 @@ export default function Projects() {
           className="group relative border border-[#f5f5f0]/10 p-8 overflow-hidden hover:border-[#d30000]/50 transition-colors duration-500"
         >
           {/* Watermark */}
-          <div className="absolute inset-0 flex items-center justify-end pr-8 pointer-events-none">
-            <div className="w-40 md:w-56 opacity-[0.15]">
+          <div className="absolute inset-0 hidden lg:flex items-center justify-end pr-8 pointer-events-none">
+            <div className="w-56 opacity-[0.15]">
               <Image src="/postmeridian.png" alt="" width={400} height={200} className="w-full h-auto object-contain" aria-hidden />
             </div>
           </div>
