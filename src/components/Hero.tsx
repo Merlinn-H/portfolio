@@ -149,7 +149,7 @@ export default function Hero() {
               src="/photo.jpg"
               alt="Hugo Pezzo"
               fill
-              sizes="(min-width: 768px) 288px, 224px"
+              sizes="(min-width: 768px) 324px, 252px"
               className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               priority
             />
