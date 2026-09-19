@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import FilmStrip from "@/components/FilmStrip";
-import StaticGrain from "@/components/StaticGrain";
+import Footer from "@/components/Footer";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function ProductionsPage() {
@@ -15,8 +15,6 @@ export default function ProductionsPage() {
     <main className="relative min-h-screen overflow-hidden" style={{ background: "#0d0000" }}>
       <Navbar />
 
-      <StaticGrain fixed />
-
       {/* Red ambient glow */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
@@ -26,9 +24,9 @@ export default function ProductionsPage() {
       <FilmStrip side="left" />
       <FilmStrip side="right" />
 
-      {/* Logo watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-        <div className="relative w-[70vw] max-w-3xl opacity-[0.04]">
+      {/* Logo watermark, sits behind the header only */}
+      <div className="absolute inset-x-0 top-0 h-[70vh] flex items-center justify-center pointer-events-none overflow-hidden">
+        <div className="relative w-[70vw] max-w-3xl opacity-[0.03]">
           <Image src="/alternate-logo.png" alt="" width={1200} height={600} className="w-full h-auto object-contain select-none" aria-hidden />
         </div>
       </div>
@@ -57,9 +55,9 @@ export default function ProductionsPage() {
           <p className="text-xs tracking-[0.6em] uppercase text-[#d30000] mb-8">
             {p.label}
           </p>
-          <div className="flex justify-center mb-8">
+          <h1 className="flex justify-center mb-8">
             <Image src="/alternate-logo.png" alt="489Productions" width={320} height={160} className="h-20 w-auto object-contain" />
-          </div>
+          </h1>
           <p
             className="text-2xl md:text-3xl text-white/60 tracking-widest"
             style={{ fontFamily: "var(--font-open-sans)", fontStyle: "italic" }}
@@ -118,6 +116,8 @@ export default function ProductionsPage() {
         </motion.div>
 
       </div>
+
+      <Footer />
     </main>
   );
 }

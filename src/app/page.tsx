@@ -2,31 +2,25 @@
 import Navbar from "@/components/Navbar";
 import ProgressBar from "@/components/ProgressBar";
 import Hero from "@/components/Hero";
-import PretextManifesto from "@/components/PretextManifesto";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Gaming from "@/components/Gaming";
 import Contact from "@/components/Contact";
-import { useLanguage } from "@/context/LanguageContext";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  const { text } = useLanguage();
-
   return (
     <main className="bg-[#080808] min-h-screen">
       <ProgressBar />
       <Navbar />
       <Hero />
-      <PretextManifesto />
       <Projects />
       <Skills />
       <Experience />
       <Gaming />
       <Contact />
-      <footer className="py-8 text-center text-xs text-[#f5f5f0]/20 tracking-widest uppercase border-t border-[#f5f5f0]/5">
-        © {new Date().getFullYear()} {text.footer}
-      </footer>
+      <Footer />
     </main>
   );
 }

@@ -1,12 +1,21 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
-import StaticGrain from "@/components/StaticGrain";
+import Footer from "@/components/Footer";
 import { useLanguage } from "@/context/LanguageContext";
 
 function VideoModal({ youtubeId, title, onClose, closeLabel }: { youtubeId: string; title: string; onClose: () => void; closeLabel: string }) {
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose();
+    }
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -54,8 +63,6 @@ export default function Films() {
     <main className="bg-[#080808] min-h-screen">
       <Navbar />
 
-      <StaticGrain fixed opacity={0.035} />
-
       <div className="max-w-4xl mx-auto px-8 pt-36 pb-24">
 
         {/* Back */}
@@ -90,54 +97,94 @@ export default function Films() {
 
         {/* Films list */}
         <div className="flex flex-col gap-px border-t border-[#f5f5f0]/10">
-          {p.films.map((film, index) => (
-            <motion.div
-              key={film.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + index * 0.15, duration: 0.6 }}
-              onClick={() => setActiveVideo({ id: film.youtubeId, title: film.title })}
-              className="group relative border-b border-[#f5f5f0]/10 py-10 cursor-pointer hover:pl-4 transition-all duration-500"
-            >
-              {/* Red left accent on hover */}
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#d30000] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top" />
+          {p.films.map((film, index) => {
+            const open = () => setActiveVideo({ id: film.youtubeId, title: film.title });
+            return (
+              <motion.div
+                key={film.title}
+                role="button"
+                tabIndex={0}
+                aria-label={`${p.watch} ${film.title}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 + index * 0.15, duration: 0.6 }}
+                onClick={open}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    open();
+                  }
+                }}
+                className="group relative border-b border-[#f5f5f0]/10 py-10 cursor-pointer hover:pl-4 focus-visible:pl-4 outline-none transition-all duration-500"
+              >
+                {/* Red left accent on hover */}
+                <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#d30000] scale-y-0 group-hover:scale-y-100 group-focus-visible:scale-y-100 transition-transform duration-500 origin-top" />
 
-              <div className="flex items-start justify-between mb-5 gap-4">
-                <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">
-                  {film.year}
-                </span>
-                <span className="text-xs text-[#f5f5f0]/30 tracking-wider shrink-0">
-                  {p.watch}
-                </span>
-              </div>
+                <div className="grid gap-8 md:grid-cols-[1fr_18rem] md:items-start">
 
-              <h2 className="text-3xl md:text-5xl font-bold text-[#f5f5f0] mb-5 group-hover:text-[#d30000] transition-colors duration-300">
-                {film.title}
-              </h2>
+                  {/* Thumbnail */}
+                  <div className="relative aspect-video overflow-hidden border border-[#f5f5f0]/10 md:order-last">
+                    <Image
+                      src={`https://img.youtube.com/vi/${film.youtubeId}/maxresdefault.jpg`}
+                      alt=""
+                      fill
+                      sizes="(min-width: 768px) 18rem, 100vw"
+                      className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-focus-visible:grayscale-0 group-focus-visible:opacity-100 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span
+                        aria-hidden
+                        className="w-14 h-14 flex items-center justify-center border border-[#f5f5f0]/60 bg-[#080808]/60 text-[#f5f5f0] text-sm pl-1 group-hover:border-[#d30000] group-hover:bg-[#d30000] group-focus-visible:border-[#d30000] group-focus-visible:bg-[#d30000] transition-colors duration-300"
+                      >
+                        ▶
+                      </span>
+                    </div>
+                  </div>
 
-              <div className="flex flex-wrap gap-2 mb-6">
-                {film.roles.map((role) => (
-                  <span
-                    key={role}
-                    className="text-xs px-3 py-1 border border-[#f5f5f0]/10 text-[#f5f5f0]/40"
-                  >
-                    {role}
-                  </span>
-                ))}
-              </div>
+                  {/* Text */}
+                  <div>
+                    <div className="flex items-start justify-between mb-5 gap-4">
+                      <span className="text-xs tracking-[0.3em] uppercase text-[#d30000]">
+                        {film.year}
+                      </span>
+                      <span className="text-xs text-[#f5f5f0]/40 tracking-wider shrink-0 group-hover:text-[#d30000] transition-colors duration-300">
+                        {p.watch}
+                      </span>
+                    </div>
 
-              <div className="space-y-3 max-w-2xl">
-                {film.description.map((para, i) => (
-                  <p key={i} className="text-sm text-[#f5f5f0]/50 leading-relaxed">
-                    {para}
-                  </p>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                    <h2 className="text-3xl md:text-5xl font-bold text-[#f5f5f0] mb-5 group-hover:text-[#d30000] transition-colors duration-300">
+                      {film.title}
+                    </h2>
+
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {film.roles.map((role) => (
+                        <span
+                          key={role}
+                          className="text-xs px-3 py-1 border border-[#f5f5f0]/10 text-[#f5f5f0]/40"
+                        >
+                          {role}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="space-y-3">
+                      {film.description.map((para, i) => (
+                        <p key={i} className="text-sm text-[#f5f5f0]/50 leading-relaxed">
+                          {para}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>
+
+      <Footer />
 
       <AnimatePresence>
         {activeVideo && (
