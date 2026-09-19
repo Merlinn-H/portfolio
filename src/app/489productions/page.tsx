@@ -55,9 +55,9 @@ export default function ProductionsPage() {
           <p className="text-xs tracking-[0.6em] uppercase text-[#d30000] mb-8">
             {p.label}
           </p>
-          <div className="flex justify-center mb-8">
+          <h1 className="flex justify-center mb-8">
             <Image src="/alternate-logo.png" alt="489Productions" width={320} height={160} className="h-20 w-auto object-contain" />
-          </div>
+          </h1>
           <p
             className="text-2xl md:text-3xl text-white/60 tracking-widest"
             style={{ fontFamily: "var(--font-open-sans)", fontStyle: "italic" }}

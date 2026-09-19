@@ -1,32 +1,25 @@
 "use client";
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
+// Deterministic, so it can live outside the component and render on the server too
+const RAIN_DROPS = Array.from({ length: 20 }, (_, i) => ({
+  left: `${((i * 17 + 3) * 5.1) % 100}%`,
+  duration: `${0.8 + ((i * 7) % 10) / 10}s`,
+  delay: `${((i * 13) % 20) / 10}s`,
+  height: `${50 + (i * 11) % 70}px`,
+  opacity: 0.03 + (i % 5) * 0.01,
+}));
+
 export default function Hero() {
   const { text } = useLanguage();
-  const [rainDrops, setRainDrops] = useState<
-    { left: string; duration: string; delay: string; height: string; opacity: number }[]
-  >([]);
-
-  useEffect(() => {
-    setRainDrops(
-      Array.from({ length: 20 }, (_, i) => ({
-        left: `${((i * 17 + 3) * 5.1) % 100}%`,
-        duration: `${0.8 + ((i * 7) % 10) / 10}s`,
-        delay: `${((i * 13) % 20) / 10}s`,
-        height: `${50 + (i * 11) % 70}px`,
-        opacity: 0.03 + (i % 5) * 0.01,
-      }))
-    );
-  }, []);
 
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-10 pt-24 pb-16 md:px-20 md:py-0">
 
       {/* Idée 4 — Pluie ambrée */}
-      {rainDrops.map((drop, i) => (
+      {RAIN_DROPS.map((drop, i) => (
         <div
           key={i}
           aria-hidden
@@ -120,7 +113,7 @@ export default function Hero() {
             className="text-xs italic tracking-widest mb-8"
             style={{ color: "rgba(232, 137, 12, 0.45)" }}
           >
-            "All I want is a chance to start over." — A Better Tomorrow (英雄本色), John Woo, 1986
+            “All I want is a chance to start over.” — A Better Tomorrow (英雄本色), John Woo, 1986
           </motion.p>
 
           <motion.div

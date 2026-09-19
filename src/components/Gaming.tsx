@@ -12,12 +12,12 @@ const slideVariants = {
   exit: (d: number) => ({ x: d > 0 ? -160 : 160, opacity: 0, transition: { duration: 0.25 } }),
 };
 
-function Arrow({ dir, onClick, className = "" }: { dir: 1 | -1; onClick: () => void; className?: string }) {
+function Arrow({ dir, label, onClick, className = "" }: { dir: 1 | -1; label: string; onClick: () => void; className?: string }) {
   return (
     <button
       onClick={onClick}
       className={`shrink-0 w-11 h-11 items-center justify-center border border-white/10 text-white/40 hover:border-[#d30000] hover:text-[#d30000] transition-all duration-300 ${className}`}
-      aria-label={dir === 1 ? "Suivant" : "Précédent"}
+      aria-label={label}
     >
       {dir === 1 ? "→" : "←"}
     </button>
@@ -106,7 +106,7 @@ export default function Gaming() {
         transition={{ delay: 0.3, duration: 0.6 }}
         className="relative flex items-center gap-6"
       >
-        <Arrow dir={-1} onClick={() => go(-1)} className="hidden md:flex" />
+        <Arrow dir={-1} label={text.gaming.prev} onClick={() => go(-1)} className="hidden md:flex" />
 
         {/* Card */}
         <div className="flex-1 overflow-hidden">
@@ -260,12 +260,12 @@ export default function Gaming() {
           </AnimatePresence>
         </div>
 
-        <Arrow dir={1} onClick={() => go(1)} className="hidden md:flex" />
+        <Arrow dir={1} label={text.gaming.next} onClick={() => go(1)} className="hidden md:flex" />
       </motion.div>
 
       {/* Dots, flanked by the arrows on phones */}
       <div className="flex items-center justify-center gap-6 mt-8">
-        <Arrow dir={-1} onClick={() => go(-1)} className="flex md:hidden" />
+        <Arrow dir={-1} label={text.gaming.prev} onClick={() => go(-1)} className="flex md:hidden" />
         <div className="flex justify-center gap-2">
           {Array.from({ length: itemCount }).map((_, i) => (
             <button
@@ -278,7 +278,7 @@ export default function Gaming() {
             />
           ))}
         </div>
-        <Arrow dir={1} onClick={() => go(1)} className="flex md:hidden" />
+        <Arrow dir={1} label={text.gaming.next} onClick={() => go(1)} className="flex md:hidden" />
       </div>
 
     </section>

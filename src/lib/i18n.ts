@@ -8,6 +8,8 @@ export const t = {
       experience: "Parcours",
       gaming: "Influences",
       contact: "Contact",
+      menu: "Menu",
+      close: "Fermer",
     },
     hero: {
       label: "Producteur Audiovisuel & Chargé de Projets Culturels",
@@ -19,7 +21,6 @@ export const t = {
     projects: {
       label: "Portfolio",
       title: "Mes Projets",
-      see_page: "→ Voir la page complète",
       explore: "— Cliquer pour explorer",
       films_count: "→ 3 films",
       productions: {
@@ -29,13 +30,11 @@ export const t = {
       postmeridian: {
         label: "Studio de jeux vidéo",
         desc: "Fondé en 2024, Postmeridian est un studio de développement de jeux vidéo basé entre la France et le Canada, qui développe actuellement son premier projet original.",
-        tags: ["Production", "Direction", "Unreal Engine", "Gestion d'équipe"],
       },
       films: {
         label: "Fiction",
         title: "Courts-métrages",
         desc: "Pineapple Pie, Au Cœur de l'Aliénation, Résonance — trois courts-métrages en tant qu'acteur, assistant réalisateur et chargé de production.",
-        tags: ["2019 — 2023", "Assistant Réalisateur", "Chargé de Production", "Acteur"],
       },
     },
     skills: {
@@ -95,6 +94,8 @@ export const t = {
       label: "Côté perso",
       title: "Univers",
       tabs: { games: "Jeux Vidéo", films: "Films" },
+      prev: "Précédent",
+      next: "Suivant",
       games: [
         { title: "Path of Exile", genre: "ARPG", logo: "/games/poe.png", accent: "#8B1A1A", url: "https://www.pathofexile.com", description: "Officiellement un jeu. En pratique : 40% sur Path of Building, 25% sur des spreadsheets, 15% à lire des wikis — et peut-être 25% à jouer. Les chiffres ne mentent pas." },
         { title: "TFT", genre: "Auto-battler", logo: "/games/tft.png", accent: "#C89B3C", url: "https://teamfighttactics.leagueoflegends.com", description: "L'échecs en 8 joueurs. Un carrousel, un choix, et tout s'effondre. La défaite est toujours de la faute du jeu." },
@@ -186,6 +187,8 @@ export const t = {
       experience: "Experience",
       gaming: "Influences",
       contact: "Contact",
+      menu: "Menu",
+      close: "Close",
     },
     hero: {
       label: "Film Producer & Cultural Project Manager",
@@ -197,7 +200,6 @@ export const t = {
     projects: {
       label: "Portfolio",
       title: "My Projects",
-      see_page: "→ See full page",
       explore: "— Click to explore",
       films_count: "→ 3 films",
       productions: {
@@ -207,13 +209,11 @@ export const t = {
       postmeridian: {
         label: "Video game studio",
         desc: "Founded in 2024, Postmeridian is a game development studio based between France and Canada, currently developing its first original project.",
-        tags: ["Production", "Direction", "Unreal Engine", "Team Management"],
       },
       films: {
         label: "Fiction",
         title: "Short Films",
         desc: "Pineapple Pie, Au Cœur de l'Aliénation, Résonance — three short films as actor, assistant director and production manager.",
-        tags: ["2019 — 2023", "Assistant Director", "Production Manager", "Actor"],
       },
     },
     skills: {
@@ -273,6 +273,8 @@ export const t = {
       label: "Personal",
       title: "Universe",
       tabs: { games: "Video Games", films: "Films" },
+      prev: "Previous",
+      next: "Next",
       games: [
         { title: "Path of Exile", genre: "ARPG", logo: "/games/poe.png", accent: "#8B1A1A", url: "https://www.pathofexile.com", description: "Officially a game. In practice: 40% on Path of Building, 25% on spreadsheets, 15% reading wikis — and maybe 25% actually playing. Numbers don't lie." },
         { title: "TFT", genre: "Auto-battler", logo: "/games/tft.png", accent: "#C89B3C", url: "https://teamfighttactics.leagueoflegends.com", description: "Chess for 8 players. One carousel, one choice, and everything collapses. The loss is always the game's fault." },

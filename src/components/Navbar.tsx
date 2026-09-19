@@ -1,9 +1,13 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+
+// Home page sections, in page order; the observer below tracks which one is on screen
+const SECTION_IDS = ["projets", "competences", "parcours", "gaming", "contact"] as const;
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -15,13 +19,8 @@ export default function Navbar() {
   const langRef = useRef<HTMLDivElement>(null);
   const { locale, setLocale, text } = useLanguage();
 
-  const links = [
-    { href: "/#projets", id: "projets", label: text.nav.projects },
-    { href: "/#competences", id: "competences", label: text.nav.skills },
-    { href: "/#parcours", id: "parcours", label: text.nav.experience },
-    { href: "/#gaming", id: "gaming", label: text.nav.gaming },
-    { href: "/#contact", id: "contact", label: text.nav.contact },
-  ];
+  const labels = [text.nav.projects, text.nav.skills, text.nav.experience, text.nav.gaming, text.nav.contact];
+  const links = SECTION_IDS.map((id, i) => ({ href: `/#${id}`, id, label: labels[i] }));
 
   useEffect(() => {
     if (pathname !== "/") return;
@@ -33,7 +32,7 @@ export default function Navbar() {
       },
       { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
     );
-    links.forEach(({ id }) => {
+    SECTION_IDS.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -50,11 +49,6 @@ export default function Navbar() {
     document.addEventListener("mousedown", handleClick);
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   const otherLocale = locale === "fr" ? "en" : "fr";
 
@@ -74,7 +68,7 @@ export default function Navbar() {
         }}
       >
         {/* 489 logo */}
-        <a
+        <Link
           href="/489productions"
           className={`group flex items-center justify-self-start shrink-0 transition-all duration-300 p-1 ${
             is489
@@ -89,10 +83,10 @@ export default function Navbar() {
             height={40}
             className="h-7 w-auto object-contain"
           />
-        </a>
+        </Link>
 
         {/* Name — centered column */}
-        <a
+        <Link
           href="/"
           className={`px-2 py-1 transition-all duration-300 border whitespace-nowrap ${
             isMain
@@ -102,7 +96,7 @@ export default function Navbar() {
           style={{ fontFamily: "var(--font-open-sans)", fontWeight: 700 }}
         >
           <span className="text-sm tracking-widest uppercase">Hugo Pezzo</span>
-        </a>
+        </Link>
 
         {/* Nav links + language switcher */}
         <div className="flex items-center gap-5 justify-self-end">
@@ -184,7 +178,7 @@ export default function Navbar() {
           background: "rgba(8,8,8,0.88)",
           border: "1px solid rgba(211,0,0,0.25)",
         }}
-        aria-label="Menu"
+        aria-label={text.nav.menu}
       >
         <span className="w-5 h-px bg-[#f5f5f0]/70 block" />
         <span className="w-5 h-px bg-[#f5f5f0]/70 block" />
@@ -220,7 +214,7 @@ export default function Navbar() {
             >
               {/* Header */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-[#f5f5f0]/10">
-                <a href="/489productions" onClick={() => setMobileOpen(false)}>
+                <Link href="/489productions" onClick={() => setMobileOpen(false)}>
                   <Image
                     src="/alternate-logo.png"
                     alt="489Productions"
@@ -228,11 +222,11 @@ export default function Navbar() {
                     height={34}
                     className="h-6 w-auto object-contain opacity-70"
                   />
-                </a>
+                </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
                   className="text-[#f5f5f0]/40 hover:text-[#d30000] transition-colors duration-200 text-base leading-none"
-                  aria-label="Fermer"
+                  aria-label={text.nav.close}
                 >
                   ✕
                 </button>
