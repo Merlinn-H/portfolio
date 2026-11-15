@@ -1,0 +1,2 @@
+lh-before-films.json {'performance': 90, 'accessibility': 95, 'best-practices': 100, 'seo': 100} LCP 3.6 s CLS 0 TBT 70 ms JS kB 244.2
+lh-before-home.json {'performance': 90, 'accessibility': 92, 'best-practices': 100, 'seo': 100} LCP 3.5 s CLS 0 TBT 50 ms JS kB 192.3
