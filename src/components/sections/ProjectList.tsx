@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Project } from "@/lib/content";
 import { pick } from "@/lib/content";
 import { href, type Dict, type Locale } from "@/lib/i18n";
@@ -31,7 +32,7 @@ export function ProjectList({
         <ul className={styles.features}>
           {features.map((p) => (
             <li key={p.slug} className={`${styles.feature} reveal`}>
-              <a href={href(locale, `/projets/${p.slug}`)} className={styles.featureLink}>
+              <Link href={href(locale, `/projets/${p.slug}`)} prefetch={false} className={styles.featureLink}>
                 <span className={`credits ${styles.kicker}`}>
                   {pick(p.kicker, locale)}
                   {p.year ? <span className={styles.year}> · {p.year}</span> : null}
@@ -45,7 +46,7 @@ export function ProjectList({
                 <span className={styles.arrow} aria-hidden="true">
                   →
                 </span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -57,7 +58,7 @@ export function ProjectList({
           <ol className={styles.shorts}>
             {shorts.map((p) => (
               <li key={p.slug} className="reveal">
-                <a href={href(locale, `/projets/${p.slug}`)} className={styles.shortLink}>
+                <Link href={href(locale, `/projets/${p.slug}`)} prefetch={false} className={styles.shortLink}>
                   <span className={styles.shortYear}>{p.year}</span>
                   <Item className={styles.shortTitle}>
                     {p.title}
@@ -67,7 +68,7 @@ export function ProjectList({
                   <span className={styles.shortArrow} aria-hidden="true">
                     →
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ol>

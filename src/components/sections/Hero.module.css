@@ -88,10 +88,6 @@
 .scroll {
   display: none;
 }
-.anchor {
-  position: absolute;
-  bottom: 0;
-}
 
 @media (min-width: 40rem) {
   .hero {

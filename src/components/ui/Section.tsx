@@ -23,7 +23,9 @@ export function Section({
       data-tone={tone}
       aria-labelledby={labelledBy}
       aria-label={labelledBy ? undefined : label}
-      className={`${styles.section} ${styles[space]} ${tone === "light" ? styles.light : ""}`}
+      className={[styles.section, space !== "m" ? styles[space] : "", tone === "light" ? styles.light : ""]
+        .filter(Boolean)
+        .join(" ")}
     >
       <div className={styles.inner}>{children}</div>
     </section>

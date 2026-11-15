@@ -3,17 +3,17 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-intro);
-  display: grid;
+  display: none;
   place-items: center;
   background: var(--bg-sunken);
   animation: intro-cut 1ms linear 1.1s forwards;
 }
-:global(html[data-intro="off"]) .intro {
-  display: none;
+.intro[data-play] {
+  display: grid;
 }
 /* Sans JS aussi : jamais d'ident pour qui préfère réduire les animations. */
 @media (prefers-reduced-motion: reduce) {
-  .intro {
+  .intro[data-play] {
     display: none;
   }
 }

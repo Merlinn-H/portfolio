@@ -261,3 +261,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.langItem {
+  display: contents;
+}

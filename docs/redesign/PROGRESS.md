@@ -29,3 +29,7 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 11:07 — ✅ Checkpoint 4 lancé : rebuild, screenshots after (375/768/1024/1440) régénérés, lint + prettier + 22 tests e2e verts. Revue finale Fable (sous-agent lecture seule) en cours.
 11:15 — ✅ Checkpoint Fable 4 : GO. 3 corrections CSS + 4 coquilles/casse appliquées, REVIEW.md rendu plus exact (DECISIONS 25). Build, lint, prettier, 22 tests e2e verts. Lighthouse final : home 97/100/100/100, page projet 96/100/100/100, CLS 0,001. Screenshots after régénérés.
 11:46 — 🧊 GEL. Build et lint verts, arbre propre, branche `redesign/v2` poussée (miroir `claude/affectionate-planck-jlw1yu`). Rien sur `main`, rien déployé. Plus aucune modification de code. Lire docs/redesign/REVIEW.md.
+17:36 — ✅ (session 2) Faits corrigés selon Hugo : POSTMERIDIAN fondé en avril 2024 à Montpellier ; 8 ans en production audiovisuelle + 2 ans en production de jeux vidéo. Blocs des pages libres : champ « Liens » (pour Instagram etc. sur Personal brand). Djogo reste masqué.
+➡️ Bascule FR/EN sans rechargement + navigation sans rechargement ; LCP.
+17:46 — ✅ Navigation et bascule FR/EN sans rechargement (racine unique [lang] + rewrites + next/link). Parcours complet testé : 1 seul document chargé, <html lang> suit, position gardée au changement de langue, ident jamais rejoué. 2 bugs trouvés et corrigés en route (ident réapparaissant, retour accueil mal positionné). 25 tests verts. JS +3 kB gzip.
+➡️ Temps d'affichage (LCP).

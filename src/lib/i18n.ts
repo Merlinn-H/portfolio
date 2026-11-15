@@ -1,6 +1,9 @@
 export const locales = ["fr", "en"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "fr";
+export const isLocale = (v: string): v is Locale => (locales as readonly string[]).includes(v);
+export const toLocale = (v: string): Locale => (isLocale(v) ? v : defaultLocale);
+export type LangParams = { params: Promise<{ lang: string }> };
 
 /** Préfixe d'URL : le français est à la racine, l'anglais sous /en. */
 export const localePrefix = (l: Locale) => (l === "en" ? "/en" : "");

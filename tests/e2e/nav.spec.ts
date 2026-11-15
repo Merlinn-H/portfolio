@@ -79,3 +79,33 @@ test("EN : les onglets défilent sans recharger la page", async ({ page, isMobil
   await expect(page).toHaveURL(/\/en#experience$/);
   expect(await page.evaluate(() => (window as unknown as { __marker?: number }).__marker)).toBe(42);
 });
+
+test("FR ↔ EN sans rechargement : même page, même position, langue mise à jour", async ({ page, isMobile }) => {
+  const documents: string[] = [];
+  page.on("request", (r) => r.resourceType() === "document" && documents.push(r.url()));
+  await page.goto("/");
+  await page.evaluate(() => window.scrollTo(0, 2000));
+  if (isMobile) await page.getByRole("button", { name: "Menu" }).click();
+  const scope = isMobile ? page.getByRole("dialog") : page.getByRole("banner");
+  await scope.getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(1500);
+  expect(documents).toHaveLength(1);
+});
+
+test("parcours complet sans rechargement de page, ident jamais rejoué", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop");
+  const documents: string[] = [];
+  page.on("request", (r) => r.resourceType() === "document" && documents.push(r.url()));
+  await page.goto("/projets");
+  await page.locator('a[href="/projets/postmeridian"]').first().click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("POSTMERIDIAN");
+  await page.getByRole("banner").getByRole("link", { name: "English" }).click();
+  await expect(page).toHaveURL(/\/en\/projets\/postmeridian$/);
+  await page.getByRole("banner").getByRole("link", { name: "Hugo Pezzo" }).click();
+  await expect(page).toHaveURL(/\/en$/);
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  await expect(page.locator("[data-intro-overlay][data-play]")).toHaveCount(0);
+  expect(documents).toHaveLength(1);
+});

@@ -45,10 +45,9 @@ export function Hero({ site, locale, t }: { site: Site; locale: Locale; t: Dict 
         </figure>
       ) : null}
 
-      <a href="#content-start" className={`credits ${styles.scroll}`}>
+      <a href="#after-hero" className={`credits ${styles.scroll}`}>
         {t.scroll} <span aria-hidden="true">↓</span>
       </a>
-      <span id="content-start" className={styles.anchor} />
     </section>
   );
 }

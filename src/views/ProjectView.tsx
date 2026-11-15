@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, getProjects, getSite, pick } from "@/lib/content";
 import { href, ui, type Locale } from "@/lib/i18n";
@@ -30,9 +31,9 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
       <HiddenBanner show={project.status === "hidden"} text={t.hiddenPage} />
       <header className={styles.head}>
         <nav aria-label={locale === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className={`credits ${styles.crumbs}`}>
-          <a className="link" href={href(locale, "/projets")}>
+          <Link className="link" href={href(locale, "/projets")}>
             {t.allProjects}
-          </a>
+          </Link>
           <span>
             <span aria-hidden="true">/</span> {pick(project.kicker, locale)}
           </span>
@@ -143,12 +144,12 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
       ) : null}
 
       {next && next.slug !== project.slug ? (
-        <a className={styles.next} href={href(locale, `/projets/${next.slug}`)}>
+        <Link className={styles.next} href={href(locale, `/projets/${next.slug}`)}>
           <span className="credits">{t.next}</span>
           <span className={styles.nextTitle}>
             {next.title} <span aria-hidden="true">→</span>
           </span>
-        </a>
+        </Link>
       ) : null}
     </article>
   );

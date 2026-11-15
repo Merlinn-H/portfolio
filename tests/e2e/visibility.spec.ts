@@ -10,6 +10,7 @@ const published = process.env.EXPECT_PERSONAL_BRAND === "published";
 test("page masquée : 404, hors nav, hors sitemap — ou l'inverse une fois publiée", async ({ page, request }) => {
   const res = await request.get("/personal-brand");
   expect(res.status()).toBe(published ? 200 : 404);
+  expect((await request.get("/en/personal-brand")).status()).toBe(published ? 200 : 404);
 
   await page.goto("/");
   const links = page.getByRole("banner").locator("a").or(page.locator("dialog a"));

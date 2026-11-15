@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function GlobalNotFound() {
   return (
     <RootShell locale="fr">
-      <NotFoundView locale="fr" />
+      <NotFoundView />
     </RootShell>
   );
 }

@@ -1,0 +1,12 @@
+/* Entrée de page après navigation douce : jamais d'opacity 0 (le contenu reste peint, LCP intact). */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html[data-nav]) .page {
+    animation: page-in var(--dur-3) var(--ease-out);
+  }
+}
+@keyframes page-in {
+  from {
+    transform: translateY(var(--space-4));
+    clip-path: inset(0 0 8% 0);
+  }
+}

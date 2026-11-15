@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import {
   getExperiences,
   getFilms,
@@ -53,7 +54,12 @@ export async function HomeView({ locale }: { locale: Locale }) {
 
         switch (s.type) {
           case "hero":
-            return <Hero key="hero" site={site} locale={locale} t={t} />;
+            return (
+              <Fragment key="hero">
+                <Hero site={site} locale={locale} t={t} />
+                <span id="after-hero" />
+              </Fragment>
+            );
           case "projects":
             if (projects.length === 0) return null;
             return (
