@@ -1,0 +1,48 @@
+---
+import styles from "./Contact.module.css";
+
+interface Props {
+  title: string;
+  intro: string;
+  email?: string;
+  socials: readonly { label: string; url: string | null }[];
+  cta: string;
+}
+const { title, intro, email, socials, cta } = Astro.props;
+---
+
+<div class={styles.wrap}>
+  {
+    title ? (
+      <h2 id="contact-title" class={`${styles.title} reveal`}>
+        {title}
+      </h2>
+    ) : null
+  }
+  {intro ? <p class={styles.intro}>{intro}</p> : null}
+  {
+    email ? (
+      <a class={styles.email} href={`mailto:${email}`}>
+        <span class="visually-hidden">{cta} : </span>
+        {email.split("@")[0]}@<wbr />
+        {email.split("@")[1]}
+        <span aria-hidden="true" class={styles.arrow}>
+          ↗
+        </span>
+      </a>
+    ) : null
+  }
+  <ul class={styles.socials}>
+    {
+      socials
+        .filter((s) => s.url)
+        .map((s) => (
+          <li>
+            <a href={s.url!} target="_blank" rel="noopener noreferrer" class={styles.pill}>
+              {s.label} <span aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))
+    }
+  </ul>
+</div>

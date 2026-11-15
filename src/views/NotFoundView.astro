@@ -1,0 +1,26 @@
+---
+import { ui } from "@/lib/i18n";
+import styles from "./NotFoundView.module.css";
+
+/** 404 bilingue : une URL inconnue ne dit pas dans quelle langue on se trouve. */
+const fr = ui("fr");
+const en = ui("en");
+---
+
+<div class={styles.wrap}>
+  <p class={`credits ${styles.code}`}>404</p>
+  <h1 class={styles.title}>{fr.notFoundTitle}</h1>
+  <p class={styles.text}>{fr.notFoundText}</p>
+  <p class={styles.text} lang="en">
+    {en.notFoundTitle}
+    {en.notFoundText}
+  </p>
+  <p class={styles.actions}>
+    <a href="/" class={styles.pill}>
+      ← {fr.notFoundBack}
+    </a>
+    <a href="/en" class={styles.pillGhost} lang="en">
+      {en.notFoundBack}
+    </a>
+  </p>
+</div>

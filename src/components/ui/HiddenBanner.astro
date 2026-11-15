@@ -1,0 +1,18 @@
+---
+import styles from "./HiddenBanner.module.css";
+
+/** Bandeau des pages masquées — n'existe qu'en développement (en production elles renvoient 404). */
+interface Props {
+  show: boolean;
+  text: string;
+}
+const { show, text } = Astro.props;
+---
+
+{
+  show && (
+    <p class={styles.banner} role="status">
+      <span class={styles.tag}>●</span> {text}
+    </p>
+  )
+}

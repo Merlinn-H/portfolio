@@ -1,0 +1,64 @@
+---
+import { Picture } from "astro:assets";
+import Hanzi from "@/components/ui/Hanzi.astro";
+import type { getSite } from "@/lib/content";
+import { pick } from "@/lib/content";
+import type { Dict, Locale } from "@/lib/i18n";
+import styles from "./Hero.module.css";
+
+type Site = Awaited<ReturnType<typeof getSite>>;
+
+interface Props {
+  site: Site;
+  locale: Locale;
+  t: Dict;
+}
+const { site, locale, t } = Astro.props;
+const [first, ...rest] = site.name.split(" ");
+const portrait = site.portraitImg;
+---
+
+<section id="top" data-section="" class={styles.hero} aria-labelledby="hero-title">
+  <p class={`credits ${styles.role}`}>{pick(site.role, locale)}</p>
+
+  <h1 id="hero-title" class={styles.name}>
+    {/* Un seul bloc de texte (pas deux <span> en display:block) : le navigateur le compte
+        comme un seul élément, le plus grand de l'écran → LCP peint dès le premier rendu. */}
+    {first}
+    <br />
+    {rest.join(" ")}
+  </h1>
+
+  {
+    portrait ? (
+      <div class={styles.portrait}>
+        <Picture
+          src={portrait}
+          alt={pick(site.portraitAlt, locale)}
+          formats={["avif", "webp"]}
+          widths={[384, 640, 960, 1280]}
+          sizes="(min-width: 64rem) 36vw, (min-width: 40rem) 33vw, 50vw"
+          quality={75}
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    ) : null
+  }
+
+  <p class={styles.tagline}>{pick(site.tagline, locale)}</p>
+
+  {
+    site.quote?.text ? (
+      <figure class={styles.quote}>
+        {site.quote.hanzi ? <Hanzi text={site.quote.hanzi} label={site.quote.source} class={styles.hanzi} /> : null}
+        <blockquote lang="en">“{site.quote.text}”</blockquote>
+        <figcaption class="credits">{site.quote.source}</figcaption>
+      </figure>
+    ) : null
+  }
+
+  <a href="#after-hero" class={`credits ${styles.scroll}`}>
+    {t.scroll} <span aria-hidden="true">↓</span>
+  </a>
+</section>

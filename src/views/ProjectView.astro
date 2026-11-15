@@ -1,0 +1,159 @@
+---
+import { Picture } from "astro:assets";
+import { getProject, getProjects, getSite, pick } from "@/lib/content";
+import { href, ui, type Locale } from "@/lib/i18n";
+import HiddenBanner from "@/components/ui/HiddenBanner.astro";
+import VideoPlayer from "@/components/project/VideoPlayer.astro";
+import styles from "./ProjectView.module.css";
+
+interface Props {
+  locale: Locale;
+  slug: string;
+}
+const { locale, slug } = Astro.props;
+// Un projet introuvable est géré par la route (404) ; ici on ne rend alors rien.
+const project = await getProject(slug);
+const t = ui(locale);
+const [all, site] = await Promise.all([getProjects(), getSite()]);
+const ctaText = pick(project?.cta?.text, locale);
+const ctaButton = pick(project?.cta?.button, locale);
+const idx = all.findIndex((p) => p.slug === slug);
+const next = all.length > 1 ? all[(idx + 1) % all.length] : null;
+
+const body = project ? pick(project.body, locale) || pick(project.summary, locale) : "";
+const paragraphs = body
+  .split(/\n\s*\n/)
+  .map((p) => p.trim())
+  .filter(Boolean);
+const role = pick(project?.role, locale);
+const tagline = pick(project?.tagline, locale);
+const roles = role ? role.split(",").map((r) => r.trim()) : [];
+---
+
+{
+  project && (
+    <article class={styles.page}>
+      <HiddenBanner show={project.status === "hidden"} text={t.hiddenPage} />
+      <header class={styles.head}>
+        <nav aria-label={locale === "fr" ? "Fil d'Ariane" : "Breadcrumb"} class={`credits ${styles.crumbs}`}>
+          <a class="link" href={href(locale, "/projets")}>
+            {t.allProjects}
+          </a>
+          <span>
+            <span aria-hidden="true">/</span> {pick(project.kicker, locale)}
+          </span>
+        </nav>
+        <h1 class={styles.title}>{project.title}</h1>
+        {tagline ? <p class={styles.tagline}>{tagline}</p> : null}
+        <dl class={styles.meta}>
+          {project.year ? (
+            <div>
+              <dt class="credits">{t.year}</dt>
+              <dd>{project.year}</dd>
+            </div>
+          ) : null}
+          {roles.length ? (
+            <div>
+              <dt class="credits">{t.role}</dt>
+              <dd>
+                {roles.map((r) => (
+                  <span>{r}</span>
+                ))}
+              </dd>
+            </div>
+          ) : null}
+        </dl>
+      </header>
+
+      {project.youtubeId ? (
+        <div class={styles.media}>
+          <VideoPlayer
+            id={project.youtubeId}
+            title={project.title}
+            label={t.watch}
+            hint={t.watchOn}
+            card={project.title}
+          />
+        </div>
+      ) : project.coverImg ? (
+        <div class={styles.media}>
+          <Picture
+            src={project.coverImg}
+            alt={pick(project.coverAlt, locale)}
+            formats={["avif", "webp"]}
+            widths={[640, 960, 1280, 1720]}
+            sizes="(min-width: 90rem) 86rem, 100vw"
+            loading="eager"
+            fetchpriority="high"
+            class={styles.cover}
+          />
+        </div>
+      ) : project.logoImg ? (
+        <div class={`${styles.media} ${styles.logoFrame}`}>
+          <Picture
+            src={project.logoImg}
+            alt={`Logo ${project.title}`}
+            formats={["avif", "webp"]}
+            widths={[320, 640, 960]}
+            sizes="(min-width: 64rem) 32rem, 70vw"
+            loading="eager"
+            fetchpriority="high"
+            class={styles.logo}
+          />
+        </div>
+      ) : null}
+
+      <div class={styles.body}>
+        {paragraphs.map((p, i) => (
+          <p class={i === 0 ? styles.lead : undefined}>{p}</p>
+        ))}
+      </div>
+
+      {project.highlights.length > 0 ? (
+        <ol class={styles.highlights}>
+          {project.highlights.map((h, i) => (
+            <li class="reveal">
+              <span class={styles.hlNum} aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 class={styles.hlTitle}>{pick(h.title, locale)}</h2>
+              <p>{pick(h.text, locale)}</p>
+            </li>
+          ))}
+        </ol>
+      ) : null}
+
+      {project.links.filter((l) => l.url).length > 0 ? (
+        <ul class={styles.links}>
+          {project.links
+            .filter((l) => l.url)
+            .map((l) => (
+              <li>
+                <a href={l.url!} target="_blank" rel="noopener noreferrer" class={styles.pill}>
+                  {t.visit} {pick(l.label, locale)} <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+        </ul>
+      ) : null}
+
+      {ctaText && site.email ? (
+        <aside class={styles.cta} aria-label={ctaButton || ctaText}>
+          <p class={styles.ctaText}>{ctaText}</p>
+          <a class={styles.pill} href={`mailto:${site.email}`}>
+            {ctaButton || site.email} <span aria-hidden="true">↗</span>
+          </a>
+        </aside>
+      ) : null}
+
+      {next && next.slug !== project.slug ? (
+        <a class={styles.next} href={href(locale, `/projets/${next.slug}`)}>
+          <span class="credits">{t.next}</span>
+          <span class={styles.nextTitle}>
+            {next.title} <span aria-hidden="true">→</span>
+          </span>
+        </a>
+      ) : null}
+    </article>
+  )
+}

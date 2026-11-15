@@ -1,0 +1,47 @@
+---
+import styles from "./VideoPlayer.module.css";
+
+/** Lecteur « façade » : rien n'est chargé depuis YouTube avant le clic. */
+interface Props {
+  id: string;
+  title: string;
+  label: string;
+  hint: string;
+  card: string;
+}
+const { id, title, label, hint, card } = Astro.props;
+---
+
+<div class={styles.frame}>
+  <button
+    type="button"
+    class={styles.facade}
+    data-video-facade
+    data-video-id={id}
+    data-video-title={title}
+    data-iframe-class={styles.iframe}
+    aria-describedby={`hint-${id}`}
+  >
+    <span class={styles.card} aria-hidden="true">{card}</span>
+    <span class={styles.play}>
+      <span aria-hidden="true" class={styles.icon}>▶</span>{" "}
+      {label}
+    </span>
+    <span id={`hint-${id}`} class={`credits ${styles.hint}`}>{hint}</span>
+  </button>
+</div>
+
+<script>
+  // Délégation sur document : fonctionne aussi après les navigations du routeur d'Astro.
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as Element | null)?.closest<HTMLButtonElement>("button[data-video-facade]");
+    if (!btn) return;
+    const iframe = document.createElement("iframe");
+    iframe.className = btn.dataset.iframeClass ?? "";
+    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(btn.dataset.videoId ?? "")}?autoplay=1&rel=0`;
+    iframe.title = btn.dataset.videoTitle ?? "";
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    iframe.allowFullscreen = true;
+    btn.replaceWith(iframe);
+  });
+</script>

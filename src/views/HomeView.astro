@@ -1,0 +1,129 @@
+---
+import {
+  getExperiences,
+  getFilms,
+  getGames,
+  getProjects,
+  getRenderableSections,
+  getSite,
+  getSkills,
+  pick,
+} from "@/lib/content";
+import { ui, type Locale } from "@/lib/i18n";
+import Section from "@/components/ui/Section.astro";
+import SectionHead from "@/components/ui/SectionHead.astro";
+import Hero from "@/components/sections/Hero.astro";
+import ProjectList from "@/components/sections/ProjectList.astro";
+import Manifesto from "@/components/sections/Manifesto.astro";
+import Experience from "@/components/sections/Experience.astro";
+import Skills from "@/components/sections/Skills.astro";
+import Influences from "@/components/sections/Influences.astro";
+import Contact from "@/components/sections/Contact.astro";
+
+/** Accueil : sections dans l'ordre et avec la visibilité définis dans /keystatic › Page d'accueil. */
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = ui(locale);
+const [site, sections, projects, experiences, skills, films, games] = await Promise.all([
+  getSite(),
+  getRenderableSections(),
+  getProjects(),
+  getExperiences(),
+  getSkills(),
+  getFilms(),
+  getGames(),
+]);
+
+// Même logique de visibilité qu'avant : une section sans contenu n'est ni rendue ni numérotée.
+// Le hero n'a pas de carton de section, donc pas de numéro.
+const shown = (type: string, intro: string) => {
+  switch (type) {
+    case "hero":
+    case "contact":
+      return true;
+    case "projects":
+      return projects.length > 0;
+    case "manifesto":
+      return Boolean(intro);
+    case "experience":
+      return experiences.length > 0;
+    case "skills":
+      return skills.length > 0;
+    case "influences":
+      return films.length + games.length > 0;
+    default:
+      return false;
+  }
+};
+
+let n = 0;
+const numbered = sections
+  .map((s) => {
+    const eyebrow = pick(s.eyebrow, locale);
+    const title = pick(s.title, locale);
+    const intro = pick(s.intro, locale);
+    const visible = shown(s.type, intro);
+    return {
+      type: s.type,
+      visible,
+      index: visible && s.type !== "hero" ? ++n : 0,
+      hiddenLabel: s.status === "hidden" ? t.hidden : null,
+      eyebrow,
+      title,
+      intro,
+      labelled: title ? `${s.type}-title` : undefined,
+    };
+  })
+  .filter((s) => s.visible);
+---
+
+{
+  numbered.map((s) => (
+    <>
+      {s.type === "hero" && (
+        <>
+          <Hero site={site} locale={locale} t={t} />
+          <span id="after-hero" />
+        </>
+      )}
+      {s.type === "projects" && (
+        <Section id="projects" labelledBy={s.labelled} label={s.eyebrow}>
+          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+          <ProjectList projects={projects} locale={locale} t={t} />
+        </Section>
+      )}
+      {s.type === "manifesto" && (
+        <Section id="manifesto" labelledBy={s.labelled} label={s.eyebrow} tone="light" space="l">
+          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+          <Manifesto text={s.intro} />
+        </Section>
+      )}
+      {s.type === "experience" && (
+        <Section id="experience" labelledBy={s.labelled} label={s.eyebrow}>
+          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+          <Experience items={experiences} intro={s.intro} locale={locale} t={t} />
+        </Section>
+      )}
+      {s.type === "skills" && (
+        <Section id="skills" labelledBy={s.labelled} label={s.eyebrow} space="s">
+          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+          <Skills categories={skills} locale={locale} />
+        </Section>
+      )}
+      {s.type === "influences" && (
+        <Section id="influences" labelledBy={s.labelled} label={s.eyebrow}>
+          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+          <Influences films={films} games={games} locale={locale} t={t} />
+        </Section>
+      )}
+      {s.type === "contact" && (
+        <Section id="contact" labelledBy={s.title ? "contact-title" : undefined} label={s.eyebrow} space="l">
+          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} hiddenLabel={s.hiddenLabel} />
+          <Contact title={s.title} intro={s.intro} email={site.email} socials={site.socials} cta={t.contactCta} />
+        </Section>
+      )}
+    </>
+  ))
+}

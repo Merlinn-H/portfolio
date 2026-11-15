@@ -1,0 +1,12 @@
+---
+import styles from "./HiddenBadge.module.css";
+
+/** Badge visible uniquement en développement : en production, un élément masqué n'est jamais rendu. */
+interface Props {
+  show: boolean;
+  label: string;
+}
+const { show, label } = Astro.props;
+---
+
+{show && <span class={styles.badge}>{label}</span>}

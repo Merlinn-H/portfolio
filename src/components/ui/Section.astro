@@ -1,0 +1,24 @@
+---
+import styles from "./Section.module.css";
+
+/** Section de l'accueil. `tone="light"` = carton inversé (blanc os), `space` varie le rythme vertical. */
+interface Props {
+  id: string;
+  labelledBy?: string;
+  label?: string;
+  tone?: "light";
+  space?: "s" | "m" | "l";
+}
+const { id, labelledBy, label, tone, space = "m" } = Astro.props;
+---
+
+<section
+  id={id}
+  data-section=""
+  data-tone={tone}
+  aria-labelledby={labelledBy}
+  aria-label={labelledBy ? undefined : label}
+  class:list={[styles.section, space !== "m" && styles[space], tone === "light" && styles.light]}
+>
+  <div class={styles.inner}><slot /></div>
+</section>

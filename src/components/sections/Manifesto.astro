@@ -1,0 +1,17 @@
+---
+import styles from "./Manifesto.module.css";
+
+/** Manifeste : la première phrase en affiche, le reste en colonne de lecture. */
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+const m = text.match(/^(.+?[.!?])\s+([\s\S]*)$/);
+const lead = m ? m[1] : text;
+const rest = m ? m[2] : "";
+---
+
+<div class={styles.wrap}>
+  <p class={`${styles.lead} reveal`}>{lead}</p>
+  {rest ? <p class={`${styles.rest} reveal`}>{rest}</p> : null}
+</div>

@@ -1,0 +1,31 @@
+---
+import { pick, type getSkills } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import styles from "./Skills.module.css";
+
+type Cat = Awaited<ReturnType<typeof getSkills>>[number];
+
+/** Compétences en « générique de fin » : rôle à gauche, noms à droite. */
+interface Props {
+  categories: readonly Cat[];
+  locale: Locale;
+}
+const { categories, locale } = Astro.props;
+---
+
+<dl class={styles.roll}>
+  {
+    categories.map((c) => (
+      <div class={`${styles.row} reveal`}>
+        <dt class={`credits ${styles.cat}`}>{pick(c.name, locale)}</dt>
+        <dd class={styles.items}>
+          <ul>
+            {c.items.map((s) => (
+              <li>{pick(s, locale)}</li>
+            ))}
+          </ul>
+        </dd>
+      </div>
+    ))
+  }
+</dl>
