@@ -1,0 +1,26 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageView from "@/views/PageView.astro";
+import { getPage, pick } from "@/lib/content";
+import { pageSeo } from "@/lib/seo";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  slug: string;
+}
+const { locale, slug } = Astro.props;
+const p = await getPage(slug);
+const path = `/${slug}`;
+const seo = await pageSeo({
+  locale,
+  path,
+  title: p ? pick(p.title, locale) : undefined,
+  description: p ? pick(p.seoDescription, locale) : undefined,
+  hidden: p?.status === "hidden",
+});
+---
+
+<Base locale={locale} seo={seo} path={path}>
+  <PageView locale={locale} slug={slug} />
+</Base>

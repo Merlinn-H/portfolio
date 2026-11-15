@@ -123,16 +123,13 @@ test("404 : statut 404, liens de langue valides", async ({ page }) => {
   }
 });
 
-test("aucun préchargement au chargement : l'autre langue n'est chargée qu'à l'intention", async ({
-  page,
-  isMobile,
-}) => {
+test("aucun préchargement au chargement : l'autre langue n'est chargée qu'à l'intention", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop");
-  const rsc: string[] = [];
-  page.on("request", (r) => r.url().includes("_rsc=") && rsc.push(r.url()));
+  const fetched: string[] = [];
+  page.on("request", (r) => r.resourceType() !== "document" && /\/en$/.test(new URL(r.url()).pathname) && fetched.push(r.url()));
   await page.goto("/");
   await page.waitForTimeout(1500);
-  expect(rsc).toHaveLength(0);
+  expect(fetched).toHaveLength(0);
   await page.getByRole("banner").getByRole("link", { name: "English" }).hover();
-  await expect.poll(() => rsc.some((u) => u.includes("/en"))).toBe(true);
+  await expect.poll(() => fetched.length).toBeGreaterThan(0);
 });

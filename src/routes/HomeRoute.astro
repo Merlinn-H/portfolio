@@ -1,0 +1,16 @@
+---
+import Base from "@/layouts/Base.astro";
+import HomeView from "@/views/HomeView.astro";
+import { pageSeo } from "@/lib/seo";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const seo = await pageSeo({ locale, path: "/" });
+---
+
+<Base locale={locale} seo={seo} path="/">
+  <HomeView locale={locale} />
+</Base>

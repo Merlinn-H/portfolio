@@ -1,0 +1,11 @@
+---
+import Base from "@/layouts/Base.astro";
+import NotFoundView from "@/views/NotFoundView.astro";
+import { pageSeo } from "@/lib/seo";
+
+const seo = { ...(await pageSeo({ locale: "fr", path: "/" })), title: "404 — Hugo Pezzo", noindex: true };
+---
+
+<Base locale="fr" seo={seo} path="/">
+  <NotFoundView />
+</Base>

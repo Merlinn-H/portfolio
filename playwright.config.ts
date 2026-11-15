@@ -14,7 +14,7 @@ export default defineConfig({
   },
   webServer: process.env.BASE_URL
     ? undefined
-    : { command: "npx next start -p 3100", url: "http://localhost:3100", reuseExistingServer: true },
+    : { command: "npm run preview", url: "http://localhost:3100", reuseExistingServer: true },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
     { name: "mobile", use: { ...devices["Pixel 7"] } },

@@ -1,0 +1,12 @@
+---
+import ProjectRoute from "@/routes/ProjectRoute.astro";
+import { getProjects } from "@/lib/content";
+
+// Les projets masqués n'existent pas en production (getProjects les filtre), donc pas de page → 404.
+export async function getStaticPaths() {
+  return (await getProjects()).map((p) => ({ params: { slug: p.slug } }));
+}
+const { slug } = Astro.params;
+---
+
+<ProjectRoute locale="fr" slug={slug!} />

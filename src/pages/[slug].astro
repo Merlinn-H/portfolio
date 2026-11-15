@@ -1,0 +1,12 @@
+---
+import PageRoute from "@/routes/PageRoute.astro";
+import { getPages } from "@/lib/content";
+
+// Pages libres (ex. Personal brand). Masquées en production → pas de page → 404.
+export async function getStaticPaths() {
+  return (await getPages()).map((p) => ({ params: { slug: p.slug } }));
+}
+const { slug } = Astro.params;
+---
+
+<PageRoute locale="fr" slug={slug!} />

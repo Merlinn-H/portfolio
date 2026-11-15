@@ -1,0 +1,16 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProjectsIndexView from "@/views/ProjectsIndexView.astro";
+import { pageSeo } from "@/lib/seo";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const seo = await pageSeo({ locale, path: "/projets", title: locale === "fr" ? "Projets" : "Projects" });
+---
+
+<Base locale={locale} seo={seo} path="/projets">
+  <ProjectsIndexView locale={locale} />
+</Base>

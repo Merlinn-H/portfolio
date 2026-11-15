@@ -1,0 +1,27 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProjectView from "@/views/ProjectView.astro";
+import { getProject, pick } from "@/lib/content";
+import { pageSeo } from "@/lib/seo";
+import type { Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+  slug: string;
+}
+const { locale, slug } = Astro.props;
+const p = await getProject(slug);
+const path = `/projets/${slug}`;
+const seo = await pageSeo({
+  locale,
+  path,
+  title: p?.title,
+  description: p ? pick(p.summary, locale) : undefined,
+  hidden: p?.status === "hidden",
+  ogImage: `/og/${locale}/projets/${slug}.png`,
+});
+---
+
+<Base locale={locale} seo={seo} path={path}>
+  <ProjectView locale={locale} slug={slug} />
+</Base>
