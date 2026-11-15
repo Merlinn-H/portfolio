@@ -1,5 +1,4 @@
 title: Porco Rosso
-titleEn: ''
 status: published
 order: 30
 director: Hayao Miyazaki
@@ -7,7 +6,7 @@ year: '1992'
 genre:
   fr: Animation
   en: Animation
-poster: /images/films/porco-rosso.jpg
+poster: /images/films/porco-rosso/poster.jpg
 url: https://letterboxd.com/film/porco-rosso/
 description:
   fr: Un pilote à tête de cochon entre deux guerres. Le film le plus personnel de Miyazaki — sur la liberté, la honte, et l'inutilité magnifique du courage.

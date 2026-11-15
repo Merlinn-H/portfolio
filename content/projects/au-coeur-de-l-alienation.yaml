@@ -25,14 +25,8 @@ body:
     To make these creations tangible and stable, operators lower the simulation frequency.
 
     That is when an uncreated form takes total control of SynExplorer.
-tagline:
-  fr: ''
-  en: ''
-cover: null
-coverAlt:
-  fr: ''
-  en: ''
-logo: null
+tagline: {}
+coverAlt: {}
 gallery: []
 youtubeId: 3Ef50Mpe00M
 highlights: []

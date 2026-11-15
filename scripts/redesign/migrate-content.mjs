@@ -14,9 +14,32 @@ fs.unlinkSync(tmp);
 const { fr, en } = t;
 
 const L = (a, b) => ({ fr: a ?? "", en: b ?? "" });
+const prune = (v) => {
+  if (Array.isArray(v)) return v.map(prune);
+  if (v && typeof v === "object") {
+    const o = {};
+    for (const [k, x] of Object.entries(v)) {
+      const y = prune(x);
+      if (y === "" || y === null || y === undefined) continue;
+      o[k] = y;
+    }
+    return o;
+  }
+  return v;
+};
 const write = (p, data) => {
   fs.mkdirSync(path.dirname(p), { recursive: true });
-  fs.writeFileSync(p, yaml.dump(data, { lineWidth: -1, noRefs: true }));
+  fs.writeFileSync(p, yaml.dump(prune(data), { lineWidth: -1, noRefs: true }));
+};
+// Keystatic stores collection images at public/images/<collection>/<slug>/<field>.<ext>
+const moveImg = (from, collection, slug, field) => {
+  if (!from) return null;
+  const ext = path.extname(from);
+  const rel = `/images/${collection}/${slug}/${field}${ext}`;
+  const src = path.join("public", from), dst = path.join("public", rel);
+  fs.mkdirSync(path.dirname(dst), { recursive: true });
+  if (fs.existsSync(src)) fs.renameSync(src, dst);
+  return rel;
 };
 const slug = (s) => s.replace(/œ/g, "oe").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
@@ -103,7 +126,7 @@ write("content/projects/489productions.yaml", {
   summary: L(fr.projects.productions.desc, en.projects.productions.desc),
   body: L(pf.about, pe.about),
   tagline: L("Vision. Production. Action!", "Vision. Production. Action!"),
-  cover: null, coverAlt: L("", ""), logo: "/images/projects/489productions.png", gallery: [], youtubeId: "",
+  cover: null, coverAlt: L("", ""), logo: moveImg("/images/projects/489productions.png", "projects", "489productions", "logo"), gallery: [], youtubeId: "",
   highlights: pf.services.map((s, i) => ({ title: L(s.title, pe.services[i].title), text: L(s.description, pe.services[i].description) })),
   links: [],
 });
@@ -114,7 +137,7 @@ write("content/projects/postmeridian.yaml", {
   year: "2024", role: L(fr.experience.items[0].title, en.experience.items[0].title),
   summary: L(fr.projects.postmeridian.desc, en.projects.postmeridian.desc),
   body: L(fr.experience.items[0].description, en.experience.items[0].description),
-  tagline: L("", ""), cover: null, coverAlt: L("", ""), logo: "/images/projects/postmeridian.png", gallery: [], youtubeId: "",
+  tagline: L("", ""), cover: null, coverAlt: L("", ""), logo: moveImg("/images/projects/postmeridian.png", "projects", "postmeridian", "logo"), gallery: [], youtubeId: "",
   highlights: [],
   links: [{ label: L("postmeridian.co", "postmeridian.co"), url: "https://www.postmeridian.co" }],
 });
@@ -139,7 +162,7 @@ fr.gaming.films.forEach((f, i) => {
     title: f.title,
     titleEn: g.title === f.title ? "" : g.title, status: "published", order: (i + 1) * 10,
     director: f.director, year: f.year, genre: L(f.genre, g.genre),
-    poster: f.poster.replace("/films/", "/images/films/"), url: f.url,
+    poster: moveImg(f.poster.replace("/films/", "/images/films/"), "films", slug(f.title), "poster"), url: f.url,
     description: L(f.description, g.description),
   });
 });
@@ -148,7 +171,7 @@ fr.gaming.games.forEach((f, i) => {
   write(`content/games/${slug(f.title)}.yaml`, {
     title: f.title,
     status: "published", order: (i + 1) * 10, genre: L(f.genre, g.genre),
-    logo: f.logo.replace("/games/", "/images/games/"), url: f.url,
+    logo: moveImg(f.logo.replace("/games/", "/images/games/"), "games", slug(f.title), "logo"), url: f.url,
     description: L(f.description, g.description),
   });
 });

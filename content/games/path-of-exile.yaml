@@ -4,7 +4,7 @@ order: 10
 genre:
   fr: ARPG
   en: ARPG
-logo: /images/games/poe.png
+logo: /images/games/path-of-exile/logo.png
 url: https://www.pathofexile.com
 description:
   fr: 'Officiellement un jeu. En pratique : 40% sur Path of Building, 25% sur des spreadsheets, 15% à lire des wikis — et peut-être 25% à jouer. Les chiffres ne mentent pas.'

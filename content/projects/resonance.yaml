@@ -15,14 +15,8 @@ summary:
 body:
   fr: Film expérimental — essai d'une caméra et perfectionnement de techniques de montage et d'effets visuels.
   en: Experimental film — testing a camera and perfecting editing and visual effects techniques.
-tagline:
-  fr: ''
-  en: ''
-cover: null
-coverAlt:
-  fr: ''
-  en: ''
-logo: null
+tagline: {}
+coverAlt: {}
 gallery: []
 youtubeId: FHO5qU7-4og
 highlights: []

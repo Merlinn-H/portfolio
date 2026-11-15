@@ -15,16 +15,10 @@ summary:
 body:
   fr: Création et gestion d'un studio de développement de jeux vidéo (PC / Unreal Engine). Supervision artistique, budgétaire et logistique, coordination d'une équipe créative (graphistes, développeurs, compositeurs).
   en: Creation and management of a video game development studio (PC / Unreal Engine). Artistic, budgetary and logistical supervision, coordination of a creative team (graphic designers, developers, composers).
-tagline:
-  fr: ''
-  en: ''
-cover: null
-coverAlt:
-  fr: ''
-  en: ''
-logo: /images/projects/postmeridian.png
+tagline: {}
+coverAlt: {}
+logo: /images/projects/postmeridian/logo.png
 gallery: []
-youtubeId: ''
 highlights: []
 links:
   - label:

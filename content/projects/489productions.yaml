@@ -18,13 +18,9 @@ body:
 tagline:
   fr: Vision. Production. Action!
   en: Vision. Production. Action!
-cover: null
-coverAlt:
-  fr: ''
-  en: ''
-logo: /images/projects/489productions.png
+coverAlt: {}
+logo: /images/projects/489productions/logo.png
 gallery: []
-youtubeId: ''
 highlights:
   - title:
       fr: Réalisation

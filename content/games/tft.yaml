@@ -4,7 +4,7 @@ order: 20
 genre:
   fr: Auto-battler
   en: Auto-battler
-logo: /images/games/tft.png
+logo: /images/games/tft/logo.png
 url: https://teamfighttactics.leagueoflegends.com
 description:
   fr: L'échecs en 8 joueurs. Un carrousel, un choix, et tout s'effondre. La défaite est toujours de la faute du jeu.
