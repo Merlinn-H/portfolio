@@ -1,0 +1,16 @@
+{
+  "viewport": 375,
+  "overlayVisible": {
+    "0": false,
+    "600": true,
+    "1300": false
+  },
+  "notes": [],
+  "firstShotActualMs": 1,
+  "overlayVisibleAfterReload0ms": false,
+  "introOffAfterReload": true,
+  "overlayVisibleAfterReload300ms": false,
+  "scrollSteps": 32,
+  "hiddenAfterScroll": [],
+  "afterClickUrl": "http://localhost:3100/projets/489productions"
+}
