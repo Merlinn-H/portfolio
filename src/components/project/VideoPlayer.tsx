@@ -18,11 +18,18 @@ export function VideoPlayer({ id, title, label, hint }: { id: string; title: str
         />
       ) : (
         <button type="button" className={styles.facade} onClick={() => setPlay(true)} aria-describedby={`hint-${id}`}>
-          <span className={styles.card} aria-hidden="true">{title}</span>
-          <span className={styles.play}>
-            <span aria-hidden="true" className={styles.icon}>▶</span> {label}
+          <span className={styles.card} aria-hidden="true">
+            {title}
           </span>
-          <span id={`hint-${id}`} className={`credits ${styles.hint}`}>{hint}</span>
+          <span className={styles.play}>
+            <span aria-hidden="true" className={styles.icon}>
+              ▶
+            </span>{" "}
+            {label}
+          </span>
+          <span id={`hint-${id}`} className={`credits ${styles.hint}`}>
+            {hint}
+          </span>
         </button>
       )}
     </div>

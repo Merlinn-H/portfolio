@@ -103,7 +103,9 @@ p {
 /* Lien typographique */
 .link {
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 var(--hairline) no-repeat;
-  transition: background-size var(--dur-2) var(--ease-out), color var(--dur-1);
+  transition:
+    background-size var(--dur-2) var(--ease-out),
+    color var(--dur-1);
 }
 .link:hover,
 .link:focus-visible {
@@ -167,4 +169,10 @@ p {
     opacity: 0;
     clip-path: inset(6% 0 6% 0);
   }
+}
+
+/* Garde-fou : jamais de défilement horizontal de la page */
+html,
+body {
+  overflow-x: clip;
 }

@@ -40,4 +40,4 @@ items:
     target:
       discriminant: page
       value: personal-brand
-    status: hidden
+    status: published

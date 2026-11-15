@@ -1,0 +1,8 @@
+.next
+node_modules
+package-lock.json
+content
+public
+_archive
+docs/redesign/metrics
+src/components/ui/hanzi-glyphs.ts

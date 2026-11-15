@@ -83,14 +83,20 @@ export default config({
       format: { data: "yaml" },
       schema: {
         name: fields.text({ label: "Nom", validation: { isRequired: true } }),
-        url: fields.url({ label: "URL publique du site", description: "Utilisée pour le SEO, le sitemap et les images de partage." }),
+        url: fields.url({
+          label: "URL publique du site",
+          description: "Utilisée pour le SEO, le sitemap et les images de partage.",
+        }),
         role: loc("Titre / métier", { required: true }),
         tagline: loc("Phrase d'accroche", { multiline: true }),
         quote: fields.object(
           {
             text: fields.text({ label: "Citation" }),
             source: fields.text({ label: "Source" }),
-            hanzi: fields.text({ label: "Titre original (caractères)", description: "Ex. 英雄本色 — utilisé comme signature typographique." }),
+            hanzi: fields.text({
+              label: "Titre original (caractères)",
+              description: "Ex. 英雄本色 — utilisé comme signature typographique.",
+            }),
           },
           { label: "Citation de cinéma" },
         ),
@@ -249,22 +255,22 @@ export default config({
         cover: image("Image de couverture", "projects"),
         coverAlt: loc("Texte alternatif de la couverture"),
         logo: image("Logo (optionnel)", "projects"),
-        gallery: fields.array(
-          fields.object({ image: image("Image", "projects"), alt: loc("Texte alternatif") }),
-          { label: "Galerie", itemLabel: (p) => p.fields.alt.fields.fr.value || "Image" },
-        ),
+        gallery: fields.array(fields.object({ image: image("Image", "projects"), alt: loc("Texte alternatif") }), {
+          label: "Galerie",
+          itemLabel: (p) => p.fields.alt.fields.fr.value || "Image",
+        }),
         youtubeId: fields.text({
           label: "Vidéo YouTube (ID)",
           description: "La partie après « v= » dans l'URL. Chargée uniquement au clic.",
         }),
-        highlights: fields.array(
-          fields.object({ title: loc("Titre"), text: loc("Texte", { multiline: true }) }),
-          { label: "Points clés / services", itemLabel: (p) => p.fields.title.fields.fr.value || "Point" },
-        ),
-        links: fields.array(
-          fields.object({ label: loc("Libellé"), url: fields.url({ label: "URL" }) }),
-          { label: "Liens", itemLabel: (p) => p.fields.label.fields.fr.value || "Lien" },
-        ),
+        highlights: fields.array(fields.object({ title: loc("Titre"), text: loc("Texte", { multiline: true }) }), {
+          label: "Points clés / services",
+          itemLabel: (p) => p.fields.title.fields.fr.value || "Point",
+        }),
+        links: fields.array(fields.object({ label: loc("Libellé"), url: fields.url({ label: "URL" }) }), {
+          label: "Liens",
+          itemLabel: (p) => p.fields.label.fields.fr.value || "Lien",
+        }),
       },
     }),
 
@@ -337,10 +343,10 @@ export default config({
         title: loc("Titre", { required: true }),
         eyebrow: loc("Sur-titre"),
         intro: loc("Introduction", { multiline: true }),
-        blocks: fields.array(
-          fields.object({ heading: loc("Intertitre"), body: loc("Texte", { multiline: true }) }),
-          { label: "Blocs", itemLabel: (p) => p.fields.heading.fields.fr.value || "Bloc" },
-        ),
+        blocks: fields.array(fields.object({ heading: loc("Intertitre"), body: loc("Texte", { multiline: true }) }), {
+          label: "Blocs",
+          itemLabel: (p) => p.fields.heading.fields.fr.value || "Bloc",
+        }),
         seoDescription: loc("Description SEO", { multiline: true }),
       },
     }),

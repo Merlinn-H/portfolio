@@ -35,7 +35,9 @@ export function Hero({ site, locale, t }: { site: Site; locale: Locale; t: Dict 
 
       {site.quote?.text ? (
         <figure className={styles.quote}>
-          {site.quote.hanzi ? <Hanzi text={site.quote.hanzi} label={site.quote.source} className={styles.hanzi} /> : null}
+          {site.quote.hanzi ? (
+            <Hanzi text={site.quote.hanzi} label={site.quote.source} className={styles.hanzi} />
+          ) : null}
           <blockquote lang="en">“{site.quote.text}”</blockquote>
           <figcaption className="credits">{site.quote.source}</figcaption>
         </figure>

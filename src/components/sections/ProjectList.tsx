@@ -5,7 +5,12 @@ import { HiddenBadge } from "@/components/ui/HiddenBadge";
 import styles from "./ProjectList.module.css";
 
 /** Liste éditoriale numérotée (pas de grille de cartes). */
-export function ProjectList({ projects, locale, t, headingLevel = 3 }: {
+export function ProjectList({
+  projects,
+  locale,
+  t,
+  headingLevel = 3,
+}: {
   projects: Project[];
   locale: Locale;
   t: Dict;
@@ -30,7 +35,9 @@ export function ProjectList({ projects, locale, t, headingLevel = 3 }: {
               {pick(p.role, locale) ? <span>{pick(p.role, locale)}</span> : null}
             </span>
             <span className={styles.summary}>{pick(p.summary, locale)}</span>
-            <span className={styles.arrow} aria-hidden="true">→</span>
+            <span className={styles.arrow} aria-hidden="true">
+              →
+            </span>
           </a>
         </li>
       ))}

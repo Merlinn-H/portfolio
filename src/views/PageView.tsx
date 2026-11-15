@@ -15,22 +15,30 @@ export async function PageView({ locale, slug }: { locale: Locale; slug: string 
       <HiddenBanner show={page.status === "hidden"} text={t.hiddenPage} />
       <header className={styles.head}>
         {pick(page.eyebrow, locale) ? (
-          <p className={`credits ${styles.eyebrow} ${todo(pick(page.eyebrow, locale)) ? styles.todo : ""}`}>{pick(page.eyebrow, locale)}</p>
+          <p className={`credits ${styles.eyebrow} ${todo(pick(page.eyebrow, locale)) ? styles.todo : ""}`}>
+            {pick(page.eyebrow, locale)}
+          </p>
         ) : null}
         <h1 className={styles.title}>{pick(page.title, locale)}</h1>
         {pick(page.intro, locale) ? (
-          <p className={`${styles.intro} ${todo(pick(page.intro, locale)) ? styles.todo : ""}`}>{pick(page.intro, locale)}</p>
+          <p className={`${styles.intro} ${todo(pick(page.intro, locale)) ? styles.todo : ""}`}>
+            {pick(page.intro, locale)}
+          </p>
         ) : null}
       </header>
       <div className={styles.blocks}>
         {page.blocks.map((b, i) => (
           <section key={i} className={`${styles.block} reveal`} aria-labelledby={`block-${i}`}>
-            <h2 id={`block-${i}`} className={styles.blockTitle}>{pick(b.heading, locale)}</h2>
+            <h2 id={`block-${i}`} className={styles.blockTitle}>
+              {pick(b.heading, locale)}
+            </h2>
             {pick(b.body, locale)
               .split(/\n\s*\n/)
               .filter(Boolean)
               .map((p, j) => (
-                <p key={j} className={todo(p) ? styles.todo : undefined}>{p}</p>
+                <p key={j} className={todo(p) ? styles.todo : undefined}>
+                  {p}
+                </p>
               ))}
           </section>
         ))}

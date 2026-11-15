@@ -46,7 +46,9 @@
   font-weight: 600;
   letter-spacing: var(--tracking-credits);
   text-transform: uppercase;
-  transition: background-color var(--dur-1), transform var(--dur-2) var(--ease-out);
+  transition:
+    background-color var(--dur-1),
+    transform var(--dur-2) var(--ease-out);
 }
 .icon {
   font-size: 0.8em;

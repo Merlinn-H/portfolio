@@ -20,8 +20,7 @@ export const showHidden = process.env.NODE_ENV !== "production";
 export type Status = "published" | "hidden";
 export type Localized = { fr: string; en: string };
 
-export const pick = (v: Localized | undefined | null, locale: Locale) =>
-  (v?.[locale] || v?.fr || "").trim();
+export const pick = (v: Localized | undefined | null, locale: Locale) => (v?.[locale] || v?.fr || "").trim();
 
 const visible = <T extends { status: Status }>(items: T[]) =>
   items.filter((i) => showHidden || i.status === "published");
@@ -65,14 +64,16 @@ export const getSkills = cache(async () => (await reader.singletons.skills.readO
 
 export const getProjects = cache(async () => {
   const all = await reader.collections.projects.all();
-  return visible(all.map(({ slug, entry }) => ({
-    slug,
-    ...entry,
-    status: entry.status as Status,
-    coverImg: img(entry.cover),
-    logoImg: img(entry.logo),
-    galleryImgs: entry.gallery.map((g) => ({ img: img(g.image), alt: g.alt })).filter((g) => g.img),
-  }))).sort(byOrder);
+  return visible(
+    all.map(({ slug, entry }) => ({
+      slug,
+      ...entry,
+      status: entry.status as Status,
+      coverImg: img(entry.cover),
+      logoImg: img(entry.logo),
+      galleryImgs: entry.gallery.map((g) => ({ img: img(g.image), alt: g.alt })).filter((g) => g.img),
+    })),
+  ).sort(byOrder);
 });
 export type Project = Awaited<ReturnType<typeof getProjects>>[number];
 
@@ -85,16 +86,26 @@ export const getExperiences = cache(async () => {
 
 export const getFilms = cache(async () => {
   const all = await reader.collections.films.all();
-  return visible(all.map(({ slug, entry }) => ({
-    slug, ...entry, status: entry.status as Status, posterImg: img(entry.poster),
-  }))).sort(byOrder);
+  return visible(
+    all.map(({ slug, entry }) => ({
+      slug,
+      ...entry,
+      status: entry.status as Status,
+      posterImg: img(entry.poster),
+    })),
+  ).sort(byOrder);
 });
 
 export const getGames = cache(async () => {
   const all = await reader.collections.games.all();
-  return visible(all.map(({ slug, entry }) => ({
-    slug, ...entry, status: entry.status as Status, logoImg: img(entry.logo),
-  }))).sort(byOrder);
+  return visible(
+    all.map(({ slug, entry }) => ({
+      slug,
+      ...entry,
+      status: entry.status as Status,
+      logoImg: img(entry.logo),
+    })),
+  ).sort(byOrder);
 });
 
 export const getPages = cache(async () => {

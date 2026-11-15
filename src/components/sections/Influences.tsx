@@ -40,7 +40,9 @@ export function Influences({ films, games, locale, t }: { films: Film[]; games: 
                       {f.director} · {f.year}
                     </span>
                   </a>
-                  {pick(f.description, locale) ? <p className={styles.filmDesc}>{pick(f.description, locale)}</p> : null}
+                  {pick(f.description, locale) ? (
+                    <p className={styles.filmDesc}>{pick(f.description, locale)}</p>
+                  ) : null}
                 </li>
               );
             })}
@@ -57,7 +59,12 @@ export function Influences({ films, games, locale, t }: { films: Film[]; games: 
             {games.map((g) => (
               <li key={g.slug} className={`${styles.game} reveal`}>
                 <div className={styles.gameHead}>
-                  <a href={g.url ?? undefined} target="_blank" rel="noopener noreferrer" className={`link ${styles.gameTitle}`}>
+                  <a
+                    href={g.url ?? undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`link ${styles.gameTitle}`}
+                  >
                     {g.title}
                   </a>
                   <HiddenBadge show={g.status === "hidden"} label={t.hidden} />

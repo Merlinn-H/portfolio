@@ -56,7 +56,10 @@
   font-weight: 600;
   letter-spacing: var(--tracking-credits);
   text-transform: uppercase;
-  transition: background-color var(--dur-1), color var(--dur-1), box-shadow var(--dur-1);
+  transition:
+    background-color var(--dur-1),
+    color var(--dur-1),
+    box-shadow var(--dur-1);
 }
 .pill:hover {
   background: var(--fg);

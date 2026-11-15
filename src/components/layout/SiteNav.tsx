@@ -57,11 +57,23 @@ export function SiteNav({ items, locale, t, name, homeHref }: Props) {
 
   const lang = (
     <p className={styles.lang} aria-label={t.langLabel}>
-      <a href={locale === "fr" ? pathname : altHref} hrefLang="fr" lang="fr" aria-label="Français" aria-current={locale === "fr" ? "true" : undefined}>
+      <a
+        href={locale === "fr" ? pathname : altHref}
+        hrefLang="fr"
+        lang="fr"
+        aria-label="Français"
+        aria-current={locale === "fr" ? "true" : undefined}
+      >
         FR
       </a>
       <span aria-hidden="true">/</span>
-      <a href={locale === "en" ? pathname : altHref} hrefLang="en" lang="en" aria-label="English" aria-current={locale === "en" ? "true" : undefined}>
+      <a
+        href={locale === "en" ? pathname : altHref}
+        hrefLang="en"
+        lang="en"
+        aria-label="English"
+        aria-current={locale === "en" ? "true" : undefined}
+      >
         EN
       </a>
     </p>
@@ -69,7 +81,11 @@ export function SiteNav({ items, locale, t, name, homeHref }: Props) {
 
   return (
     <>
-      <header className={styles.header} data-scrolled={scrolled || !isHome ? "" : undefined} data-compact={compact ? "" : undefined}>
+      <header
+        className={styles.header}
+        data-scrolled={scrolled || !isHome ? "" : undefined}
+        data-compact={compact ? "" : undefined}
+      >
         <div className={styles.bar}>
           <a href={homeHref} className={styles.brand}>
             {name}
@@ -98,7 +114,12 @@ export function SiteNav({ items, locale, t, name, homeHref }: Props) {
         </div>
       </header>
 
-      <dialog ref={dialogRef} className={styles.sheet} aria-label={t.navLabel} onClick={(e) => e.target === dialogRef.current && close()}>
+      <dialog
+        ref={dialogRef}
+        className={styles.sheet}
+        aria-label={t.navLabel}
+        onClick={(e) => e.target === dialogRef.current && close()}
+      >
         <div className={styles.sheetInner}>
           <div className={styles.sheetTop}>
             <a href={homeHref} className={styles.brand} onClick={close}>

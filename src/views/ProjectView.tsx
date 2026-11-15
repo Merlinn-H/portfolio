@@ -15,7 +15,10 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
   const next = all.length > 1 ? all[(idx + 1) % all.length] : null;
 
   const body = pick(project.body, locale) || pick(project.summary, locale);
-  const paragraphs = body.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+  const paragraphs = body
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
   const role = pick(project.role, locale);
   const tagline = pick(project.tagline, locale);
   const roles = role ? role.split(",").map((r) => r.trim()) : [];
@@ -25,7 +28,9 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
       <HiddenBanner show={project.status === "hidden"} text={t.hiddenPage} />
       <header className={styles.head}>
         <nav aria-label={locale === "fr" ? "Fil d'Ariane" : "Breadcrumb"} className={`credits ${styles.crumbs}`}>
-          <a className="link" href={href(locale, "/projets")}>{t.allProjects}</a>
+          <a className="link" href={href(locale, "/projets")}>
+            {t.allProjects}
+          </a>
           <span aria-hidden="true">/</span>
           <span>{pick(project.kicker, locale)}</span>
         </nav>
@@ -83,7 +88,9 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
 
       <div className={styles.body}>
         {paragraphs.map((p, i) => (
-          <p key={i} className={i === 0 ? styles.lead : undefined}>{p}</p>
+          <p key={i} className={i === 0 ? styles.lead : undefined}>
+            {p}
+          </p>
         ))}
       </div>
 
@@ -91,7 +98,9 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
         <ol className={styles.highlights}>
           {project.highlights.map((h, i) => (
             <li key={i} className="reveal">
-              <span className={styles.hlNum} aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <span className={styles.hlNum} aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
               <h2 className={styles.hlTitle}>{pick(h.title, locale)}</h2>
               <p>{pick(h.text, locale)}</p>
             </li>
@@ -101,20 +110,24 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
 
       {project.links.filter((l) => l.url).length > 0 ? (
         <ul className={styles.links}>
-          {project.links.filter((l) => l.url).map((l) => (
-            <li key={l.url}>
-              <a href={l.url!} target="_blank" rel="noopener noreferrer" className={styles.pill}>
-                {t.visit} {pick(l.label, locale)} <span aria-hidden="true">↗</span>
-              </a>
-            </li>
-          ))}
+          {project.links
+            .filter((l) => l.url)
+            .map((l) => (
+              <li key={l.url}>
+                <a href={l.url!} target="_blank" rel="noopener noreferrer" className={styles.pill}>
+                  {t.visit} {pick(l.label, locale)} <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
         </ul>
       ) : null}
 
       {next && next.slug !== project.slug ? (
         <a className={styles.next} href={href(locale, `/projets/${next.slug}`)}>
           <span className="credits">{t.next}</span>
-          <span className={styles.nextTitle}>{next.title} <span aria-hidden="true">→</span></span>
+          <span className={styles.nextTitle}>
+            {next.title} <span aria-hidden="true">→</span>
+          </span>
         </a>
       ) : null}
     </article>

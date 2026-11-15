@@ -14,7 +14,13 @@ import { Contact } from "@/components/sections/Contact";
 export async function HomeView({ locale }: { locale: Locale }) {
   const t = ui(locale);
   const [site, sections, projects, experiences, skills, films, games] = await Promise.all([
-    getSite(), getHome(), getProjects(), getExperiences(), getSkills(), getFilms(), getGames(),
+    getSite(),
+    getHome(),
+    getProjects(),
+    getExperiences(),
+    getSkills(),
+    getFilms(),
+    getGames(),
   ]);
 
   let n = 0;
@@ -26,7 +32,13 @@ export async function HomeView({ locale }: { locale: Locale }) {
         const title = pick(s.title, locale);
         const intro = pick(s.intro, locale);
         const head = (withTitle = true) => (
-          <SectionHead index={++n} id={s.type} eyebrow={eyebrow} title={withTitle ? title : undefined} hiddenLabel={hiddenLabel} />
+          <SectionHead
+            index={++n}
+            id={s.type}
+            eyebrow={eyebrow}
+            title={withTitle ? title : undefined}
+            hiddenLabel={hiddenLabel}
+          />
         );
         const labelled = title ? `${s.type}-title` : undefined;
 
@@ -75,7 +87,13 @@ export async function HomeView({ locale }: { locale: Locale }) {
             );
           case "contact":
             return (
-              <Section key={s.type} id="contact" labelledBy={title ? "contact-title" : undefined} label={eyebrow} tone="sunken">
+              <Section
+                key={s.type}
+                id="contact"
+                labelledBy={title ? "contact-title" : undefined}
+                label={eyebrow}
+                tone="sunken"
+              >
                 {head(false)}
                 <Contact title={title} intro={intro} email={site.email} socials={site.socials} cta={t.contactCta} />
               </Section>

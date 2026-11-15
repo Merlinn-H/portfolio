@@ -1,0 +1,38 @@
+import { expect, test } from "@playwright/test";
+
+/**
+ * Visibilité des onglets en production.
+ * Par défaut la page « personal-brand » et l'expérience « Djogo » sont masquées.
+ * EXPECT_PERSONAL_BRAND=published inverse l'attente (voir scripts/redesign/visibility-toggle.sh).
+ */
+const published = process.env.EXPECT_PERSONAL_BRAND === "published";
+
+test("page masquée : 404, hors nav, hors sitemap — ou l'inverse une fois publiée", async ({ page, request }) => {
+  const res = await request.get("/personal-brand");
+  expect(res.status()).toBe(published ? 200 : 404);
+
+  await page.goto("/");
+  const links = page.locator("header a, dialog a");
+  await expect(links.filter({ hasText: "Personal brand" })).toHaveCount(published ? 2 : 0);
+
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap.includes("/personal-brand")).toBe(published);
+});
+
+test("une page masquée n'est jamais indexable", async ({ request }) => {
+  test.skip(!published, "vérifié seulement quand la page est publiée");
+  const html = await (await request.get("/personal-brand")).text();
+  expect(html).not.toContain('content="noindex');
+});
+
+test("entrée masquée absente du site (Djogo) et aucun badge « Masqué » en prod", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("body")).not.toContainText("Djogo");
+  await expect(page.locator("body")).not.toContainText("Masqué");
+});
+
+test("onglet Jeux vidéo affiché seulement s'il contient des jeux", async ({ page }) => {
+  await page.goto("/");
+  const games = page.locator("#influences").getByRole("heading", { name: /Jeux vidéo/ });
+  await expect(games).toHaveCount(1); // 4 jeux publiés aujourd'hui
+});
