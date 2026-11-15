@@ -1,0 +1,41 @@
+---
+import type { Dict } from "@/lib/i18n";
+import styles from "./SiteFooter.module.css";
+
+interface Props {
+  name: string;
+  note: string;
+  email?: string;
+  socials: readonly { label: string; url: string | null }[];
+  t: Dict;
+}
+const { name, note, email, socials, t } = Astro.props;
+---
+
+<footer class={styles.footer}>
+  <p class={styles.name}>{name}</p>
+  <ul class={styles.links}>
+    {
+      email && (
+        <li>
+          <a class="link" href={`mailto:${email}`}>
+            {email}
+          </a>
+        </li>
+      )
+    }
+    {
+      socials
+        .filter((s) => s.url)
+        .map((s) => (
+          <li>
+            <a class="link" href={s.url!} target="_blank" rel="noopener noreferrer">
+              {s.label}
+            </a>
+          </li>
+        ))
+    }
+    <li><a class="link" href="#top">{t.backToTop} ↑</a></li>
+  </ul>
+  <p class={styles.note}>© {new Date().getFullYear()} {note}</p>
+</footer>

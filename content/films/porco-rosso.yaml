@@ -6,7 +6,7 @@ year: '1992'
 genre:
   fr: Animation
   en: Animation
-poster: /images/films/porco-rosso/poster.jpg
+poster: /src/assets/images/films/porco-rosso/poster.jpg
 url: https://letterboxd.com/film/porco-rosso/
 description:
   fr: >-

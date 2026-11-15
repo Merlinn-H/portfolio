@@ -4,7 +4,7 @@ order: 20
 genre:
   fr: Auto-battler
   en: Auto-battler
-logo: /images/games/tft/logo.png
+logo: /src/assets/images/games/tft/logo.png
 url: https://teamfighttactics.leagueoflegends.com
 description:
   fr: >-

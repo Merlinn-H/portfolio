@@ -1,8 +1,4 @@
-import "server-only";
-import { cache } from "react";
-import path from "node:path";
-import fs from "node:fs";
-import { imageSize } from "image-size";
+import type { ImageMetadata } from "astro";
 import { createReader } from "@keystatic/core/reader";
 import keystaticConfig from "../../keystatic.config";
 import type { Locale } from "./i18n";
@@ -15,7 +11,17 @@ import type { Locale } from "./i18n";
 const reader = createReader(process.cwd(), keystaticConfig);
 
 /** En production, les éléments « hidden » n'existent pas. En dev, ils restent visibles avec un badge. */
-export const showHidden = process.env.NODE_ENV !== "production";
+export const showHidden = import.meta.env.DEV;
+
+/** Mémoïsation simple : le build lit chaque fichier une seule fois. */
+function cache<A extends unknown[], R>(fn: (...args: A) => Promise<R>) {
+  const memo = new Map<string, Promise<R>>();
+  return (...args: A) => {
+    const key = JSON.stringify(args);
+    if (!memo.has(key)) memo.set(key, fn(...args));
+    return memo.get(key)!;
+  };
+}
 
 export type Status = "published" | "hidden";
 export type Localized = { fr: string; en: string };
@@ -31,15 +37,20 @@ const byOrder = <T extends { order: number | null }>(a: T, b: T) => (a.order ?? 
 /* Images                                                              */
 /* ------------------------------------------------------------------ */
 
-export type Img = { src: string; width: number; height: number };
+/**
+ * Toutes les images gérées par le CMS (src/assets/images/**), importées au build :
+ * Astro les optimise (AVIF/WebP, tailles adaptées) et connaît leurs dimensions.
+ */
+const assets = import.meta.glob<ImageMetadata>("/src/assets/images/**/*.{jpg,jpeg,png,webp,avif,gif}", {
+  eager: true,
+  import: "default",
+});
+
+export type Img = ImageMetadata;
 
 export function img(src: string | null | undefined): Img | null {
   if (!src) return null;
-  const file = path.join(process.cwd(), "public", src);
-  if (!fs.existsSync(file)) return null;
-  const { width, height } = imageSize(fs.readFileSync(file));
-  if (!width || !height) return null;
-  return { src, width, height };
+  return assets[src] ?? null;
 }
 
 /* ------------------------------------------------------------------ */

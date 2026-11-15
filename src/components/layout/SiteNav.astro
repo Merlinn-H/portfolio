@@ -1,0 +1,219 @@
+---
+import type { NavItem } from "@/lib/content";
+import { href, type Dict, type Locale } from "@/lib/i18n";
+import styles from "./SiteNav.module.css";
+
+/**
+ * Navigation principale. Le HTML est statique ; un petit script (≈ 2 kB) gère l'état « défilé »,
+ * la section active, la feuille de menu (dialog natif) et la conservation de la position de lecture
+ * lors du changement de langue. Les navigations passent par le routeur d'Astro : pas de rechargement.
+ */
+interface Props {
+  items: NavItem[];
+  locale: Locale;
+  t: Dict;
+  name: string;
+  /** Chemin courant sans préfixe de langue. */
+  path: string;
+}
+const { items, locale, t, name, path } = Astro.props;
+
+// Au-delà de 6 onglets : menu partout ; à 6, menu entre 1024 et 1280 px (sinon la barre déborde).
+const compact = items.length > 6;
+const many = items.length >= 6;
+const isHome = path === "/";
+const homeHref = href(locale, "/");
+const itemPath = (h: string) => h.replace(/^\/en(?=\/|#|$)/, "").split("#")[0] || "/";
+const pageActive = (item: NavItem) => {
+  if (item.external || item.href.includes("#")) return false;
+  const p = itemPath(item.href);
+  return path === p || path.startsWith(`${p}/`);
+};
+const ext = (item: NavItem) => (item.external ? { target: "_blank", rel: "noopener noreferrer" } : {});
+---
+
+<header
+  class={styles.header}
+  data-site-header
+  data-home={isHome ? "" : undefined}
+  data-scrolled={isHome ? undefined : ""}
+  data-compact={compact ? "" : undefined}
+  data-many={many ? "" : undefined}
+>
+  <div class={styles.bar}>
+    <a href={homeHref} class={styles.brand}>{name}</a>
+    <nav aria-label={t.navLabel} class={styles.desktopNav}>
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class={styles.item}
+                data-section-link={item.href.includes("#") ? item.href.split("#")[1] : undefined}
+                aria-current={pageActive(item) ? "page" : undefined}
+                {...ext(item)}
+              >
+                {item.label}
+                {item.hidden && <span class={styles.hiddenTag}>{t.hidden}</span>}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class={styles.desktopLang}>
+      <p class={styles.lang} role="group" aria-label={t.langLabel}>
+        {
+          (["fr", "en"] as const).map((l, i) => (
+            <span class={styles.langItem}>
+              {i > 0 && <span aria-hidden="true">/</span>}
+              <a
+                href={href(l, path)}
+                hreflang={l}
+                lang={l}
+                data-keep-scroll
+                aria-label={l === "fr" ? "Français" : "English"}
+                aria-current={locale === l ? "true" : undefined}
+              >
+                {l.toUpperCase()}
+              </a>
+            </span>
+          ))
+        }
+      </p>
+    </div>
+    <button type="button" class={styles.menuButton} data-menu-open aria-haspopup="dialog">{t.menu}</button>
+  </div>
+</header>
+
+<dialog class={styles.sheet} aria-label={t.navLabel} data-menu>
+  <div class={styles.sheetInner}>
+    <div class={styles.sheetTop}>
+      <a href={homeHref} class={styles.brand}>{name}</a>
+      <button type="button" class={styles.closeButton} data-menu-close>{t.close}</button>
+    </div>
+    <nav aria-label={t.navLabel}>
+      <ol class={styles.sheetList}>
+        {
+          items.map((item, i) => (
+            <li>
+              <a
+                href={item.href}
+                data-section-link={item.href.includes("#") ? item.href.split("#")[1] : undefined}
+                aria-current={pageActive(item) ? "page" : undefined}
+                {...ext(item)}
+              >
+                <span class={styles.sheetNum} aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                {item.label}
+                {item.hidden && <span class={styles.hiddenTag}>{t.hidden}</span>}
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </nav>
+    <div class={styles.sheetFoot}>
+      <p class={styles.lang} role="group" aria-label={t.langLabel}>
+        {
+          (["fr", "en"] as const).map((l, i) => (
+            <span class={styles.langItem}>
+              {i > 0 && <span aria-hidden="true">/</span>}
+              <a
+                href={href(l, path)}
+                hreflang={l}
+                lang={l}
+                data-keep-scroll
+                aria-label={l === "fr" ? "Français" : "English"}
+                aria-current={locale === l ? "true" : undefined}
+              >
+                {l.toUpperCase()}
+              </a>
+            </span>
+          ))
+        }
+      </p>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // Exécuté une seule fois ; ré-initialisé après chaque navigation du routeur d'Astro.
+  let cleanup: (() => void) | null = null;
+  let keepScrollY: number | null = null;
+
+  // Changement de langue : on garde la position de lecture.
+  document.addEventListener(
+    "click",
+    (e) => {
+      const a = (e.target as Element | null)?.closest?.("a[data-keep-scroll]");
+      if (a) keepScrollY = window.scrollY;
+    },
+    { capture: true },
+  );
+  document.addEventListener("astro:after-swap", () => {
+    if (keepScrollY !== null) {
+      window.scrollTo({ top: keepScrollY, behavior: "instant" });
+      keepScrollY = null;
+    }
+  });
+
+  function init() {
+    cleanup?.();
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
+    const dialog = document.querySelector<HTMLDialogElement>("dialog[data-menu]");
+    if (!header || !dialog) return;
+    const ac = new AbortController();
+    const { signal } = ac;
+    const isHome = header.hasAttribute("data-home");
+
+    // Barre « défilée » (fond plein) dès qu'on quitte le haut de l'accueil.
+    if (isHome) {
+      const onScroll = () => header.toggleAttribute("data-scrolled", window.scrollY > 24);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true, signal });
+    }
+
+    // Section active : celle qui occupe le milieu de l'écran (aucune tant que le hero est visible).
+    let observer: IntersectionObserver | null = null;
+    if (isHome) {
+      const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("a[data-section-link]"));
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const id = entry.target.id === "top" ? null : entry.target.id;
+            for (const l of links) {
+              if (l.dataset.sectionLink === id) l.setAttribute("aria-current", "location");
+              else l.removeAttribute("aria-current");
+            }
+          }
+        },
+        { rootMargin: "-48% 0px -48% 0px" },
+      );
+      document.querySelectorAll("[data-section]").forEach((s) => observer!.observe(s));
+    }
+
+    // Feuille de menu : dialog natif (focus piégé, Échap) ; un lien choisi la referme.
+    const open = () => dialog.showModal();
+    const close = () => dialog.close();
+    document.querySelector("[data-menu-open]")?.addEventListener("click", open, { signal });
+    dialog.querySelector("[data-menu-close]")?.addEventListener("click", close, { signal });
+    dialog.addEventListener(
+      "click",
+      (e) => {
+        if (e.target === dialog || (e.target as Element).closest("a")) close();
+      },
+      { signal },
+    );
+
+    cleanup = () => {
+      ac.abort();
+      observer?.disconnect();
+    };
+  }
+
+  document.addEventListener("astro:page-load", init);
+</script>

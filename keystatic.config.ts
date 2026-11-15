@@ -5,11 +5,11 @@ import { config, collection, singleton, fields } from "@keystatic/core";
  *
  * Stockage :
  *  - par défaut `local` : le contenu est écrit dans les fichiers du repo (content/**).
- *  - `NEXT_PUBLIC_KEYSTATIC_STORAGE=github` + variables GitHub (voir docs/redesign/REVIEW.md) :
+ *  - `PUBLIC_KEYSTATIC_STORAGE=github` + variables GitHub (voir docs/redesign/REVIEW.md) :
  *    le back-office est servi en production et commite directement dans le repo.
  */
 
-const isGithub = process.env.NEXT_PUBLIC_KEYSTATIC_STORAGE === "github";
+const isGithub = import.meta.env.PUBLIC_KEYSTATIC_STORAGE === "github";
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                             */
@@ -48,8 +48,9 @@ const image = (label: string, dir: string, description?: string) =>
   fields.image({
     label,
     description,
-    directory: `public/images/${dir}`,
-    publicPath: `/images/${dir}/`,
+    // Les images vivent dans src/assets pour être optimisées par Astro au build (AVIF/WebP, tailles).
+    directory: `src/assets/images/${dir}`,
+    publicPath: `/src/assets/images/${dir}/`,
   });
 
 /* ------------------------------------------------------------------ */
@@ -61,8 +62,8 @@ export default config({
     ? {
         kind: "github",
         repo: {
-          owner: process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_OWNER ?? "Merlinn-H",
-          name: process.env.NEXT_PUBLIC_KEYSTATIC_GITHUB_REPO ?? "portfolio",
+          owner: import.meta.env.PUBLIC_KEYSTATIC_GITHUB_OWNER ?? "Merlinn-H",
+          name: import.meta.env.PUBLIC_KEYSTATIC_GITHUB_REPO ?? "portfolio",
         },
       }
     : { kind: "local" },

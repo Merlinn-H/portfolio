@@ -1,0 +1,75 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { Font } from "astro:assets";
+import "@/styles/globals.css";
+import { getNavigation, getSite, img, pick } from "@/lib/content";
+import { href, ui, type Locale } from "@/lib/i18n";
+import type { Seo } from "@/lib/seo";
+import SiteNav from "@/components/layout/SiteNav.astro";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import Intro from "@/components/layout/Intro.astro";
+import styles from "@/components/layout/RootShell.module.css";
+
+interface Props {
+  locale: Locale;
+  seo: Seo;
+  /** Chemin sans préfixe de langue (ex. "/projets/postmeridian"), pour la bascule FR/EN. */
+  path: string;
+}
+
+const { locale, seo, path } = Astro.props;
+const site = await getSite();
+const nav = await getNavigation(locale);
+const t = ui(locale);
+const introLogo = site.introEnabled ? img(site.introLogo) : null;
+const base = (site.url || "https://hugopezzo.fr").replace(/\/$/, "");
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: pick(site.role, locale),
+  url: `${base}${href(locale, "/") === "/" ? "" : href(locale, "/")}`,
+  image: site.portraitImg ? `${base}${site.portraitImg.src}` : undefined,
+  email: site.email ? `mailto:${site.email}` : undefined,
+  sameAs: site.socials.map((s) => s.url).filter(Boolean),
+};
+---
+
+<!doctype html>
+<html lang={locale} data-path={path}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{seo.title}</title>
+    <meta name="description" content={seo.description} />
+    <link rel="canonical" href={seo.canonical} />
+    {seo.alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {seo.noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={seo.siteName} />
+    <meta property="og:title" content={seo.title} />
+    <meta property="og:description" content={seo.description} />
+    <meta property="og:url" content={seo.canonical} />
+    <meta property="og:locale" content={seo.ogLocale} />
+    <meta property="og:image" content={seo.ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#0e0c0a" />
+    <Font cssVariable="--font-gloock" preload />
+    <Font cssVariable="--font-hanken" />
+    <ClientRouter />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+  </head>
+  <body>
+    <a href="#content" class={styles.skip}>{t.skip}</a>
+    {introLogo && <Intro logo={introLogo} label={site.introLogoAlt ?? ""} />}
+    <SiteNav items={nav} locale={locale} t={t} name={site.name} path={path} />
+    <main id="content" tabindex="-1" class={styles.main}>
+      <slot />
+    </main>
+    <SiteFooter name={site.name} note={pick(site.footer, locale)} email={site.email} socials={site.socials} t={t} />
+  </body>
+</html>

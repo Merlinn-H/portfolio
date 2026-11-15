@@ -6,7 +6,7 @@ year: '1995'
 genre:
   fr: Wuxia
   en: Wuxia
-poster: /images/films/the-blade/poster.jpg
+poster: /src/assets/images/films/the-blade/poster.jpg
 url: https://letterboxd.com/film/the-blade-1995/
 description:
   fr: >-

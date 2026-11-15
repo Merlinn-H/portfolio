@@ -1,0 +1,46 @@
+---
+import type { Img } from "@/lib/content";
+import styles from "./Intro.module.css";
+
+/**
+ * Ident d'ouverture (≤ 1,2 s), joué une fois par session, passable au clic ou au clavier.
+ * Masqué par défaut : le script inline qui le suit ne l'active (data-play) qu'à la première visite
+ * de la session et hors « réduire les animations ». Les navigations suivantes (sans rechargement)
+ * ré-exécutent ce script, qui voit la session déjà marquée et ne fait rien.
+ */
+interface Props {
+  logo: Img;
+  label: string;
+}
+const { logo, label } = Astro.props;
+---
+
+<div class={styles.intro} data-intro-overlay="" aria-hidden="true">
+  <div
+    class={styles.logo}
+    style={`-webkit-mask-image:url(${logo.src});mask-image:url(${logo.src});aspect-ratio:${logo.width} / ${logo.height}`}
+    title={label}
+  >
+  </div>
+</div>
+<script is:inline>
+  (function () {
+    var o = document.currentScript && document.currentScript.previousElementSibling;
+    if (!o) return;
+    try {
+      if (sessionStorage.getItem("intro") || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      sessionStorage.setItem("intro", "1");
+    } catch (e) {
+      return;
+    }
+    o.setAttribute("data-play", "");
+    function end() {
+      o.removeAttribute("data-play");
+      removeEventListener("pointerdown", end);
+      removeEventListener("keydown", end);
+    }
+    addEventListener("pointerdown", end);
+    addEventListener("keydown", end);
+    setTimeout(end, 1200);
+  })();
+</script>

@@ -4,7 +4,7 @@ order: 10
 genre:
   fr: ARPG
   en: ARPG
-logo: /images/games/path-of-exile/logo.png
+logo: /src/assets/images/games/path-of-exile/logo.png
 url: https://www.pathofexile.com
 description:
   fr: >-

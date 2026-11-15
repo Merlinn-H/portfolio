@@ -3,33 +3,44 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --port 3100",
+    "check": "astro check",
+    "lint": "eslint .",
     "test:e2e": "playwright test --trace off",
     "test:cms": "node tests/cms-flow.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@astrojs/react": "^7.1.9",
+    "@astrojs/vercel": "^11.0.22",
+    "@keystatic/astro": "^6.0.0",
     "@keystatic/core": "^0.6.9",
-    "@keystatic/next": "^5.0.5",
-    "image-size": "^2.1.0",
-    "next": "^16.4.6",
+    "astro": "^7.4.12",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "server-only": "^0.0.1"
+    "satori": "^0.63.2"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@eslint/js": "^10.0.1",
     "@fontsource/gloock": "^5.3.0",
+    "@fontsource/hanken-grotesk": "^5.3.0",
     "@playwright/test": "^1.63.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "^16.4.6",
+    "eslint": "^10.15.0",
+    "eslint-plugin-astro": "^3.2.1",
     "prettier": "^3.10.1",
-    "typescript": "^5"
-  }
+    "prettier-plugin-astro": "^1.1.2",
+    "typescript": "^5",
+    "typescript-eslint": "^8.72.2"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "type": "module"
 }

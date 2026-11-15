@@ -10,12 +10,12 @@ quote:
   text: All I want is a chance to start over.
   source: A Better Tomorrow, John Woo, 1986
   hanzi: 英雄本色
-portrait: /images/site/portrait.jpg
+portrait: /src/assets/images/site/portrait.jpg
 portraitAlt:
   fr: Portrait de Hugo Pezzo
   en: Portrait of Hugo Pezzo
 introEnabled: true
-introLogo: /images/site/introLogo.png
+introLogo: /src/assets/images/site/introLogo.png
 introLogoAlt: 489Productions
 email: hugopezzo@outlook.com
 socials:

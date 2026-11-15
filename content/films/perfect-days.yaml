@@ -6,7 +6,7 @@ year: '2023'
 genre:
   fr: Drame
   en: Drama
-poster: /images/films/perfect-days/poster.jpg
+poster: /src/assets/images/films/perfect-days/poster.jpg
 url: https://letterboxd.com/film/perfect-days-2023/
 description:
   fr: >-

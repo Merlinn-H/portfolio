@@ -4,7 +4,7 @@ order: 40
 genre:
   fr: Simulation
   en: Simulation
-logo: /images/games/factorio/logo.png
+logo: /src/assets/images/games/factorio/logo.png
 url: https://www.factorio.com
 description:
   fr: >-
