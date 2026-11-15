@@ -14,3 +14,5 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 ➡️ Phase 2 : tokens, polices, layout, nav, routes FR/EN, visibilité.
 03:57 — ✅ Nouveau site construit (accueil, liste projets, pages projet, pages libres, 404) en FR et EN, build + lint verts, poussé. Opus seul (structure + design system + nav = périmètre réservé au builder principal).
 ➡️ SEO (sitemap/robots/OG), redirections des anciennes URL, transitions de page, test CMS création/suppression, test visibilité.
+04:02 — ✅ SEO (sitemap/robots/hreflang/OG générées), redirections v1, transitions de page CSS. Tests : parcours CMS créer→voir→supprimer OK (6,8 s robot) ; bascule de visibilité testée sur build prod (masquée = 404/hors nav/hors sitemap, publiée = 200/en nav/en sitemap) ; 21 tests Playwright verts. ⚠️ Bug trouvé par les tests : débordement horizontal mobile (bande d'affiches) → corrigé.
+➡️ Lighthouse + perf.

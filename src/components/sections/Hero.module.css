@@ -37,7 +37,7 @@
 
 .name {
   grid-column: 1 / -1;
-  font-size: clamp(4.75rem, 1rem + 16vw, 13rem);
+  font-size: clamp(5.4rem, 1rem + 16vw, 13rem);
   line-height: 0.86;
   letter-spacing: -0.025em;
   z-index: 2;
@@ -51,6 +51,9 @@
 
 .portrait {
   grid-column: 3 / -1;
+  /* Sur mobile, le nom doit rester l'élément le plus grand (LCP = texte, pas l'image). */
+  width: 82%;
+  justify-self: end;
   margin-top: calc(var(--space-7) * -1);
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -113,6 +116,7 @@
   }
   .portrait {
     grid-column: 4 / -1;
+    width: 100%;
   }
 }
 
