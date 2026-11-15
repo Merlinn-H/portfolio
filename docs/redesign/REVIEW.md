@@ -28,14 +28,14 @@ Tout est dans [`screenshots/before/`](screenshots/before/), [`screenshots/after/
 
 | Mesure                                     | Avant (accueil) | Après (accueil)              | Après (page projet) | Cible            |
 | ------------------------------------------ | --------------- | ---------------------------- | ------------------- | ---------------- |
-| Performance                                | 90              | **97**                       | **99**              | ≥ 95 ✅          |
+| Performance                                | 90              | **97**                       | **96–98**           | ≥ 95 ✅          |
 | Accessibilité                              | 92              | **100**                      | **100**             | 100 ✅           |
 | Bonnes pratiques                           | 100             | **100**                      | **100**             | ≥ 95 ✅          |
 | SEO                                        | 100             | **100**                      | **100**             | 100 ✅           |
-| LCP simulé (méthode Lighthouse par défaut) | 3,5 s           | 2,5 s                        | 2,1 s               | < 1,8 s ⚠️       |
+| LCP simulé (méthode Lighthouse par défaut) | 3,5 s           | 2,5 s                        | 2,4–2,5 s           | < 1,8 s ⚠️       |
 | LCP sous throttling appliqué (devtools)    | —               | **1,3 s**                    | —                   | < 1,8 s ✅       |
 | LCP réellement observé                     | —               | 0,16 s (= premier affichage) | —                   | —                |
-| CLS                                        | 0               | **0**                        | **0**               | < 0,05 ✅        |
+| CLS                                        | 0               | **0,001**                    | **0–0,001**         | < 0,05 ✅        |
 | TBT (indicateur proche de l'INP)           | 50 ms           | 40–90 ms                     | 50 ms               | INP < 200 ms ✅  |
 | JS transféré (gzip, Lighthouse)            | 192 kB          | **143 kB**                   | 143 kB              | —                |
 | JS first-load (brotli / gzip)              | —               | **119 / 139 kB**             | —                   | ≤ 120 kB gzip ⚠️ |
