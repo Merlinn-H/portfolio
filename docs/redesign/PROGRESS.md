@@ -16,3 +16,5 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 ➡️ SEO (sitemap/robots/OG), redirections des anciennes URL, transitions de page, test CMS création/suppression, test visibilité.
 04:02 — ✅ SEO (sitemap/robots/hreflang/OG générées), redirections v1, transitions de page CSS. Tests : parcours CMS créer→voir→supprimer OK (6,8 s robot) ; bascule de visibilité testée sur build prod (masquée = 404/hors nav/hors sitemap, publiée = 200/en nav/en sitemap) ; 21 tests Playwright verts. ⚠️ Bug trouvé par les tests : débordement horizontal mobile (bande d'affiches) → corrigé.
 ➡️ Lighthouse + perf.
+04:07 — ✅ Lighthouse mobile (local) : home Perf 97 / A11y 100 / BP 100 / SEO 100, page projet 99/100/100/100, CLS 0, TBT ≤ 90 ms. LCP observé = FCP (~0,15 s), LCP simulé 2,5 s avec l'ident / 1,9 s sans. JS 119 kB brotli (plancher framework 108). ⚠️ LCP simulé > 1,8 s : à arbitrer au checkpoint 3.
+➡️ Screenshots mid + checkpoint Fable 3.
