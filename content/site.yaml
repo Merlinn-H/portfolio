@@ -1,0 +1,29 @@
+name: Hugo Pezzo
+url: https://hugopezzo.fr
+role:
+  fr: Producteur Audiovisuel & Chargé de Projets Culturels
+  en: Film Producer & Cultural Project Manager
+tagline:
+  fr: Chaque projet est une histoire. Je suis là pour la raconter.
+  en: Every project is a story. I'm here to tell it.
+quote:
+  text: All I want is a chance to start over.
+  source: A Better Tomorrow, John Woo, 1986
+  hanzi: 英雄本色
+portrait: /images/site/portrait.jpg
+portraitAlt:
+  fr: Portrait de Hugo Pezzo
+  en: Portrait of Hugo Pezzo
+email: hugopezzo@outlook.com
+socials:
+  - label: LinkedIn
+    url: https://linkedin.com/in/hugo-pezzo
+seoTitle:
+  fr: Hugo Pezzo — Producteur audiovisuel
+  en: Hugo Pezzo — Film & game producer
+seoDescription:
+  fr: 'Portfolio de Hugo Pezzo, producteur audiovisuel : courts-métrages, 489Productions et le studio de jeu vidéo POSTMERIDIAN.'
+  en: 'Portfolio of Hugo Pezzo, audiovisual producer: short films, 489Productions and the video game studio POSTMERIDIAN.'
+footer:
+  fr: Hugo Pezzo — Tous droits réservés
+  en: Hugo Pezzo — All rights reserved

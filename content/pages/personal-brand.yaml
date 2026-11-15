@@ -1,0 +1,39 @@
+slug: Personal brand
+status: hidden
+title:
+  fr: Personal brand
+  en: Personal brand
+eyebrow:
+  fr: '[À RÉDIGER]'
+  en: '[À RÉDIGER]'
+intro:
+  fr: '[À RÉDIGER] Introduction / positionnement en 2–3 phrases.'
+  en: '[À RÉDIGER] Intro / positioning in 2–3 sentences.'
+blocks:
+  - heading:
+      fr: Manifeste
+      en: Manifesto
+    body:
+      fr: '[À RÉDIGER] Ce que je défends, pourquoi je produis.'
+      en: '[À RÉDIGER] What I stand for, why I produce.'
+  - heading:
+      fr: Contenus
+      en: Content
+    body:
+      fr: '[À RÉDIGER] Formats publiés, thèmes, fréquence.'
+      en: '[À RÉDIGER] Formats, topics, cadence.'
+  - heading:
+      fr: Réseaux
+      en: Channels
+    body:
+      fr: '[À RÉDIGER] Liens vers les réseaux et ce qu''on y trouve.'
+      en: '[À RÉDIGER] Links to channels and what''s there.'
+  - heading:
+      fr: Contact
+      en: Contact
+    body:
+      fr: '[À RÉDIGER] Pour quelles demandes me contacter.'
+      en: '[À RÉDIGER] What to reach out about.'
+seoDescription:
+  fr: '[À RÉDIGER]'
+  en: '[À RÉDIGER]'

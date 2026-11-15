@@ -1,0 +1,33 @@
+title: POSTMERIDIAN
+status: published
+order: 20
+category: studio
+kicker:
+  fr: Studio de jeux vidéo
+  en: Video game studio
+year: '2024'
+role:
+  fr: Fondateur & Producteur
+  en: Founder & Producer
+summary:
+  fr: Fondé en 2024, Postmeridian est un studio de développement de jeux vidéo basé entre la France et le Canada, qui développe actuellement son premier projet original.
+  en: Founded in 2024, Postmeridian is a game development studio based between France and Canada, currently developing its first original project.
+body:
+  fr: Création et gestion d'un studio de développement de jeux vidéo (PC / Unreal Engine). Supervision artistique, budgétaire et logistique, coordination d'une équipe créative (graphistes, développeurs, compositeurs).
+  en: Creation and management of a video game development studio (PC / Unreal Engine). Artistic, budgetary and logistical supervision, coordination of a creative team (graphic designers, developers, composers).
+tagline:
+  fr: ''
+  en: ''
+cover: null
+coverAlt:
+  fr: ''
+  en: ''
+logo: /images/projects/postmeridian.png
+gallery: []
+youtubeId: ''
+highlights: []
+links:
+  - label:
+      fr: postmeridian.co
+      en: postmeridian.co
+    url: https://www.postmeridian.co

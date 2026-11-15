@@ -1,0 +1,53 @@
+categories:
+  - name:
+      fr: Production & Logistique
+      en: Production & Logistics
+    items:
+      - fr: Planification de tournages
+        en: Shoot planning
+      - fr: Réservation logements & transports
+        en: Accommodation & transport booking
+      - fr: Gestion de budget
+        en: Budget management
+      - fr: Organisation plateau
+        en: Set organisation
+  - name:
+      fr: Coordination d'équipes
+      en: Team Coordination
+    items:
+      - fr: Fédération de talents
+        en: Talent management
+      - fr: Gestion des deadlines
+        en: Deadline management
+      - fr: Communication avec les artistes
+        en: Artist communication
+      - fr: Suivi de projet
+        en: Project tracking
+  - name:
+      fr: Polyvalence & Leadership
+      en: Versatility & Leadership
+    items:
+      - fr: Adaptabilité
+        en: Adaptability
+      - fr: Respect des deadlines
+        en: Meeting deadlines
+      - fr: Prise d'initiative
+        en: Initiative
+      - fr: Travail sous pression
+        en: Working under pressure
+  - name:
+      fr: Outils & Langues
+      en: Tools & Languages
+    items:
+      - fr: Anglais professionnel
+        en: Professional English
+      - fr: Espagnol technique
+        en: Technical Spanish
+      - fr: Suite Adobe (Ps, Ai, Pr, Lr)
+        en: Adobe Suite (Ps, Ai, Pr, Lr)
+      - fr: DaVinci Resolve
+        en: DaVinci Resolve
+      - fr: Canva · Google / Office
+        en: Canva · Google / Office
+      - fr: Unreal Engine
+        en: Unreal Engine

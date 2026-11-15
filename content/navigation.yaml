@@ -1,0 +1,43 @@
+items:
+  - label:
+      fr: Projets
+      en: Projects
+    target:
+      discriminant: section
+      value: projects
+    status: published
+  - label:
+      fr: Parcours
+      en: Experience
+    target:
+      discriminant: section
+      value: experience
+    status: published
+  - label:
+      fr: Compétences
+      en: Skills
+    target:
+      discriminant: section
+      value: skills
+    status: published
+  - label:
+      fr: Influences
+      en: Influences
+    target:
+      discriminant: section
+      value: influences
+    status: published
+  - label:
+      fr: Contact
+      en: Contact
+    target:
+      discriminant: section
+      value: contact
+    status: published
+  - label:
+      fr: Personal brand
+      en: Personal brand
+    target:
+      discriminant: page
+      value: personal-brand
+    status: hidden

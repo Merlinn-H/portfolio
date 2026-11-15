@@ -1,0 +1,11 @@
+title: Factorio
+status: published
+order: 40
+genre:
+  fr: Simulation
+  en: Simulation
+logo: /images/games/factorio.png
+url: https://www.factorio.com
+description:
+  fr: Tu poses un convoyeur. Puis un autre. Puis c'est 3h du matin et tu optimises des ratios de circuits électroniques. L'usine doit croître.
+  en: You place one belt. Then another. Then it's 3am and you're optimising circuit board ratios. The factory must grow.
