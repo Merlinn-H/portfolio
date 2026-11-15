@@ -98,7 +98,7 @@
     grid-template-columns: repeat(6, 1fr);
   }
   .portrait {
-    grid-column: 4 / -1;
+    grid-column: 5 / -1;
   }
 }
 

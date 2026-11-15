@@ -27,3 +27,4 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 04:39 — ✅ Revue DA par sous-agent Fable (advisor indisponible) : 7 corrections + 4 détails appliqués, 22 tests verts.
 04:44 — ⚠️ Régression trouvée par Lighthouse : CLS 0,16 sur la page POSTMERIDIAN (fil d'Ariane qui passait sur 2 lignes avant le chargement de la police) → corrigé (CLS 0,001) ; max-width des titres en em au lieu de ch. Lighthouse after : 96–98 / 100 / 100 / 100 sur 4 pages.
 11:07 — ✅ Checkpoint 4 lancé : rebuild, screenshots after (375/768/1024/1440) régénérés, lint + prettier + 22 tests e2e verts. Revue finale Fable (sous-agent lecture seule) en cours.
+11:15 — ✅ Checkpoint Fable 4 : GO. 3 corrections CSS + 4 coquilles/casse appliquées, REVIEW.md rendu plus exact (DECISIONS 25). Build, lint, prettier, 22 tests e2e verts. Lighthouse final : home 97/100/100/100, page projet 96/100/100/100, CLS 0,001. Screenshots after régénérés.

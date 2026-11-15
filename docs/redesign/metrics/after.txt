@@ -1,4 +1,2 @@
-lh-b-enprojets489productions.json {'performance': 96, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.5 s CLS 0 TBT 130 ms JS kB 143.2
-lh-b-home.json {'performance': 97, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.5 s CLS 0.001 TBT 50 ms JS kB 142.7
-lh-b-projetsau-coeur-de-l-alienation.json {'performance': 98, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.4 s CLS 0.001 TBT 50 ms JS kB 143.2
-lh-b-projetspostmeridian.json {'performance': 97, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.5 s CLS 0.001 TBT 100 ms JS kB 143.2
+lh-final-home.json {'performance': 97, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.6 s CLS 0.001 TBT 80 ms JS kB 142.7
+lh-final-projetspostmeridian.json {'performance': 96, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.6 s CLS 0.001 TBT 110 ms JS kB 143.2
