@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
       beforeFiles: [],
       afterFiles: [
         { source: "/", destination: "/fr" },
-        { source: "/:path((?!en(?:/|$)|fr(?:/|$)|keystatic(?:/|$)|api/|_next/|images/)[^.]+)", destination: "/fr/:path" },
+        {
+          source: "/:path((?!en(?:/|$)|fr(?:/|$)|keystatic(?:/|$)|api/|_next/|images/)[^.]+)",
+          destination: "/fr/:path",
+        },
       ],
       fallback: [],
     };
