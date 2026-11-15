@@ -19,8 +19,27 @@ sections:
       en: Philosophy
     title: {}
     intro:
-      fr: 'Chaque projet est une histoire à raconter — pas seulement un livrable, mais une expérience qui restera dans les mémoires. Je travaille à la jonction de la production audiovisuelle, de la coordination créative et de la direction artistique, pour transformer des idées en œuvres qui résonnent avec leur audience. La rigueur logistique et la sensibilité narrative ne sont pas opposées : elles se renforcent mutuellement. Gérer un tournage, c''est autant anticiper les imprévus que créer l''espace pour que la créativité s''exprime librement. Des courts-métrages aux jeux vidéo, de la publicité aux documentaires — l''histoire change, l''exigence reste la même.'
-      en: Every project is a story to tell — not just a deliverable, but an experience that will stay in people's minds. I work at the intersection of audiovisual production, creative coordination, and artistic direction, transforming ideas into works that resonate with their audience. Logistical rigour and narrative sensitivity aren't opposed — they reinforce each other. Managing a shoot means anticipating the unexpected as much as creating space for creativity to flow freely. From short films to video games, from advertising to documentaries — the story changes, the standard stays the same.
+      fr: >-
+        Chaque projet est une histoire à raconter — pas seulement un livrable,
+        mais une expérience qui restera dans les mémoires. Je travaille à la
+        jonction de la production audiovisuelle, de la coordination créative et
+        de la direction artistique, pour transformer des idées en œuvres qui
+        résonnent avec leur audience. La rigueur logistique et la sensibilité
+        narrative ne sont pas opposées : elles se renforcent mutuellement. Gérer
+        un tournage, c'est autant anticiper les imprévus que créer l'espace pour
+        que la créativité s'exprime librement. Des courts-métrages aux jeux
+        vidéo, de la publicité aux documentaires — l'histoire change, l'exigence
+        reste la même.
+      en: >-
+        Every project is a story to tell — not just a deliverable, but an
+        experience that will stay in people's minds. I work at the intersection
+        of audiovisual production, creative coordination, and artistic
+        direction, transforming ideas into works that resonate with their
+        audience. Logistical rigour and narrative sensitivity aren't opposed —
+        they reinforce each other. Managing a shoot means anticipating the
+        unexpected as much as creating space for creativity to flow freely. From
+        short films to video games, from advertising to documentaries — the
+        story changes, the standard stays the same.
     status: published
   - type: experience
     eyebrow:
@@ -30,8 +49,20 @@ sections:
       fr: Expériences
       en: Experience
     intro:
-      fr: Professionnel de la production audiovisuelle et vidéoludique, spécialisé en coordination administrative et logistique de projets culturels et artistiques. Fort de 7 ans d'expérience en gestion d'équipes, suivi budgétaire et production de contenus, mon parcours allie rigueur administrative et créativité, avec une capacité à fédérer des talents autour de projets ambitieux.
-      en: Audiovisual and video game production professional, specialised in administrative coordination and logistics for cultural and artistic projects. With 7 years of experience in team management, budget tracking and content production, my career combines administrative rigour and creativity, with a proven ability to unite talent around ambitious projects.
+      fr: >-
+        Professionnel de la production audiovisuelle et vidéoludique, spécialisé
+        en coordination administrative et logistique de projets culturels et
+        artistiques. Fort de 7 ans d'expérience en gestion d'équipes, suivi
+        budgétaire et production de contenus, mon parcours allie rigueur
+        administrative et créativité, avec une capacité à fédérer des talents
+        autour de projets ambitieux.
+      en: >-
+        Audiovisual and video game production professional, specialised in
+        administrative coordination and logistics for cultural and artistic
+        projects. With 7 years of experience in team management, budget tracking
+        and content production, my career combines administrative rigour and
+        creativity, with a proven ability to unite talent around ambitious
+        projects.
     status: published
   - type: skills
     eyebrow:
@@ -59,6 +90,10 @@ sections:
       fr: Travaillons ensemble
       en: Let's work together
     intro:
-      fr: Vous avez un projet ? Je suis disponible pour des collaborations et de nouvelles aventures créatives.
-      en: Got a project? I'm available for collaborations and new creative adventures.
+      fr: >-
+        Vous avez un projet ? Je suis disponible pour des collaborations et de
+        nouvelles aventures créatives.
+      en: >-
+        Got a project? I'm available for collaborations and new creative
+        adventures.
     status: published

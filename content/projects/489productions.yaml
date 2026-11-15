@@ -10,11 +10,20 @@ role:
   fr: Chargé de Production & Communication
   en: Production & Communications Manager
 summary:
-  fr: Réalisation, production audiovisuelle et conseil. Courts-métrages, clips, documentaires et podcasts.
-  en: Film production, audiovisual production and consulting. Short films, music videos, documentaries and podcasts.
+  fr: >-
+    Réalisation, production audiovisuelle et conseil. Courts-métrages, clips,
+    documentaires et podcasts.
+  en: >-
+    Film production, audiovisual production and consulting. Short films, music
+    videos, documentaries and podcasts.
 body:
-  fr: Studio de production audiovisuelle basé à Montpellier. Nous accompagnons artistes, marques et porteurs de projets de la première idée jusqu'à la livraison finale.
-  en: Audiovisual production studio based in Montpellier. We accompany artists, brands and project owners from the first idea to the final delivery.
+  fr: >-
+    Studio de production audiovisuelle basé à Montpellier. Nous accompagnons
+    artistes, marques et porteurs de projets de la première idée jusqu'à la
+    livraison finale.
+  en: >-
+    Audiovisual production studio based in Montpellier. We accompany artists,
+    brands and project owners from the first idea to the final delivery.
 tagline:
   fr: Vision. Production. Action!
   en: Vision. Production. Action!
@@ -26,18 +35,30 @@ highlights:
       fr: Réalisation
       en: Direction
     text:
-      fr: Courts-métrages, clips musicaux, documentaires. Conception et réalisation de vos projets de A à Z.
-      en: Short films, music videos, documentaries. Full conception and direction of your projects from A to Z.
+      fr: >-
+        Courts-métrages, clips musicaux, documentaires. Conception et
+        réalisation de vos projets de A à Z.
+      en: >-
+        Short films, music videos, documentaries. Full conception and direction
+        of your projects from A to Z.
   - title:
       fr: Production
       en: Production
     text:
-      fr: Production audiovisuelle et podcasts. Gestion complète du projet, du budget au rendu final.
-      en: Audiovisual production and podcasts. Complete project management, from budget to final delivery.
+      fr: >-
+        Production audiovisuelle et podcasts. Gestion complète du projet, du
+        budget au rendu final.
+      en: >-
+        Audiovisual production and podcasts. Complete project management, from
+        budget to final delivery.
   - title:
       fr: Conseil
       en: Consulting
     text:
-      fr: Accompagnement et conseil en production audiovisuelle. On vous guide à chaque étape de votre projet.
-      en: Guidance and consulting in audiovisual production. We support you at every stage of your project.
+      fr: >-
+        Accompagnement et conseil en production audiovisuelle. On vous guide à
+        chaque étape de votre projet.
+      en: >-
+        Guidance and consulting in audiovisual production. We support you at
+        every stage of your project.
 links: []
