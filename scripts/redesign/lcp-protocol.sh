@@ -7,8 +7,8 @@ LH=${LH:-npx lighthouse}
 out=docs/redesign/metrics/lcp-protocol.txt; : > "$out"
 measure() {
   local label=$1
-  pkill -f "next-server" || true; sleep 1
-  npm run build >/dev/null; (npx next start -p 3100 >/dev/null 2>&1 &); sleep 4
+  pkill -f "astro preview" || true; sleep 1
+  npm run build >/dev/null; (npm run preview >/dev/null 2>&1 &); sleep 4
   curl -s -o /dev/null http://localhost:3100/; curl -s -o /dev/null "http://localhost:3100/_next/image?url=%2Fimages%2Fsite%2Fportrait.jpg&w=384&q=60"
   for method in simulate devtools; do
     for i in 1 2 3; do

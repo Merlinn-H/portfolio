@@ -1,7 +1,29 @@
 # REVIEW — Refonte du portfolio (branche `redesign/v2`)
 
-> Rien n'est poussé sur `main`, rien n'est déployé. Nouveautés de la session 2 : § 0.
+> La version Next.js (sessions 1 et 2) est en ligne sur `main`. La version Astro (session 3) est sur la branche `astro` : § 00.
 > Journal : [PROGRESS.md](PROGRESS.md) · Décisions : [DECISIONS.md](DECISIONS.md) · Audit : [AUDIT.md](AUDIT.md) · Direction artistique : [DESIGN.md](DESIGN.md) · Incohérences : [INCOHERENCES.md](INCOHERENCES.md)
+
+## 00. Session 3 — passage à Astro (branche `astro`)
+
+**Ce qui change pour toi : rien de visible.** Même design, mêmes adresses, même back-office, même bascule FR/EN sans rechargement. Ce qui change, c'est le moteur : le site n'embarque plus React côté visiteur.
+
+| Mesure (Lighthouse mobile, local, médiane de 3) | Next.js (en ligne aujourd'hui)         | **Astro**                                              |
+| ----------------------------------------------- | -------------------------------------- | ------------------------------------------------------ |
+| Score performance                               | 96–99                                  | **99–100**                                             |
+| LCP simulé (ce qu'affiche PageSpeed Insights)   | 2,2–2,7 s                              | **1,66 s** ✅ (< 1,8 s)                                |
+| LCP sous throttling appliqué                    | 1,0 s                                  | **0,95 s**                                             |
+| JavaScript envoyé                               | 142 kB gzip                            | **≈ 5 kB gzip**                                        |
+| Poids du HTML de l'accueil                      | 34 kB gzip                             | **16 kB gzip**                                         |
+| Images                                          | optimisées à la demande par le serveur | **optimisées au build** (AVIF/WebP, plusieurs tailles) |
+
+Vérifié : build, lint, typage, Prettier ; les 28 tests Playwright (navigation, bascule FR/EN qui garde la position, un seul document chargé sur tout un parcours, visibilité masqué/publié en FR et EN, 404, anciennes URL) ; parcours back-office créer → voir → supprimer (5 s) ; build au format Vercel (redirections natives, 404).
+
+**Pour mettre la version Astro en ligne** : fusionner `astro` dans `main`. `vercel.json` force le framework « Astro » côté Vercel, rien à régler à la main. Si le build Vercel échouait, la version Next.js actuelle resterait en ligne (Vercel ne remplace la production qu'après un build réussi).
+
+**Mode GitHub du back-office (édition en ligne), version Astro** — mêmes étapes qu'au § 5, avec ces noms de variables :
+`PUBLIC_KEYSTATIC_STORAGE=github`, `KEYSTATIC_GITHUB_CLIENT_ID`, `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET`, `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` (l'assistant de `/keystatic` en local les génère dans `.env` ; pour le lancer : `PUBLIC_KEYSTATIC_STORAGE=github npm run dev`). URL de callback : `https://hugopezzo.fr/api/keystatic/github/oauth/callback`.
+
+**Commandes** : `npm run dev` (site sur http://localhost:4321, back-office sur /keystatic), `npm run build`, `npm run preview` (http://localhost:3100), `npm run test:e2e`.
 
 ## 0. Session 2 (15/11 après-midi) — suite à ton retour
 
