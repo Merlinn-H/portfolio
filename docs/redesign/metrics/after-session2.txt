@@ -1,0 +1,2 @@
+lh-s2-home.json {'performance': 96, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.6 s CLS 0 TBT 70 ms JS kB 145.8
+lh-s2-projetspostmeridian.json {'performance': 97, 'accessibility': 100, 'best-practices': 100, 'seo': 100} LCP 2.6 s CLS 0.001 TBT 50 ms JS kB 152.1

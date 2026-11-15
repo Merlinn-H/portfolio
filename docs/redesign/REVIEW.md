@@ -1,7 +1,35 @@
 # REVIEW — Refonte du portfolio (branche `redesign/v2`)
 
-> Pour la review de Hugo à 12:30. Rien n'est poussé sur `main`, rien n'est déployé.
+> Rien n'est poussé sur `main`, rien n'est déployé. Nouveautés de la session 2 : § 0.
 > Journal : [PROGRESS.md](PROGRESS.md) · Décisions : [DECISIONS.md](DECISIONS.md) · Audit : [AUDIT.md](AUDIT.md) · Direction artistique : [DESIGN.md](DESIGN.md) · Incohérences : [INCOHERENCES.md](INCOHERENCES.md)
+
+## 0. Session 2 (15/11 après-midi) — suite à ton retour
+
+**Ce qui a changé**
+
+- **FR ↔ EN sans recharger la page.** Le clic sur FR/EN remplace seulement le contenu : même page, même endroit de lecture, la langue du document suit. Les deux langues restent des pages séparées et indexables (`/` et `/en`, hreflang, sitemap).
+- **Plus aucun rechargement en naviguant** : accueil, projets, pages… Testé sur un parcours complet : un seul document chargé du début à la fin. Coût : +3 kB de JavaScript (139 → 142 kB gzip).
+- **Temps d'affichage** : sur mobile, le nom « Hugo Pezzo » est désormais l'élément principal de l'écran (il était découpé en deux blocs, et le portrait passait devant). Résultat sous connexion mobile ralentie : **LCP 1,4 s → 1,0 s**, il tombe en même temps que le premier affichage. Visuellement rien ne change, sauf le portrait mobile qui passe en carré. Police de texte allégée (35 → 27 kB).
+- **Faits corrigés** : POSTMERIDIAN fondé en **avril 2024 à Montpellier** (parcours + fiche projet) ; « 8 ans d'expérience en production audiovisuelle et 2 ans en production de jeux vidéo ». Djogo reste masqué.
+- **Personal brand** : je n'ai pas touché à ton texte. J'ai juste ajouté un champ **« Liens »** à chaque bloc des pages libres (pour ton Instagram, etc.) : ils s'affichent en boutons.
+- 404 désormais bilingue.
+
+**Mesures (Lighthouse mobile, local, médiane de 3)**
+
+|                                                       | Avant session 2 | Après     |
+| ----------------------------------------------------- | --------------- | --------- |
+| LCP sous throttling appliqué (le plus proche du réel) | 1,4 s           | **1,0 s** |
+| LCP simulé (ce qu'affiche PageSpeed Insights)         | 2,2–2,6 s       | 2,2–2,6 s |
+| Score performance                                     | 97–98           | 97–99     |
+
+**Pourquoi le chiffre de PageSpeed ne descend pas, et l'option pour aller plus loin**
+Le LCP « simulé » de PageSpeed est dicté par le JavaScript de Next.js/React (~130 kB), téléchargé avant l'affichage. J'ai fait l'expérience : **la même page sans ce JavaScript tombe à 1,4–1,6 s simulé, score 100**. Le seul moyen d'y arriver est de changer de socle, par exemple **Astro**, qui fait aussi la navigation sans rechargement, garde Keystatic et le même design. C'est une réécriture d'environ une journée. Je ne l'ai pas lancée sans ton accord, parce que le brief imposait Next.js. Dis-moi si tu la veux.
+
+**À vérifier sur la preview Vercel avant de merger** (je ne peux pas l'ouvrir d'ici) :
+
+- [ ] `/`, `/projets`, `/en` s'affichent ; passer FR → EN → FR depuis une page projet ne recharge pas la page (l'onglet du navigateur ne « tourne » pas).
+- [ ] Recharger directement `/en/projets/postmeridian` et `/projets/postmeridian` → 200.
+- [ ] Si la navigation française casse sur Vercel (cas peu probable, lié aux _rewrites_ qui servent le français à la racine), le retour arrière est simple : commit `d3d43ec` (fin de la session 1).
 
 ## 1. Résumé en 10 lignes
 
@@ -136,8 +164,8 @@ Les 25 décisions sont dans [DECISIONS.md](DECISIONS.md). Les 5 plus importantes
 
 **Faits à vérifier** (rien n'a été corrigé, liste complète dans [INCOHERENCES.md](INCOHERENCES.md)) :
 
-- POSTMERIDIAN : « mai 2024, Montpellier » (site) contre « septembre 2024, Lyon » (ailleurs) ; « Fondateur & Producteur » contre « co-fondateur, producteur exécutif ».
-- « 7 ans d'expérience » alors que l'expérience la plus ancienne date de juin 2017 (soit 9 ans en 2026).
+- ✅ POSTMERIDIAN : fondé en avril 2024 à Montpellier (corrigé). Reste : « Fondateur & Producteur » (site) contre « co-fondateur, producteur exécutif » (brief).
+- ✅ Années d'expérience : « 8 ans en production audiovisuelle + 2 ans en production de jeux vidéo » (corrigé).
 - « 4 courts-métrages dont 2 sélectionnés en festivals » alors que la page n'en montre que 3.
 - Titre : « Producteur Audiovisuel » (FR) contre « Film Producer » (EN).
 - Année de création de 489Productions : le champ a été laissé vide, parce que « 2023 » est la date d'arrivée de Hugo.
@@ -159,7 +187,7 @@ Les 25 décisions sont dans [DECISIONS.md](DECISIONS.md). Les 5 plus importantes
 **Entrées masquées à relire avant publication** :
 
 - Page **Personal brand** (`/personal-brand`).
-- Expérience **Djogo — Créateur de contenus / Responsable communication, depuis fin août 2026, Lyon**, sans description. C'est le poste actuel : tant qu'elle est masquée, le parcours public affiche POSTMERIDIAN et 489Productions comme « Actuellement ». À mettre à jour.
+- Expérience **Djogo — Créateur de contenus / Responsable communication, depuis fin août 2026, Lyon**, sans description. Reste masquée pour l'instant (choix de Hugo, 15/11).
 
 **Choix à confirmer** : l'ident 489Productions au chargement (§ 6.4) ; le libellé anglais « Personal brand » dans la nav FR.
 

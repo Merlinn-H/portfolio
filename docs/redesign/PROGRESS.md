@@ -33,3 +33,5 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 ➡️ Bascule FR/EN sans rechargement + navigation sans rechargement ; LCP.
 17:46 — ✅ Navigation et bascule FR/EN sans rechargement (racine unique [lang] + rewrites + next/link). Parcours complet testé : 1 seul document chargé, <html lang> suit, position gardée au changement de langue, ident jamais rejoué. 2 bugs trouvés et corrigés en route (ident réapparaissant, retour accueil mal positionné). 25 tests verts. JS +3 kB gzip.
 ➡️ Temps d'affichage (LCP).
+18:07 — ✅ LCP mobile : le nom devient l'élément principal → 1,4 s → 1,0 s (throttling appliqué). Police de texte allégée (35 → 27 kB). Back-office testé (créer → voir → supprimer OK), bascule de visibilité testée sur build prod (FR et /en). ⚠️ Bug trouvé dans le script de test de visibilité (restaurait d'anciennes copies) → corrigé, contenu restauré. REVIEW.md § 0 « Session 2 » rédigé.
+➡️ Revue Fable de la session 2.
