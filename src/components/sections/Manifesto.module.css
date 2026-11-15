@@ -8,7 +8,7 @@
   line-height: 1.02;
   letter-spacing: -0.01em;
   text-wrap: balance;
-  max-width: 22ch;
+  max-width: 12.5em;
 }
 .rest {
   max-width: var(--measure);

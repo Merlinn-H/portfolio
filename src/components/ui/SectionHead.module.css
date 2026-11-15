@@ -24,5 +24,5 @@
 }
 .title {
   font-size: var(--step-5);
-  max-width: 14ch;
+  max-width: 8em; /* em, pas ch : stable quand la webfont remplace la police de secours (CLS) */
 }

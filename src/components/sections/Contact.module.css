@@ -6,7 +6,7 @@
 .title {
   font-size: var(--step-6);
   line-height: 0.88;
-  max-width: 10ch;
+  max-width: 6em;
 }
 .intro {
   max-width: var(--measure);

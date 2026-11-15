@@ -6,11 +6,11 @@
     "1300": false
   },
   "notes": [],
-  "firstShotActualMs": 1,
+  "firstShotActualMs": 0,
   "overlayVisibleAfterReload0ms": false,
   "introOffAfterReload": true,
   "overlayVisibleAfterReload300ms": false,
-  "scrollSteps": 32,
+  "scrollSteps": 29,
   "hiddenAfterScroll": [],
   "afterClickUrl": "http://localhost:3100/projets/489productions"
 }

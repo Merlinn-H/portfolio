@@ -8,11 +8,17 @@
   gap: var(--space-5);
   margin-bottom: var(--space-8);
 }
+/* Une seule ligne : sinon le retour à la ligne change quand la webfont arrive (CLS). */
 .crumbs {
   display: flex;
-  flex-wrap: wrap;
   gap: var(--space-3);
+  min-width: 0;
+  white-space: nowrap;
   color: var(--fg-muted);
+}
+.crumbs > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .crumbs a {
   display: inline-flex;
@@ -24,7 +30,7 @@
   font-size: var(--step-6);
   line-height: 0.88;
   font-size: min(var(--step-6), 11vw);
-  max-width: 14ch;
+  max-width: 8em; /* em, pas ch : stable quand la webfont remplace la police de secours (CLS) */
 }
 .tagline {
   font-size: var(--step-1);
@@ -64,10 +70,11 @@
   padding: var(--space-7) var(--gutter);
   background: var(--bg-sunken);
 }
+/* Hauteur explicite : aucune variation de mise en page au chargement du logo (CLS). */
 .logo {
-  width: min(70vw, 32rem);
-  max-height: 14rem;
-  height: auto;
+  height: min(14rem, 45vw);
+  width: auto;
+  max-width: 100%;
   object-fit: contain;
 }
 .body {
@@ -151,7 +158,7 @@
   font-family: var(--font-display);
   font-size: var(--step-4);
   line-height: 0.95;
-  max-width: 16ch;
+  max-width: 9em;
 }
 .cta .pill {
   background: var(--paper-ink);

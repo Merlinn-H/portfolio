@@ -10,11 +10,8 @@
   "overlayVisibleAfterReload0ms": false,
   "introOffAfterReload": true,
   "overlayVisibleAfterReload300ms": false,
-  "scrollSteps": 35,
+  "scrollSteps": 31,
   "hiddenAfterScroll": [
-    "SPAN.qR0fhW_arrow",
-    "SPAN.qR0fhW_arrow",
-    "SPAN.qR0fhW_arrow",
     "SPAN.qR0fhW_arrow",
     "SPAN.qR0fhW_arrow"
   ],
