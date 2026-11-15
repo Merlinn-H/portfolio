@@ -38,7 +38,7 @@ Tout est dans [`screenshots/before/`](screenshots/before/), [`screenshots/after/
 | LCP sous throttling appliqué (devtools)                        | —               | **1,3 s**                    | —                   | < 1,8 s ✅        |
 | LCP observé en local (sans réseau)                             | —               | 0,16 s (= premier affichage) | —                   | —                 |
 | CLS                                                            | 0               | **0,001**                    | **0–0,001**         | < 0,05 ✅         |
-| TBT (l'INP n'a pas été mesuré, TBT = meilleur indicateur labo) | 50 ms           | 40–90 ms                     | 50–110 ms              | INP non mesuré ⚠️ |
+| TBT (l'INP n'a pas été mesuré, TBT = meilleur indicateur labo) | 50 ms           | 40–90 ms                     | 50–110 ms           | INP non mesuré ⚠️ |
 | JS transféré (gzip, Lighthouse)                                | 192 kB          | **143 kB**                   | 143 kB              | —                 |
 | JS first-load (brotli / gzip)                                  | —               | **119 / 139 kB**             | —                   | ≤ 120 kB gzip ⚠️  |
 
