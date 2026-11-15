@@ -22,3 +22,5 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 04:18 — ✅ Checkpoint Fable 3 traité (voir DECISIONS 19-22). Sonnet (worktree) : script de capture du motion + 60 images dans screenshots/motion — l'ident joue une seule fois, se coupe à ~1,1 s, révélations OK, pas de contenu bloqué à opacity 0. Relu et intégré par Opus. Passe design : projets en 2 niveaux, manifeste en carton clair, Gloock réservé aux titres, hero sans chevauchement, CTA 489 restauré.
 04:23 — ✅ Protocole LCP (ident ON/OFF × 3 runs × simulé/appliqué) : l'ident ne change rien ; LCP appliqué ≈ 1,3 s (cible < 1,8 s OK), simulé ≈ 2,5 s (artefact Lantern, LCP observé 0,16 s). Ident conservé.
 04:25 — ✅ Tests ajoutés (ancres EN sans rechargement, barre à 6 onglets à 1024 px, état « aucun jeu »). ⚠️ Bug trouvé : à 6 onglets la barre desktop débordait à 1024 px → mode Menu entre 1024 et 1280 px. Tous verts.
+04:30 — ✅ REVIEW.md complet (version provisoire, métriques et screenshots « after » à rafraîchir au gel). README du repo réécrit.
+➡️ Revue Fable post-passe design, puis backlog de polish.
