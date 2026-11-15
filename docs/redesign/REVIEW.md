@@ -18,8 +18,8 @@
 
 ## 2. Avant / après
 
-| | Avant | Après |
-|---|---|---|
+|             | Avant                                        | Après                                                                                                       |
+| ----------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | Screenshots | [`screenshots/before/`](screenshots/before/) | [`screenshots/after/`](screenshots/after/) (+ [`mid/`](screenshots/mid/), [`motion/`](screenshots/motion/)) |
 
 Métriques — _tableau finalisé au gel, voir § 2 bis._

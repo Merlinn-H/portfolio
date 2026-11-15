@@ -6,3 +6,5 @@ public
 _archive
 docs/redesign/metrics
 src/components/ui/hanzi-glyphs.ts
+.claude
+docs/redesign/screenshots
