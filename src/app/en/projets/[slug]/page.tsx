@@ -17,7 +17,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: p?.title,
     description: p ? pick(p.summary, "en") : undefined,
     hidden: p?.status === "hidden",
-    image: `/en/projets/${slug}/opengraph-image`,
   });
 }
 

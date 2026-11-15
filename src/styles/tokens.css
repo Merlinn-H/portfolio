@@ -11,7 +11,7 @@
   --line-strong: rgb(237 230 217 / 0.32);
   --accent: #ef4130;
   --accent-ink: #0e0c0a;
-  --scrim: rgb(14 12 10 / 0.82);
+  --scrim: rgb(23 20 17 / 0.94);
 
   /* Typographie */
   --font-display: var(--font-gloock), "Times New Roman", serif;

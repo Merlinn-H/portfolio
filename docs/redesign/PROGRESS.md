@@ -12,3 +12,5 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 ➡️ Spike Keystatic (compat Next 16 / React 19).
 03:48 — ✅ Spike Keystatic OK (Next 16.4.6 / React 19.3.1), contenu migré en YAML, aller-retour admin vérifié (seul le champ édité change), admin 404 en prod. Checkpoint Fable 2 : direction A « Carton de générique » verrouillée (DESIGN.md). Plancher JS framework mesuré : 129 kB gzip / 108 kB brotli.
 ➡️ Phase 2 : tokens, polices, layout, nav, routes FR/EN, visibilité.
+03:57 — ✅ Nouveau site construit (accueil, liste projets, pages projet, pages libres, 404) en FR et EN, build + lint verts, poussé. Opus seul (structure + design system + nav = périmètre réservé au builder principal).
+➡️ SEO (sitemap/robots/OG), redirections des anciennes URL, transitions de page, test CMS création/suppression, test visibilité.

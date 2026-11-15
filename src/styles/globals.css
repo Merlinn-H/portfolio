@@ -143,3 +143,28 @@ p {
     clip-path: inset(0 0 0 0);
   }
 }
+
+/* Transitions de page (navigation entre documents, sans JS) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  ::view-transition-old(root) {
+    animation: vt-out var(--dur-2) var(--ease-in-out) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in var(--dur-3) var(--ease-out) both;
+  }
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--space-4) * -1));
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    clip-path: inset(6% 0 6% 0);
+  }
+}
