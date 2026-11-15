@@ -21,9 +21,8 @@
   color: var(--fg-muted);
 }
 .featureTitle {
-  font-size: var(--step-5);
+  font-size: min(var(--step-5), 10vw);
   line-height: 0.9;
-  overflow-wrap: anywhere;
   transition:
     transform var(--dur-3) var(--ease-out),
     color var(--dur-2);

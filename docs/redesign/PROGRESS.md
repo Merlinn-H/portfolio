@@ -24,3 +24,4 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 04:25 — ✅ Tests ajoutés (ancres EN sans rechargement, barre à 6 onglets à 1024 px, état « aucun jeu »). ⚠️ Bug trouvé : à 6 onglets la barre desktop débordait à 1024 px → mode Menu entre 1024 et 1280 px. Tous verts.
 04:30 — ✅ REVIEW.md complet (version provisoire, métriques et screenshots « after » à rafraîchir au gel). README du repo réécrit.
 ➡️ Revue Fable post-passe design, puis backlog de polish.
+04:39 — ✅ Revue DA par sous-agent Fable (advisor indisponible) : 7 corrections + 4 détails appliqués, 22 tests verts.

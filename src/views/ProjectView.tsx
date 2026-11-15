@@ -33,8 +33,9 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
           <a className="link" href={href(locale, "/projets")}>
             {t.allProjects}
           </a>
-          <span aria-hidden="true">/</span>
-          <span>{pick(project.kicker, locale)}</span>
+          <span>
+            <span aria-hidden="true">/</span> {pick(project.kicker, locale)}
+          </span>
         </nav>
         <h1 className={styles.title}>{project.title}</h1>
         {tagline ? <p className={styles.tagline}>{tagline}</p> : null}
@@ -65,7 +66,7 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
             title={project.title}
             label={t.watch}
             hint={t.watchOn}
-            card={pick(project.kicker, locale) || project.title}
+            card={project.title}
           />
         </div>
       ) : project.coverImg ? (
@@ -145,7 +146,7 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
         <a className={styles.next} href={href(locale, `/projets/${next.slug}`)}>
           <span className="credits">{t.next}</span>
           <span className={styles.nextTitle}>
-            {next.title} <span aria-hidden="true">→</span>
+            {next.title} <span aria-hidden="true">→</span>
           </span>
         </a>
       ) : null}

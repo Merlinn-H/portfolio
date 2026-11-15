@@ -2,6 +2,13 @@
 .frame {
   position: relative;
   aspect-ratio: 16 / 9;
+}
+@media (min-width: 64rem) {
+  .frame:has(.facade) {
+    aspect-ratio: 2.39 / 1;
+  }
+}
+.frame {
   background: var(--bg-sunken);
   overflow: hidden;
 }

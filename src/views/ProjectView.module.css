@@ -23,8 +23,7 @@
 .title {
   font-size: var(--step-6);
   line-height: 0.88;
-  overflow-wrap: anywhere;
-  hyphens: auto;
+  font-size: min(var(--step-6), 11vw);
   max-width: 14ch;
 }
 .tagline {
@@ -53,7 +52,7 @@
 }
 .media {
   margin-inline: calc(var(--gutter) * -1);
-  margin-bottom: var(--space-9);
+  margin-bottom: var(--space-7);
 }
 .cover {
   width: 100%;
@@ -62,12 +61,12 @@
 .logoFrame {
   display: grid;
   place-items: center;
-  padding: var(--space-9) var(--gutter);
+  padding: var(--space-7) var(--gutter);
   background: var(--bg-sunken);
 }
 .logo {
   width: min(70vw, 32rem);
-  max-height: 22rem;
+  max-height: 14rem;
   height: auto;
   object-fit: contain;
 }
