@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hugo Pezzo — portfolio
 
-## Getting Started
+Site personnel de Hugo Pezzo (producteur audiovisuel). Next.js 16 (App Router, 100 % statique), contenu édité dans **Keystatic**.
 
-First, run the development server:
+## Démarrer
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Site : http://localhost:3000 — anglais : http://localhost:3000/en
+- Back-office : http://localhost:3000/keystatic (en local, les modifications sont écrites dans `content/`)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commandes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Commande                                | Rôle                                                                  |
+| --------------------------------------- | --------------------------------------------------------------------- |
+| `npm run build`                         | Build de production (génère toutes les pages en statique)             |
+| `npm run lint` / `npm run format:check` | ESLint / Prettier                                                     |
+| `npm run test:e2e`                      | Tests Playwright (nav, visibilité) — après `npm run build`            |
+| `npm run test:cms`                      | Parcours CMS créer → voir → supprimer (avec `npm run dev -- -p 3200`) |
+| `scripts/redesign/visibility-toggle.sh` | Teste la bascule Publié/Masqué sur des builds de production           |
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+content/          contenu (YAML) édité par Keystatic
+keystatic.config.ts  schéma du back-office
+public/images/    images gérées par le CMS (<collection>/<slug>/<champ>.<ext>)
+src/app/(fr)/     routes françaises (/, /projets, /projets/[slug], /[slug])
+src/app/en/       routes anglaises (/en/…)
+src/app/keystatic, src/app/api/keystatic   back-office (404 en production en mode local)
+src/components/   ui/ (primitives), layout/ (nav, footer, ident), sections/ (accueil), project/
+src/views/        pages partagées FR/EN
+src/lib/          content.ts (lecture du contenu au build), i18n.ts, seo.ts, og.tsx, fonts.ts
+src/styles/       tokens.css (design tokens), globals.css
+docs/redesign/    audit, direction artistique, décisions, journal, review
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Documentation de la refonte : [`docs/redesign/REVIEW.md`](docs/redesign/REVIEW.md).

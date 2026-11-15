@@ -65,7 +65,7 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
             title={project.title}
             label={t.watch}
             hint={t.watchOn}
-            card={project.year || pick(project.kicker, locale)}
+            card={pick(project.kicker, locale) || project.title}
           />
         </div>
       ) : project.coverImg ? (
