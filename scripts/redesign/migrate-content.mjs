@@ -29,7 +29,7 @@ const prune = (v) => {
 };
 const write = (p, data) => {
   fs.mkdirSync(path.dirname(p), { recursive: true });
-  fs.writeFileSync(p, yaml.dump(prune(data), { lineWidth: -1, noRefs: true }));
+  fs.writeFileSync(p, yaml.dump(prune(data)));
 };
 // Keystatic stores collection images at public/images/<collection>/<slug>/<field>.<ext>
 const moveImg = (from, collection, slug, field) => {

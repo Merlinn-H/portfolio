@@ -5,7 +5,7 @@ import { config, collection, singleton, fields } from "@keystatic/core";
  *
  * Stockage :
  *  - par défaut `local` : le contenu est écrit dans les fichiers du repo (content/**).
- *  - `KEYSTATIC_STORAGE=github` + variables GitHub (voir docs/redesign/REVIEW.md) :
+ *  - `NEXT_PUBLIC_KEYSTATIC_STORAGE=github` + variables GitHub (voir docs/redesign/REVIEW.md) :
  *    le back-office est servi en production et commite directement dans le repo.
  */
 

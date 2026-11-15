@@ -10,3 +10,5 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 03:33 — ℹ️ Délégation : inventaires assets/dépendances/chaînes faits par Opus directement (repo de 2 300 lignes, 20 assets : lancer des sous-agents Haiku aurait coûté plus de temps que la lecture).
 03:34 — ✅ Checkpoint Fable 1 : diagnostic validé, architecture précisée (voir DECISIONS).
 ➡️ Spike Keystatic (compat Next 16 / React 19).
+03:48 — ✅ Spike Keystatic OK (Next 16.4.6 / React 19.3.1), contenu migré en YAML, aller-retour admin vérifié (seul le champ édité change), admin 404 en prod. Checkpoint Fable 2 : direction A « Carton de générique » verrouillée (DESIGN.md). Plancher JS framework mesuré : 129 kB gzip / 108 kB brotli.
+➡️ Phase 2 : tokens, polices, layout, nav, routes FR/EN, visibilité.
