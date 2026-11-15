@@ -1,5 +1,7 @@
 # Capture du mouvement (reducedMotion: no-preference)
 
+> Recapturé à 04:42 après la passe design (même script). Les sondes JSON sont identiques : ident visible à 600 ms, absent à 1300 ms, pas de rejeu au rechargement, aucun texte resté invisible après le scroll. Les observations ci-dessous restent valables.
+
 Script : `scripts/redesign/motion-capture.cjs` (375x812 et 1440x900, contexte neuf par viewport).
 
 ## Ident d'intro
