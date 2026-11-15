@@ -26,18 +26,19 @@
   position: relative;
   z-index: 2;
 }
-.name span {
-  display: block;
-}
-.last {
+/* Retrait de la 2e ligne (« Pezzo ») : padding + text-indent négatif sur la 1re ligne. */
+.name {
   padding-left: 0.5em;
+  text-indent: -0.5em;
 }
 
 /* Mobile : le portrait vient sous le nom, sans chevauchement (son fond est très clair). */
+/* Carré sur mobile : le nom reste l'élément le plus grand du premier écran, donc le LCP
+   est le texte (peint immédiatement) et non l'image (qui demande un aller-retour réseau). */
 .portrait {
   grid-column: 3 / -1;
   margin-top: var(--space-6);
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: var(--bg-raised);
 }
@@ -95,6 +96,7 @@
   }
   .portrait {
     grid-column: 5 / -1;
+    aspect-ratio: 4 / 5;
   }
 }
 
@@ -117,8 +119,9 @@
     align-self: start;
     margin-top: var(--space-4);
   }
-  .last {
+  .name {
     padding-left: 0.55em;
+    text-indent: -0.55em;
   }
   .portrait {
     grid-column: 9 / -1;

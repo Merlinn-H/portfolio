@@ -15,7 +15,11 @@ export function Hero({ site, locale, t }: { site: Site; locale: Locale; t: Dict 
       <p className={`credits ${styles.role}`}>{pick(site.role, locale)}</p>
 
       <h1 id="hero-title" className={styles.name}>
-        <span>{first}</span> <span className={styles.last}>{rest.join(" ")}</span>
+        {/* Un seul bloc de texte (pas deux <span> en display:block) : le navigateur le compte
+            comme un seul élément, le plus grand de l'écran → LCP peint dès le premier rendu. */}
+        {first}
+        <br />
+        {rest.join(" ")}
       </h1>
 
       {portrait ? (
