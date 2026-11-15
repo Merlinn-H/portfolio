@@ -23,20 +23,22 @@ await p
 await p.getByRole("textbox", { name: "Ordre" }).fill("99");
 await p.getByRole("button", { name: "Create" }).click();
 await p.waitForURL(/item\/projet-test-cms/);
-step("projet enregistré");
-if (!fs.existsSync("content/projects/projet-test-cms.yaml")) throw new Error("fichier non créé");
+const slug = new URL(p.url()).pathname.split("/").pop();
+const file = `content/projects/${slug}.yaml`;
+step(`projet enregistré (${file})`);
+if (!fs.existsSync(file)) throw new Error("fichier non créé");
 
-const res = await p.goto(`${base}/projets/projet-test-cms`, { waitUntil: "domcontentloaded" });
+const res = await p.goto(`${base}/projets/${slug}`, { waitUntil: "domcontentloaded" });
 if (res.status() !== 200) throw new Error(`page projet: ${res.status()}`);
 await p.goto(`${base}/`, { waitUntil: "domcontentloaded" });
 if (!(await p.getByRole("heading", { name: "Projet Test CMS" }).count())) throw new Error("absent de l'accueil");
 step("visible sur le site (page projet + accueil)");
 
-await p.goto(`${base}/keystatic/collection/projects/item/projet-test-cms`, { waitUntil: "networkidle" });
+await p.goto(`${base}/keystatic/collection/projects/item/${slug}`, { waitUntil: "networkidle" });
 await p.getByRole("button", { name: "Delete entry…" }).click();
 await p.getByRole("button", { name: "Yes, delete" }).click();
 await p.waitForURL(/collection\/projects$/);
 step("projet supprimé");
-if (fs.existsSync("content/projects/projet-test-cms.yaml")) throw new Error("fichier non supprimé");
+if (fs.existsSync(file)) throw new Error("fichier non supprimé");
 await b.close();
 console.log(`OK — parcours complet en ${((Date.now() - t0) / 1000).toFixed(1)} s (robot)`);

@@ -9,10 +9,8 @@ interface Props {
 const { show, text } = Astro.props;
 ---
 
-{
-  show && (
-    <p class={styles.banner} role="status">
-      <span class={styles.tag}>●</span> {text}
-    </p>
-  )
-}
+{show && (
+  <p class={styles.banner} role="status">
+    <span class={styles.tag}>●</span> {text}
+  </p>
+)}

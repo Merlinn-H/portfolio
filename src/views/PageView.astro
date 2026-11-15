@@ -16,49 +16,47 @@ const t = ui(locale);
 const todo = (s: string) => s.includes("[À RÉDIGER]");
 ---
 
-{
-  page && (
-    <article class={styles.page}>
-      <HiddenBanner show={page.status === "hidden"} text={t.hiddenPage} />
-      <header class={styles.head}>
-        {pick(page.eyebrow, locale) ? (
-          <p class:list={["credits", styles.eyebrow, todo(pick(page.eyebrow, locale)) && styles.todo]}>
-            {pick(page.eyebrow, locale)}
-          </p>
-        ) : null}
-        <h1 class={styles.title}>{pick(page.title, locale)}</h1>
-        {pick(page.intro, locale) ? (
-          <p class:list={[styles.intro, todo(pick(page.intro, locale)) && styles.todo]}>{pick(page.intro, locale)}</p>
-        ) : null}
-      </header>
-      <div class={styles.blocks}>
-        {page.blocks.map((b, i) => (
-          <section class={`${styles.block} reveal`} aria-labelledby={`block-${i}`}>
-            <h2 id={`block-${i}`} class={styles.blockTitle}>
-              {pick(b.heading, locale)}
-            </h2>
-            {pick(b.body, locale)
-              .split(/\n\s*\n/)
-              .filter(Boolean)
-              .map((p) => (
-                <p class={todo(p) ? styles.todo : undefined}>{p}</p>
-              ))}
-            {b.links.filter((l) => l.url).length > 0 ? (
-              <ul class={styles.links}>
-                {b.links
-                  .filter((l) => l.url)
-                  .map((l) => (
-                    <li>
-                      <a href={l.url!} target="_blank" rel="noopener noreferrer" class={styles.pill}>
-                        {pick(l.label, locale) || l.url} <span aria-hidden="true">↗</span>
-                      </a>
-                    </li>
-                  ))}
-              </ul>
-            ) : null}
-          </section>
-        ))}
-      </div>
-    </article>
-  )
-}
+{page && (
+  <article class={styles.page}>
+    <HiddenBanner show={page.status === "hidden"} text={t.hiddenPage} />
+    <header class={styles.head}>
+      {pick(page.eyebrow, locale) ? (
+        <p class:list={["credits", styles.eyebrow, todo(pick(page.eyebrow, locale)) && styles.todo]}>
+          {pick(page.eyebrow, locale)}
+        </p>
+      ) : null}
+      <h1 class={styles.title}>{pick(page.title, locale)}</h1>
+      {pick(page.intro, locale) ? (
+        <p class:list={[styles.intro, todo(pick(page.intro, locale)) && styles.todo]}>{pick(page.intro, locale)}</p>
+      ) : null}
+    </header>
+    <div class={styles.blocks}>
+      {page.blocks.map((b, i) => (
+        <section class={`${styles.block} reveal`} aria-labelledby={`block-${i}`}>
+          <h2 id={`block-${i}`} class={styles.blockTitle}>
+            {pick(b.heading, locale)}
+          </h2>
+          {pick(b.body, locale)
+            .split(/\n\s*\n/)
+            .filter(Boolean)
+            .map((p) => (
+              <p class={todo(p) ? styles.todo : undefined}>{p}</p>
+            ))}
+          {b.links.filter((l) => l.url).length > 0 ? (
+            <ul class={styles.links}>
+              {b.links
+                .filter((l) => l.url)
+                .map((l) => (
+                  <li>
+                    <a href={l.url!} target="_blank" rel="noopener noreferrer" class={styles.pill}>
+                      {pick(l.label, locale) || l.url} <span aria-hidden="true">↗</span>
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          ) : null}
+        </section>
+      ))}
+    </div>
+  </article>
+)}

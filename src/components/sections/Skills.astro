@@ -14,18 +14,16 @@ const { categories, locale } = Astro.props;
 ---
 
 <dl class={styles.roll}>
-  {
-    categories.map((c) => (
-      <div class={`${styles.row} reveal`}>
-        <dt class={`credits ${styles.cat}`}>{pick(c.name, locale)}</dt>
-        <dd class={styles.items}>
-          <ul>
-            {c.items.map((s) => (
-              <li>{pick(s, locale)}</li>
-            ))}
-          </ul>
-        </dd>
-      </div>
-    ))
-  }
+  {categories.map((c) => (
+    <div class={`${styles.row} reveal`}>
+      <dt class={`credits ${styles.cat}`}>{pick(c.name, locale)}</dt>
+      <dd class={styles.items}>
+        <ul>
+          {c.items.map((s) => (
+            <li>{pick(s, locale)}</li>
+          ))}
+        </ul>
+      </dd>
+    </div>
+  ))}
 </dl>

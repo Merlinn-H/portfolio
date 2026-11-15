@@ -41,99 +41,99 @@ const ext = (item: NavItem) => (item.external ? { target: "_blank", rel: "noopen
   data-many={many ? "" : undefined}
 >
   <div class={styles.bar}>
-    <a href={homeHref} class={styles.brand}>{name}</a>
+    <a href={homeHref} class={styles.brand}>
+      {name}
+    </a>
     <nav aria-label={t.navLabel} class={styles.desktopNav}>
       <ul>
-        {
-          items.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                class={styles.item}
-                data-section-link={item.href.includes("#") ? item.href.split("#")[1] : undefined}
-                aria-current={pageActive(item) ? "page" : undefined}
-                {...ext(item)}
-              >
-                {item.label}
-                {item.hidden && <span class={styles.hiddenTag}>{t.hidden}</span>}
-              </a>
-            </li>
-          ))
-        }
+        {items.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class={styles.item}
+              data-section-link={item.href.includes("#") ? item.href.split("#")[1] : undefined}
+              aria-current={pageActive(item) ? "page" : undefined}
+              {...ext(item)}
+            >
+              {item.label}
+              {item.hidden && <span class={styles.hiddenTag}>{t.hidden}</span>}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
     <div class={styles.desktopLang}>
       <p class={styles.lang} role="group" aria-label={t.langLabel}>
-        {
-          (["fr", "en"] as const).map((l, i) => (
-            <span class={styles.langItem}>
-              {i > 0 && <span aria-hidden="true">/</span>}
-              <a
-                href={href(l, path)}
-                hreflang={l}
-                lang={l}
-                data-keep-scroll
-                aria-label={l === "fr" ? "Français" : "English"}
-                aria-current={locale === l ? "true" : undefined}
-              >
-                {l.toUpperCase()}
-              </a>
-            </span>
-          ))
-        }
+        {(["fr", "en"] as const).map((l, i) => (
+          <span class={styles.langItem}>
+            {i > 0 && <span aria-hidden="true">/</span>}
+            <a
+              href={href(l, path)}
+              hreflang={l}
+              lang={l}
+              data-keep-scroll
+              aria-label={l === "fr" ? "Français" : "English"}
+              aria-current={locale === l ? "true" : undefined}
+            >
+              {l.toUpperCase()}
+            </a>
+          </span>
+        ))}
       </p>
     </div>
-    <button type="button" class={styles.menuButton} data-menu-open aria-haspopup="dialog">{t.menu}</button>
+    <button type="button" class={styles.menuButton} data-menu-open aria-haspopup="dialog">
+      {t.menu}
+    </button>
   </div>
 </header>
 
 <dialog class={styles.sheet} aria-label={t.navLabel} data-menu>
   <div class={styles.sheetInner}>
     <div class={styles.sheetTop}>
-      <a href={homeHref} class={styles.brand}>{name}</a>
-      <button type="button" class={styles.closeButton} data-menu-close>{t.close}</button>
+      <a href={homeHref} class={styles.brand}>
+        {name}
+      </a>
+      <button type="button" class={styles.closeButton} data-menu-close>
+        {t.close}
+      </button>
     </div>
     <nav aria-label={t.navLabel}>
       <ol class={styles.sheetList}>
-        {
-          items.map((item, i) => (
-            <li>
-              <a
-                href={item.href}
-                data-section-link={item.href.includes("#") ? item.href.split("#")[1] : undefined}
-                aria-current={pageActive(item) ? "page" : undefined}
-                {...ext(item)}
-              >
-                <span class={styles.sheetNum} aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {item.label}
-                {item.hidden && <span class={styles.hiddenTag}>{t.hidden}</span>}
-              </a>
-            </li>
-          ))
-        }
+        {items.map((item, i) => (
+          <li>
+            <a
+              href={item.href}
+              data-section-link={item.href.includes("#") ? item.href.split("#")[1] : undefined}
+              aria-current={pageActive(item) ? "page" : undefined}
+              {...ext(item)}
+            >
+              <span class={styles.sheetNum} aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {item.label}
+              {item.hidden && <span class={styles.hiddenTag}>{t.hidden}</span>}
+            </a>
+          </li>
+        ))}
       </ol>
     </nav>
     <div class={styles.sheetFoot}>
       <p class={styles.lang} role="group" aria-label={t.langLabel}>
-        {
-          (["fr", "en"] as const).map((l, i) => (
-            <span class={styles.langItem}>
-              {i > 0 && <span aria-hidden="true">/</span>}
-              <a
-                href={href(l, path)}
-                hreflang={l}
-                lang={l}
-                data-keep-scroll
-                aria-label={l === "fr" ? "Français" : "English"}
-                aria-current={locale === l ? "true" : undefined}
-              >
-                {l.toUpperCase()}
-              </a>
-            </span>
-          ))
-        }
+        {(["fr", "en"] as const).map((l, i) => (
+          <span class={styles.langItem}>
+            {i > 0 && <span aria-hidden="true">/</span>}
+            <a
+              href={href(l, path)}
+              hreflang={l}
+              lang={l}
+              data-keep-scroll
+              aria-label={l === "fr" ? "Français" : "English"}
+              aria-current={locale === l ? "true" : undefined}
+            >
+              {l.toUpperCase()}
+            </a>
+          </span>
+        ))}
       </p>
     </div>
   </div>

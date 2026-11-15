@@ -15,27 +15,29 @@ const { name, note, email, socials, t } = Astro.props;
 <footer class={styles.footer}>
   <p class={styles.name}>{name}</p>
   <ul class={styles.links}>
-    {
-      email && (
+    {email && (
+      <li>
+        <a class="link" href={`mailto:${email}`}>
+          {email}
+        </a>
+      </li>
+    )}
+    {socials
+      .filter((s) => s.url)
+      .map((s) => (
         <li>
-          <a class="link" href={`mailto:${email}`}>
-            {email}
+          <a class="link" href={s.url!} target="_blank" rel="noopener noreferrer">
+            {s.label}
           </a>
         </li>
-      )
-    }
-    {
-      socials
-        .filter((s) => s.url)
-        .map((s) => (
-          <li>
-            <a class="link" href={s.url!} target="_blank" rel="noopener noreferrer">
-              {s.label}
-            </a>
-          </li>
-        ))
-    }
-    <li><a class="link" href="#top">{t.backToTop} ↑</a></li>
+      ))}
+    <li>
+      <a class="link" href="#top">
+        {t.backToTop} ↑
+      </a>
+    </li>
   </ul>
-  <p class={styles.note}>© {new Date().getFullYear()} {note}</p>
+  <p class={styles.note}>
+    © {new Date().getFullYear()} {note}
+  </p>
 </footer>

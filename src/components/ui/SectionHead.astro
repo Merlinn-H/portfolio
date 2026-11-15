@@ -19,11 +19,9 @@ const { index, eyebrow, title, id, hiddenLabel } = Astro.props;
     {eyebrow ? <span>{eyebrow}</span> : null}
     <HiddenBadge show={Boolean(hiddenLabel)} label={hiddenLabel ?? ""} />
   </p>
-  {
-    title ? (
-      <h2 id={`${id}-title`} class={`${styles.title} reveal`}>
-        {title}
-      </h2>
-    ) : null
-  }
+  {title ? (
+    <h2 id={`${id}-title`} class={`${styles.title} reveal`}>
+      {title}
+    </h2>
+  ) : null}
 </header>

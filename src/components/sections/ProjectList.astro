@@ -24,54 +24,50 @@ const shorts = projects.filter((p) => p.category === "short");
 ---
 
 <div class={styles.wrap}>
-  {
-    features.length > 0 ? (
-      <ul class={styles.features}>
-        {features.map((p) => (
-          <li class={`${styles.feature} reveal`}>
-            <a href={href(locale, `/projets/${p.slug}`)} class={styles.featureLink}>
-              <span class={`credits ${styles.kicker}`}>
-                {pick(p.kicker, locale)}
-                {p.year ? <span class={styles.year}> · {p.year}</span> : null}
+  {features.length > 0 ? (
+    <ul class={styles.features}>
+      {features.map((p) => (
+        <li class={`${styles.feature} reveal`}>
+          <a href={href(locale, `/projets/${p.slug}`)} class={styles.featureLink}>
+            <span class={`credits ${styles.kicker}`}>
+              {pick(p.kicker, locale)}
+              {p.year ? <span class={styles.year}> · {p.year}</span> : null}
+              <HiddenBadge show={p.status === "hidden"} label={t.hidden} />
+            </span>
+            <H class={styles.featureTitle}>{p.title}</H>
+            <span class={styles.featureSide}>
+              {pick(p.role, locale) ? <span class={styles.role}>{pick(p.role, locale)}</span> : null}
+              <span class={styles.summary}>{pick(p.summary, locale)}</span>
+            </span>
+            <span class={styles.arrow} aria-hidden="true">
+              →
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : null}
+
+  {shorts.length > 0 ? (
+    <div class={styles.filmography}>
+      <Sub class={`credits ${styles.sub}`}>{t.shorts}</Sub>
+      <ol class={styles.shorts}>
+        {shorts.map((p) => (
+          <li class="reveal">
+            <a href={href(locale, `/projets/${p.slug}`)} class={styles.shortLink}>
+              <span class={styles.shortYear}>{p.year}</span>
+              <Item class={styles.shortTitle}>
+                {p.title}
                 <HiddenBadge show={p.status === "hidden"} label={t.hidden} />
-              </span>
-              <H class={styles.featureTitle}>{p.title}</H>
-              <span class={styles.featureSide}>
-                {pick(p.role, locale) ? <span class={styles.role}>{pick(p.role, locale)}</span> : null}
-                <span class={styles.summary}>{pick(p.summary, locale)}</span>
-              </span>
-              <span class={styles.arrow} aria-hidden="true">
+              </Item>
+              <span class={styles.shortRole}>{pick(p.role, locale)}</span>
+              <span class={styles.shortArrow} aria-hidden="true">
                 →
               </span>
             </a>
           </li>
         ))}
-      </ul>
-    ) : null
-  }
-
-  {
-    shorts.length > 0 ? (
-      <div class={styles.filmography}>
-        <Sub class={`credits ${styles.sub}`}>{t.shorts}</Sub>
-        <ol class={styles.shorts}>
-          {shorts.map((p) => (
-            <li class="reveal">
-              <a href={href(locale, `/projets/${p.slug}`)} class={styles.shortLink}>
-                <span class={styles.shortYear}>{p.year}</span>
-                <Item class={styles.shortTitle}>
-                  {p.title}
-                  <HiddenBadge show={p.status === "hidden"} label={t.hidden} />
-                </Item>
-                <span class={styles.shortRole}>{pick(p.role, locale)}</span>
-                <span class={styles.shortArrow} aria-hidden="true">
-                  →
-                </span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      </div>
-    ) : null
-  }
+      </ol>
+    </div>
+  ) : null}
 </div>

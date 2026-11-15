@@ -18,23 +18,21 @@ const { items, intro, locale, t } = Astro.props;
 <div class={styles.wrap}>
   {intro ? <p class={`${styles.intro} reveal`}>{intro}</p> : null}
   <ol class={styles.list}>
-    {
-      items.map((x) => (
-        <li class={`${styles.item} reveal`}>
-          <p class={`credits ${styles.period}`}>{pick(x.period, locale)}</p>
-          <div class={styles.body}>
-            <h3 class={styles.title}>
-              {pick(x.title, locale)}
-              <HiddenBadge show={x.status === "hidden"} label={t.hidden} />
-            </h3>
-            <p class={styles.company}>
-              {x.company}
-              {x.location ? <span> — {x.location}</span> : null}
-            </p>
-            {pick(x.description, locale) ? <p class={styles.desc}>{pick(x.description, locale)}</p> : null}
-          </div>
-        </li>
-      ))
-    }
+    {items.map((x) => (
+      <li class={`${styles.item} reveal`}>
+        <p class={`credits ${styles.period}`}>{pick(x.period, locale)}</p>
+        <div class={styles.body}>
+          <h3 class={styles.title}>
+            {pick(x.title, locale)}
+            <HiddenBadge show={x.status === "hidden"} label={t.hidden} />
+          </h3>
+          <p class={styles.company}>
+            {x.company}
+            {x.location ? <span> — {x.location}</span> : null}
+          </p>
+          {pick(x.description, locale) ? <p class={styles.desc}>{pick(x.description, locale)}</p> : null}
+        </div>
+      </li>
+    ))}
   </ol>
 </div>

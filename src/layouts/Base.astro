@@ -44,7 +44,9 @@ const person = {
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={seo.canonical} />
-    {seo.alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+    {seo.alternates.map((a) => (
+      <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+    ))}
     {seo.noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={seo.siteName} />
@@ -64,7 +66,9 @@ const person = {
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
   </head>
   <body>
-    <a href="#content" class={styles.skip}>{t.skip}</a>
+    <a href="#content" class={styles.skip}>
+      {t.skip}
+    </a>
     {introLogo && <Intro logo={introLogo} label={site.introLogoAlt ?? ""} />}
     <SiteNav items={nav} locale={locale} t={t} name={site.name} path={path} />
     <main id="content" tabindex="-1" class={styles.main}>

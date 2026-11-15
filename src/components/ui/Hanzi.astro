@@ -17,15 +17,13 @@ const glyphs = [...text]
   .filter((g): g is (typeof HANZI_GLYPHS)[number] => Boolean(g));
 ---
 
-{
-  glyphs.length > 0 && (
-    <span class={`${styles.hanzi} ${className ?? ""}`} lang="zh-Hant">
-      <svg viewBox={`0 0 1000 ${glyphs.length * 1000}`} aria-hidden="true" focusable="false">
-        {glyphs.map((g, i) => (
-          <path d={g.d} transform={`translate(0 ${i * 1000})`} />
-        ))}
-      </svg>
-      <span class="visually-hidden">{label ? `${text} — ${label}` : text}</span>
-    </span>
-  )
-}
+{glyphs.length > 0 && (
+  <span class={`${styles.hanzi} ${className ?? ""}`} lang="zh-Hant">
+    <svg viewBox={`0 0 1000 ${glyphs.length * 1000}`} aria-hidden="true" focusable="false">
+      {glyphs.map((g, i) => (
+        <path d={g.d} transform={`translate(0 ${i * 1000})`} />
+      ))}
+    </svg>
+    <span class="visually-hidden">{label ? `${text} — ${label}` : text}</span>
+  </span>
+)}

@@ -20,17 +20,16 @@ const { logo, label } = Astro.props;
     class={styles.logo}
     style={`-webkit-mask-image:url(${logo.src});mask-image:url(${logo.src});aspect-ratio:${logo.width} / ${logo.height}`}
     title={label}
-  >
-  </div>
+  ></div>
 </div>
 <script is:inline>
   (function () {
-    var o = document.currentScript && document.currentScript.previousElementSibling;
+    const o = document.currentScript && document.currentScript.previousElementSibling;
     if (!o) return;
     try {
       if (sessionStorage.getItem("intro") || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
       sessionStorage.setItem("intro", "1");
-    } catch (e) {
+    } catch {
       return;
     }
     o.setAttribute("data-play", "");

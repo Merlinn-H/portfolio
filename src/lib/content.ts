@@ -13,8 +13,12 @@ const reader = createReader(process.cwd(), keystaticConfig);
 /** En production, les éléments « hidden » n'existent pas. En dev, ils restent visibles avec un badge. */
 export const showHidden = import.meta.env.DEV;
 
-/** Mémoïsation simple : le build lit chaque fichier une seule fois. */
+/**
+ * Mémoïsation simple : le build lit chaque fichier une seule fois.
+ * En développement, pas de cache : une modification faite dans /keystatic est visible immédiatement.
+ */
 function cache<A extends unknown[], R>(fn: (...args: A) => Promise<R>) {
+  if (import.meta.env.DEV) return fn;
   const memo = new Map<string, Promise<R>>();
   return (...args: A) => {
     const key = JSON.stringify(args);

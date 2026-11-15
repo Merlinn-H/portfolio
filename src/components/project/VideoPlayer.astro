@@ -22,12 +22,18 @@ const { id, title, label, hint, card } = Astro.props;
     data-iframe-class={styles.iframe}
     aria-describedby={`hint-${id}`}
   >
-    <span class={styles.card} aria-hidden="true">{card}</span>
+    <span class={styles.card} aria-hidden="true">
+      {card}
+    </span>
     <span class={styles.play}>
-      <span aria-hidden="true" class={styles.icon}>▶</span>{" "}
+      <span aria-hidden="true" class={styles.icon}>
+        ▶
+      </span>{" "}
       {label}
     </span>
-    <span id={`hint-${id}`} class={`credits ${styles.hint}`}>{hint}</span>
+    <span id={`hint-${id}`} class={`credits ${styles.hint}`}>
+      {hint}
+    </span>
   </button>
 </div>
 

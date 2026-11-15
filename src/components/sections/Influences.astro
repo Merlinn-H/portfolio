@@ -19,71 +19,62 @@ const { films, games, locale, t } = Astro.props;
 ---
 
 <div class={styles.wrap}>
-  {
-    films.length > 0 ? (
-      <div>
-        <h3 class={`credits ${styles.sub}`}>
-          {t.films} <span>{films.length}</span>
-        </h3>
-        <ul class={styles.films}>
-          {films.map((f) => {
-            const title = (locale === "en" && f.titleEn) || f.title;
-            return (
-              <li class={styles.film}>
-                <a href={f.url ?? undefined} target="_blank" rel="noopener noreferrer" class={styles.filmLink}>
-                  {f.posterImg ? (
-                    <Picture
-                      src={f.posterImg}
-                      alt={`${locale === "fr" ? "Affiche de" : "Poster for"} ${title}`}
-                      formats={["avif", "webp"]}
-                      widths={[320, 480, 640]}
-                      sizes="(min-width: 64rem) 18vw, (min-width: 40rem) 30vw, 62vw"
-                      class={styles.poster}
-                    />
-                  ) : null}
-                  <span class={styles.filmTitle}>
-                    {title}
-                    <HiddenBadge show={f.status === "hidden"} label={t.hidden} />
-                  </span>
-                  <span class={`credits ${styles.filmMeta}`}>
-                    {f.director} · {f.year}
-                  </span>
-                </a>
-                {pick(f.description, locale) ? <p class={styles.filmDesc}>{pick(f.description, locale)}</p> : null}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    ) : null
-  }
-
-  {
-    games.length > 0 ? (
-      <div>
-        <h3 class={`credits ${styles.sub}`}>
-          {t.games} <span>{games.length}</span>
-        </h3>
-        <ul class={styles.games}>
-          {games.map((g) => (
-            <li class={`${styles.game} reveal`}>
-              <div class={styles.gameHead}>
-                <a
-                  href={g.url ?? undefined}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={`link ${styles.gameTitle}`}
-                >
-                  {g.title}
-                </a>
-                <HiddenBadge show={g.status === "hidden"} label={t.hidden} />
-                <span class={`credits ${styles.gameGenre}`}>{pick(g.genre, locale)}</span>
-              </div>
-              {pick(g.description, locale) ? <p class={styles.gameDesc}>{pick(g.description, locale)}</p> : null}
+  {films.length > 0 ? (
+    <div>
+      <h3 class={`credits ${styles.sub}`}>
+        {t.films} <span>{films.length}</span>
+      </h3>
+      <ul class={styles.films}>
+        {films.map((f) => {
+          const title = (locale === "en" && f.titleEn) || f.title;
+          return (
+            <li class={styles.film}>
+              <a href={f.url ?? undefined} target="_blank" rel="noopener noreferrer" class={styles.filmLink}>
+                {f.posterImg ? (
+                  <Picture
+                    src={f.posterImg}
+                    alt={`${locale === "fr" ? "Affiche de" : "Poster for"} ${title}`}
+                    formats={["avif", "webp"]}
+                    widths={[320, 480, 640]}
+                    sizes="(min-width: 64rem) 18vw, (min-width: 40rem) 30vw, 62vw"
+                    class={styles.poster}
+                  />
+                ) : null}
+                <span class={styles.filmTitle}>
+                  {title}
+                  <HiddenBadge show={f.status === "hidden"} label={t.hidden} />
+                </span>
+                <span class={`credits ${styles.filmMeta}`}>
+                  {f.director} · {f.year}
+                </span>
+              </a>
+              {pick(f.description, locale) ? <p class={styles.filmDesc}>{pick(f.description, locale)}</p> : null}
             </li>
-          ))}
-        </ul>
-      </div>
-    ) : null
-  }
+          );
+        })}
+      </ul>
+    </div>
+  ) : null}
+
+  {games.length > 0 ? (
+    <div>
+      <h3 class={`credits ${styles.sub}`}>
+        {t.games} <span>{games.length}</span>
+      </h3>
+      <ul class={styles.games}>
+        {games.map((g) => (
+          <li class={`${styles.game} reveal`}>
+            <div class={styles.gameHead}>
+              <a href={g.url ?? undefined} target="_blank" rel="noopener noreferrer" class={`link ${styles.gameTitle}`}>
+                {g.title}
+              </a>
+              <HiddenBadge show={g.status === "hidden"} label={t.hidden} />
+              <span class={`credits ${styles.gameGenre}`}>{pick(g.genre, locale)}</span>
+            </div>
+            {pick(g.description, locale) ? <p class={styles.gameDesc}>{pick(g.description, locale)}</p> : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  ) : null}
 </div>

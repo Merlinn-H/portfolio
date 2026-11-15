@@ -79,51 +79,49 @@ const numbered = sections
   .filter((s) => s.visible);
 ---
 
-{
-  numbered.map((s) => (
-    <>
-      {s.type === "hero" && (
-        <>
-          <Hero site={site} locale={locale} t={t} />
-          <span id="after-hero" />
-        </>
-      )}
-      {s.type === "projects" && (
-        <Section id="projects" labelledBy={s.labelled} label={s.eyebrow}>
-          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
-          <ProjectList projects={projects} locale={locale} t={t} />
-        </Section>
-      )}
-      {s.type === "manifesto" && (
-        <Section id="manifesto" labelledBy={s.labelled} label={s.eyebrow} tone="light" space="l">
-          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
-          <Manifesto text={s.intro} />
-        </Section>
-      )}
-      {s.type === "experience" && (
-        <Section id="experience" labelledBy={s.labelled} label={s.eyebrow}>
-          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
-          <Experience items={experiences} intro={s.intro} locale={locale} t={t} />
-        </Section>
-      )}
-      {s.type === "skills" && (
-        <Section id="skills" labelledBy={s.labelled} label={s.eyebrow} space="s">
-          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
-          <Skills categories={skills} locale={locale} />
-        </Section>
-      )}
-      {s.type === "influences" && (
-        <Section id="influences" labelledBy={s.labelled} label={s.eyebrow}>
-          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
-          <Influences films={films} games={games} locale={locale} t={t} />
-        </Section>
-      )}
-      {s.type === "contact" && (
-        <Section id="contact" labelledBy={s.title ? "contact-title" : undefined} label={s.eyebrow} space="l">
-          <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} hiddenLabel={s.hiddenLabel} />
-          <Contact title={s.title} intro={s.intro} email={site.email} socials={site.socials} cta={t.contactCta} />
-        </Section>
-      )}
-    </>
-  ))
-}
+{numbered.map((s) => (
+  <>
+    {s.type === "hero" && (
+      <>
+        <Hero site={site} locale={locale} t={t} />
+        <span id="after-hero" />
+      </>
+    )}
+    {s.type === "projects" && (
+      <Section id="projects" labelledBy={s.labelled} label={s.eyebrow}>
+        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <ProjectList projects={projects} locale={locale} t={t} />
+      </Section>
+    )}
+    {s.type === "manifesto" && (
+      <Section id="manifesto" labelledBy={s.labelled} label={s.eyebrow} tone="light" space="l">
+        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <Manifesto text={s.intro} />
+      </Section>
+    )}
+    {s.type === "experience" && (
+      <Section id="experience" labelledBy={s.labelled} label={s.eyebrow}>
+        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <Experience items={experiences} intro={s.intro} locale={locale} t={t} />
+      </Section>
+    )}
+    {s.type === "skills" && (
+      <Section id="skills" labelledBy={s.labelled} label={s.eyebrow} space="s">
+        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <Skills categories={skills} locale={locale} />
+      </Section>
+    )}
+    {s.type === "influences" && (
+      <Section id="influences" labelledBy={s.labelled} label={s.eyebrow}>
+        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <Influences films={films} games={games} locale={locale} t={t} />
+      </Section>
+    )}
+    {s.type === "contact" && (
+      <Section id="contact" labelledBy={s.title ? "contact-title" : undefined} label={s.eyebrow} space="l">
+        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} hiddenLabel={s.hiddenLabel} />
+        <Contact title={s.title} intro={s.intro} email={site.email} socials={site.socials} cta={t.contactCta} />
+      </Section>
+    )}
+  </>
+))}
