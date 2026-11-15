@@ -69,3 +69,13 @@ test("aucun défilement horizontal à 375 / 768 / 1024 / 1440 px", async ({ page
     }
   }
 });
+
+test("EN : les onglets défilent sans recharger la page", async ({ page, isMobile }) => {
+  await page.goto("/en");
+  await page.evaluate(() => ((window as unknown as { __marker: number }).__marker = 42));
+  if (isMobile) await page.getByRole("button", { name: "Menu" }).click();
+  const scope = isMobile ? page.getByRole("dialog") : page.getByRole("banner");
+  await scope.getByRole("link", { name: "Experience", exact: true }).click();
+  await expect(page).toHaveURL(/\/en#experience$/);
+  expect(await page.evaluate(() => (window as unknown as { __marker?: number }).__marker)).toBe(42);
+});

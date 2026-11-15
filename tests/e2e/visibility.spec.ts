@@ -12,7 +12,7 @@ test("page masquée : 404, hors nav, hors sitemap — ou l'inverse une fois publ
   expect(res.status()).toBe(published ? 200 : 404);
 
   await page.goto("/");
-  const links = page.locator("header a, dialog a");
+  const links = page.getByRole("banner").locator("a").or(page.locator("dialog a"));
   await expect(links.filter({ hasText: "Personal brand" })).toHaveCount(published ? 2 : 0);
 
   const sitemap = await (await request.get("/sitemap.xml")).text();
@@ -31,8 +31,26 @@ test("entrée masquée absente du site (Djogo) et aucun badge « Masqué » en p
   await expect(page.locator("body")).not.toContainText("Masqué");
 });
 
-test("onglet Jeux vidéo affiché seulement s'il contient des jeux", async ({ page }) => {
+const noGames = process.env.EXPECT_NO_GAMES === "1";
+
+test("rubrique Jeux vidéo affichée seulement si elle contient des jeux", async ({ page }) => {
   await page.goto("/");
   const games = page.locator("#influences").getByRole("heading", { name: /Jeux vidéo/ });
-  await expect(games).toHaveCount(1); // 4 jeux publiés aujourd'hui
+  await expect(games).toHaveCount(noGames ? 0 : 1);
+});
+
+test("barre desktop sur une seule ligne à 1024 px, quel que soit le nombre d'onglets", async ({ page, isMobile }) => {
+  test.skip(isMobile, "desktop uniquement");
+  await page.setViewportSize({ width: 1024, height: 800 });
+  await page.goto("/");
+  const tops = await page
+    .locator("header nav li")
+    .evaluateAll((els) =>
+      els.filter((e) => (e as HTMLElement).offsetParent).map((e) => Math.round(e.getBoundingClientRect().top)),
+    );
+  expect(new Set(tops).size).toBeLessThanOrEqual(1);
+  const right = await page
+    .getByRole("banner")
+    .evaluate((h) => Math.max(...[...h.querySelectorAll("*")].map((e) => e.getBoundingClientRect().right)));
+  expect(right).toBeLessThanOrEqual(1024);
 });

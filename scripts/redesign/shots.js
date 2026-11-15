@@ -2,7 +2,7 @@ const { chromium } = require("playwright");
 const [, , base, outDir, ...paths] = process.argv;
 (async () => {
   const b = await chromium.launch();
-  for (const w of [375, 768, 1440]) {
+  for (const w of (process.env.WIDTHS || "375,768,1440").split(",").map(Number)) {
     const ctx = await b.newContext({
       viewport: { width: w, height: w === 375 ? 812 : 900 },
       deviceScaleFactor: 1,

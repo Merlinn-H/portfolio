@@ -90,7 +90,7 @@ Le rouge historique `#d30000` ne fait que 3,5:1 sur noir → refusé pour du tex
 - **Desktop (≥ 1024 px)** : barre fixe en haut, transparente sur le hero puis pilule flottante sur fond `--bg-raised` au scroll. À gauche : nom « Hugo Pezzo » (lien accueil). Au centre/droite : onglets en Hanken 600 `--step--1`, capitales espacées. À droite : bascule de langue `FR / EN` (deux liens, la langue courante soulignée en `--accent`).
 - **Actif** : sur l'accueil, l'onglet de la section qui occupe le milieu de l'écran ; aucun actif tant que le hero est visible. Sur une page, l'onglet dont l'URL correspond. Marqueur = point vermillon + texte `--fg`, inactif = `--fg-muted`.
 - **Tablette / mobile (< 1024 px)** : pilule fixe **en bas de l'écran** (zone du pouce) avec le nom à gauche et un bouton « Menu » à droite. Le menu ouvre une feuille plein écran depuis le bas : onglets en Gloock `--step-4`, un par ligne, numérotés, cibles ≥ 56 px ; langue et contact en bas. Échap / bouton Fermer, focus piégé, scroll verrouillé.
-- **Au-delà de 6 onglets** sur desktop, la barre bascule automatiquement en mode « Menu » comme sur mobile (pas de nav sur deux lignes).
+- **6 onglets** : mode « Menu » entre 1024 et 1280 px ; **au-delà de 6**, mode « Menu » sur tout le desktop (jamais de nav sur deux lignes ni de débordement — test Playwright à 1024 px).
 - **Badge « Masqué »** : en développement uniquement, pilule `--accent` « MASQUÉ » à côté de l'onglet, et bandeau en haut d'une page masquée.
 - **Lien d'évitement** « Aller au contenu » en premier élément focusable.
 

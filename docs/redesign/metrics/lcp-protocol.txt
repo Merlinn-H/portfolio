@@ -1,0 +1,12 @@
+ident=ON  simulate run1  perf 97  LCP 2548 ms  FCP 1073 ms  obsLCP 181 ms
+ident=ON  simulate run2  perf 97  LCP 2512 ms  FCP 1068 ms  obsLCP 159 ms
+ident=ON  simulate run3  perf 97  LCP 2538 ms  FCP 1061 ms  obsLCP 168 ms
+ident=ON  devtools run1  perf 96  LCP 1306 ms  FCP 957 ms  obsLCP 1306 ms
+ident=ON  devtools run2  perf 96  LCP 1339 ms  FCP 1007 ms  obsLCP 1339 ms
+ident=ON  devtools run3  perf 97  LCP 1312 ms  FCP 964 ms  obsLCP 1312 ms
+ident=OFF simulate run1  perf 98  LCP 2444 ms  FCP 1070 ms  obsLCP 188 ms
+ident=OFF simulate run2  perf 97  LCP 2508 ms  FCP 1059 ms  obsLCP 152 ms
+ident=OFF simulate run3  perf 98  LCP 2481 ms  FCP 1062 ms  obsLCP 154 ms
+ident=OFF devtools run1  perf 99  LCP 1323 ms  FCP 1008 ms  obsLCP 1323 ms
+ident=OFF devtools run2  perf 97  LCP 1262 ms  FCP 955 ms  obsLCP 1262 ms
+ident=OFF devtools run3  perf 97  LCP 1273 ms  FCP 1009 ms  obsLCP 1273 ms

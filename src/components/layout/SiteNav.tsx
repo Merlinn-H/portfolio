@@ -20,7 +20,9 @@ export function SiteNav({ items, locale, t, name, homeHref }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const isHome = pathname === homeHref;
+  // Au-delà de 6 onglets : menu partout ; à 6, menu entre 1024 et 1280 px (sinon la barre déborde).
   const compact = items.length > 6;
+  const many = items.length >= 6;
 
   // Section active : celle qui occupe le milieu de l'écran (aucune tant que le hero est visible).
   useEffect(() => {
@@ -85,6 +87,7 @@ export function SiteNav({ items, locale, t, name, homeHref }: Props) {
         className={styles.header}
         data-scrolled={scrolled || !isHome ? "" : undefined}
         data-compact={compact ? "" : undefined}
+        data-many={many ? "" : undefined}
       >
         <div className={styles.bar}>
           <a href={homeHref} className={styles.brand}>

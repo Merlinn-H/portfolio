@@ -177,6 +177,18 @@
   }
 }
 
+@media (min-width: 64rem) and (max-width: 79.99rem) {
+  .header[data-many] .desktopNav,
+  .header[data-many] .desktopLang {
+    display: none;
+  }
+  .header[data-many] .menuButton {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+  }
+}
+
 /* ---------- Feuille (menu mobile / compact) ---------- */
 .sheet {
   position: fixed;
