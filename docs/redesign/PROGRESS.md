@@ -39,3 +39,4 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 20:14 — 🚀 MISE EN LIGNE sur demande de Hugo : `main` avancé en fast-forward a821386 → 6bbd119 (build, lint, 28 tests verts juste avant). Vercel déploie `main` automatiquement. Retour arrière : Vercel › Deployments › redéployer le déploiement de a821386, ou `git revert`.
 ➡️ Migration vers Astro (demandée par Hugo) sur la branche `astro`, sans toucher au site en ligne.
 20:35 — ✅ (session 3) Migration Astro terminée sur la branche `astro` : même rendu, 28 tests verts, back-office OK, build Vercel OK. Lighthouse mobile : score 99–100, LCP simulé 1,66 s (Next : 2,2–2,7), JS 5 kB (Next : 142). En attente du feu vert de Hugo pour la mise en ligne.
+22:47 — 🚀 VERSION ASTRO EN LIGNE (feu vert de Hugo après vérification de la preview) : `main` avancé en fast-forward a0eec04 → 29857fc. Retour arrière : Vercel › Deployments › « Promote » le déploiement précédent (Next.js, a0eec04).
