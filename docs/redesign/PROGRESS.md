@@ -35,3 +35,4 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 ➡️ Temps d'affichage (LCP).
 18:07 — ✅ LCP mobile : le nom devient l'élément principal → 1,4 s → 1,0 s (throttling appliqué). Police de texte allégée (35 → 27 kB). Back-office testé (créer → voir → supprimer OK), bascule de visibilité testée sur build prod (FR et /en). ⚠️ Bug trouvé dans le script de test de visibilité (restaurait d'anciennes copies) → corrigé, contenu restauré. REVIEW.md § 0 « Session 2 » rédigé.
 ➡️ Revue Fable de la session 2.
+18:19 — ✅ Revue Fable session 2 : 2 bugs (liens de langue sur la 404 ; rewrites vs suffixes .rsc de Vercel) + 5 points corrigés. Préchargement uniquement à l'intention (0 requête de fond). Mesures finales : mobile LCP 1,0 s (throttling appliqué), desktop score 100 / LCP 0,5–0,6 s. 28 tests verts.

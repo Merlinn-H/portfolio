@@ -109,3 +109,30 @@ test("parcours complet sans rechargement de page, ident jamais rejoué", async (
   await expect(page.locator("[data-intro-overlay][data-play]")).toHaveCount(0);
   expect(documents).toHaveLength(1);
 });
+
+test("404 : statut 404, liens de langue valides", async ({ page }) => {
+  for (const path of ["/nope", "/en/nope"]) {
+    const res = await page.goto(path);
+    expect(res?.status()).toBe(404);
+    const hrefs = await page
+      .getByRole("banner")
+      .getByRole("group")
+      .getByRole("link")
+      .evaluateAll((as) => as.map((a) => a.getAttribute("href")));
+    for (const h of hrefs) expect(h).toMatch(/^\/(en)?$/);
+  }
+});
+
+test("aucun préchargement au chargement : l'autre langue n'est chargée qu'à l'intention", async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, "desktop");
+  const rsc: string[] = [];
+  page.on("request", (r) => r.url().includes("_rsc=") && rsc.push(r.url()));
+  await page.goto("/");
+  await page.waitForTimeout(1500);
+  expect(rsc).toHaveLength(0);
+  await page.getByRole("banner").getByRole("link", { name: "English" }).hover();
+  await expect.poll(() => rsc.some((u) => u.includes("/en"))).toBe(true);
+});

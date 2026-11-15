@@ -12,7 +12,7 @@ const nextConfig: NextConfig = {
       afterFiles: [
         { source: "/", destination: "/fr" },
         {
-          source: "/:path((?!en(?:/|$)|fr(?:/|$)|keystatic(?:/|$)|api/|_next/|images/)[^.]+)",
+          source: "/:path((?!en(?:[/.]|$)|fr(?:[/.]|$)|keystatic(?:[/.]|$)|api/|_next/|images/)[^.]+)",
           destination: "/fr/:path",
         },
       ],

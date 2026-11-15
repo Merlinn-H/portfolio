@@ -11,7 +11,7 @@
 .intro[data-play] {
   display: grid;
 }
-/* Sans JS aussi : jamais d'ident pour qui préfère réduire les animations. */
+/* Garde-fou CSS : jamais d'ident pour qui préfère réduire les animations. */
 @media (prefers-reduced-motion: reduce) {
   .intro[data-play] {
     display: none;

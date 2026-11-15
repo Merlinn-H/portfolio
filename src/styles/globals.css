@@ -147,7 +147,7 @@ p {
   }
 }
 
-/* Transitions de page (navigation entre documents, sans JS) */
+/* Transitions de page lors d'un chargement complet (lien externe, rechargement). Les navigations internes, elles, sont douces : voir src/app/[lang]/template.tsx. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;

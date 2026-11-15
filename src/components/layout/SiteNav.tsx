@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { IntentLink as Link } from "@/components/ui/IntentLink";
 import { useSelectedLayoutSegments } from "next/navigation";
 import type { NavItem } from "@/lib/content";
 import { href, type Dict, type Locale } from "@/lib/i18n";
@@ -16,7 +16,7 @@ type Props = { items: NavItem[]; locale: Locale; t: Dict; name: string };
  * car le français est servi à la racine via des rewrites.
  */
 export function SiteNav({ items, locale, t, name }: Props) {
-  const segments = useSelectedLayoutSegments().filter((s) => !s.startsWith("(") && !s.startsWith("__"));
+  const segments = useSelectedLayoutSegments().filter((s) => !/^(\(|__|\/)/.test(s)); // ignore groupes, segments internes (__PAGE__, /_not-found)
   const path = `/${segments.join("/")}`.replace(/\/$/, "") || "/";
   const isHome = path === "/";
   const [active, setActive] = useState<string | null>(null);
@@ -28,7 +28,7 @@ export function SiteNav({ items, locale, t, name }: Props) {
   const many = items.length >= 6;
 
   // Après la première navigation douce, les pages entrent avec une petite animation (jamais au premier chargement).
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (path !== firstPath.current) document.documentElement.dataset.nav = "";
   }, [path]);
 
@@ -48,7 +48,7 @@ export function SiteNav({ items, locale, t, name }: Props) {
     return () => observer.disconnect();
   }, [isHome, locale]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -84,7 +84,7 @@ export function SiteNav({ items, locale, t, name }: Props) {
 
   // Bascule de langue : même page, même position de lecture, sans rechargement.
   const lang = (
-    <p className={styles.lang} aria-label={t.langLabel}>
+    <p className={styles.lang} role="group" aria-label={t.langLabel}>
       {(["fr", "en"] as const).map((l, i) => (
         <span key={l} className={styles.langItem}>
           {i > 0 ? <span aria-hidden="true">/</span> : null}

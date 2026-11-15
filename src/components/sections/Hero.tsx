@@ -29,8 +29,9 @@ export function Hero({ site, locale, t }: { site: Site; locale: Locale; t: Dict 
             width={portrait.width}
             height={portrait.height}
             alt={pick(site.portraitAlt, locale)}
-            loading="eager"
-            sizes="(min-width: 64rem) 36vw, 75vw"
+            preload
+            fetchPriority="high"
+            sizes="(min-width: 64rem) 36vw, (min-width: 40rem) 33vw, 50vw"
             quality={75}
           />
         </div>
