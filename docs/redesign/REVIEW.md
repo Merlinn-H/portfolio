@@ -8,7 +8,7 @@
 **Ce qui a changé**
 
 - **FR ↔ EN sans recharger la page.** Le clic sur FR/EN remplace seulement le contenu : même page, même endroit de lecture, la langue du document suit. Les deux langues restent des pages séparées et indexables (`/` et `/en`, hreflang, sitemap).
-- **Plus aucun rechargement en naviguant** : accueil, projets, pages… Testé sur un parcours complet : un seul document chargé du début à la fin. Coût : +3 kB de JavaScript (139 → 142 kB gzip).
+- **Plus aucun rechargement en naviguant** : accueil, projets, pages… Testé en local sur un parcours desktop (liste → projet → EN → accueil) et sur la bascule FR → EN (desktop + mobile) : un seul document chargé du début à la fin. Coût : +3 kB de JavaScript (139 → 142 kB gzip). Rien n'est préchargé au chargement de la page : la page suivante (ou l'autre langue) est anticipée seulement au survol, au focus ou au toucher d'un lien, donc le clic reste quasi instantané sans alourdir la visite.
 - **Temps d'affichage** : sur mobile, le nom « Hugo Pezzo » est désormais l'élément principal de l'écran (il était découpé en deux blocs, et le portrait passait devant). Résultat sous connexion mobile ralentie : **LCP 1,4 s → 1,0 s**, il tombe en même temps que le premier affichage. Visuellement rien ne change, sauf le portrait mobile qui passe en carré. Police de texte allégée (35 → 27 kB).
 - **Faits corrigés** : POSTMERIDIAN fondé en **avril 2024 à Montpellier** (parcours + fiche projet) ; « 8 ans d'expérience en production audiovisuelle et 2 ans en production de jeux vidéo ». Djogo reste masqué.
 - **Personal brand** : je n'ai pas touché à ton texte. J'ai juste ajouté un champ **« Liens »** à chaque bloc des pages libres (pour ton Instagram, etc.) : ils s'affichent en boutons.
@@ -16,11 +16,12 @@
 
 **Mesures (Lighthouse mobile, local, médiane de 3)**
 
-|                                                       | Avant session 2 | Après     |
-| ----------------------------------------------------- | --------------- | --------- |
-| LCP sous throttling appliqué (le plus proche du réel) | 1,4 s           | **1,0 s** |
-| LCP simulé (ce qu'affiche PageSpeed Insights)         | 2,2–2,6 s       | 2,2–2,6 s |
-| Score performance                                     | 97–98           | 97–99     |
+|                                                       | Avant session 2 | Après                                           |
+| ----------------------------------------------------- | --------------- | ----------------------------------------------- |
+| LCP sous throttling appliqué (le plus proche du réel) | 1,4 s           | **1,0 s**                                       |
+| LCP simulé (ce qu'affiche PageSpeed Insights)         | 2,2–2,7 s       | 2,2–2,7 s (varie d'un passage à l'autre)        |
+| Score performance                                     | 97–98           | 96–99                                           |
+| **Desktop** (Lighthouse desktop)                      | non mesuré      | **score 100, LCP 0,5–0,6 s** (élément : le nom) |
 
 **Pourquoi le chiffre de PageSpeed ne descend pas, et l'option pour aller plus loin**
 Le LCP « simulé » de PageSpeed est dicté par le JavaScript de Next.js/React (~130 kB), téléchargé avant l'affichage. J'ai fait l'expérience : **la même page sans ce JavaScript tombe à 1,4–1,6 s simulé, score 100**. Le seul moyen d'y arriver est de changer de socle, par exemple **Astro**, qui fait aussi la navigation sans rechargement, garde Keystatic et le même design. C'est une réécriture d'environ une journée. Je ne l'ai pas lancée sans ton accord, parce que le brief imposait Next.js. Dis-moi si tu la veux.
@@ -29,7 +30,10 @@ Le LCP « simulé » de PageSpeed est dicté par le JavaScript de Next.js/React 
 
 - [ ] `/`, `/projets`, `/en` s'affichent ; passer FR → EN → FR depuis une page projet ne recharge pas la page (l'onglet du navigateur ne « tourne » pas).
 - [ ] Recharger directement `/en/projets/postmeridian` et `/projets/postmeridian` → 200.
-- [ ] Si la navigation française casse sur Vercel (cas peu probable, lié aux _rewrites_ qui servent le français à la racine), le retour arrière est simple : commit `d3d43ec` (fin de la session 1).
+- [ ] Ouvrir l'onglet Réseau (DevTools) et naviguer en français : `/` → `/projets` → un projet → « Parcours ». Il ne doit y avoir **qu'une seule requête « document »**, et les requêtes `_rsc` / `.rsc` doivent répondre 200 (un 404 sur celles-ci = rechargements complets silencieux).
+- [ ] `/fr/projets` → redirige vers `/projets` ; `/fr/opengraph-image` et `/fr/projets/postmeridian/opengraph-image` → image PNG, sans redirection.
+- [ ] `/nope` et `/en/nope` → page 404 bilingue.
+- [ ] Si la navigation sans rechargement pose problème sur Vercel (cas peu probable, lié aux _rewrites_ qui servent le français à la racine) : annuler le seul commit `682608a` (`git revert 682608a`, petit conflit attendu dans `Hero.tsx`). On garde ainsi les corrections de contenu et le travail sur le LCP.
 
 ## 1. Résumé en 10 lignes
 
@@ -40,7 +44,7 @@ Le LCP « simulé » de PageSpeed est dicté par le JavaScript de Next.js/React 
 5. **Masquer / afficher en un clic** : un champ « Statut » sur chaque onglet, section, page et entrée. Masqué = absent du menu et du sitemap, `noindex`, 404 en production ; en développement l'élément reste visible avec un badge « Masqué ». En ligne, le changement apparaît après le redéploiement automatique (1 à 2 min).
 6. **Bilingue servi en HTML** : le français est sur `/`, l'anglais sur `/en`. Avant, l'anglais n'apparaissait qu'après le chargement du JavaScript et Google ne pouvait pas l'indexer.
 7. **Performance** : toutes les pages sont générées à l'avance, framer-motion est supprimé, les animations sont en CSS, les polices sont auto-hébergées, et le portrait de 8 Mo est remplacé par une source de 300 Ko servie en AVIF.
-8. **Animations** : un ident 489Productions d'1,2 s maximum, joué une fois par session (passable au clic, désactivable dans le CMS) ; des apparitions au scroll, des transitions de page natives et des micro-interactions. Tout est coupé si l'appareil demande moins d'animations.
+8. **Animations** : un ident 489Productions d'1,2 s maximum, joué une fois par session (passable au clic, désactivable dans le CMS) ; des apparitions au scroll, une entrée de page à chaque navigation (et une transition native lors d'un chargement complet) et des micro-interactions. Tout est coupé si l'appareil demande moins d'animations.
 9. **Nettoyage** : la démo ASCII « @chenglou/pretext », la pluie, le grain animé et les colonnes de caractères chinois décoratifs ont disparu. 英雄本色 reste une seule fois, vectorisé, comme signature.
 10. **SEO** : métadonnées par page, liens FR/EN (hreflang), images de partage générées (site et chaque projet), sitemap et robots qui respectent le statut, données structurées `Person`. Les anciennes URL redirigent vers les nouvelles.
 
