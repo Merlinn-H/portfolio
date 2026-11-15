@@ -1,4 +1,4 @@
-/* Hero = un plan en letterbox. Le nom est l'élément le plus grand (LCP ≈ FCP). */
+/* Hero : un plan d'ouverture. Le nom en affiche, le portrait en photogramme, la citation en signature. */
 .hero {
   position: relative;
   display: grid;
@@ -9,30 +9,13 @@
   max-width: var(--page-max);
   margin-inline: auto;
   padding: var(--space-8) var(--gutter) var(--space-9);
-  isolation: isolate;
-}
-/* Bandes letterbox */
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  inset-inline: calc(50% - 50vw);
-  height: var(--space-5);
-  background: var(--bg-sunken);
-  z-index: -1;
-}
-.hero::before {
-  top: 0;
-}
-.hero::after {
-  bottom: 0;
 }
 
 .role {
   grid-column: 1 / -1;
   max-width: 28ch;
   color: var(--fg-muted);
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
 }
 
 .name {
@@ -40,6 +23,7 @@
   font-size: clamp(5.4rem, 1rem + 16vw, 13rem);
   line-height: 0.86;
   letter-spacing: -0.025em;
+  position: relative;
   z-index: 2;
 }
 .name span {
@@ -49,32 +33,29 @@
   padding-left: 0.5em;
 }
 
+/* Mobile : le portrait vient sous le nom, sans chevauchement (son fond est très clair). */
 .portrait {
-  grid-column: 3 / -1;
-  /* Sur mobile, le nom doit rester l'élément le plus grand (LCP = texte, pas l'image). */
-  width: 82%;
-  justify-self: end;
-  margin-top: calc(var(--space-7) * -1);
+  grid-column: 2 / -1;
+  margin-top: var(--space-6);
   aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--bg-raised);
-  z-index: 1;
 }
 .portrait img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 30%;
-  filter: grayscale(1) contrast(1.08) brightness(0.78);
+  filter: grayscale(1) contrast(1.08) brightness(0.72);
 }
 
 .tagline {
   grid-column: 1 / -1;
   margin-top: var(--space-6);
-  font-family: var(--font-display);
-  font-size: var(--step-3);
+  max-width: 30ch;
+  font-size: var(--step-1);
   line-height: var(--leading-snug);
-  max-width: 18ch;
+  color: var(--fg-muted);
 }
 
 .quote {
@@ -86,17 +67,15 @@
   align-items: start;
   margin-top: var(--space-7);
   max-width: 30rem;
-  color: var(--fg-muted);
 }
 .hanzi {
   grid-row: 1 / span 2;
   font-size: var(--step-2);
 }
 .quote blockquote {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
+  font-weight: 600;
   line-height: var(--leading-snug);
-  color: var(--fg);
 }
 .quote figcaption {
   color: var(--fg-subtle);
@@ -115,25 +94,21 @@
     grid-template-columns: repeat(6, 1fr);
   }
   .portrait {
-    grid-column: 4 / -1;
-    width: 100%;
+    grid-column: 3 / -1;
   }
 }
 
+/* Desktop : le nom déborde sur le bord sombre du portrait, plaqué à droite. */
 @media (min-width: 64rem) {
   .hero {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: auto auto 1fr auto;
     column-gap: var(--space-5);
     padding-top: var(--space-10);
-    min-height: 100svh;
-  }
-  .hero::before,
-  .hero::after {
-    height: var(--space-7);
+    padding-bottom: var(--space-8);
   }
   .role {
-    grid-column: 1 / 7;
+    grid-column: 1 / 6;
     grid-row: 1;
   }
   .name {
@@ -146,20 +121,21 @@
     padding-left: 1.2em;
   }
   .portrait {
-    grid-column: 8 / 12;
+    grid-column: 9 / -1;
     grid-row: 1 / 4;
     margin-top: 0;
+    margin-right: calc(var(--gutter) * -1);
     align-self: start;
   }
   .tagline {
-    grid-column: 1 / 7;
+    grid-column: 1 / 6;
     grid-row: 3;
     align-self: end;
   }
   .quote {
-    grid-column: 7 / 12;
+    grid-column: 9 / -1;
     grid-row: 4;
-    margin-top: var(--space-7);
+    margin-top: var(--space-6);
   }
   .scroll {
     display: inline-flex;

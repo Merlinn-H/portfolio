@@ -5,13 +5,17 @@
   z-index: var(--z-intro);
   display: grid;
   place-items: center;
-  /* Légèrement translucide : un calque opaque empêcherait le navigateur de peindre le contenu
-     dessous, et retarderait le LCP jusqu'à la fin de l'ident. */
-  background: rgb(8 7 6 / 0.97);
+  background: var(--bg-sunken);
   animation: intro-cut 1ms linear 1.1s forwards;
 }
 :global(html[data-intro="off"]) .intro {
   display: none;
+}
+/* Sans JS aussi : jamais d'ident pour qui préfère réduire les animations. */
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
 }
 .logo {
   width: min(60vw, 26rem);

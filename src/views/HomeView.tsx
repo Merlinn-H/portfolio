@@ -1,4 +1,13 @@
-import { getExperiences, getFilms, getGames, getHome, getProjects, getSite, getSkills, pick } from "@/lib/content";
+import {
+  getExperiences,
+  getFilms,
+  getGames,
+  getProjects,
+  getRenderableSections,
+  getSite,
+  getSkills,
+  pick,
+} from "@/lib/content";
 import { ui, type Locale } from "@/lib/i18n";
 import { Section } from "@/components/ui/Section";
 import { SectionHead } from "@/components/ui/SectionHead";
@@ -15,7 +24,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
   const t = ui(locale);
   const [site, sections, projects, experiences, skills, films, games] = await Promise.all([
     getSite(),
-    getHome(),
+    getRenderableSections(),
     getProjects(),
     getExperiences(),
     getSkills(),
@@ -56,7 +65,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
           case "manifesto":
             if (!intro) return null;
             return (
-              <Section key={s.type} id="manifesto" labelledBy={labelled} label={eyebrow} tone="sunken">
+              <Section key={s.type} id="manifesto" labelledBy={labelled} label={eyebrow} tone="light" space="l">
                 {head()}
                 <Manifesto text={intro} />
               </Section>
@@ -72,7 +81,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
           case "skills":
             if (skills.length === 0) return null;
             return (
-              <Section key={s.type} id="skills" labelledBy={labelled} label={eyebrow}>
+              <Section key={s.type} id="skills" labelledBy={labelled} label={eyebrow} space="s">
                 {head()}
                 <Skills categories={skills} locale={locale} />
               </Section>
@@ -92,7 +101,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 id="contact"
                 labelledBy={title ? "contact-title" : undefined}
                 label={eyebrow}
-                tone="sunken"
+                space="l"
               >
                 {head(false)}
                 <Contact title={title} intro={intro} email={site.email} socials={site.socials} cta={t.contactCta} />

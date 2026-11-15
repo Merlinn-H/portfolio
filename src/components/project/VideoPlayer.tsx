@@ -4,7 +4,19 @@ import { useState } from "react";
 import styles from "./VideoPlayer.module.css";
 
 /** Lecteur « façade » : rien n'est chargé depuis YouTube avant le clic. */
-export function VideoPlayer({ id, title, label, hint }: { id: string; title: string; label: string; hint: string }) {
+export function VideoPlayer({
+  id,
+  title,
+  label,
+  hint,
+  card,
+}: {
+  id: string;
+  title: string;
+  label: string;
+  hint: string;
+  card: string;
+}) {
   const [play, setPlay] = useState(false);
   return (
     <div className={styles.frame}>
@@ -19,7 +31,7 @@ export function VideoPlayer({ id, title, label, hint }: { id: string; title: str
       ) : (
         <button type="button" className={styles.facade} onClick={() => setPlay(true)} aria-describedby={`hint-${id}`}>
           <span className={styles.card} aria-hidden="true">
-            {title}
+            {card}
           </span>
           <span className={styles.play}>
             <span aria-hidden="true" className={styles.icon}>

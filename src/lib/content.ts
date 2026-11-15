@@ -119,11 +119,36 @@ export const getPage = async (slug: string) => (await getPages()).find((p) => p.
 /* Navigation                                                          */
 /* ------------------------------------------------------------------ */
 
+/**
+ * Sections de l'accueil réellement affichées : statut + contenu non vide.
+ * Utilisé à la fois par l'accueil et par la nav, pour qu'un onglet ne pointe jamais vers une section vide.
+ */
+export const getRenderableSections = cache(async () => {
+  const [sections, projects, experiences, skills, films, games] = await Promise.all([
+    getHome(),
+    getProjects(),
+    getExperiences(),
+    getSkills(),
+    getFilms(),
+    getGames(),
+  ]);
+  const hasContent: Record<string, boolean> = {
+    hero: true,
+    projects: projects.length > 0,
+    manifesto: sections.some((s) => s.type === "manifesto" && (s.intro.fr || s.intro.en)),
+    experience: experiences.length > 0,
+    skills: skills.length > 0,
+    influences: films.length + games.length > 0,
+    contact: true,
+  };
+  return sections.filter((s) => hasContent[s.type]);
+});
+
 export type NavItem = { label: string; href: string; hidden: boolean; external?: boolean };
 
 export const getNavigation = cache(async (locale: Locale): Promise<NavItem[]> => {
   const nav = await reader.singletons.navigation.readOrThrow();
-  const sections = await getHome();
+  const sections = await getRenderableSections();
   const pages = await getPages();
   const prefix = locale === "en" ? "/en" : "";
   const out: NavItem[] = [];
@@ -135,9 +160,9 @@ export const getNavigation = cache(async (locale: Locale): Promise<NavItem[]> =>
     const t = item.target;
     if (t.discriminant === "section") {
       const s = sections.find((x) => x.type === t.value);
-      if (!s) continue; // section absente ou masquée en prod
+      if (!s) continue; // section absente, vide, ou masquée en prod
       hidden ||= s.status === "hidden";
-      href = `${prefix}/#${t.value}`;
+      href = `${prefix || ""}/#${t.value}`.replace("/en/#", "/en#");
     } else if (t.discriminant === "projects") {
       href = `${prefix}/projets`;
     } else if (t.discriminant === "page") {

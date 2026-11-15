@@ -1,105 +1,127 @@
-.list {
+.wrap {
+  display: grid;
+  gap: var(--space-9);
+}
+
+/* ---------- Niveau 1 : structures ---------- */
+.features {
   list-style: none;
   padding: 0;
-  border-top: var(--hairline) solid var(--line);
-}
-.row {
-  border-bottom: var(--hairline) solid var(--line);
-}
-.link {
   display: grid;
-  grid-template-columns: auto 1fr auto;
-  column-gap: var(--space-4);
-  row-gap: var(--space-2);
-  padding-block: var(--space-6);
-  align-items: baseline;
+  gap: var(--space-8);
 }
-.num {
-  grid-row: 1;
-  font-size: var(--step--1);
-  font-weight: 600;
-  color: var(--fg-subtle);
-  font-variant-numeric: tabular-nums;
-  transition: color var(--dur-1);
+.featureLink {
+  display: grid;
+  gap: var(--space-3);
 }
 .kicker {
-  grid-row: 1;
-  grid-column: 2 / -1;
+  color: var(--accent);
+}
+.year {
   color: var(--fg-muted);
 }
-.title {
-  grid-column: 1 / -1;
-  font-size: var(--step-4);
-  line-height: 0.95;
+.featureTitle {
+  font-size: var(--step-5);
+  line-height: 0.9;
+  overflow-wrap: anywhere;
   transition:
     transform var(--dur-3) var(--ease-out),
     color var(--dur-2);
 }
-.meta {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-4);
-  font-size: var(--step--1);
-  color: var(--fg-muted);
+.featureSide {
+  display: grid;
+  gap: var(--space-2);
+  max-width: var(--measure);
 }
-.meta span + span::before {
-  content: "—";
-  margin-right: var(--space-4);
-  color: var(--fg-subtle);
+.role {
+  font-weight: 600;
 }
 .summary {
-  grid-column: 1 / -1;
-  max-width: var(--measure);
   color: var(--fg-muted);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 .arrow {
   display: none;
 }
-.link:hover .num,
-.link:focus-visible .num {
-  color: var(--accent);
-}
-.link:hover .title,
-.link:focus-visible .title {
+.featureLink:hover .featureTitle,
+.featureLink:focus-visible .featureTitle {
   color: var(--accent);
 }
 
+/* ---------- Niveau 2 : filmographie ---------- */
+.sub {
+  margin-bottom: var(--space-4);
+  color: var(--fg-muted);
+}
+.shorts {
+  list-style: none;
+  padding: 0;
+  border-top: var(--hairline) solid var(--line);
+}
+.shorts li {
+  border-bottom: var(--hairline) solid var(--line);
+}
+.shortLink {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  column-gap: var(--space-4);
+  row-gap: var(--space-1);
+  align-items: baseline;
+  padding-block: var(--space-4);
+  transition: background-color var(--dur-2);
+}
+.shortYear {
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--fg-subtle);
+  font-variant-numeric: tabular-nums;
+}
+.shortTitle {
+  font-size: var(--step-2);
+  line-height: 1.1;
+  transition: color var(--dur-1);
+}
+.shortRole {
+  grid-column: 2 / -1;
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+}
+.shortArrow {
+  grid-row: 1;
+  grid-column: 3;
+  color: var(--fg-subtle);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    color var(--dur-1);
+}
+.shortLink:hover .shortTitle,
+.shortLink:focus-visible .shortTitle,
+.shortLink:hover .shortArrow {
+  color: var(--accent);
+}
+.shortLink:hover .shortArrow {
+  transform: translateX(var(--space-2));
+}
+
 @media (min-width: 64rem) {
-  .link {
-    grid-template-columns: 4rem minmax(0, 8fr) minmax(0, 4fr) 3rem;
-    column-gap: var(--space-6);
-    padding-block: var(--space-7);
+  .features {
+    gap: var(--space-9);
   }
-  .num {
-    grid-row: 1 / span 2;
-    grid-column: 1;
+  .featureLink {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) 3rem;
+    column-gap: var(--space-6);
+    align-items: end;
   }
   .kicker {
-    grid-column: 2;
+    grid-column: 1 / -1;
   }
-  .title {
-    grid-column: 2;
-    grid-row: 2;
-    font-size: var(--step-4);
+  .featureTitle {
+    font-size: clamp(3rem, 7.4vw, 8.5rem);
   }
-  .meta {
-    grid-column: 3;
-    grid-row: 1;
-  }
-  .summary {
-    grid-column: 3;
-    grid-row: 2;
-    align-self: end;
+  .featureSide {
+    padding-bottom: var(--space-3);
   }
   .arrow {
     display: block;
-    grid-column: 4;
-    grid-row: 1 / span 2;
     align-self: center;
     justify-self: end;
     font-size: var(--step-3);
@@ -109,14 +131,39 @@
       transform var(--dur-3) var(--ease-out),
       opacity var(--dur-2);
   }
-  .link:hover .title,
-  .link:focus-visible .title {
+  .featureLink:hover .featureTitle,
+  .featureLink:focus-visible .featureTitle {
     transform: translateX(var(--space-4));
   }
-  .link:hover .arrow,
-  .link:focus-visible .arrow {
+  .featureLink:hover .arrow,
+  .featureLink:focus-visible .arrow {
     transform: none;
     opacity: 1;
     color: var(--accent);
+  }
+
+  .filmography {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--space-5);
+  }
+  .sub {
+    grid-column: 1 / 4;
+    padding-top: var(--space-4);
+  }
+  .shorts {
+    grid-column: 4 / -1;
+  }
+  .shortLink {
+    grid-template-columns: 4rem minmax(0, 6fr) minmax(0, 5fr) 2rem;
+    column-gap: var(--space-5);
+    padding-block: var(--space-5);
+  }
+  .shortRole {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .shortArrow {
+    grid-column: 4;
   }
 }

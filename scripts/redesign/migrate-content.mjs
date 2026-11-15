@@ -68,7 +68,7 @@ write("content/site.yaml", {
   portraitAlt: L("Portrait de Hugo Pezzo", "Portrait of Hugo Pezzo"),
   email: "hugopezzo@outlook.com",
   socials: [{ label: "LinkedIn", url: "https://linkedin.com/in/hugo-pezzo" }],
-  seoTitle: L("Hugo Pezzo — Producteur audiovisuel", "Hugo Pezzo — Film & game producer"),
+  seoTitle: L("Hugo Pezzo — Producteur audiovisuel", "Hugo Pezzo — Audiovisual producer"),
   seoDescription: L(
     "Portfolio de Hugo Pezzo, producteur audiovisuel : courts-métrages, 489Productions et le studio de jeu vidéo POSTMERIDIAN.",
     "Portfolio of Hugo Pezzo, audiovisual producer: short films, 489Productions and the video game studio POSTMERIDIAN.",
@@ -198,6 +198,7 @@ write("content/projects/489productions.yaml", {
     text: L(s.description, pe.services[i].description),
   })),
   links: [],
+  cta: { text: L(pf.cta_label, pe.cta_label), button: L(pf.cta_button, pe.cta_button) },
 });
 write("content/projects/postmeridian.yaml", {
   title: "POSTMERIDIAN",

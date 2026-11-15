@@ -267,6 +267,16 @@ export default config({
           label: "Points clés / services",
           itemLabel: (p) => p.fields.title.fields.fr.value || "Point",
         }),
+        cta: fields.object(
+          {
+            text: loc("Phrase d'appel"),
+            button: loc("Texte du bouton"),
+          },
+          {
+            label: "Appel à l'action (optionnel)",
+            description: "Affiché en bas de la page projet, avec un lien vers l'e-mail du site.",
+          },
+        ),
         links: fields.array(fields.object({ label: loc("Libellé"), url: fields.url({ label: "URL" }) }), {
           label: "Liens",
           itemLabel: (p) => p.fields.label.fields.fr.value || "Lien",

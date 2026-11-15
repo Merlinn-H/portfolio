@@ -1,8 +1,26 @@
 .section {
+  padding-block: var(--space-9);
+}
+.s {
+  padding-block: var(--space-8);
+}
+.l {
   padding-block: var(--space-10);
 }
-.sunken {
-  background: var(--bg-sunken);
+/* Carton inversé : rupture franche dans le rythme sombre */
+.light {
+  --fg: var(--paper-ink);
+  --fg-muted: var(--paper-muted);
+  --fg-subtle: var(--paper-subtle);
+  --line: rgb(22 19 15 / 0.16);
+  --line-strong: rgb(22 19 15 / 0.36);
+  --accent: var(--paper-accent);
+  background: var(--paper);
+  color: var(--fg);
+}
+.light ::selection {
+  background: var(--fg);
+  color: var(--paper);
 }
 .inner {
   max-width: var(--page-max);
@@ -11,6 +29,12 @@
 }
 @media (min-width: 64rem) {
   .section {
+    padding-block: var(--space-10);
+  }
+  .s {
+    padding-block: var(--space-9);
+  }
+  .l {
     padding-block: var(--space-11);
   }
 }

@@ -5,7 +5,6 @@ category: production
 kicker:
   fr: Production audiovisuelle
   en: Audiovisual production
-year: '2023'
 role:
   fr: Chargé de Production & Communication
   en: Production & Communications Manager
@@ -62,3 +61,10 @@ highlights:
         Guidance and consulting in audiovisual production. We support you at
         every stage of your project.
 links: []
+cta:
+  text:
+    fr: Vous avez un projet ? Parlons-en.
+    en: Got a project? Let's talk.
+  button:
+    fr: Nous contacter
+    en: Contact us

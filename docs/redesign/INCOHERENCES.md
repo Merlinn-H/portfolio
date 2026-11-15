@@ -10,3 +10,8 @@
 8. **Onglet « Jeux vidéo »** : le brief le dit vide ; le code contient 4 jeux (Path of Exile, TFT, Into the Breach, Factorio).
 9. **Courts-métrages, rôles** : Résonance « Directeur de Production » (FR) vs « Production Director » (EN) ; ailleurs « Chargé de Production » = « Production Manager ».
 10. **E-mail** : le site utilise hugopezzo@outlook.com ; à confirmer que c'est l'adresse publique voulue.
+11. **489Productions — résumé** : FR « Réalisation, production audiovisuelle et conseil » / EN « Film production, audiovisual production and consulting » (« Réalisation » = directing, absent de l'EN). Texte d'origine conservé.
+12. **The Blade** : FR « film de sabre classique » / EN « classical martial arts cinema ». Mineur.
+13. **Path of Exile** : 40 % + 25 % + 15 % + 25 % = 105 % (probablement voulu, c'est une blague — à confirmer).
+14. **489Productions — année** : la v1 n'en affiche pas pour la société ; « 2023 » est l'arrivée de Hugo (champ laissé vide sur la page projet). Année de création de la société ?
+15. Libellé « Personal brand » en anglais dans la nav FR : à traduire (« Marque personnelle » ?) ou garder.

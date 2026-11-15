@@ -24,7 +24,8 @@ export function Contact({
       {email ? (
         <a className={styles.email} href={`mailto:${email}`}>
           <span className="visually-hidden">{cta} : </span>
-          {email}
+          {email.split("@")[0]}@<wbr />
+          {email.split("@")[1]}
           <span aria-hidden="true" className={styles.arrow}>
             ↗
           </span>

@@ -11,6 +11,12 @@
   --line-strong: rgb(237 230 217 / 0.32);
   --accent: #ef4130;
   --accent-ink: #0e0c0a;
+  /* Carton inversé (section claire) */
+  --paper: #ede6d9;
+  --paper-ink: #16130f;
+  --paper-muted: #4f4943;
+  --paper-subtle: #615a52;
+  --paper-accent: #c42a1b;
   --scrim: rgb(23 20 17 / 0.94);
 
   /* Typographie */

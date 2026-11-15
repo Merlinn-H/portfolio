@@ -18,3 +18,4 @@ Format : `HH:MM — ✅ fait / ⚠️ problème / ➡️ suite` (heure de Paris)
 ➡️ Lighthouse + perf.
 04:07 — ✅ Lighthouse mobile (local) : home Perf 97 / A11y 100 / BP 100 / SEO 100, page projet 99/100/100/100, CLS 0, TBT ≤ 90 ms. LCP observé = FCP (~0,15 s), LCP simulé 2,5 s avec l'ident / 1,9 s sans. JS 119 kB brotli (plancher framework 108). ⚠️ LCP simulé > 1,8 s : à arbitrer au checkpoint 3.
 ➡️ Screenshots mid + checkpoint Fable 3.
+04:16 — ✅ Haiku : rapport de parité FR/EN (0 champ manquant, 4 divergences factuelles → INCOHERENCES.md ; 1 divergence introduite par moi dans le titre SEO EN, corrigée). ⚠️ Tag `pre-redesign` : push refusé par le proxy (403), il existe en local seulement → rollback documenté sur le commit a821386 (= main actuel).

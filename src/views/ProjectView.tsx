@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getProject, getProjects, pick } from "@/lib/content";
+import { getProject, getProjects, getSite, pick } from "@/lib/content";
 import { href, ui, type Locale } from "@/lib/i18n";
 import { HiddenBanner } from "@/components/ui/HiddenBanner";
 import { VideoPlayer } from "@/components/project/VideoPlayer";
@@ -10,7 +10,9 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
   const project = await getProject(slug);
   if (!project) notFound();
   const t = ui(locale);
-  const all = await getProjects();
+  const [all, site] = await Promise.all([getProjects(), getSite()]);
+  const ctaText = pick(project.cta?.text, locale);
+  const ctaButton = pick(project.cta?.button, locale);
   const idx = all.findIndex((p) => p.slug === slug);
   const next = all.length > 1 ? all[(idx + 1) % all.length] : null;
 
@@ -58,7 +60,13 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
 
       {project.youtubeId ? (
         <div className={styles.media}>
-          <VideoPlayer id={project.youtubeId} title={project.title} label={t.watch} hint={t.watchOn} />
+          <VideoPlayer
+            id={project.youtubeId}
+            title={project.title}
+            label={t.watch}
+            hint={t.watchOn}
+            card={project.year || pick(project.kicker, locale)}
+          />
         </div>
       ) : project.coverImg ? (
         <div className={styles.media}>
@@ -68,7 +76,8 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
             height={project.coverImg.height}
             alt={pick(project.coverAlt, locale)}
             sizes="(min-width: 90rem) 86rem, 100vw"
-            priority
+            preload
+            fetchPriority="high"
             className={styles.cover}
           />
         </div>
@@ -80,7 +89,8 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
             height={project.logoImg.height}
             alt={`Logo ${project.title}`}
             sizes="(min-width: 64rem) 32rem, 70vw"
-            priority
+            preload
+            fetchPriority="high"
             className={styles.logo}
           />
         </div>
@@ -120,6 +130,15 @@ export async function ProjectView({ locale, slug }: { locale: Locale; slug: stri
               </li>
             ))}
         </ul>
+      ) : null}
+
+      {ctaText && site.email ? (
+        <aside className={styles.cta} aria-label={ctaButton || ctaText}>
+          <p className={styles.ctaText}>{ctaText}</p>
+          <a className={styles.pill} href={`mailto:${site.email}`}>
+            {ctaButton || site.email} <span aria-hidden="true">↗</span>
+          </a>
+        </aside>
       ) : null}
 
       {next && next.slug !== project.slug ? (

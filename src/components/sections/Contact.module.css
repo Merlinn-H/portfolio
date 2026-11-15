@@ -19,9 +19,8 @@
   gap: var(--space-3);
   max-width: 100%;
   font-family: var(--font-display);
-  font-size: var(--step-3);
+  font-size: var(--step-2);
   line-height: 1.1;
-  overflow-wrap: anywhere;
   border-bottom: 2px solid var(--accent);
   padding-bottom: var(--space-1);
   transition: color var(--dur-1);
