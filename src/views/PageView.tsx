@@ -40,6 +40,19 @@ export async function PageView({ locale, slug }: { locale: Locale; slug: string 
                   {p}
                 </p>
               ))}
+            {b.links.filter((l) => l.url).length > 0 ? (
+              <ul className={styles.links}>
+                {b.links
+                  .filter((l) => l.url)
+                  .map((l) => (
+                    <li key={l.url}>
+                      <a href={l.url!} target="_blank" rel="noopener noreferrer" className={styles.pill}>
+                        {pick(l.label, locale) || l.url} <span aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+            ) : null}
           </section>
         ))}
       </div>

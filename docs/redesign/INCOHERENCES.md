@@ -1,8 +1,8 @@
 # Incohérences relevées (non corrigées — à valider par Hugo)
 
-1. **POSTMERIDIAN — date et ville de fondation** : le site dit « Mai 2024 — Montpellier » (expérience) ; d'autres sources disent « septembre 2024, Lyon ». La carte projet dit « basé entre la France et le Canada ». Texte conservé tel quel.
+1. ✅ **Résolu par Hugo (15/11)** : POSTMERIDIAN fondé en **avril 2024 à Montpellier** (parcours et fiche projet mis à jour). — Ancien constat : **POSTMERIDIAN — date et ville de fondation** : le site dit « Mai 2024 — Montpellier » (expérience) ; d'autres sources disent « septembre 2024, Lyon ». La carte projet dit « basé entre la France et le Canada ». Texte conservé tel quel.
 2. **POSTMERIDIAN — rôle** : le site dit « Fondateur & Producteur » ; le brief dit « co-fondateur et producteur exécutif ». Texte du site conservé.
-3. **Années d'expérience** : « 7 ans » (résumé) vs expérience la plus ancienne en juin 2017 → 9 ans en 2026. À mettre à jour ?
+3. ✅ **Résolu par Hugo (15/11)** : 8 ans d'expérience en production audiovisuelle + 2 ans en production de jeux vidéo (texte du parcours mis à jour). — Ancien constat : **Années d'expérience** : « 7 ans » (résumé) vs expérience la plus ancienne en juin 2017 → 9 ans en 2026. À mettre à jour ?
 4. **JRCinéma / Uriel Rosen / QUIDAM (2017–2023)** : « Production de 4 courts-métrages dont 2 sélectionnés en festivals » vs la page Courts-métrages qui en montre 3 (2019, 2021, 2023). Lesquels sont le 4e / les 2 sélectionnés ?
 5. **Hero** : « Producteur Audiovisuel & Chargé de Projets Culturels » (FR) vs « Film Producer & Cultural Project Manager » (EN) — « audiovisuel » ≠ « film ».
 6. **489Productions** : rôle « Chargé de Production & Communication » (expérience, depuis avril 2023), mais la page /489productions parle en « nous » (studio) ; le lien Projets envoie vers la page du studio comme s'il s'agissait d'un projet personnel.

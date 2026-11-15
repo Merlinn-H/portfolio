@@ -353,10 +353,20 @@ export default config({
         title: loc("Titre", { required: true }),
         eyebrow: loc("Sur-titre"),
         intro: loc("Introduction", { multiline: true }),
-        blocks: fields.array(fields.object({ heading: loc("Intertitre"), body: loc("Texte", { multiline: true }) }), {
-          label: "Blocs",
-          itemLabel: (p) => p.fields.heading.fields.fr.value || "Bloc",
-        }),
+        blocks: fields.array(
+          fields.object({
+            heading: loc("Intertitre"),
+            body: loc("Texte", { multiline: true }),
+            links: fields.array(fields.object({ label: loc("Libellé"), url: fields.url({ label: "URL" }) }), {
+              label: "Liens (Instagram, chaîne, article…)",
+              itemLabel: (p) => p.fields.label.fields.fr.value || "Lien",
+            }),
+          }),
+          {
+            label: "Blocs",
+            itemLabel: (p) => p.fields.heading.fields.fr.value || "Bloc",
+          },
+        ),
         seoDescription: loc("Description SEO", { multiline: true }),
       },
     }),
