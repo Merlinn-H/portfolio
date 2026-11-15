@@ -96,6 +96,13 @@ export default config({
         ),
         portrait: image("Portrait", "site", "Format carré ou vertical, ~2000 px."),
         portraitAlt: loc("Texte alternatif du portrait"),
+        introEnabled: fields.checkbox({
+          label: "Jouer l'ident d'introduction",
+          description: "Logo animé ≤ 1,2 s, une fois par session, passable au clic. Décocher pour le désactiver.",
+          defaultValue: true,
+        }),
+        introLogo: image("Logo de l'ident", "site", "PNG blanc sur fond transparent (il est recoloré en CSS)."),
+        introLogoAlt: fields.text({ label: "Nom du logo de l'ident (ex. 489Productions)" }),
         email: fields.text({ label: "E-mail de contact" }),
         socials: fields.array(
           fields.object({

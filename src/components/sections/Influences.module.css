@@ -1,0 +1,109 @@
+.wrap {
+  display: grid;
+  gap: var(--space-9);
+}
+.sub {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+  color: var(--fg-muted);
+}
+.sub span {
+  color: var(--accent);
+}
+
+/* Films : bande horizontale à défilement aimanté, comme une planche contact */
+.films {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(62vw, 16rem);
+  gap: var(--space-5);
+  list-style: none;
+  padding: 0 var(--gutter) var(--space-4);
+  margin-inline: calc(var(--gutter) * -1);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.film {
+  scroll-snap-align: start;
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+}
+.filmLink {
+  display: grid;
+  gap: var(--space-2);
+}
+.poster {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  margin-bottom: var(--space-2);
+  filter: grayscale(0.35) brightness(0.9);
+  transition: filter var(--dur-3) var(--ease-out);
+}
+.filmLink:hover .poster,
+.filmLink:focus-visible .poster {
+  filter: none;
+}
+.filmTitle {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: 1.05;
+  transition: color var(--dur-1);
+}
+.filmLink:hover .filmTitle {
+  color: var(--accent);
+}
+.filmMeta {
+  color: var(--fg-subtle);
+}
+.filmDesc {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+}
+
+/* Jeux : liste typographique */
+.games {
+  list-style: none;
+  padding: 0;
+  border-top: var(--hairline) solid var(--line);
+}
+.game {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-bottom: var(--hairline) solid var(--line);
+}
+.gameHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+.gameTitle {
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  line-height: 1;
+}
+.gameGenre {
+  color: var(--fg-subtle);
+}
+.gameDesc {
+  max-width: var(--measure);
+  color: var(--fg-muted);
+}
+@media (min-width: 64rem) {
+  .films {
+    grid-auto-columns: calc((100% - var(--gutter) * 2 - var(--space-5) * 3) / 4.4);
+  }
+  .game {
+    grid-template-columns: 5fr 7fr;
+    column-gap: var(--space-6);
+    align-items: baseline;
+  }
+}

@@ -1,0 +1,10 @@
+.hanzi {
+  display: inline-block;
+  color: var(--accent);
+  width: 1em;
+}
+.hanzi svg {
+  width: 100%;
+  height: auto;
+  fill: currentColor;
+}

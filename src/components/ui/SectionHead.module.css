@@ -1,0 +1,28 @@
+.head {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--fg-muted);
+}
+.num {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.num::after {
+  content: "";
+  display: inline-block;
+  width: var(--space-7);
+  height: var(--hairline);
+  margin-left: var(--space-4);
+  vertical-align: middle;
+  background: var(--line-strong);
+}
+.title {
+  font-size: var(--step-5);
+  max-width: 14ch;
+}

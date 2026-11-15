@@ -1,0 +1,17 @@
+.banner {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--z-header) + 1);
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) var(--gutter);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.tag {
+  margin-right: var(--space-2);
+}

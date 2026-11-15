@@ -1,3 +1,5 @@
+import { RootShell } from "@/components/layout/RootShell";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (<html lang="fr"><body>{children}</body></html>);
+  return <RootShell locale="fr">{children}</RootShell>;
 }

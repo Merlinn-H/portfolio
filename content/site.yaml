@@ -14,6 +14,9 @@ portrait: /images/site/portrait.jpg
 portraitAlt:
   fr: Portrait de Hugo Pezzo
   en: Portrait of Hugo Pezzo
+introEnabled: true
+introLogo: /images/site/introLogo.png
+introLogoAlt: 489Productions
 email: hugopezzo@outlook.com
 socials:
   - label: LinkedIn

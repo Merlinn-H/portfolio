@@ -1,0 +1,42 @@
+/* Ident : fond noir, le logo est révélé par un volet (clip-path), puis coupe franche à 1,1 s. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-intro);
+  display: grid;
+  place-items: center;
+  background: var(--bg-sunken);
+  animation: intro-cut 1ms linear 1.1s forwards;
+}
+:global(html[data-intro="off"]) .intro {
+  display: none;
+}
+.logo {
+  width: min(60vw, 26rem);
+  background: var(--fg);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  clip-path: inset(0 100% 0 0);
+  animation:
+    intro-wipe 520ms var(--ease-out) 120ms forwards,
+    intro-flash 260ms var(--ease-in-out) 760ms forwards;
+}
+@keyframes intro-wipe {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes intro-flash {
+  to {
+    background: var(--accent);
+  }
+}
+@keyframes intro-cut {
+  to {
+    visibility: hidden;
+  }
+}

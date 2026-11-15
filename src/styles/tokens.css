@@ -1,0 +1,75 @@
+/* Design tokens — docs/redesign/DESIGN.md. Aucune valeur en dur dans les composants. */
+:root {
+  /* Couleurs */
+  --bg: #0e0c0a;
+  --bg-raised: #171411;
+  --bg-sunken: #080706;
+  --fg: #ede6d9;
+  --fg-muted: #a39d93;
+  --fg-subtle: #8a847b;
+  --line: rgb(237 230 217 / 0.14);
+  --line-strong: rgb(237 230 217 / 0.32);
+  --accent: #ef4130;
+  --accent-ink: #0e0c0a;
+  --scrim: rgb(14 12 10 / 0.82);
+
+  /* Typographie */
+  --font-display: var(--font-gloock), "Times New Roman", serif;
+  --font-text: var(--font-hanken), system-ui, sans-serif;
+  --step--2: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
+  --step--1: clamp(0.8rem, 0.78rem + 0.12vw, 0.875rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
+  --step-2: clamp(1.45rem, 1.25rem + 0.9vw, 2rem);
+  --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 3rem);
+  --step-4: clamp(2.5rem, 1.8rem + 3.2vw, 4.75rem);
+  --step-5: clamp(3.1rem, 2rem + 5.4vw, 7.5rem);
+  --step-6: clamp(3.4rem, 1.6rem + 9vw, 11.5rem);
+  --leading-tight: 0.92;
+  --leading-snug: 1.15;
+  --leading-body: 1.6;
+  --tracking-credits: 0.18em;
+
+  /* Espacements */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --measure: 38rem;
+  --page-max: 90rem;
+  --tap: 3rem;
+
+  /* Formes — la pilule est la seule courbe du site */
+  --radius-pill: 999px;
+  --hairline: 1px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-1: 150ms;
+  --dur-2: 300ms;
+  --dur-3: 600ms;
+  --dur-4: 1000ms;
+
+  /* Plans */
+  --z-header: 50;
+  --z-sheet: 60;
+  --z-intro: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 1ms;
+    --dur-2: 1ms;
+    --dur-3: 1ms;
+    --dur-4: 1ms;
+  }
+}

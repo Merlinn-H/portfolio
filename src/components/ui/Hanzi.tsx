@@ -1,0 +1,23 @@
+import { HANZI_GLYPHS } from "./hanzi-glyphs";
+import styles from "./Hanzi.module.css";
+
+/**
+ * 英雄本色 — titre original de « A Better Tomorrow » (John Woo, 1986).
+ * Glyphes vectorisés (Noto Serif TC, OFL) : rendu identique sur toutes les plateformes, aucune webfont CJK.
+ */
+export function Hanzi({ text = "英雄本色", label, className }: { text?: string; label?: string; className?: string }) {
+  const glyphs = [...text]
+    .map((c) => HANZI_GLYPHS.find((g) => g.char === c))
+    .filter((g): g is (typeof HANZI_GLYPHS)[number] => Boolean(g));
+  if (glyphs.length === 0) return null;
+  return (
+    <span className={`${styles.hanzi} ${className ?? ""}`} lang="zh-Hant">
+      <svg viewBox={`0 0 1000 ${glyphs.length * 1000}`} aria-hidden="true" focusable="false">
+        {glyphs.map((g, i) => (
+          <path key={g.char} d={g.d} transform={`translate(0 ${i * 1000})`} />
+        ))}
+      </svg>
+      <span className="visually-hidden">{label ? `${text} — ${label}` : text}</span>
+    </span>
+  );
+}
