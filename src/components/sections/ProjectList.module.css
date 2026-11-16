@@ -130,23 +130,36 @@
   .features {
     gap: var(--space-9);
   }
+  /* Le titre occupe toute la largeur, sur sa propre ligne ; rôle et résumé viennent dessous.
+     Aucun texte ne peut donc passer sous un grand titre, quelle que soit la largeur d'écran. */
   .featureLink {
-    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr) 3rem;
-    column-gap: var(--space-6);
-    align-items: end;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-5);
+    row-gap: var(--space-4);
+    align-items: start;
   }
   .kicker {
     grid-column: 1 / -1;
   }
   .featureTitle {
-    font-size: clamp(3rem, 7.4vw, 8.5rem);
+    grid-column: 1 / -1;
+    font-size: clamp(3rem, 8vw, 9rem);
+    white-space: nowrap;
   }
   .featureSide {
-    padding-bottom: var(--space-3);
+    grid-column: 1 / 11;
+    grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+    column-gap: var(--space-5);
+    max-width: none;
+    padding-top: var(--space-2);
+  }
+  .summary {
+    max-width: var(--measure);
   }
   .arrow {
     display: block;
-    align-self: center;
+    grid-column: 12;
+    align-self: start;
     justify-self: end;
     font-size: var(--step-3);
     transform: translateX(calc(var(--space-4) * -1));

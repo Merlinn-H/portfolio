@@ -139,3 +139,39 @@ test("aucun préchargement au chargement : l'autre langue n'est chargée qu'à l
   await page.getByRole("banner").getByRole("link", { name: "English" }).hover();
   await expect.poll(() => fetched.length).toBeGreaterThan(0);
 });
+
+test("aucun texte ne se chevauche dans la liste des projets, du mobile au très grand écran", async ({
+  page,
+  isMobile,
+}) => {
+  test.skip(isMobile, "largeurs pilotées par le test");
+  for (const width of [375, 768, 1024, 1280, 1440, 1617, 1920, 2560]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const path of ["/", "/en", "/projets"]) {
+      await page.goto(path);
+      const problems = await page.evaluate(() => {
+        const out: string[] = [];
+        const hit = (a: DOMRect, b: DOMRect) =>
+          a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1;
+        document.querySelectorAll("#projects li, main ol li, main ul li").forEach((li) => {
+          const title = li.querySelector("h2, h3, h4");
+          if (!title) return;
+          const range = document.createRange();
+          range.selectNodeContents(title);
+          const r = range.getBoundingClientRect();
+          // La boîte de ligne dépasse les lettres : on retire 15 % en haut et en bas.
+          const t = new DOMRect(r.x, r.y + r.height * 0.15, r.width, r.height * 0.7);
+          const box = li.getBoundingClientRect();
+          if (t.right > box.right + 1) out.push(`titre hors cadre : ${title.textContent}`);
+          li.querySelectorAll("span, p").forEach((el) => {
+            if (title.contains(el) || el.contains(title) || !el.textContent?.trim() || el.children.length) return;
+            if (hit(t, el.getBoundingClientRect()))
+              out.push(`« ${title.textContent} » chevauche « ${el.textContent.trim().slice(0, 30)} »`);
+          });
+        });
+        return out;
+      });
+      expect(problems, `${path} @${width}px`).toEqual([]);
+    }
+  }
+});
