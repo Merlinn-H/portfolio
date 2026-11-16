@@ -35,24 +35,42 @@ export default defineConfig({
   // Polices auto-hébergées (OFL), avec polices de secours aux métriques ajustées (pas de saut de mise en page).
   fonts: [
     {
+      // Titres : Fraunces (coupe « display », romain + italique pour les titres de films).
       provider: fontProviders.local(),
-      name: "Gloock",
-      cssVariable: "--font-gloock",
-      fallbacks: ["Times New Roman", "serif"],
+      name: "Fraunces",
+      cssVariable: "--font-fraunces",
+      fallbacks: ["Georgia", "serif"],
       display: "swap",
-      options: { variants: [{ src: ["./src/fonts/gloock-latin-400-normal.woff2"], weight: 400, style: "normal" }] },
+      options: {
+        variants: [
+          { src: ["./src/fonts/fraunces-display-400-normal.woff2"], weight: 400, style: "normal" },
+          { src: ["./src/fonts/fraunces-display-400-italic.woff2"], weight: 400, style: "italic" },
+        ],
+      },
     },
     {
+      // Texte : Archivo, très lisible en petit corps.
       provider: fontProviders.local(),
-      name: "Hanken Grotesk",
-      cssVariable: "--font-hanken",
+      name: "Archivo",
+      cssVariable: "--font-archivo",
       fallbacks: ["Arial", "sans-serif"],
       display: "swap",
       options: {
         variants: [
-          { src: ["./src/fonts/hanken-grotesk-latin-400-normal.woff2"], weight: 400, style: "normal" },
-          { src: ["./src/fonts/hanken-grotesk-latin-600-normal.woff2"], weight: 600, style: "normal" },
+          { src: ["./src/fonts/archivo-400-normal.woff2"], weight: 400, style: "normal" },
+          { src: ["./src/fonts/archivo-600-normal.woff2"], weight: 600, style: "normal" },
         ],
+      },
+    },
+    {
+      // Crédits : Archivo étroitisé, comme le « billing block » en bas d'une affiche de film.
+      provider: fontProviders.local(),
+      name: "Archivo Condensed",
+      cssVariable: "--font-archivo-condensed",
+      fallbacks: ["Arial Narrow", "Arial", "sans-serif"],
+      display: "swap",
+      options: {
+        variants: [{ src: ["./src/fonts/archivo-condensed-600-normal.woff2"], weight: 600, style: "normal" }],
       },
     },
   ],

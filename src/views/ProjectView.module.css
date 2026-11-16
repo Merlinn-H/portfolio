@@ -112,7 +112,7 @@
   grid-row: 1 / span 2;
   font-weight: 600;
   font-size: var(--step--1);
-  color: var(--accent);
+  color: var(--amber);
 }
 .hlTitle {
   font-size: var(--step-3);
@@ -137,6 +137,7 @@
   color: var(--bg);
   font-size: var(--step--1);
   font-weight: 600;
+  font-family: var(--font-credits);
   letter-spacing: var(--tracking-credits);
   text-transform: uppercase;
   transition: background-color var(--dur-1);

@@ -26,7 +26,7 @@ const dict = {
     role: "Rôle",
     year: "Année",
     watch: "Lire le film",
-    watchOn: "Lecture via YouTube (chargé uniquement au clic)",
+    watchOn: "La vidéo se charge au clic, via YouTube",
     visit: "Visiter",
     next: "Projet suivant",
     films: "Films",
@@ -38,6 +38,7 @@ const dict = {
     scroll: "Défiler",
     contactCta: "Écrire à Hugo",
     backToTop: "Haut de page",
+    end: "Fin",
   },
   en: {
     skip: "Skip to content",
@@ -54,7 +55,7 @@ const dict = {
     role: "Role",
     year: "Year",
     watch: "Play the film",
-    watchOn: "Plays via YouTube (loaded on click only)",
+    watchOn: "The video loads on click, via YouTube",
     visit: "Visit",
     next: "Next project",
     films: "Films",
@@ -66,6 +67,7 @@ const dict = {
     scroll: "Scroll",
     contactCta: "Write to Hugo",
     backToTop: "Back to top",
+    end: "The End",
   },
 } as const;
 

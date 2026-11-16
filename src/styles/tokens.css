@@ -1,40 +1,44 @@
 /* Design tokens — docs/redesign/DESIGN.md. Aucune valeur en dur dans les composants. */
 :root {
-  /* Couleurs */
-  --bg: #0e0c0a;
-  --bg-raised: #171411;
-  --bg-sunken: #080706;
-  --fg: #ede6d9;
-  --fg-muted: #a39d93;
-  --fg-subtle: #8a847b;
-  --line: rgb(237 230 217 / 0.14);
-  --line-strong: rgb(237 230 217 / 0.32);
-  --accent: #ef4130;
-  --accent-ink: #0e0c0a;
+  /* Couleurs — salle obscure : noir chaud, blanc d'écran, vermillon (action), ambre (repères) */
+  --bg: #0b0a09;
+  --bg-raised: #161412;
+  --bg-sunken: #060505;
+  --fg: #f2ebdf;
+  --fg-muted: #c2baae; /* 10,3:1 — texte courant secondaire */
+  --fg-subtle: #9d968b; /* 6,7:1 — métadonnées */
+  --line: rgb(242 235 223 / 0.16);
+  --line-strong: rgb(242 235 223 / 0.36);
+  --accent: #f2472f; /* vermillon : liens actifs, survols, 英雄本色 */
+  --accent-ink: #0b0a09;
+  --amber: #d9b26a; /* ambre « amorce de pellicule » : numéros, années, repères — jamais d'action */
   /* Carton inversé (section claire) */
-  --paper: #ede6d9;
-  --paper-ink: #16130f;
-  --paper-muted: #4f4943;
-  --paper-subtle: #615a52;
-  --paper-accent: #c42a1b;
-  --scrim: rgb(23 20 17 / 0.94);
+  --paper: #f0e8da;
+  --paper-ink: #15120e;
+  --paper-muted: #463f38;
+  --paper-subtle: #5c554d;
+  --paper-accent: #b8261a;
+  --paper-amber: #7a5a12;
+  --scrim: rgb(22 20 18 / 0.94);
 
   /* Typographie */
-  --font-display: var(--font-gloock), "Times New Roman", serif;
-  --font-text: var(--font-hanken), system-ui, sans-serif;
-  --step--2: clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
-  --step--1: clamp(0.8rem, 0.78rem + 0.12vw, 0.875rem);
-  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
-  --step-1: clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
-  --step-2: clamp(1.45rem, 1.25rem + 0.9vw, 2rem);
-  --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 3rem);
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-text: var(--font-archivo), system-ui, sans-serif;
+  --font-credits: var(--font-archivo-condensed), "Arial Narrow", sans-serif;
+  /* Échelle : les petits corps ont été remontés pour la lisibilité (jamais sous 13 px). */
+  --step--2: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+  --step--1: clamp(0.9rem, 0.87rem + 0.15vw, 1rem);
+  --step-0: clamp(1.0625rem, 1.02rem + 0.22vw, 1.1875rem);
+  --step-1: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3rem + 0.9vw, 2.05rem);
+  --step-3: clamp(1.95rem, 1.55rem + 1.8vw, 3.05rem);
   --step-4: clamp(2.5rem, 1.8rem + 3.2vw, 4.75rem);
   --step-5: clamp(3.1rem, 2rem + 5.4vw, 7.5rem);
   --step-6: clamp(3.4rem, 1.6rem + 9vw, 11.5rem);
-  --leading-tight: 0.92;
-  --leading-snug: 1.15;
-  --leading-body: 1.6;
-  --tracking-credits: 0.18em;
+  --leading-tight: 0.94;
+  --leading-snug: 1.2;
+  --leading-body: 1.65;
+  --tracking-credits: 0.09em;
 
   /* Espacements */
   --space-1: 0.25rem;
@@ -49,7 +53,7 @@
   --space-10: 8rem;
   --space-11: 12rem;
   --gutter: clamp(1rem, 4vw, 3rem);
-  --measure: 38rem;
+  --measure: 36rem;
   --page-max: 90rem;
   --tap: 3rem;
 

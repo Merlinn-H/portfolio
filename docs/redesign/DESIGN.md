@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 16/11 (session 5)** : polices → Fraunces (titres, + italique pour les titres de films), Archivo (texte), Archivo étroitisé (crédits) ; palette → vermillon pour l'action, ambre pour les repères ; motifs → repères de viseur, carton « Fin ». Les valeurs à jour sont dans `src/styles/tokens.css` ; le détail et les raisons dans DECISIONS.md 46–50. Le reste de ce document (règles de composition, interdits) reste valable.
+
 > Statut : **verrouillé** après le checkpoint Fable 2 (03:45).
 
 ## Direction retenue (5 lignes)

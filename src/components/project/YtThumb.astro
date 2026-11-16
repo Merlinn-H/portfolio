@@ -1,0 +1,45 @@
+---
+/**
+ * Vignette d'une vidéo YouTube, chargée par le navigateur du visiteur (image seule : aucune vidéo,
+ * aucun cookie). Si elle est indisponible, l'image se retire et le carton typographique reste.
+ * `hires` : tente ensuite la version haute définition (elle n'existe pas pour toutes les vidéos).
+ */
+interface Props {
+  id: string;
+  class?: string;
+  hires?: boolean;
+  eager?: boolean;
+}
+const { id, class: className, hires = false, eager = false } = Astro.props;
+const base = `https://i.ytimg.com/vi/${encodeURIComponent(id)}`;
+---
+
+<img
+  class={className}
+  src={`${base}/mqdefault.jpg`}
+  data-yt-hires={hires ? `${base}/maxresdefault.jpg` : undefined}
+  width="320"
+  height="180"
+  alt=""
+  decoding="async"
+  loading={eager ? "eager" : "lazy"}
+  referrerpolicy="no-referrer"
+  onerror="this.remove()"
+/>
+
+<script>
+  // Passe en haute définition quand elle existe (YouTube renvoie une image grise de 120 px sinon).
+  function upgrade() {
+    document.querySelectorAll<HTMLImageElement>("img[data-yt-hires]").forEach((img) => {
+      const url = img.dataset.ytHires!;
+      delete img.dataset.ytHires;
+      const probe = new Image();
+      probe.referrerPolicy = "no-referrer";
+      probe.onload = () => {
+        if (probe.naturalWidth > 320) img.src = url;
+      };
+      probe.src = url;
+    });
+  }
+  document.addEventListener("astro:page-load", upgrade);
+</script>

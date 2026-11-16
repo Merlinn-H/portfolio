@@ -10,7 +10,7 @@
   color: var(--fg-muted);
 }
 .num {
-  color: var(--accent);
+  color: var(--amber);
   font-variant-numeric: tabular-nums;
 }
 .num::after {

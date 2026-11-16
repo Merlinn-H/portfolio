@@ -62,8 +62,9 @@ const person = {
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#0e0c0a" />
-    <Font cssVariable="--font-gloock" preload />
-    <Font cssVariable="--font-hanken" />
+    <Font cssVariable="--font-fraunces" preload={[{ style: "normal" }]} />
+    <Font cssVariable="--font-archivo" />
+    <Font cssVariable="--font-archivo-condensed" />
     <ClientRouter />
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
     {jsonLd.map((d) => (
@@ -79,6 +80,13 @@ const person = {
     <main id="content" tabindex="-1" class={styles.main}>
       <slot />
     </main>
-    <SiteFooter name={site.name} note={pick(site.footer, locale)} email={site.email} socials={site.socials} t={t} />
+    <SiteFooter
+      role={pick(site.role, locale)}
+      name={site.name}
+      note={pick(site.footer, locale)}
+      email={site.email}
+      socials={site.socials}
+      t={t}
+    />
   </body>
 </html>

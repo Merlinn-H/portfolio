@@ -9,6 +9,10 @@ const [, , base, outDir, ...paths] = process.argv;
       reducedMotion: "reduce",
     });
     const p = await ctx.newPage();
+    // FAKE_YT=<image> : remplace les vignettes YouTube par une image locale (YouTube est bloqué dans certains environnements).
+    if (process.env.FAKE_YT)
+      await p.route(/i\.ytimg\.com/, (r) => r.fulfill({ path: process.env.FAKE_YT, contentType: "image/jpeg" }));
+    else await p.route(/i\.ytimg\.com/, (r) => r.abort());
     for (const path of paths) {
       await p.goto(base + path, { waitUntil: "networkidle" });
       await p.evaluate(async () => {

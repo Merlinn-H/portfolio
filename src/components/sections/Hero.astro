@@ -31,7 +31,7 @@ import Arrow from "@/components/ui/Arrow.astro";
   </h1>
 
   {portrait ? (
-    <div class={styles.portrait}>
+    <div class={`viewfinder ${styles.portrait}`}>
       <Picture
         src={portrait}
         alt={pick(site.portraitAlt, locale)}

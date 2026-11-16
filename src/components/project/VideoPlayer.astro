@@ -1,7 +1,8 @@
 ---
 import styles from "./VideoPlayer.module.css";
+import YtThumb from "./YtThumb.astro";
 
-/** Lecteur « façade » : rien n'est chargé depuis YouTube avant le clic. */
+/** Lecteur « façade » : seule la vignette est affichée ; la vidéo n'est chargée depuis YouTube qu'au clic. */
 interface Props {
   id: string;
   title: string;
@@ -12,7 +13,7 @@ interface Props {
 const { id, title, label, hint, card } = Astro.props;
 ---
 
-<div class={styles.frame}>
+<div class={`viewfinder ${styles.frame}`}>
   <button
     type="button"
     class={styles.facade}
@@ -22,6 +23,8 @@ const { id, title, label, hint, card } = Astro.props;
     data-iframe-class={styles.iframe}
     aria-describedby={`hint-${id}`}
   >
+    <YtThumb id={id} class={styles.thumb} hires eager />
+    <span class={styles.shade} aria-hidden="true"></span>
     <span class={styles.card} aria-hidden="true">
       {card}
     </span>

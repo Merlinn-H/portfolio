@@ -7,14 +7,23 @@ interface Props {
   note: string;
   email?: string;
   socials: readonly { label: string; url: string | null }[];
+  /** Métier, affiché comme une ligne de générique. */
+  role?: string;
   t: Dict;
 }
-const { name, note, email, socials, t } = Astro.props;
+const { name, note, email, socials, role, t } = Astro.props;
 import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <footer class={styles.footer}>
-  <p class={styles.name}>{name}</p>
+  <!-- Carton de fin, comme au cinéma -->
+  <p class={styles.end} aria-hidden="true">
+    {t.end}
+  </p>
+  <div>
+    <p class={styles.name}>{name}</p>
+    {role && <p class={`credits ${styles.role}`}>{role}</p>}
+  </div>
   <ul class={styles.links}>
     {email && (
       <li>

@@ -19,7 +19,7 @@
   border-bottom: var(--hairline) solid var(--line);
 }
 .period {
-  color: var(--fg-muted);
+  color: var(--amber);
 }
 .title {
   font-size: var(--step-3);
