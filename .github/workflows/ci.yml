@@ -1,0 +1,25 @@
+name: CI
+
+# Vérifie chaque modification avant qu'elle n'arrive en ligne : lint, typage, build et tests de bout en bout.
+on:
+  push:
+    branches: [main, astro]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run check
+      - run: npm run format:check
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e

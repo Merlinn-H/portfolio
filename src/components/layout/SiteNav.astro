@@ -72,10 +72,10 @@ const ext = (item: NavItem) => (item.external ? { target: "_blank", rel: "noopen
               hreflang={l}
               lang={l}
               data-keep-scroll
-              aria-label={l === "fr" ? "Français" : "English"}
               aria-current={locale === l ? "true" : undefined}
             >
               {l.toUpperCase()}
+              <span class="visually-hidden"> — {l === "fr" ? "Français" : "English"}</span>
             </a>
           </span>
         ))}
@@ -127,10 +127,10 @@ const ext = (item: NavItem) => (item.external ? { target: "_blank", rel: "noopen
               hreflang={l}
               lang={l}
               data-keep-scroll
-              aria-label={l === "fr" ? "Français" : "English"}
               aria-current={locale === l ? "true" : undefined}
             >
               {l.toUpperCase()}
+              <span class="visually-hidden"> — {l === "fr" ? "Français" : "English"}</span>
             </a>
           </span>
         ))}
