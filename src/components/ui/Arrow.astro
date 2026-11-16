@@ -1,0 +1,12 @@
+---
+/** Flèche vectorielle (même dessin partout, quelle que soit la police). Décorative : masquée aux lecteurs d'écran. */
+interface Props {
+  dir?: "right" | "up-right" | "down" | "up" | "left";
+}
+const { dir = "right" } = Astro.props;
+const rotate = { right: 0, "up-right": -45, down: 90, up: -90, left: 180 }[dir];
+---
+
+<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style={`transform:rotate(${rotate}deg)`}>
+  <path d="M2 8h11M8.5 3.5 13 8l-4.5 4.5"></path>
+</svg>

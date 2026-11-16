@@ -10,6 +10,7 @@ interface Props {
   t: Dict;
 }
 const { name, note, email, socials, t } = Astro.props;
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <footer class={styles.footer}>
@@ -33,7 +34,7 @@ const { name, note, email, socials, t } = Astro.props;
       ))}
     <li>
       <a class="link" href="#top">
-        {t.backToTop} ↑
+        {t.backToTop} <Arrow dir="up" />
       </a>
     </li>
   </ul>

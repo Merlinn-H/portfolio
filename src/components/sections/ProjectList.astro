@@ -21,6 +21,7 @@ const Sub = `h${headingLevel}` as const;
 const Item = `h${(headingLevel + 1) as 3 | 4}` as const;
 const features = projects.filter((p) => p.category !== "short");
 const shorts = projects.filter((p) => p.category === "short");
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <div class={styles.wrap}>
@@ -40,7 +41,7 @@ const shorts = projects.filter((p) => p.category === "short");
               <span class={styles.summary}>{pick(p.summary, locale)}</span>
             </span>
             <span class={styles.arrow} aria-hidden="true">
-              →
+              <Arrow />
             </span>
           </a>
         </li>
@@ -62,7 +63,7 @@ const shorts = projects.filter((p) => p.category === "short");
               </Item>
               <span class={styles.shortRole}>{pick(p.role, locale)}</span>
               <span class={styles.shortArrow} aria-hidden="true">
-                →
+                <Arrow />
               </span>
             </a>
           </li>

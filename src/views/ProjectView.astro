@@ -28,6 +28,7 @@ const paragraphs = body
 const role = pick(project?.role, locale);
 const tagline = pick(project?.tagline, locale);
 const roles = role ? role.split(",").map((r) => r.trim()) : [];
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 {project && (
@@ -129,7 +130,7 @@ const roles = role ? role.split(",").map((r) => r.trim()) : [];
           .map((l) => (
             <li>
               <a href={l.url!} target="_blank" rel="noopener noreferrer" class={styles.pill}>
-                {t.visit} {pick(l.label, locale)} <span aria-hidden="true">↗</span>
+                {t.visit} {pick(l.label, locale)} <Arrow dir="up-right" />
               </a>
             </li>
           ))}
@@ -140,7 +141,7 @@ const roles = role ? role.split(",").map((r) => r.trim()) : [];
       <aside class={styles.cta} aria-label={ctaButton || ctaText}>
         <p class={styles.ctaText}>{ctaText}</p>
         <a class={styles.pill} href={`mailto:${site.email}`}>
-          {ctaButton || site.email} <span aria-hidden="true">↗</span>
+          {ctaButton || site.email} <Arrow dir="up-right" />
         </a>
       </aside>
     ) : null}
@@ -149,7 +150,7 @@ const roles = role ? role.split(",").map((r) => r.trim()) : [];
       <a class={styles.next} href={href(locale, `/projets/${next.slug}`)}>
         <span class="credits">{t.next}</span>
         <span class={styles.nextTitle}>
-          {next.title} <span aria-hidden="true">→</span>
+          {next.title} <Arrow />
         </span>
       </a>
     ) : null}

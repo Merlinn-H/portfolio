@@ -8,12 +8,9 @@
   "notes": [],
   "firstShotActualMs": 0,
   "overlayVisibleAfterReload0ms": false,
-  "introOffAfterReload": true,
+  "introOffAfterReload": false,
   "overlayVisibleAfterReload300ms": false,
   "scrollSteps": 31,
-  "hiddenAfterScroll": [
-    "SPAN.qR0fhW_arrow",
-    "SPAN.qR0fhW_arrow"
-  ],
+  "hiddenAfterScroll": [],
   "afterClickUrl": "http://localhost:3100/projets/489productions"
 }

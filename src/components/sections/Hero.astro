@@ -16,6 +16,7 @@ interface Props {
 const { site, locale, t } = Astro.props;
 const [first, ...rest] = site.name.split(" ");
 const portrait = site.portraitImg;
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <section id="top" data-section="" class={styles.hero} aria-labelledby="hero-title">
@@ -23,7 +24,7 @@ const portrait = site.portraitImg;
 
   <h1 id="hero-title" class={styles.name}>
     {/* Un seul bloc de texte (pas deux <span> en display:block) : le navigateur le compte
-        comme un seul élément, le plus grand de l'écran → LCP peint dès le premier rendu. */}
+        comme un seul élément, le plus grand de l'écran : LCP peint dès le premier rendu. */}
     {first}
     <br />
     {rest.join(" ")}
@@ -55,6 +56,6 @@ const portrait = site.portraitImg;
   ) : null}
 
   <a href="#after-hero" class={`credits ${styles.scroll}`}>
-    {t.scroll} <span aria-hidden="true">↓</span>
+    {t.scroll} <Arrow dir="down" />
   </a>
 </section>

@@ -5,6 +5,7 @@ import styles from "./NotFoundView.module.css";
 /** 404 bilingue : une URL inconnue ne dit pas dans quelle langue on se trouve. */
 const fr = ui("fr");
 const en = ui("en");
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <div class={styles.wrap}>
@@ -17,7 +18,7 @@ const en = ui("en");
   </p>
   <p class={styles.actions}>
     <a href="/" class={styles.pill}>
-      ← {fr.notFoundBack}
+      <Arrow dir="left" /> {fr.notFoundBack}
     </a>
     <a href="/en" class={styles.pillGhost} lang="en">
       {en.notFoundBack}

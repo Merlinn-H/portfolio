@@ -147,16 +147,17 @@ p {
   }
 }
 
-/* Transitions de page lors d'un chargement complet (lien externe, rechargement). Les navigations internes, elles, sont douces : voir src/app/[lang]/template.tsx. */
+/* Transitions de page (View Transitions) : navigations internes via le routeur d'Astro, et chargements complets. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
   }
+  /* Coupe nette : l'ancienne page s'efface d'abord, la nouvelle entre ensuite (pas de double exposition). */
   ::view-transition-old(root) {
-    animation: vt-out var(--dur-2) var(--ease-in-out) both;
+    animation: vt-out var(--dur-1) var(--ease-in-out) both;
   }
   ::view-transition-new(root) {
-    animation: vt-in var(--dur-3) var(--ease-out) both;
+    animation: vt-in var(--dur-3) var(--ease-out) var(--dur-1) both;
   }
 }
 @keyframes vt-out {
@@ -176,4 +177,16 @@ p {
 html,
 body {
   overflow-x: clip;
+}
+
+/* Flèches (src/components/ui/Arrow.astro) */
+.arrow {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: -0.06em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
 }

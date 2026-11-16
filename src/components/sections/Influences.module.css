@@ -29,6 +29,10 @@
   scroll-padding-inline: var(--gutter);
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
+  /* Fondu sur le bord droit : signale que la bande continue. */
+  padding-right: var(--space-9);
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--space-8)), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--space-8)), transparent);
 }
 .film {
   scroll-snap-align: start;

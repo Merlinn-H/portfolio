@@ -51,3 +51,8 @@ Format : décision — raison — comment revenir en arrière.
 41. En dev, plus de cache du contenu : une modification dans `/keystatic` apparaît tout de suite (bug trouvé par le test CMS : un projet créé renvoyait 404 jusqu'au redémarrage). — `src/lib/content.ts`.
 42. Délégation : conversion des 18 composants React → Astro par un sous-agent Sonnet (worktree), relue et intégrée par Opus ; Opus a fait le socle (config, contenu, gabarit, nav, routes, OG, SEO, tests). — n/a.
 43. **Version Astro mise en ligne** (15/11, « go » de Hugo après la preview) : `main` = `astro` (fast-forward). — Hugo. — Vercel › Deployments › promouvoir le déploiement de a0eec04.
+
+## Session 4 (16/11) — « rendre le site meilleur »
+
+44. Demande ouverte de Hugo (« make the website better »). Audit de la version Astro en ligne : Lighthouse 99–100 / 100 / 100 / 100 sur 6 pages, donc rien à gagner côté scores. Améliorations retenues après revue visuelle (captures 375/768/1024/1440 + images des animations) : hero tablette (portrait à côté du nom, plus de vide), transition de page en coupe nette (plus de double exposition des titres), flèches vectorielles identiques partout, fondu de bord sur la bande d'affiches (signale le défilement), données structurées par projet (fil d'Ariane + Movie/Organization). — Choix les plus sûrs et vérifiables ; aucune modification de contenu. — `git revert` du commit.
+45. Non fait volontairement : vignettes YouTube des courts-métrages chargées depuis le navigateur du visiteur. Ce serait le plus gros gain visuel, mais je ne peux pas voir ces images d'ici (proxy) et cela ferait une requête vers YouTube avant le clic. — À décider par Hugo ; alternative : déposer une couverture par film dans /keystatic. — n/a.

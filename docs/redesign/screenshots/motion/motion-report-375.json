@@ -6,9 +6,9 @@
     "1300": false
   },
   "notes": [],
-  "firstShotActualMs": 0,
+  "firstShotActualMs": 1,
   "overlayVisibleAfterReload0ms": false,
-  "introOffAfterReload": true,
+  "introOffAfterReload": false,
   "overlayVisibleAfterReload300ms": false,
   "scrollSteps": 29,
   "hiddenAfterScroll": [],

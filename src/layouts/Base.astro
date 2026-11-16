@@ -15,9 +15,11 @@ interface Props {
   seo: Seo;
   /** Chemin sans préfixe de langue (ex. "/projets/postmeridian"), pour la bascule FR/EN. */
   path: string;
+  /** Données structurées propres à la page (en plus de la fiche « Person »). */
+  jsonLd?: Record<string, unknown>[];
 }
 
-const { locale, seo, path } = Astro.props;
+const { locale, seo, path, jsonLd = [] } = Astro.props;
 const site = await getSite();
 const nav = await getNavigation(locale);
 const t = ui(locale);
@@ -64,6 +66,9 @@ const person = {
     <Font cssVariable="--font-hanken" />
     <ClientRouter />
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
+    {jsonLd.map((d) => (
+      <script type="application/ld+json" set:html={JSON.stringify(d)} />
+    ))}
   </head>
   <body>
     <a href="#content" class={styles.skip}>

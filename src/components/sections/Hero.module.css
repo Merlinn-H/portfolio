@@ -90,13 +90,29 @@
   display: none;
 }
 
+/* Tablette : le portrait monte à côté du nom (plus de grand vide à gauche de l'image). */
 @media (min-width: 40rem) {
   .hero {
     grid-template-columns: repeat(6, 1fr);
   }
+  .role {
+    grid-row: 1;
+  }
+  .name {
+    grid-row: 2;
+  }
   .portrait {
     grid-column: 5 / -1;
+    grid-row: 2;
+    align-self: end;
+    margin-top: 0;
     aspect-ratio: 4 / 5;
+  }
+  .tagline {
+    grid-row: 3;
+  }
+  .quote {
+    grid-row: 4;
   }
 }
 

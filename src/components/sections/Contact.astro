@@ -9,6 +9,7 @@ interface Props {
   cta: string;
 }
 const { title, intro, email, socials, cta } = Astro.props;
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <div class={styles.wrap}>
@@ -24,7 +25,7 @@ const { title, intro, email, socials, cta } = Astro.props;
       {email.split("@")[0]}@<wbr />
       {email.split("@")[1]}
       <span aria-hidden="true" class={styles.arrow}>
-        ↗
+        <Arrow dir="up-right" />
       </span>
     </a>
   ) : null}
@@ -34,7 +35,7 @@ const { title, intro, email, socials, cta } = Astro.props;
       .map((s) => (
         <li>
           <a href={s.url!} target="_blank" rel="noopener noreferrer" class={styles.pill}>
-            {s.label} <span aria-hidden="true">↗</span>
+            {s.label} <Arrow dir="up-right" />
           </a>
         </li>
       ))}

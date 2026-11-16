@@ -1,9 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
 import ProjectView from "@/views/ProjectView.astro";
-import { getProject, pick } from "@/lib/content";
+import { getProject, getSite, pick } from "@/lib/content";
 import { pageSeo } from "@/lib/seo";
-import type { Locale } from "@/lib/i18n";
+import { href, ui, type Locale } from "@/lib/i18n";
 
 interface Props {
   locale: Locale;
@@ -20,8 +20,42 @@ const seo = await pageSeo({
   hidden: p?.status === "hidden",
   ogImage: `/og/${locale}/projets/${slug}.png`,
 });
+
+// Données structurées : fil d'Ariane + nature du projet (film, organisation), pour les moteurs de recherche.
+const site = await getSite();
+const base = (site.url || "https://hugopezzo.fr").replace(/\/$/, "");
+const abs = (p2: string) => `${base}${href(locale, p2) === "/" ? "" : href(locale, p2)}`;
+const jsonLd: Record<string, unknown>[] = p
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: site.name, item: abs("/") || base },
+          { "@type": "ListItem", position: 2, name: ui(locale).allProjects, item: abs("/projets") },
+          { "@type": "ListItem", position: 3, name: p.title, item: abs(path) },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": p.category === "short" ? "Movie" : p.category === "other" ? "CreativeWork" : "Organization",
+        name: p.title,
+        description: pick(p.summary, locale),
+        // Pour une société, l'URL est son propre site (si renseigné), pas cette page.
+        ...(p.category === "short" || p.category === "other"
+          ? { url: abs(path) }
+          : p.links[0]?.url
+            ? { url: p.links[0].url }
+            : {}),
+        ...(p.category === "short" && p.year ? { dateCreated: p.year } : {}),
+        ...(p.category === "short"
+          ? { contributor: { "@type": "Person", name: site.name, url: base } }
+          : { member: { "@type": "Person", name: site.name, url: base } }),
+      },
+    ]
+  : [];
 ---
 
-<Base locale={locale} seo={seo} path={path}>
+<Base locale={locale} seo={seo} path={path} jsonLd={jsonLd}>
   <ProjectView locale={locale} slug={slug} />
 </Base>
