@@ -71,3 +71,20 @@
     font-size: var(--step-4);
   }
 }
+
+.emailRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  max-width: 100%;
+}
+.pillSolid {
+  background: var(--fg);
+  color: var(--bg);
+  box-shadow: none;
+}
+.pillSolid:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}

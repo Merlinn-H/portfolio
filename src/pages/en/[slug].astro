@@ -1,12 +1,16 @@
 ---
 import PageRoute from "@/routes/PageRoute.astro";
-import { getPages } from "@/lib/content";
+import CvRoute from "@/routes/CvRoute.astro";
+import { getPages, getSite } from "@/lib/content";
 
-// Pages libres (ex. Personal brand). Masquées en production → pas de page → 404.
+// Pages libres (ex. Personal brand) : masquées en production = pas de page = 404.
+// + la page CV, si « Afficher le CV » est coché dans /keystatic › Réglages du site.
 export async function getStaticPaths() {
-  return (await getPages()).map((p) => ({ params: { slug: p.slug } }));
+  const pages = (await getPages()).map((p) => ({ params: { slug: p.slug } }));
+  const cv = (await getSite()).cvEnabled ? [{ params: { slug: "cv" } }] : [];
+  return [...pages.filter((p) => p.params.slug !== "cv"), ...cv];
 }
 const { slug } = Astro.params;
 ---
 
-<PageRoute locale="en" slug={slug!} />
+{slug === "cv" ? <CvRoute locale="en" /> : <PageRoute locale="en" slug={slug!} />}

@@ -12,6 +12,7 @@ export const GET: APIRoute = async () => {
     "/projets",
     ...published(await getProjects()).map((p) => `/projets/${p.slug}`),
     ...published(await getPages()).map((p) => `/${p.slug}`),
+    ...(site.cvEnabled ? ["/cv"] : []),
   ];
   const urls = paths
     .map((path) => {

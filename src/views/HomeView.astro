@@ -9,7 +9,7 @@ import {
   getSkills,
   pick,
 } from "@/lib/content";
-import { ui, type Locale } from "@/lib/i18n";
+import { href, ui, type Locale } from "@/lib/i18n";
 import Section from "@/components/ui/Section.astro";
 import SectionHead from "@/components/ui/SectionHead.astro";
 import Hero from "@/components/sections/Hero.astro";
@@ -83,7 +83,12 @@ const numbered = sections
   <>
     {s.type === "hero" && (
       <>
-        <Hero site={site} locale={locale} t={t} />
+        <Hero
+          site={site}
+          locale={locale}
+          t={t}
+          hasProjects={sections.some((x) => x.type === "projects") && projects.length > 0}
+        />
         <span id="after-hero" />
       </>
     )}
@@ -120,7 +125,16 @@ const numbered = sections
     {s.type === "contact" && (
       <Section id="contact" labelledBy={s.title ? "contact-title" : undefined} label={s.eyebrow} space="l">
         <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} hiddenLabel={s.hiddenLabel} />
-        <Contact title={s.title} intro={s.intro} email={site.email} socials={site.socials} cta={t.contactCta} />
+        <Contact
+          title={s.title}
+          intro={s.intro}
+          email={site.email}
+          socials={site.socials}
+          cta={t.contactCta}
+          t={t}
+          booking={site.bookingUrl ? { url: site.bookingUrl, label: pick(site.bookingLabel, locale) } : null}
+          cvHref={site.cvEnabled ? href(locale, "/cv") : null}
+        />
       </Section>
     )}
   </>

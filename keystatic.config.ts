@@ -111,6 +111,16 @@ export default config({
         introLogo: image("Logo de l'ident", "site", "PNG blanc sur fond transparent (il est recoloré en CSS)."),
         introLogoAlt: fields.text({ label: "Nom du logo de l'ident (ex. 489Productions)" }),
         email: fields.text({ label: "E-mail de contact" }),
+        bookingUrl: fields.url({
+          label: "Lien de prise de rendez-vous (optionnel)",
+          description: "Ex. Calendly, Cal.com. Vide = pas de bouton.",
+        }),
+        bookingLabel: loc("Texte du bouton de rendez-vous"),
+        cvEnabled: fields.checkbox({
+          label: "Afficher le CV",
+          description: "Page /cv générée à partir du parcours, des compétences et des projets, avec bouton dans la section Contact.",
+          defaultValue: true,
+        }),
         socials: fields.array(
           fields.object({
             label: fields.text({ label: "Nom (LinkedIn, Instagram…)" }),

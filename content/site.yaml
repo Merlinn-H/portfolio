@@ -2,7 +2,7 @@ name: Hugo Pezzo
 url: https://hugopezzo.fr
 role:
   fr: Producteur Audiovisuel & Chargé de Projets Culturels
-  en: Film Producer & Cultural Project Manager
+  en: Audiovisual Producer & Cultural Project Manager
 tagline:
   fr: Chaque projet est une histoire. Je suis là pour la raconter.
   en: Every project is a story. I'm here to tell it.
@@ -18,6 +18,7 @@ introEnabled: true
 introLogo: /src/assets/images/site/introLogo.png
 introLogoAlt: 489Productions
 email: hugopezzo@outlook.com
+cvEnabled: true
 socials:
   - label: LinkedIn
     url: https://linkedin.com/in/hugo-pezzo

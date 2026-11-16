@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 /** Accessibilité : règles WCAG 2.1 A/AA (axe) sur les pages types, en desktop et en mobile. */
-for (const path of ["/", "/en", "/projets", "/projets/postmeridian", "/projets/pineapple-pie", "/nope"]) {
+for (const path of ["/", "/en", "/projets", "/projets/postmeridian", "/projets/pineapple-pie", "/cv", "/nope"]) {
   test(`axe : aucune violation sur ${path}`, async ({ page }) => {
     await page.route(/i\.ytimg\.com/, (r) => r.abort());
     await page.goto(path);

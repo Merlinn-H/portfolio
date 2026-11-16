@@ -175,3 +175,29 @@ test("aucun texte ne se chevauche dans la liste des projets, du mobile au très 
     }
   }
 });
+
+test("contact : copier l'adresse, lien CV, PDF téléchargeable", async ({ page, context, isMobile }) => {
+  test.skip(isMobile, "desktop");
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  await page.goto("/#contact");
+  await page.getByRole("button", { name: "Copier l'adresse" }).click();
+  await expect(page.getByRole("button", { name: "Adresse copiée" })).toBeVisible();
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toContain("@");
+  await page.getByRole("link", { name: "Voir le CV" }).click();
+  await expect(page).toHaveURL(/\/cv$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Hugo Pezzo");
+  const href = await page.getByRole("link", { name: /Télécharger le CV/ }).getAttribute("href");
+  const res = await page.request.get(href!);
+  expect(res.status()).toBe(200);
+  expect(res.headers()["content-type"]).toContain("pdf");
+  expect((await page.request.get("/en/cv")).status()).toBe(200);
+});
+
+test("hero : les boutons mènent aux projets et au contact", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("link", { name: "Voir mes projets" }).click();
+  await expect(page.locator("#projects")).toBeInViewport();
+  await page.goto("/");
+  await page.locator("#top").getByRole("link", { name: "Me contacter" }).click();
+  await expect(page.locator("#contact")).toBeInViewport();
+});

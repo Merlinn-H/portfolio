@@ -22,6 +22,7 @@ export default [
         document: "readonly",
         setTimeout: "readonly",
         URL: "readonly",
+        fetch: "readonly",
         getComputedStyle: "readonly",
       },
     },

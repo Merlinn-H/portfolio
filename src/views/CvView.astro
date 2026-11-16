@@ -1,0 +1,129 @@
+---
+import fs from "node:fs";
+import { getExperiences, getProjects, getRenderableSections, getSite, getSkills, pick } from "@/lib/content";
+import { ui, type Locale } from "@/lib/i18n";
+import Arrow from "@/components/ui/Arrow.astro";
+import styles from "./CvView.module.css";
+
+/**
+ * CV généré à partir du contenu du site (parcours, compétences, projets) : toujours à jour.
+ * Pensé pour l'écran et pour l'impression (A4). Le PDF téléchargeable est produit par `npm run cv`.
+ */
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = ui(locale);
+const [site, sections, experiences, skills, projects] = await Promise.all([
+  getSite(),
+  getRenderableSections(),
+  getExperiences(),
+  getSkills(),
+  getProjects(),
+]);
+const section = (type: string) => sections.find((s) => s.type === type);
+const published = <T extends { status: string }>(xs: readonly T[]) => xs.filter((x) => x.status === "published");
+const pdf = `/cv/hugo-pezzo-cv-${locale}.pdf`;
+const hasPdf = fs.existsSync(`public${pdf}`);
+const siteUrl = (site.url || "https://hugopezzo.fr").replace(/^https?:\/\//, "").replace(/\/$/, "");
+---
+
+<article class={styles.sheet}>
+  <p class={styles.tools}>
+    {hasPdf ? (
+      <a class={styles.pill} href={pdf} download data-astro-reload>
+        {t.cvDownload} <Arrow dir="down" />
+      </a>
+    ) : (
+      <button type="button" class={styles.pill} onclick="window.print()">
+        {t.cvPrint}
+      </button>
+    )}
+  </p>
+
+  <header class={styles.head}>
+    <h1 class={styles.name}>{site.name}</h1>
+    <p class={`credits ${styles.role}`}>{pick(site.role, locale)}</p>
+    <ul class={styles.contact} aria-label={t.cvContact}>
+      {site.email && (
+        <li>
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </li>
+      )}
+      <li>
+        <a href={site.url || "/"}>{siteUrl}</a>
+      </li>
+      {site.socials
+        .filter((s) => s.url)
+        .map((s) => (
+          <li>
+            <a href={s.url!}>{s.label}</a>
+          </li>
+        ))}
+    </ul>
+  </header>
+
+  {pick(section("experience")?.intro, locale) && (
+    <section class={styles.block} aria-labelledby="cv-profile">
+      <h2 id="cv-profile" class={`credits ${styles.h}`}>
+        {t.cvProfile}
+      </h2>
+      <p class={styles.lead}>{pick(section("experience")?.intro, locale)}</p>
+    </section>
+  )}
+
+  <section class={styles.block} aria-labelledby="cv-exp">
+    <h2 id="cv-exp" class={`credits ${styles.h}`}>
+      {pick(section("experience")?.title, locale) || "Expériences"}
+    </h2>
+    <ol class={styles.list}>
+      {published(experiences).map((x) => (
+        <li class={styles.item}>
+          <p class={styles.when}>{pick(x.period, locale)}</p>
+          <div>
+            <h3 class={styles.what}>{pick(x.title, locale)}</h3>
+            <p class={styles.where}>
+              {x.company}
+              {x.location ? ` — ${x.location}` : ""}
+            </p>
+            {pick(x.description, locale) && <p class={styles.desc}>{pick(x.description, locale)}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class={styles.block} aria-labelledby="cv-projects">
+    <h2 id="cv-projects" class={`credits ${styles.h}`}>
+      {pick(section("projects")?.title, locale) || t.allProjects}
+    </h2>
+    <ol class={styles.list}>
+      {published(projects).map((p) => (
+        <li class={styles.item}>
+          <p class={styles.when}>{p.year}</p>
+          <div>
+            <h3 class={styles.what}>
+              {p.category === "short" ? <i>{p.title}</i> : p.title}
+              <span class={styles.kind}> · {pick(p.kicker, locale)}</span>
+            </h3>
+            {pick(p.role, locale) && <p class={styles.where}>{pick(p.role, locale)}</p>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class={styles.block} aria-labelledby="cv-skills">
+    <h2 id="cv-skills" class={`credits ${styles.h}`}>
+      {pick(section("skills")?.title, locale) || "Compétences"}
+    </h2>
+    <dl class={styles.skills}>
+      {skills.map((c) => (
+        <div>
+          <dt>{pick(c.name, locale)}</dt>
+          <dd>{c.items.map((s) => pick(s, locale)).join(" · ")}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+</article>

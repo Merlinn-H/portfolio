@@ -12,8 +12,10 @@ interface Props {
   site: Site;
   locale: Locale;
   t: Dict;
+  /** La section Projets est-elle affichée ? (sinon pas de bouton vers elle) */
+  hasProjects?: boolean;
 }
-const { site, locale, t } = Astro.props;
+const { site, locale, t, hasProjects = true } = Astro.props;
 const [first, ...rest] = site.name.split(" ");
 const portrait = site.portraitImg;
 import Arrow from "@/components/ui/Arrow.astro";
@@ -45,7 +47,19 @@ import Arrow from "@/components/ui/Arrow.astro";
     </div>
   ) : null}
 
-  <p class={styles.tagline}>{pick(site.tagline, locale)}</p>
+  <div class={styles.tagline}>
+    <p>{pick(site.tagline, locale)}</p>
+    <p class={styles.actions}>
+      {hasProjects && (
+        <a href="#projects" class={styles.primary}>
+          {t.ctaProjects}
+        </a>
+      )}
+      <a href="#contact" class={styles.ghost}>
+        {t.ctaContact}
+      </a>
+    </p>
+  </div>
 
   {site.quote?.text ? (
     <figure class={styles.quote}>

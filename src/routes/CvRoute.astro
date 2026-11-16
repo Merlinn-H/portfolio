@@ -1,0 +1,16 @@
+---
+import Base from "@/layouts/Base.astro";
+import CvView from "@/views/CvView.astro";
+import { pageSeo } from "@/lib/seo";
+import { ui, type Locale } from "@/lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const seo = await pageSeo({ locale, path: "/cv", title: ui(locale).cv });
+---
+
+<Base locale={locale} seo={seo} path="/cv">
+  <CvView locale={locale} />
+</Base>

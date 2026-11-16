@@ -11,7 +11,8 @@
     "test:e2e": "playwright test --trace off",
     "test:cms": "node tests/cms-flow.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "cv": "node scripts/make-cv.cjs"
   },
   "dependencies": {
     "@astrojs/react": "^7.1.9",

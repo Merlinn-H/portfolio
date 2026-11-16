@@ -1,4 +1,6 @@
 ---
+import type { Dict } from "@/lib/i18n";
+import Arrow from "@/components/ui/Arrow.astro";
 import styles from "./Contact.module.css";
 
 interface Props {
@@ -7,9 +9,13 @@ interface Props {
   email?: string;
   socials: readonly { label: string; url: string | null }[];
   cta: string;
+  t: Dict;
+  /** Lien de prise de rendez-vous (optionnel, réglé dans /keystatic › Réglages du site). */
+  booking?: { url: string; label: string } | null;
+  /** Lien vers la page CV (si activée). */
+  cvHref?: string | null;
 }
-const { title, intro, email, socials, cta } = Astro.props;
-import Arrow from "@/components/ui/Arrow.astro";
+const { title, intro, email, socials, cta, t, booking, cvHref } = Astro.props;
 ---
 
 <div class={styles.wrap}>
@@ -20,16 +26,36 @@ import Arrow from "@/components/ui/Arrow.astro";
   ) : null}
   {intro ? <p class={styles.intro}>{intro}</p> : null}
   {email ? (
-    <a class={styles.email} href={`mailto:${email}`}>
-      <span class="visually-hidden">{cta} : </span>
-      {email.split("@")[0]}@<wbr />
-      {email.split("@")[1]}
-      <span aria-hidden="true" class={styles.arrow}>
-        <Arrow dir="up-right" />
-      </span>
-    </a>
+    <p class={styles.emailRow}>
+      <a class={styles.email} href={`mailto:${email}`}>
+        <span class="visually-hidden">{cta} : </span>
+        {email.split("@")[0]}@<wbr />
+        {email.split("@")[1]}
+        <span aria-hidden="true" class={styles.arrow}>
+          <Arrow dir="up-right" />
+        </span>
+      </a>
+      <button type="button" class={styles.pill} data-copy={email} data-copied={t.copied}>
+        <span data-copy-label>{t.copyEmail}</span>
+      </button>
+      <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
+    </p>
   ) : null}
   <ul class={styles.socials}>
+    {booking ? (
+      <li>
+        <a href={booking.url} target="_blank" rel="noopener noreferrer" class={`${styles.pill} ${styles.pillSolid}`}>
+          {booking.label || booking.url} <Arrow dir="up-right" />
+        </a>
+      </li>
+    ) : null}
+    {cvHref ? (
+      <li>
+        <a href={cvHref} class={styles.pill}>
+          {t.cvView} <Arrow />
+        </a>
+      </li>
+    ) : null}
     {socials
       .filter((s) => s.url)
       .map((s) => (
@@ -41,3 +67,26 @@ import Arrow from "@/components/ui/Arrow.astro";
       ))}
   </ul>
 </div>
+
+<script>
+  // Copie de l'adresse e-mail (délégation : fonctionne après les navigations sans rechargement).
+  document.addEventListener("click", async (e) => {
+    const btn = (e.target as Element | null)?.closest<HTMLButtonElement>("button[data-copy]");
+    if (!btn) return;
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy ?? "");
+    } catch {
+      return; // presse-papiers indisponible : le lien mailto reste là
+    }
+    const label = btn.querySelector<HTMLElement>("[data-copy-label]");
+    const status = btn.parentElement?.querySelector<HTMLElement>("[data-copy-status]");
+    if (!label) return;
+    const original = label.textContent;
+    label.textContent = btn.dataset.copied ?? "";
+    if (status) status.textContent = btn.dataset.copied ?? "";
+    setTimeout(() => {
+      label.textContent = original;
+      if (status) status.textContent = "";
+    }, 2000);
+  });
+</script>

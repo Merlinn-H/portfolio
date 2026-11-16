@@ -1,0 +1,206 @@
+/* CV : une feuille claire (papier) posée sur le fond sombre ; A4 à l'impression. */
+.sheet {
+  --fg: var(--paper-ink);
+  --fg-muted: var(--paper-muted);
+  --fg-subtle: var(--paper-subtle);
+  --line: rgb(21 18 14 / 0.16);
+  --amber: var(--paper-amber);
+  --accent: var(--paper-accent);
+  max-width: 52rem;
+  margin: var(--space-9) auto var(--space-10);
+  padding: var(--space-7) var(--gutter) var(--space-8);
+  background: var(--paper);
+  color: var(--fg);
+  font-size: var(--step--1);
+  line-height: 1.55;
+}
+.tools {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--space-5);
+}
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  padding-inline: var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--paper-ink);
+  color: var(--paper);
+  font-family: var(--font-credits);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-credits);
+  text-transform: uppercase;
+  transition: background-color var(--dur-1);
+}
+.pill:hover {
+  background: var(--paper-accent);
+}
+.head {
+  padding-bottom: var(--space-5);
+  border-bottom: 2px solid var(--fg);
+}
+.name {
+  font-size: var(--step-4);
+  line-height: 1;
+}
+.role {
+  margin-top: var(--space-3);
+  color: var(--fg-muted);
+}
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-5);
+  margin-top: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+.contact a {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 0.2em;
+}
+.block {
+  padding-top: var(--space-6);
+}
+.h {
+  margin-bottom: var(--space-4);
+  font-size: var(--step--1);
+  color: var(--amber);
+}
+.lead {
+  max-width: 44rem;
+  font-size: var(--step-0);
+}
+.list {
+  display: grid;
+  gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+.item {
+  display: grid;
+  gap: var(--space-1);
+  break-inside: avoid;
+}
+.when {
+  font-weight: 600;
+  color: var(--fg-muted);
+  font-variant-numeric: tabular-nums;
+}
+.what {
+  font-size: var(--step-1);
+  line-height: 1.15;
+}
+.kind {
+  font-family: var(--font-text);
+  font-size: var(--step--1);
+  color: var(--fg-subtle);
+}
+.where {
+  font-weight: 600;
+}
+.desc {
+  margin-top: var(--space-1);
+  color: var(--fg-muted);
+}
+.skills {
+  display: grid;
+  gap: var(--space-3);
+}
+.skills dt {
+  font-weight: 600;
+}
+.skills dd {
+  color: var(--fg-muted);
+}
+@media (min-width: 40rem) {
+  .sheet {
+    padding-inline: var(--space-8);
+  }
+  .item {
+    grid-template-columns: 11rem 1fr;
+    column-gap: var(--space-5);
+  }
+  .skills {
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--space-6);
+  }
+}
+
+/* Impression / PDF : la feuille seule, sur une page A4, sans navigation ni fond sombre. */
+@media print {
+  @page {
+    size: A4;
+    margin: 11mm 14mm;
+  }
+  :global(html),
+  :global(body) {
+    background: #fff !important;
+  }
+  :global(body)::after,
+  :global([data-site-header]),
+  :global(dialog[data-menu]),
+  :global(footer),
+  :global([data-intro-overlay]),
+  :global(a[href="#content"]),
+  .tools {
+    display: none !important;
+  }
+  .sheet {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-size: 8.6pt;
+    line-height: 1.42;
+  }
+  .head {
+    padding-bottom: 8pt;
+  }
+  .name {
+    font-size: 24pt;
+  }
+  .role {
+    margin-top: 4pt;
+    font-size: 9.5pt;
+  }
+  .contact {
+    margin-top: 6pt;
+  }
+  .h {
+    margin-bottom: 6pt;
+    font-size: 8.6pt;
+  }
+  .what {
+    font-size: 11pt;
+  }
+  .kind {
+    font-size: 8.6pt;
+  }
+  .lead {
+    max-width: none;
+    font-size: 9pt;
+  }
+  .block {
+    padding-top: 11pt;
+  }
+  .list {
+    gap: 6pt;
+  }
+  .item {
+    grid-template-columns: 34mm 1fr;
+    column-gap: 6mm;
+    gap: 0 6mm;
+  }
+  .desc {
+    margin-top: 1pt;
+  }
+  .skills {
+    grid-template-columns: 1fr 1fr;
+    gap: 5pt 8mm;
+  }
+}
