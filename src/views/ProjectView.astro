@@ -4,6 +4,7 @@ import { getProject, getProjects, getSite, pick } from "@/lib/content";
 import { href, ui, type Locale } from "@/lib/i18n";
 import HiddenBanner from "@/components/ui/HiddenBanner.astro";
 import VideoPlayer from "@/components/project/VideoPlayer.astro";
+import Gallery from "@/components/project/Gallery.astro";
 import styles from "./ProjectView.module.css";
 
 interface Props {
@@ -108,6 +109,12 @@ import Arrow from "@/components/ui/Arrow.astro";
         <p class={i === 0 ? styles.lead : undefined}>{p}</p>
       ))}
     </div>
+
+    <Gallery
+      images={project.galleryImgs}
+      locale={locale}
+      labels={{ open: t.galleryOpen, close: t.close, prev: t.galleryPrev, next: t.galleryNext, gallery: t.gallery }}
+    />
 
     {project.highlights.length > 0 ? (
       <ol class={styles.highlights}>

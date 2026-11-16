@@ -1,0 +1,124 @@
+.gallery {
+  margin-top: var(--space-9);
+}
+/* Planche : colonnes de hauteurs libres, comme une planche-contact */
+.grid {
+  columns: 1;
+  column-gap: var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+.grid li {
+  break-inside: avoid;
+  margin-bottom: var(--space-4);
+}
+.thumb {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-raised);
+  cursor: zoom-in;
+}
+.thumb img {
+  width: 100%;
+  height: auto;
+  transition:
+    transform var(--dur-3) var(--ease-out),
+    filter var(--dur-3) var(--ease-out);
+  filter: brightness(0.92);
+}
+.thumb:hover img,
+.thumb:focus-visible img {
+  transform: scale(1.03);
+  filter: none;
+}
+@media (min-width: 40rem) {
+  .grid {
+    columns: 2;
+  }
+}
+@media (min-width: 64rem) {
+  .grid {
+    columns: 3;
+  }
+}
+
+/* Visionneuse plein écran */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: var(--space-8) var(--space-4) var(--space-6);
+  border: 0;
+  background: rgb(6 5 5 / 0.96);
+  color: var(--fg);
+}
+.lightbox[open] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-3);
+  animation: lightbox-in var(--dur-2) var(--ease-out);
+}
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+}
+.lightbox::backdrop {
+  background: transparent;
+}
+.figure {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+}
+.figure img {
+  max-width: 100%;
+  max-height: calc(100dvh - var(--space-11));
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  align-self: center;
+}
+.figure figcaption {
+  font-size: var(--step--1);
+  color: var(--fg-muted);
+  text-align: center;
+}
+.close,
+.nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 0 0 var(--hairline) var(--line-strong);
+  transition:
+    background-color var(--dur-1),
+    color var(--dur-1);
+}
+.close:hover,
+.nav:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+.close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  padding-inline: var(--space-5);
+  font-family: var(--font-credits);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: var(--tracking-credits);
+  text-transform: uppercase;
+}

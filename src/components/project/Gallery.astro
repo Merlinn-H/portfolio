@@ -1,0 +1,112 @@
+---
+import { Picture, getImage } from "astro:assets";
+import type { Img, Localized } from "@/lib/content";
+import { pick } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import styles from "./Gallery.module.css";
+
+/**
+ * Galerie d'un projet : planche d'images ; un clic ouvre l'image en grand (dialog natif :
+ * Échap pour fermer, flèches pour passer à la suivante, focus rendu au bon endroit).
+ */
+interface Props {
+  images: { img: Img | null; alt: Localized }[];
+  locale: Locale;
+  labels: { open: string; close: string; prev: string; next: string; gallery: string };
+}
+const { images, locale, labels } = Astro.props;
+const items = await Promise.all(
+  images
+    .filter((g): g is { img: Img; alt: Localized } => Boolean(g.img))
+    .map(async (g) => ({
+      ...g,
+      full: await getImage({ src: g.img, width: Math.min(g.img.width, 2000), format: "webp" }),
+    })),
+);
+---
+
+{items.length > 0 && (
+  <section class={styles.gallery} aria-label={labels.gallery} data-gallery>
+    <ul class={styles.grid}>
+      {items.map((g, i) => (
+        <li class="reveal">
+          <button
+            type="button"
+            class={`viewfinder ${styles.thumb}`}
+            data-gallery-open={i}
+            data-full={g.full.src}
+            data-alt={pick(g.alt, locale)}
+            aria-label={`${labels.open} : ${pick(g.alt, locale) || `image ${i + 1}`}`}
+          >
+            <Picture
+              src={g.img}
+              alt={pick(g.alt, locale)}
+              formats={["avif", "webp"]}
+              widths={[480, 800, 1200]}
+              sizes="(min-width: 64rem) 30vw, (min-width: 40rem) 46vw, 92vw"
+            />
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    <dialog class={styles.lightbox} aria-label={labels.gallery} data-gallery-dialog>
+      <button type="button" class={styles.close} data-gallery-close>
+        {labels.close}
+      </button>
+      <button type="button" class={`${styles.nav} ${styles.prev}`} data-gallery-step="-1" aria-label={labels.prev}>
+        ←
+      </button>
+      <figure class={styles.figure}>
+        <img data-gallery-img alt="" />
+        <figcaption data-gallery-caption></figcaption>
+      </figure>
+      <button type="button" class={`${styles.nav} ${styles.next}`} data-gallery-step="1" aria-label={labels.next}>
+        →
+      </button>
+    </dialog>
+  </section>
+)}
+
+<script>
+  // Délégation sur document : fonctionne après les navigations sans rechargement.
+  let index = 0;
+  const parts = (from: Element) => {
+    const root = from.closest("[data-gallery]");
+    if (!root) return null;
+    return {
+      dialog: root.querySelector<HTMLDialogElement>("[data-gallery-dialog]")!,
+      img: root.querySelector<HTMLImageElement>("[data-gallery-img]")!,
+      caption: root.querySelector<HTMLElement>("[data-gallery-caption]")!,
+      thumbs: Array.from(root.querySelectorAll<HTMLButtonElement>("[data-gallery-open]")),
+    };
+  };
+  const show = (p: NonNullable<ReturnType<typeof parts>>, i: number) => {
+    index = (i + p.thumbs.length) % p.thumbs.length;
+    const t = p.thumbs[index];
+    p.img.src = t.dataset.full ?? "";
+    p.img.alt = t.dataset.alt ?? "";
+    p.caption.textContent = `${index + 1} / ${p.thumbs.length}${t.dataset.alt ? ` — ${t.dataset.alt}` : ""}`;
+  };
+  document.addEventListener("click", (e) => {
+    const target = e.target as Element;
+    const open = target.closest<HTMLElement>("[data-gallery-open]");
+    const step = target.closest<HTMLElement>("[data-gallery-step]");
+    const p = parts(target);
+    if (!p) return;
+    if (open) {
+      show(p, Number(open.dataset.galleryOpen));
+      p.dialog.showModal();
+    } else if (step) {
+      show(p, index + Number(step.dataset.galleryStep));
+    } else if (target.closest("[data-gallery-close]") || target === p.dialog) {
+      p.dialog.close();
+    }
+  });
+  document.addEventListener("keydown", (e) => {
+    const dialog = document.querySelector<HTMLDialogElement>("[data-gallery-dialog][open]");
+    if (!dialog || (e.key !== "ArrowRight" && e.key !== "ArrowLeft")) return;
+    const p = parts(dialog);
+    if (p) show(p, index + (e.key === "ArrowRight" ? 1 : -1));
+  });
+</script>

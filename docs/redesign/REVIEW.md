@@ -3,6 +3,37 @@
 > La version Next.js (sessions 1 et 2) est en ligne sur `main`. La version Astro (session 3) est sur la branche `astro` : § 00.
 > Journal : [PROGRESS.md](PROGRESS.md) · Décisions : [DECISIONS.md](DECISIONS.md) · Audit : [AUDIT.md](AUDIT.md) · Direction artistique : [DESIGN.md](DESIGN.md) · Incohérences : [INCOHERENCES.md](INCOHERENCES.md)
 
+## 000. Session 6 (16/11) — plan d'amélioration, points 2 à 6
+
+> Tout est sur la branche `astro`. **Rien de cette session n'est en ligne** tant que tu n'as pas dit « push » (la correction du chevauchement des titres attend aussi).
+
+**Fait**
+
+- **Message (2)** : deux boutons dans le hero (« Voir mes projets », « Me contacter ») ; anglais relu et corrigé (tournures, pas les faits) ; harmonisations : « Audiovisual Producer » comme en français, dates écrites en entier, « Head of Production », « Le Syndicat du crime », 489Productions « Directing… » pour « Réalisation… ».
+- **Contact (3)** : bouton « Copier l'adresse » ; page **CV** (`/cv`, `/en/cv`) générée à partir du parcours, des projets et des compétences, avec **PDF d'une page** téléchargeable (FR et EN) ; champ optionnel « Lien de prise de rendez-vous » dans le back-office (vide = pas de bouton).
+- **Autonomie (4)** : champs prêts dans /keystatic › Réglages du site pour le code Google Search Console et la mesure d'audience Vercel (désactivée par défaut).
+- **Design (5)** : **galerie** sur les pages projet (le champ existait mais n'était affiché nulle part) avec visionneuse plein écran (flèches, Échap) ; **couverture** affichée dans la liste des projets et utilisée en fond de l'**image de partage** quand elle est renseignée ; icône d'écran d'accueil et manifeste pour mobile.
+- **Fiabilité (6)** : tests automatiques sur GitHub à chaque modification (`.github/workflows/ci.yml`) ; contrôle d'accessibilité automatisé (axe, WCAG 2.1 AA) sur 7 pages + clavier + menu ; 48 tests au total. Un défaut trouvé et corrigé : les liens « FR / EN » s'annonçaient « Français / English » aux lecteurs d'écran sans contenir le texte visible.
+
+**Ce qui dépend de toi**
+
+1. **Accroche** : je n'ai pas réécrit « Chaque projet est une histoire… » — il me faut ce que tu cherches (missions, poste, collaborations) et pour qui. Elle se modifie dans /keystatic › Réglages du site.
+2. **« Fondateur » ou « co-fondateur »** de POSTMERIDIAN : non tranché, texte inchangé.
+3. **CV** : relis `/cv` et le PDF. Pour le masquer : décocher « Afficher le CV ». Après une modification du parcours, régénérer le PDF : `npm run build && npm run cv`, puis commit.
+4. **Instagram et autres réseaux** : à ajouter dans /keystatic › Réglages du site › Réseaux. **Rendez-vous** : coller ton lien Calendly/Cal.com au même endroit.
+5. **Adresse e-mail à ton nom de domaine** : à créer chez ton hébergeur de domaine, puis la mettre dans les réglages.
+6. **Back-office en ligne** : étapes au § 00 (15 minutes, création d'une application GitHub).
+7. **Mesure d'audience** : activer Web Analytics dans Vercel, puis choisir « Vercel » dans les réglages du site. **Search Console** : déclarer `hugopezzo.fr`, choisir la méthode « Balise HTML », coller le code dans les réglages.
+
+**Non fait, et pourquoi**
+
+- **Formulaire de contact** : il faut un service d'envoi d'e-mails (compte + clé), que je ne crée pas sans toi. Le bouton de copie et le lien de rendez-vous couvrent l'essentiel.
+- **Essais sur iPhone / Safari / Firefox** : seul Chromium est disponible dans ma session. À faire à la main sur tes appareils.
+- **Section Influences** : laissée telle quelle (pas de demande précise, et elle fonctionne).
+- **Suppression des anciennes branches / tag de retour arrière** : je n'ai pas supprimé de branche sans ton accord ; le tag reste bloqué par le proxy.
+
+**Mesures (Lighthouse mobile, local)** : performance 99, accessibilité 100, SEO 100. Temps d'affichage sous connexion ralentie : 0,9 s. Temps simulé (PageSpeed) : environ 1,95 s — il était à 1,66 s avant le changement de polices de la session 5 (trois familles au lieu de deux).
+
 ## 00. Session 3 — passage à Astro (branche `astro`)
 
 **Ce qui change pour toi : rien de visible.** Même design, mêmes adresses, même back-office, même bascule FR/EN sans rechargement. Ce qui change, c'est le moteur : le site n'embarque plus React côté visiteur.

@@ -15,5 +15,6 @@ export const GET: APIRoute = async ({ params }) => {
     eyebrow: p ? pick(p.kicker, locale) : site.name,
     title: p?.title ?? site.name,
     footer: [site.name, p?.year].filter(Boolean).join(" — "),
+    image: p?.cover,
   });
 };

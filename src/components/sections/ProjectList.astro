@@ -39,6 +39,17 @@ import { Image } from "astro:assets";
             </span>
             <H class={styles.featureTitle}>{p.title}</H>
             <span class={styles.featureSide}>
+              {p.coverImg ? (
+                <span class={`viewfinder ${styles.featureCover}`}>
+                  <Image
+                    src={p.coverImg}
+                    alt=""
+                    widths={[320, 480, 640]}
+                    sizes="(min-width: 64rem) 22vw, 92vw"
+                    class={styles.featureImg}
+                  />
+                </span>
+              ) : null}
               {pick(p.role, locale) ? <span class={styles.role}>{pick(p.role, locale)}</span> : null}
               <span class={styles.summary}>{pick(p.summary, locale)}</span>
             </span>

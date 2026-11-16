@@ -118,7 +118,8 @@ export default config({
         bookingLabel: loc("Texte du bouton de rendez-vous"),
         cvEnabled: fields.checkbox({
           label: "Afficher le CV",
-          description: "Page /cv générée à partir du parcours, des compétences et des projets, avec bouton dans la section Contact.",
+          description:
+            "Page /cv générée à partir du parcours, des compétences et des projets, avec bouton dans la section Contact.",
           defaultValue: true,
         }),
         socials: fields.array(
@@ -128,6 +129,20 @@ export default config({
           }),
           { label: "Réseaux", itemLabel: (p) => p.fields.label.value || "Réseau" },
         ),
+        googleSiteVerification: fields.text({
+          label: "Code de vérification Google Search Console",
+          description: "La valeur « content » de la balise fournie par Search Console (méthode « Balise HTML »).",
+        }),
+        analytics: fields.select({
+          label: "Mesure d'audience",
+          description:
+            "« Vercel » : statistiques sans cookie. Activer d'abord Web Analytics dans le projet Vercel, sinon le script échoue.",
+          options: [
+            { label: "Aucune", value: "none" },
+            { label: "Vercel Web Analytics", value: "vercel" },
+          ],
+          defaultValue: "none",
+        }),
         seoTitle: loc("Titre SEO par défaut"),
         seoDescription: loc("Description SEO par défaut", { multiline: true }),
         footer: loc("Mention de pied de page"),

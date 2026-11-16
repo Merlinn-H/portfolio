@@ -61,7 +61,16 @@ const person = {
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#0e0c0a" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0b0a09" />
+    {site.googleSiteVerification && <meta name="google-site-verification" content={site.googleSiteVerification} />}
+    {
+      /* Mesure d'audience Vercel (sans cookie) : à activer dans /keystatic APRÈS l'avoir activée dans Vercel. */
+      site.analytics === "vercel" && import.meta.env.PROD && (
+        <script is:inline defer src="/_vercel/insights/script.js" data-astro-rerun={false} />
+      )
+    }
     <Font cssVariable="--font-fraunces" preload={[{ style: "normal" }]} />
     <Font cssVariable="--font-archivo" />
     <Font cssVariable="--font-archivo-condensed" />
