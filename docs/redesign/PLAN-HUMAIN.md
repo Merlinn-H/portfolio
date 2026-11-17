@@ -13,20 +13,20 @@ Tu ne touches ni à l'architecture, ni au CMS, ni aux faits. Tu changes la direc
 
 Chaque point ci-dessous est un tic reconnaissable. Pris un par un ils sont propres ; ensemble ils signent la machine.
 
-| #   | Tic                                                                                                                                                                              | Où                                                       |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| 1   | Fond presque noir « chaud » + texte crème + serif d'affiche géante. C'est la palette par défaut du « premium sombre ».                                                           | `src/styles/tokens.css`                                  |
-| 2   | Petites capitales espacées partout comme étiquettes (« 01 —— PORTFOLIO », « RÔLE », « ANNÉE »).                                                                                  | `.credits` dans `globals.css`, `SectionHead.astro`       |
-| 3   | Sections numérotées 01 → 06 avec un filet.                                                                                                                                       | `SectionHead.astro`, `HomeView.astro`                    |
-| 4   | Filets d'un pixel entre toutes les lignes de toutes les listes.                                                                                                                  | `ProjectList`, `Experience`, `Influences`, `ProjectView` |
-| 5   | Boutons en pilule, flèches ↗ →, tout en capitales.                                                                                                                               | `Hero`, `Contact`, `SiteNav`, `ProjectView`              |
-| 6   | Grille 12 colonnes parfaitement respectée, mêmes marges, même rythme vertical d'une section à l'autre. Rien ne dépasse, rien n'est de travers.                                   | toutes les `*.module.css`                                |
-| 7   | Effets d'ambiance génériques : grain SVG, halo radial, apparition au scroll identique sur chaque bloc.                                                                           | `globals.css` (`body::after`, `.reveal`)                 |
-| 8   | Motifs « cinéma » décoratifs et interchangeables : repères de viseur aux coins, carton « Fin », letterbox. Ils disent « cinéma » sans rien dire de **ses** films.                | `.viewfinder`, `SiteFooter.astro`, `VideoPlayer`         |
-| 9   | Une section claire inversée au milieu pour « casser le rythme ».                                                                                                                 | `Section.astro` (`tone="light"`), manifeste              |
-| 10  | Texte de manifeste abstrait en très grand (« Chaque projet est une histoire… »).                                                                                                 | `Manifesto.astro`, `content/home.yaml`                   |
-| 11  | Aucune trace de main : pas de photo de tournage, pas de document, pas d'écriture, pas d'irrégularité. Les seules images sont un portrait et des affiches de films d'autres gens. | tout le site                                             |
-| 12  | Symétrie des composants : chaque projet, chaque expérience, chaque jeu a exactement la même forme.                                                                               | listes                                                   |
+| #   | Tic                                                                                                                                                                                | Où                                                       |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| 1   | Fond presque noir « chaud » + texte crème + serif d'affiche géante. C'est la palette par défaut du « premium sombre ». **Hugo n'aime pas la serif : elle part quoi qu'il arrive.** | `src/styles/tokens.css`                                  |
+| 2   | Petites capitales espacées partout comme étiquettes (« 01 —— PORTFOLIO », « RÔLE », « ANNÉE »).                                                                                    | `.credits` dans `globals.css`, `SectionHead.astro`       |
+| 3   | Sections numérotées 01 → 06 avec un filet.                                                                                                                                         | `SectionHead.astro`, `HomeView.astro`                    |
+| 4   | Filets d'un pixel entre toutes les lignes de toutes les listes.                                                                                                                    | `ProjectList`, `Experience`, `Influences`, `ProjectView` |
+| 5   | Boutons en pilule, flèches ↗ →, tout en capitales.                                                                                                                                 | `Hero`, `Contact`, `SiteNav`, `ProjectView`              |
+| 6   | Grille 12 colonnes parfaitement respectée, mêmes marges, même rythme vertical d'une section à l'autre. Rien ne dépasse, rien n'est de travers.                                     | toutes les `*.module.css`                                |
+| 7   | Effets d'ambiance génériques : grain SVG, halo radial, apparition au scroll identique sur chaque bloc.                                                                             | `globals.css` (`body::after`, `.reveal`)                 |
+| 8   | Motifs « cinéma » décoratifs et interchangeables : repères de viseur aux coins, carton « Fin », letterbox. Ils disent « cinéma » sans rien dire de **ses** films.                  | `.viewfinder`, `SiteFooter.astro`, `VideoPlayer`         |
+| 9   | Une section claire inversée au milieu pour « casser le rythme ».                                                                                                                   | `Section.astro` (`tone="light"`), manifeste              |
+| 10  | Texte de manifeste abstrait en très grand (« Chaque projet est une histoire… »).                                                                                                   | `Manifesto.astro`, `content/home.yaml`                   |
+| 11  | Aucune trace de main : pas de photo de tournage, pas de document, pas d'écriture, pas d'irrégularité. Les seules images sont un portrait et des affiches de films d'autres gens.   | tout le site                                             |
+| 12  | Symétrie des composants : chaque projet, chaque expérience, chaque jeu a exactement la même forme.                                                                                 | listes                                                   |
 
 Ce qui est déjà humain, à **garder et amplifier** : les textes de la section Jeux (« Officiellement un jeu. En pratique : 40 % sur Path of Building… »), la citation de _A Better Tomorrow_ avec 英雄本色, le portrait, les titres de films en italique.
 
@@ -46,7 +46,7 @@ Ce qui est déjà humain, à **garder et amplifier** : les textes de la section 
 - **Technique** : Astro 7 statique, Keystatic, FR à `/` et EN à `/en`, navigation sans rechargement (`ClientRouter`), système Publié/Masqué. Ne pas ajouter de framework ni de librairie d'animation.
 - **Qualité** : `npm run lint`, `npm run check`, `npm run format:check`, `npm run build`, `npm run test:e2e` (48 tests) restent verts. Accessibilité : axe sans violation, contrastes AA, focus visible, `prefers-reduced-motion` respecté.
 - **Performance** : Lighthouse mobile ≥ 95, CLS < 0,05, JavaScript < 15 kB gzip. Le nom reste le plus grand élément du premier écran mobile (LCP = texte).
-- **Polices** : 2 familles maximum après ton passage (il y en a 3 aujourd'hui, ce qui a coûté 0,3 s de LCP simulé).
+- **Polices** : **aucune serif** — Hugo n'aime pas ça (dit le 17/11). Les titres en Fraunces disparaissent ; tout le site passe en sans-serif (grotesque, étroite, monospace ou police d'affichage sans empattement, selon la piste). 2 familles maximum après ton passage (il y en a 3 aujourd'hui, ce qui a coûté 0,3 s de LCP simulé).
 - **Git** : travailler sur la branche `astro`, commits petits et en anglais, pousser `astro`. **Ne jamais pousser sur `main`** sans un « push » explicite de Hugo.
 - **Journal** : une ligne horodatée par étape dans `PROGRESS.md`, chaque choix dans `DECISIONS.md` (décision, raison, retour arrière).
 
@@ -55,7 +55,7 @@ Ce qui est déjà humain, à **garder et amplifier** : les textes de la section 
 1. Lire `src/styles/tokens.css`, `src/styles/globals.css`, `src/views/HomeView.astro` et les 7 composants de `src/components/sections/`.
 2. Lancer `npm run build && npm run preview` et capturer l'état actuel : `WIDTHS=375,768,1024,1440 node scripts/redesign/shots.cjs http://localhost:3100 <dossier> / /projets/pineapple-pie /projets/postmeridian /cv`.
 3. Écrire dans `docs/redesign/DESIGN-HUMAIN.md` **trois pistes** de direction, en 10 lignes chacune, avec pour chacune : palette, polices, traitement des documents, ce qui est retiré. Pistes à considérer (tu peux en proposer d'autres) :
-   - **A. « Bureau de production »** : fond papier ou kraft clair, encre noire, une couleur de tampon. Le site ressemble à un dossier de prod : feuille de service pour le parcours, dépouillement pour les compétences, étiquettes de bobines pour les films. Police de machine à écrire ou grotesque utilitaire pour les données, une serif de caractère pour les titres.
+   - **A. « Bureau de production »** : fond papier ou kraft clair, encre noire, une couleur de tampon. Le site ressemble à un dossier de prod : feuille de service pour le parcours, dépouillement pour les compétences, étiquettes de bobines pour les films. Police de machine à écrire ou grotesque utilitaire pour les données, une grotesque grasse ou étroite pour les titres (pas de serif).
    - **B. « Affiche de Hong Kong »** : aplats francs (rouge, jaune, bleu nuit), titres empilés bilingues, sous-titres jaunes sur image, composition d'affiche. Plus risqué, très identitaire.
    - **C. « Carnet de tournage »** : sombre conservé mais réchauffé par de la matière (polaroïds de plateau, scotch, annotations manuscrites en SVG), mise en page de carnet, moins de capitales.
 4. Rendre une **planche d'essai** par piste (une page HTML statique dans le scratchpad, capturée en PNG, avec les vrais textes : nom, deux projets, une expérience) et la montrer à Hugo. **Demander son choix avant d'aller plus loin** : c'est la seule question bloquante autorisée.
@@ -66,11 +66,11 @@ Dans cet ordre. Chaque lot se termine par des captures 375 / 768 / 1024 / 1440 e
 
 ### Lot 1 — Fondations visuelles
 
-- Réécrire `src/styles/tokens.css` pour la piste retenue : couleurs, 2 polices, échelle typographique.
+- Réécrire `src/styles/tokens.css` pour la piste retenue : couleurs, 2 polices **sans empattement**, échelle typographique. Retirer Fraunces partout (titres, CV, image de partage) ; les titres de films étaient en italique serif : trouver un autre marqueur, par exemple une graisse ou une couleur.
 - Supprimer de `globals.css` : le grain (`body::after`), le halo radial du `body`, la classe `.viewfinder`.
 - Revoir `.credits` : les capitales espacées ne servent plus qu'aux **données** (dates, rôles dans un tableau), plus aux titres de section ni aux boutons.
 - Fichiers : `tokens.css`, `globals.css`, `astro.config.mjs` (bloc `fonts`), `src/fonts/`, `src/lib/og.ts` (police et couleurs de l'image de partage).
-- **Terminé quand** : plus aucune couleur en dur hors tokens ; 2 familles de polices ; contrastes vérifiés par calcul et notés dans `DESIGN-HUMAIN.md`.
+- **Terminé quand** : plus aucune couleur en dur hors tokens ; 2 familles de polices, aucune serif ; contrastes vérifiés par calcul et notés dans `DESIGN-HUMAIN.md`.
 
 ### Lot 2 — En finir avec le gabarit de section
 
