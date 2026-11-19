@@ -21,8 +21,6 @@ const portrait = site.portraitImg;
 ---
 
 <section id="top" data-section="" class={styles.hero} aria-labelledby="hero-title">
-  <p class={styles.role}>{pick(site.role, locale)}</p>
-
   <h1 id="hero-title" class={styles.name}>
     {/* Un seul bloc de texte (pas deux <span> en display:block) : le navigateur le compte
         comme un seul élément, le plus grand de l'écran : LCP peint dès le premier rendu. */}
@@ -30,6 +28,8 @@ const portrait = site.portraitImg;
     <br />
     {rest.join(" ")}
   </h1>
+  {/* Filet + capitales très espacées sous le nom : la construction du logo 489Productions. */}
+  <p class={styles.role}>{pick(site.role, locale)}</p>
 
   {portrait ? (
     <div class={styles.portrait}>

@@ -4,6 +4,7 @@
 }
 .lead {
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-4);
   line-height: 1.02;
   letter-spacing: -0.01em;

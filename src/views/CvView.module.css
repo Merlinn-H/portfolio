@@ -4,7 +4,6 @@
   --fg-muted: var(--paper-muted);
   --fg-subtle: var(--paper-subtle);
   --line: rgb(21 18 14 / 0.16);
-  --amber: var(--paper-amber);
   --accent: var(--paper-accent);
   max-width: 52rem;
   margin: var(--space-9) auto var(--space-10);
@@ -69,7 +68,7 @@
 .h {
   margin-bottom: var(--space-4);
   font-size: var(--step--1);
-  color: var(--amber);
+  color: var(--accent);
 }
 .lead {
   max-width: 44rem;

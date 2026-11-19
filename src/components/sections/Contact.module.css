@@ -19,6 +19,7 @@
   gap: var(--space-3);
   max-width: 100%;
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-2);
   line-height: 1.1;
   border-bottom: 2px solid var(--accent);
@@ -54,7 +55,7 @@
   font-size: var(--step--1);
   font-weight: 600;
   font-family: var(--font-credits);
-  letter-spacing: var(--tracking-credits);
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
   transition:
     background-color var(--dur-1),

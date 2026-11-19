@@ -75,9 +75,7 @@ const person = {
         <script is:inline defer src="/_vercel/insights/script.js" data-astro-rerun={false} />
       )
     }
-    <Font cssVariable="--font-fraunces" preload={[{ style: "normal" }]} />
-    <Font cssVariable="--font-archivo" />
-    <Font cssVariable="--font-archivo-condensed" />
+    <Font cssVariable="--font-open-sans" preload={[{ weight: 700, style: "normal" }]} />
     <ClientRouter />
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
     {jsonLd.map((d) => (

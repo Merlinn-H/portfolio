@@ -15,7 +15,6 @@
   --line: rgb(22 19 15 / 0.16);
   --line-strong: rgb(22 19 15 / 0.36);
   --accent: var(--paper-accent);
-  --amber: var(--paper-amber);
   background: var(--paper);
   color: var(--fg);
 }

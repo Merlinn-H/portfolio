@@ -62,6 +62,7 @@
 .card {
   font-style: italic;
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-4);
   line-height: 0.95;
   max-width: 9em;
@@ -79,7 +80,7 @@
   font-size: var(--step--1);
   font-weight: 600;
   font-family: var(--font-credits);
-  letter-spacing: var(--tracking-credits);
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
   transition:
     background-color var(--dur-1),

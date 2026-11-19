@@ -119,6 +119,6 @@
   font-family: var(--font-credits);
   font-size: var(--step--1);
   font-weight: 600;
-  letter-spacing: var(--tracking-credits);
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
 }

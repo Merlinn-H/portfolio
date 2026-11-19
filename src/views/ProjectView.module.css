@@ -112,7 +112,7 @@
   grid-row: 1 / span 2;
   font-weight: 600;
   font-size: var(--step--1);
-  color: var(--amber);
+  color: var(--accent);
 }
 .hlTitle {
   font-size: var(--step-3);
@@ -138,7 +138,7 @@
   font-size: var(--step--1);
   font-weight: 600;
   font-family: var(--font-credits);
-  letter-spacing: var(--tracking-credits);
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
   transition: background-color var(--dur-1);
 }
@@ -157,6 +157,7 @@
 }
 .ctaText {
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-4);
   line-height: 0.95;
   max-width: 9em;
@@ -178,6 +179,7 @@
 }
 .nextTitle {
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-5);
   line-height: 0.95;
   color: var(--fg);

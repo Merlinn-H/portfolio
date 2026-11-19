@@ -1,30 +1,32 @@
 /* Design tokens — docs/redesign/DESIGN.md. Aucune valeur en dur dans les composants. */
 :root {
-  /* Couleurs — salle obscure : noir chaud, blanc d'écran, vermillon (action), ambre (repères) */
-  --bg: #0b0a09;
-  --bg-raised: #161412;
-  --bg-sunken: #060505;
-  --fg: #f2ebdf;
-  --fg-muted: #c2baae; /* 10,3:1 — texte courant secondaire */
-  --fg-subtle: #9d968b; /* 6,7:1 — métadonnées */
-  --line: rgb(242 235 223 / 0.16);
-  --line-strong: rgb(242 235 223 / 0.36);
-  --accent: #f2472f; /* vermillon : liens actifs, survols, 英雄本色 */
-  --accent-ink: #0b0a09;
-  --amber: #d9b26a; /* ambre « amorce de pellicule » : numéros, années, repères — jamais d'action */
-  /* Carton inversé (section claire) */
-  --paper: #f0e8da;
-  --paper-ink: #15120e;
-  --paper-muted: #463f38;
-  --paper-subtle: #5c554d;
-  --paper-accent: #b8261a;
-  --paper-amber: #7a5a12;
-  --scrim: rgb(22 20 18 / 0.94);
+  /* Couleurs — charte 489Productions (noir, blanc, rouge RVB 201 21 23), adoucies pour l'écran :
+     noir et blanc purs remplacés par un noir profond et un blanc cassé, le rouge vif réservé aux grands éléments. */
+  --bg: #121212;
+  --bg-raised: #1c1c1c;
+  --bg-sunken: #0a0a0a;
+  --fg: #f2f0ec;
+  --fg-muted: #bcb8b2; /* 9,5:1 */
+  --fg-subtle: #97938d; /* 6,1:1 — métadonnées */
+  --line: rgb(242 240 236 / 0.14);
+  --line-strong: rgb(242 240 236 / 0.34);
+  --red: #c91517; /* rouge de la charte : grands titres, aplats, filets, 英雄本色 (3,2:1 : jamais pour du petit texte sur fond sombre) */
+  --accent: #f0544b; /* rouge éclairci pour le petit texte et les états actifs sur fond sombre (5,4:1) */
+  --accent-ink: #121212;
+  /* Section claire */
+  --paper: #f2f0ec;
+  --paper-ink: #151515;
+  --paper-muted: #45423e;
+  --paper-subtle: #5b5853;
+  --paper-accent: #c91517; /* 5,1:1 sur --paper */
+  --scrim: rgb(28 28 28 / 0.95);
 
-  /* Typographie */
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-text: var(--font-archivo), system-ui, sans-serif;
-  --font-credits: var(--font-archivo-condensed), "Arial Narrow", sans-serif;
+  /* Typographie — Open Sans (charte) : gras pour les titres, régulier pour le texte,
+     capitales très espacées pour les mentions, comme « P R O D U C T I O N S » sous le logo. */
+  --font-display: var(--font-open-sans), Arial, sans-serif;
+  --font-text: var(--font-open-sans), Arial, sans-serif;
+  --font-credits: var(--font-open-sans), Arial, sans-serif;
+  --weight-display: 700;
   /* Échelle : les petits corps ont été remontés pour la lisibilité (jamais sous 13 px). */
   --step--2: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
   --step--1: clamp(0.9rem, 0.87rem + 0.15vw, 1rem);
@@ -35,10 +37,12 @@
   --step-4: clamp(2.5rem, 1.8rem + 3.2vw, 4.75rem);
   --step-5: clamp(3.1rem, 2rem + 5.4vw, 7.5rem);
   --step-6: clamp(3.4rem, 1.6rem + 9vw, 11.5rem);
-  --leading-tight: 0.94;
+  --leading-tight: 1;
   --leading-snug: 1.2;
   --leading-body: 1.65;
-  --tracking-credits: 0.09em;
+  --tracking-credits: 0.2em; /* mentions (dates, catégories) */
+  --tracking-ui: 0.08em; /* boutons et navigation */
+  --tracking-lockup: 0.42em; /* ligne sous le nom, comme « P R O D U C T I O N S » */
 
   /* Espacements */
   --space-1: 0.25rem;

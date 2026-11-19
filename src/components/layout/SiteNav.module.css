@@ -24,6 +24,7 @@
 }
 .brand {
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-1);
   line-height: 1;
   white-space: nowrap;
@@ -42,7 +43,7 @@
   font-size: var(--step--1);
   font-weight: 600;
   font-family: var(--font-credits);
-  letter-spacing: var(--tracking-credits);
+  letter-spacing: var(--tracking-ui);
   text-transform: uppercase;
   transition:
     background-color var(--dur-1),
@@ -61,7 +62,7 @@
   font-size: var(--step--1);
   font-weight: 600;
   font-family: var(--font-credits);
-  letter-spacing: var(--tracking-credits);
+  letter-spacing: var(--tracking-ui);
   color: var(--fg-muted);
 }
 .lang a {
@@ -144,7 +145,7 @@
     font-size: var(--step--1);
     font-weight: 600;
     font-family: var(--font-credits);
-    letter-spacing: var(--tracking-credits);
+    letter-spacing: var(--tracking-ui);
     text-transform: uppercase;
     color: var(--fg-muted);
     transition: color var(--dur-1);
@@ -241,6 +242,7 @@
   min-height: 3.5rem;
   padding-block: var(--space-2);
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-4);
   line-height: 1.05;
   border-bottom: var(--hairline) solid var(--line);

@@ -32,45 +32,21 @@ export default defineConfig({
     "/projects/[slug]": "/projets/[slug]",
     "/en/projects/[slug]": "/en/projets/[slug]",
   },
-  // Polices auto-hébergées (OFL), avec polices de secours aux métriques ajustées (pas de saut de mise en page).
+  // Police de la charte 489Productions : Open Sans, auto-hébergée (OFL), avec police de secours aux métriques ajustées.
   fonts: [
     {
-      // Titres : Fraunces (coupe « display », romain + italique pour les titres de films).
       provider: fontProviders.local(),
-      name: "Fraunces",
-      cssVariable: "--font-fraunces",
-      fallbacks: ["Georgia", "serif"],
-      display: "swap",
-      options: {
-        variants: [
-          { src: ["./src/fonts/fraunces-display-400-normal.woff2"], weight: 400, style: "normal" },
-          { src: ["./src/fonts/fraunces-display-400-italic.woff2"], weight: 400, style: "italic" },
-        ],
-      },
-    },
-    {
-      // Texte : Archivo, très lisible en petit corps.
-      provider: fontProviders.local(),
-      name: "Archivo",
-      cssVariable: "--font-archivo",
+      name: "Open Sans",
+      cssVariable: "--font-open-sans",
       fallbacks: ["Arial", "sans-serif"],
       display: "swap",
       options: {
         variants: [
-          { src: ["./src/fonts/archivo-400-normal.woff2"], weight: 400, style: "normal" },
-          { src: ["./src/fonts/archivo-600-normal.woff2"], weight: 600, style: "normal" },
+          { src: ["./src/fonts/open-sans-400-normal.woff2"], weight: 400, style: "normal" },
+          { src: ["./src/fonts/open-sans-600-normal.woff2"], weight: 600, style: "normal" },
+          { src: ["./src/fonts/open-sans-700-normal.woff2"], weight: 700, style: "normal" },
+          { src: ["./src/fonts/open-sans-700-italic.woff2"], weight: 700, style: "italic" },
         ],
-      },
-    },
-    {
-      // Crédits : Archivo étroitisé, comme le « billing block » en bas d'une affiche de film.
-      provider: fontProviders.local(),
-      name: "Archivo Condensed",
-      cssVariable: "--font-archivo-condensed",
-      fallbacks: ["Arial Narrow", "Arial", "sans-serif"],
-      display: "swap",
-      options: {
-        variants: [{ src: ["./src/fonts/archivo-condensed-600-normal.woff2"], weight: 600, style: "normal" }],
       },
     },
   ],

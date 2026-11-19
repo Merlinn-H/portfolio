@@ -25,11 +25,11 @@ export async function ogPng({
       .toBuffer();
     backdrop = `data:image/jpeg;base64,${buf.toString("base64")}`;
   }
-  const font = fs.readFileSync(path.join(process.cwd(), "src/fonts/og-fraunces.ttf"));
+  const font = fs.readFileSync(path.join(process.cwd(), "src/fonts/og-open-sans-700.woff"));
   // Ajuste la taille pour tenir sur ~2 lignes (les capitales sont larges).
   const caps = title === title.toUpperCase();
   const longest = Math.max(...title.split(" ").map((w) => w.length));
-  const size = Math.round(Math.min(156, 1040 / (longest * (caps ? 0.74 : 0.54)), title.length > 24 ? 104 : 156));
+  const size = Math.round(Math.min(140, 1040 / (longest * (caps ? 0.72 : 0.6)), title.length > 24 ? 96 : 140));
   const el = (style: Record<string, unknown>, children: unknown) => ({
     type: "div",
     props: { style: { display: "flex", ...style }, children },
@@ -40,25 +40,25 @@ export async function ogPng({
       height: "100%",
       flexDirection: "column",
       justifyContent: "space-between",
-      background: "#0b0a09",
+      background: "#121212",
       ...(backdrop ? { backgroundImage: `url(${backdrop})`, backgroundSize: "1200px 630px" } : {}),
-      color: "#f2ebdf",
+      color: "#f2f0ec",
       padding: "64px 72px",
-      borderTop: "36px solid #060505",
-      borderBottom: "36px solid #060505",
-      fontFamily: "Fraunces",
+      borderTop: "16px solid #c91517",
+      borderBottom: "16px solid #0a0a0a",
+      fontFamily: "Open Sans",
     },
     [
-      el({ fontSize: 26, letterSpacing: 6, textTransform: "uppercase", color: "#d9b26a" }, eyebrow),
-      el({ fontSize: size, lineHeight: 0.95, maxWidth: 1000 }, title),
-      el({ fontSize: 30, color: "#c2baae" }, footer),
+      el({ fontSize: 24, letterSpacing: 9, textTransform: "uppercase", color: "#f0544b" }, eyebrow),
+      el({ fontSize: size, lineHeight: 1, letterSpacing: -2, maxWidth: 1000 }, title),
+      el({ fontSize: 28, color: "#bcb8b2" }, footer),
     ],
   );
   // @ts-expect-error — satori accepte des objets « élément » sans JSX.
   const svg = await satori(tree, {
     width: 1200,
     height: 630,
-    fonts: [{ name: "Fraunces", data: font, weight: 400, style: "normal" }],
+    fonts: [{ name: "Open Sans", data: font, weight: 700, style: "normal" }],
   });
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
   return new Response(new Uint8Array(png), { headers: { "Content-Type": "image/png" } });

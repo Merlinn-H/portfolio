@@ -116,7 +116,7 @@
   grid-column: 2;
   font-size: var(--step--1);
   font-weight: 600;
-  color: var(--amber);
+  color: var(--accent);
   font-variant-numeric: tabular-nums;
 }
 .shortTitle {

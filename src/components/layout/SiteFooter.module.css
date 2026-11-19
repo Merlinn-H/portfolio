@@ -16,6 +16,7 @@
 }
 .name {
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-3);
   color: var(--fg);
   line-height: 1;

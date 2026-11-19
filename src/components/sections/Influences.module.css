@@ -61,6 +61,7 @@
   font-style: italic;
   min-height: 2.1em;
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-2);
   line-height: 1.05;
   transition: color var(--dur-1);
@@ -96,6 +97,7 @@
 }
 .gameTitle {
   font-family: var(--font-display);
+  font-weight: var(--weight-display);
   font-size: var(--step-3);
   line-height: 1;
 }
