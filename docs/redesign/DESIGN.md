@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 19/11 (clap)** : l'ident au logo 489 est remplacé par un clap de tournage (`src/components/layout/Intro.astro`) : ardoise « Prod. Hugo Pezzo · Scène 01 · Prise 01 · date du jour », le clap se ferme à 540 ms avec secousse, éclats rouges et flash, coupe à ~1,25 s. Une fois par session, passable au clic ou au clavier, jamais avec « réduire les animations ».
+
 > **Mise à jour du 19/11 (charte 489Productions)** : polices → Open Sans seule (gras 700 pour les titres, 400 texte, 600 capitales espacées) ; palette → noir `#121212` et blanc cassé `#f2f0ec` (au lieu du noir et du blanc purs de la charte), rouge charte `#c91517` pour les grands éléments, `#f0544b` pour le petit texte rouge sur fond sombre ; l'ambre disparaît. Sous le nom du hero, filet + capitales très espacées, comme « P R O D U C T I O N S » sous le logo.
 
 > **Mise à jour du 19/11 (nettoyage)** : retirés — numéros et sur-titres de section (« 01 —— Portfolio »), repères de viseur, grain, halo de fond, indicateur « Défiler », carton « Fin ». L'ambre est réservé aux années des courts-métrages. Textes réécrits sans formules creuses ; rôles FR en casse de phrase ; espaces insécables françaises appliquées automatiquement par `pick()`.

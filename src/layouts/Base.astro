@@ -2,7 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { Font, getImage } from "astro:assets";
 import "@/styles/globals.css";
-import { getNavigation, getSite, img, pick } from "@/lib/content";
+import { getNavigation, getSite, pick } from "@/lib/content";
 import { href, ui, type Locale } from "@/lib/i18n";
 import type { Seo } from "@/lib/seo";
 import SiteNav from "@/components/layout/SiteNav.astro";
@@ -23,7 +23,6 @@ const { locale, seo, path, jsonLd = [] } = Astro.props;
 const site = await getSite();
 const nav = await getNavigation(locale);
 const t = ui(locale);
-const introLogo = site.introEnabled ? img(site.introLogo) : null;
 const base = (site.url || "https://hugopezzo.fr").replace(/\/$/, "");
 // Fiche « Person » : une version légère du portrait (800 px), pas le fichier source.
 const personImage = site.portraitImg
@@ -86,7 +85,7 @@ const person = {
     <a href="#content" class={styles.skip}>
       {t.skip}
     </a>
-    {introLogo && <Intro logo={introLogo} label={site.introLogoAlt ?? ""} />}
+    {site.introEnabled && <Intro name={site.name} locale={locale} />}
     <SiteNav items={nav} locale={locale} t={t} name={site.name} path={path} />
     <main id="content" tabindex="-1" class={styles.main}>
       <slot />

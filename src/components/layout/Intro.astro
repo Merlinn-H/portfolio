@@ -1,26 +1,64 @@
 ---
-import type { Img } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 import styles from "./Intro.module.css";
 
 /**
- * Ident d'ouverture (≤ 1,2 s), joué une fois par session, passable au clic ou au clavier.
+ * Clap d'ouverture (~1,3 s), joué une fois par session, passable au clic ou au clavier.
+ * L'ardoise monte, le clap se ferme, l'impact fait réagir l'ardoise (secousse, éclats, flash), puis coupe sur le site.
  * Masqué par défaut : le script inline qui le suit ne l'active (data-play) qu'à la première visite
  * de la session et hors « réduire les animations ». Les navigations suivantes (sans rechargement)
  * ré-exécutent ce script, qui voit la session déjà marquée et ne fait rien.
  */
 interface Props {
-  logo: Img;
-  label: string;
+  name: string;
+  locale: Locale;
 }
-const { logo, label } = Astro.props;
+const { name, locale } = Astro.props;
+const l =
+  locale === "fr"
+    ? { prod: "Prod.", scene: "Scène", take: "Prise", roll: "Bobine", date: "Date" }
+    : { prod: "Prod.", scene: "Scene", take: "Take", roll: "Roll", date: "Date" };
 ---
 
 <div class={styles.intro} data-intro-overlay="" aria-hidden="true">
-  <div
-    class={styles.logo}
-    style={`-webkit-mask-image:url(${logo.src});mask-image:url(${logo.src});aspect-ratio:${logo.width} / ${logo.height}`}
-    title={label}
-  ></div>
+  <div class={styles.slate}>
+    <div class={styles.clapper}>
+      <span class={styles.stickTop}></span>
+      <span class={styles.stickBottom}></span>
+      <span class={styles.burst}>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </span>
+    </div>
+    <div class={styles.board}>
+      <p class={styles.row}>
+        <span class={styles.k}>{l.prod}</span>
+        <span class={styles.title}>{name}</span>
+      </p>
+      <p class={styles.cells}>
+        <span>
+          <span class={styles.k}>{l.scene}</span>
+          <b>01</b>
+        </span>
+        <span>
+          <span class={styles.k}>{l.take}</span>
+          <b>01</b>
+        </span>
+        <span>
+          <span class={styles.k}>{l.roll}</span>
+          <b>A</b>
+        </span>
+      </p>
+      <p class={styles.row}>
+        <span class={styles.k}>{l.date}</span>
+        <span data-intro-date=""></span>
+      </p>
+    </div>
+  </div>
+  <div class={styles.flash}></div>
 </div>
 <script is:inline>
   (function () {
@@ -32,6 +70,10 @@ const { logo, label } = Astro.props;
     } catch {
       return;
     }
+    const d = new Date();
+    const p = (n) => String(n).padStart(2, "0");
+    const slot = o.querySelector("[data-intro-date]");
+    if (slot) slot.textContent = p(d.getDate()) + "." + p(d.getMonth() + 1) + "." + String(d.getFullYear()).slice(2);
     o.setAttribute("data-play", "");
     function end() {
       o.removeAttribute("data-play");
@@ -40,6 +82,6 @@ const { logo, label } = Astro.props;
     }
     addEventListener("pointerdown", end);
     addEventListener("keydown", end);
-    setTimeout(end, 1200);
+    setTimeout(end, 1350);
   })();
 </script>

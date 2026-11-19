@@ -1,4 +1,11 @@
-/* Ident : fond noir, le logo est révélé par un volet (clip-path), puis coupe franche à 1,1 s. */
+/*
+ * Clap d'ouverture. Chronologie (total ~1,3 s) :
+ *   0–260 ms    l'ardoise monte, clap ouvert
+ *   260–470 ms  le clap s'entrouvre encore un peu (prise d'élan)
+ *   470–540 ms  il se referme d'un coup
+ *   540 ms      impact : secousse de l'ardoise, éclats rouges au point de contact, flash bref
+ *   1050–1250   l'ardoise s'efface, coupe sur le site
+ */
 .intro {
   position: fixed;
   inset: 0;
@@ -6,43 +13,229 @@
   display: none;
   place-items: center;
   background: var(--bg-sunken);
-  animation: intro-cut 1ms linear 1.1s forwards;
+  animation: intro-out 200ms var(--ease-in-out) 1050ms forwards;
 }
 .intro[data-play] {
   display: grid;
 }
-/* Garde-fou CSS : jamais d'ident pour qui préfère réduire les animations. */
+/* Garde-fou CSS : jamais de clap pour qui préfère réduire les animations. */
 @media (prefers-reduced-motion: reduce) {
   .intro[data-play] {
     display: none;
   }
 }
-.logo {
-  width: min(60vw, 26rem);
-  background: var(--fg);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  clip-path: inset(0 100% 0 0);
+
+.slate {
+  --w: min(82vw, 30rem);
+  --stick: calc(var(--w) * 0.13);
+  position: relative;
+  width: var(--w);
+  font-family: var(--font-text);
+  color: var(--fg);
   animation:
-    intro-wipe 520ms var(--ease-out) 120ms forwards,
-    intro-flash 260ms var(--ease-in-out) 760ms forwards;
+    slate-in 260ms var(--ease-out) both,
+    slate-hit 260ms var(--ease-out) 540ms;
 }
-@keyframes intro-wipe {
-  to {
-    clip-path: inset(0 0 0 0);
+
+/* ---------- Clap ---------- */
+.clapper {
+  position: relative;
+  height: calc(var(--stick) * 2);
+}
+.stickTop,
+.stickBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--stick);
+  /* Bandes diagonales noir / blanc cassé, une bande rouge charte */
+  background:
+    linear-gradient(var(--red), var(--red)) 0 0 / 14% 100% no-repeat,
+    repeating-linear-gradient(
+      -55deg,
+      var(--fg) 0 calc(var(--stick) * 0.7),
+      var(--bg-sunken) calc(var(--stick) * 0.7) calc(var(--stick) * 1.4)
+    );
+  box-shadow: inset 0 0 0 2px var(--fg);
+}
+.stickBottom {
+  bottom: 0;
+  background:
+    linear-gradient(var(--red), var(--red)) 0 0 / 14% 100% no-repeat,
+    repeating-linear-gradient(
+      55deg,
+      var(--fg) 0 calc(var(--stick) * 0.7),
+      var(--bg-sunken) calc(var(--stick) * 0.7) calc(var(--stick) * 1.4)
+    );
+}
+/* Le bras supérieur pivote sur sa charnière (à gauche). */
+.stickTop {
+  bottom: var(--stick);
+  transform-origin: 0 100%;
+  transform: rotate(-24deg);
+  animation: clap 540ms both;
+}
+@keyframes clap {
+  0% {
+    transform: rotate(-24deg);
+  }
+  48% {
+    transform: rotate(-24deg);
+    animation-timing-function: var(--ease-out);
+  }
+  87% {
+    transform: rotate(-31deg);
+    animation-timing-function: cubic-bezier(0.7, 0, 1, 0.6); /* accélère jusqu'au choc */
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
-@keyframes intro-flash {
-  to {
-    background: var(--accent);
+
+/* Éclats au point de contact (bout du clap, à droite) */
+.burst {
+  position: absolute;
+  right: calc(var(--stick) * -0.2);
+  top: var(--stick);
+  width: 0;
+  height: 0;
+}
+.burst i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--stick) * 0.9);
+  height: 3px;
+  background: var(--red);
+  transform-origin: 0 50%;
+  opacity: 0;
+  animation: spark 320ms var(--ease-out) 540ms;
+}
+.burst i:nth-child(1) {
+  --a: -70deg;
+}
+.burst i:nth-child(2) {
+  --a: -35deg;
+}
+.burst i:nth-child(3) {
+  --a: 0deg;
+}
+.burst i:nth-child(4) {
+  --a: 35deg;
+}
+.burst i:nth-child(5) {
+  --a: 70deg;
+}
+@keyframes spark {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--a)) translateX(calc(var(--stick) * 0.15)) scaleX(0.2);
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--a)) translateX(calc(var(--stick) * 0.9)) scaleX(1);
   }
 }
-@keyframes intro-cut {
+
+/* ---------- Ardoise ---------- */
+.board {
+  display: grid;
+  margin-top: 2px;
+  background: var(--bg-raised);
+  box-shadow: inset 0 0 0 2px var(--fg);
+}
+.board p {
+  margin: 0;
+}
+.row,
+.cells > span {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+.row + .cells,
+.cells + .row {
+  border-top: 2px solid var(--fg);
+}
+.cells {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.cells > span {
+  flex-direction: column;
+  gap: 0;
+  padding-block: var(--space-2);
+}
+.cells > span + span {
+  border-left: 2px solid var(--fg);
+}
+.k {
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-credits);
+  text-transform: uppercase;
+  color: var(--fg-subtle);
+}
+.title {
+  font-size: var(--step-2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.cells b {
+  font-size: var(--step-1);
+  font-weight: 700;
+}
+[data-intro-date] {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Flash d'impact ---------- */
+.flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--fg);
+  opacity: 0;
+  animation: flash 180ms ease-out 540ms;
+}
+
+@keyframes slate-in {
+  from {
+    opacity: 0;
+    transform: translateY(6%) scale(0.97);
+  }
+}
+@keyframes slate-hit {
+  0% {
+    transform: translateY(0.5%) scale(1.015) rotate(0.6deg);
+  }
+  35% {
+    transform: translateY(-0.3%) rotate(-0.4deg);
+  }
+  70% {
+    transform: rotate(0.15deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes flash {
+  0% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes intro-out {
   to {
+    opacity: 0;
     visibility: hidden;
   }
 }

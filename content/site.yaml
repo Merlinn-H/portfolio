@@ -15,8 +15,6 @@ portraitAlt:
   fr: Portrait de Hugo Pezzo
   en: Portrait of Hugo Pezzo
 introEnabled: true
-introLogo: /src/assets/images/site/introLogo.png
-introLogoAlt: 489Productions
 email: hugopezzo@outlook.com
 cvEnabled: true
 socials:
