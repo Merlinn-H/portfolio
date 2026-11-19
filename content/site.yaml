@@ -1,11 +1,11 @@
 name: Hugo Pezzo
 url: https://hugopezzo.fr
 role:
-  fr: Producteur Audiovisuel & Chargé de Projets Culturels
-  en: Audiovisual Producer & Cultural Project Manager
+  fr: Producteur audiovisuel et chargé de projets culturels
+  en: Audiovisual producer and cultural project manager
 tagline:
-  fr: Chaque projet est une histoire. Je suis là pour la raconter.
-  en: Every project is a story. I'm here to tell it.
+  fr: Je prépare les tournages, je tiens les budgets et je coordonne les équipes, du court-métrage au jeu vidéo.
+  en: I plan shoots, run budgets and coordinate crews, from short films to video games.
 quote:
   text: All I want is a chance to start over.
   source: A Better Tomorrow, John Woo, 1986
@@ -33,5 +33,5 @@ seoDescription:
     Portfolio of Hugo Pezzo, audiovisual producer: short films, 489Productions
     and the video game studio POSTMERIDIAN.
 footer:
-  fr: Hugo Pezzo — Tous droits réservés
-  en: Hugo Pezzo — All rights reserved
+  fr: Hugo Pezzo
+  en: Hugo Pezzo

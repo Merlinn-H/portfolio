@@ -2,26 +2,22 @@
 import styles from "./SectionHead.module.css";
 import HiddenBadge from "./HiddenBadge.astro";
 
-/** Carton de section : numéro façon Criterion, sur-titre en crédits, titre d'affiche. */
+/** Titre de section. Le sur-titre du CMS sert de nom accessible à la section, il n'est pas affiché. */
 interface Props {
-  index: number;
-  eyebrow?: string;
   title?: string;
   id: string;
   hiddenLabel?: string | null;
 }
-const { index, eyebrow, title, id, hiddenLabel } = Astro.props;
+const { title, id, hiddenLabel } = Astro.props;
 ---
 
-<header class={styles.head}>
-  <p class={`credits ${styles.meta}`}>
-    <span class={styles.num}>{String(index).padStart(2, "0")}</span>
-    {eyebrow ? <span>{eyebrow}</span> : null}
+{(title || hiddenLabel) && (
+  <header class={styles.head}>
     <HiddenBadge show={Boolean(hiddenLabel)} label={hiddenLabel ?? ""} />
-  </p>
-  {title ? (
-    <h2 id={`${id}-title`} class={`${styles.title} reveal`}>
-      {title}
-    </h2>
-  ) : null}
-</header>
+    {title ? (
+      <h2 id={`${id}-title`} class={`${styles.title} reveal`}>
+        {title}
+      </h2>
+    ) : null}
+  </header>
+)}

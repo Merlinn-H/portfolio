@@ -15,7 +15,7 @@
   gap: var(--space-3);
 }
 .kicker {
-  color: var(--amber);
+  color: var(--fg-muted);
 }
 .year {
   color: var(--fg-muted);

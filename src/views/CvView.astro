@@ -84,7 +84,7 @@ const siteUrl = (site.url || "https://hugopezzo.fr").replace(/^https?:\/\//, "")
             <h3 class={styles.what}>{pick(x.title, locale)}</h3>
             <p class={styles.where}>
               {x.company}
-              {x.location ? ` — ${x.location}` : ""}
+              {x.location ? ` · ${x.location}` : ""}
             </p>
             {pick(x.description, locale) && <p class={styles.desc}>{pick(x.description, locale)}</p>}
           </div>

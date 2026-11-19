@@ -12,7 +12,7 @@
   color: var(--fg-muted);
 }
 .sub span {
-  color: var(--amber);
+  color: var(--fg-subtle);
 }
 
 /* Films : bande horizontale à défilement aimanté, comme une planche contact */

@@ -20,26 +20,18 @@ sections:
     title: {}
     intro:
       fr: >-
-        Chaque projet est une histoire à raconter — pas seulement un livrable,
-        mais une expérience qui restera dans les mémoires. Je travaille à la
-        jonction de la production audiovisuelle, de la coordination créative et
-        de la direction artistique, pour transformer des idées en œuvres qui
-        résonnent avec leur audience. La rigueur logistique et la sensibilité
-        narrative ne sont pas opposées : elles se renforcent mutuellement. Gérer
-        un tournage, c'est autant anticiper les imprévus que créer l'espace pour
-        que la créativité s'exprime librement. Des courts-métrages aux jeux
-        vidéo, de la publicité aux documentaires — l'histoire change, l'exigence
-        reste la même.
+        Un bon tournage se joue bien avant le premier clap. Budget,
+        planning, contrats, lieux, transports : je m'occupe de ce qui permet
+        à une équipe de se concentrer sur le film. Quand la logistique
+        tient, le plateau peut prendre des risques. Je l'ai fait sur des
+        courts-métrages, des publicités et des documentaires, et je le fais
+        aujourd'hui pour un jeu vidéo.
       en: >-
-        Every project is a story to tell — not just a deliverable, but an
-        experience that will stay in people's minds. I work at the intersection
-        of audiovisual production, creative coordination, and artistic
-        direction, transforming ideas into works that resonate with their
-        audience. Logistical rigour and narrative sensitivity aren't opposed —
-        they reinforce each other. Managing a shoot means anticipating the
-        unexpected as much as creating space for creativity to flow freely. From
-        short films to video games, from advertising to documentaries — the
-        story changes, the standard stays the same.
+        A good shoot is decided long before the first take. Budgets,
+        schedules, contracts, locations, travel: I handle what lets a crew
+        focus on the film. When the logistics hold, the set can take risks.
+        I've done it on short films, commercials and documentaries, and now
+        on a video game.
     status: published
   - type: experience
     eyebrow:
@@ -50,21 +42,14 @@ sections:
       en: Experience
     intro:
       fr: >-
-        Professionnel de la production audiovisuelle et vidéoludique, spécialisé
-        en coordination administrative et logistique de projets culturels et
-        artistiques. Fort de 8 ans d'expérience en production audiovisuelle et de
-        2 ans en production de jeux vidéo — gestion d'équipes, suivi budgétaire,
-        production de contenus —, mon parcours allie rigueur
-        administrative et créativité, avec une capacité à fédérer des talents
-        autour de projets ambitieux.
+        Huit ans en production audiovisuelle, deux ans en production de jeu
+        vidéo. Au quotidien : coordonner les équipes, tenir les budgets et
+        les plannings, rédiger les contrats et monter les dossiers de
+        financement.
       en: >-
-        Audiovisual and video game production professional, specialised in
-        administrative coordination and logistics for cultural and artistic
-        projects. With 8 years of experience in audiovisual production and 2 years
-        in video game production — team management, budget tracking, content
-        production — my career combines administrative rigour and
-        creativity, with a proven ability to unite talent around ambitious
-        projects.
+        Eight years in audiovisual production, two in video game production.
+        Day to day, I coordinate crews, keep budgets and schedules on track,
+        draft contracts and put together funding applications.
     status: published
   - type: skills
     eyebrow:
@@ -89,13 +74,13 @@ sections:
       fr: Contact
       en: Contact
     title:
-      fr: Travaillons ensemble
-      en: Let's work together
+      fr: Écrivez-moi
+      en: Get in touch
     intro:
       fr: >-
-        Vous avez un projet ? Je suis disponible pour des collaborations et de
-        nouvelles aventures créatives.
+        Un tournage à organiser, une production à monter, un poste à
+        pourvoir : le plus simple est de m'écrire.
       en: >-
-        Got a project? I'm available for collaborations and new creative
-        adventures.
+        A shoot to organise, a production to set up, a role to fill: email
+        is the quickest way to reach me.
     status: published

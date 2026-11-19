@@ -15,7 +15,6 @@ const section = (await getHome()).find((s) => s.type === "projects");
 
 <div class={styles.page}>
   <header class={styles.head}>
-    <p class={`credits ${styles.eyebrow}`}>{pick(section?.eyebrow, locale) || "Portfolio"}</p>
     <h1 class={styles.title}>{pick(section?.title, locale) || t.allProjects}</h1>
   </header>
   <ProjectList projects={projects} locale={locale} t={t} headingLevel={2} />

@@ -28,7 +28,7 @@ const { items, intro, locale, t } = Astro.props;
           </h3>
           <p class={styles.company}>
             {x.company}
-            {x.location ? <span> — {x.location}</span> : null}
+            {x.location ? <span> · {x.location}</span> : null}
           </p>
           {pick(x.description, locale) ? <p class={styles.desc}>{pick(x.description, locale)}</p> : null}
         </div>

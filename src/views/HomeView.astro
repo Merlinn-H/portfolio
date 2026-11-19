@@ -36,8 +36,7 @@ const [site, sections, projects, experiences, skills, films, games] = await Prom
   getGames(),
 ]);
 
-// Même logique de visibilité qu'avant : une section sans contenu n'est ni rendue ni numérotée.
-// Le hero n'a pas de carton de section, donc pas de numéro.
+// Une section sans contenu n'est pas rendue.
 const shown = (type: string, intro: string) => {
   switch (type) {
     case "hero":
@@ -58,8 +57,7 @@ const shown = (type: string, intro: string) => {
   }
 };
 
-let n = 0;
-const numbered = sections
+const visibleSections = sections
   .map((s) => {
     const eyebrow = pick(s.eyebrow, locale);
     const title = pick(s.title, locale);
@@ -68,7 +66,6 @@ const numbered = sections
     return {
       type: s.type,
       visible,
-      index: visible && s.type !== "hero" ? ++n : 0,
       hiddenLabel: s.status === "hidden" ? t.hidden : null,
       eyebrow,
       title,
@@ -79,7 +76,7 @@ const numbered = sections
   .filter((s) => s.visible);
 ---
 
-{numbered.map((s) => (
+{visibleSections.map((s) => (
   <>
     {s.type === "hero" && (
       <>
@@ -94,37 +91,37 @@ const numbered = sections
     )}
     {s.type === "projects" && (
       <Section id="projects" labelledBy={s.labelled} label={s.eyebrow}>
-        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
         <ProjectList projects={projects} locale={locale} t={t} />
       </Section>
     )}
     {s.type === "manifesto" && (
       <Section id="manifesto" labelledBy={s.labelled} label={s.eyebrow} tone="light" space="l">
-        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
         <Manifesto text={s.intro} />
       </Section>
     )}
     {s.type === "experience" && (
       <Section id="experience" labelledBy={s.labelled} label={s.eyebrow}>
-        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
         <Experience items={experiences} intro={s.intro} locale={locale} t={t} />
       </Section>
     )}
     {s.type === "skills" && (
       <Section id="skills" labelledBy={s.labelled} label={s.eyebrow} space="s">
-        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
         <Skills categories={skills} locale={locale} />
       </Section>
     )}
     {s.type === "influences" && (
       <Section id="influences" labelledBy={s.labelled} label={s.eyebrow}>
-        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} title={s.title} hiddenLabel={s.hiddenLabel} />
+        <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
         <Influences films={films} games={games} locale={locale} t={t} />
       </Section>
     )}
     {s.type === "contact" && (
       <Section id="contact" labelledBy={s.title ? "contact-title" : undefined} label={s.eyebrow} space="l">
-        <SectionHead index={s.index} id={s.type} eyebrow={s.eyebrow} hiddenLabel={s.hiddenLabel} />
+        <SectionHead id={s.type} hiddenLabel={s.hiddenLabel} />
         <Contact
           title={s.title}
           intro={s.intro}

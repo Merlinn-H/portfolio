@@ -40,7 +40,7 @@ import { Image } from "astro:assets";
             <H class={styles.featureTitle}>{p.title}</H>
             <span class={styles.featureSide}>
               {p.coverImg ? (
-                <span class={`viewfinder ${styles.featureCover}`}>
+                <span class={styles.featureCover}>
                   <Image
                     src={p.coverImg}
                     alt=""

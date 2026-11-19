@@ -1,43 +1,33 @@
 categories:
   - name:
-      fr: Production & Logistique
-      en: Production & Logistics
+      fr: Production et logistique
+      en: Production & logistics
     items:
       - fr: Planification de tournages
         en: Shoot planning
-      - fr: Réservation logements & transports
-        en: Accommodation & transport booking
       - fr: Gestion de budget
         en: Budget management
       - fr: Organisation plateau
         en: Set organisation
+      - fr: Logements et transports d'équipe
+        en: Crew accommodation & travel
+      - fr: Dossiers de financement (régions, CNC)
+        en: Funding applications (regional bodies, CNC)
   - name:
-      fr: Coordination d'équipes
-      en: Team Coordination
+      fr: Coordination
+      en: Coordination
     items:
-      - fr: Fédération de talents
-        en: Talent management
-      - fr: Gestion des deadlines
-        en: Deadline management
-      - fr: Communication avec les artistes
-        en: Artist communication
       - fr: Suivi de projet
         en: Project tracking
+      - fr: Plannings et échéances
+        en: Schedules & deadlines
+      - fr: Communication avec les artistes
+        en: Working with artists
+      - fr: Contrats et facturation
+        en: Contracts & invoicing
   - name:
-      fr: Polyvalence & Leadership
-      en: Versatility & Leadership
-    items:
-      - fr: Adaptabilité
-        en: Adaptability
-      - fr: Respect des deadlines
-        en: Meeting deadlines
-      - fr: Prise d'initiative
-        en: Initiative
-      - fr: Travail sous pression
-        en: Working under pressure
-  - name:
-      fr: Outils & Langues
-      en: Tools & Languages
+      fr: Outils et langues
+      en: Tools & languages
     items:
       - fr: Anglais professionnel
         en: Professional English

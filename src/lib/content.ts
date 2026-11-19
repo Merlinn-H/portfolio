@@ -30,7 +30,15 @@ function cache<A extends unknown[], R>(fn: (...args: A) => Promise<R>) {
 export type Status = "published" | "hidden";
 export type Localized = { fr: string; en: string };
 
-export const pick = (v: Localized | undefined | null, locale: Locale) => (v?.[locale] || v?.fr || "").trim();
+/** Typographie française : espace insécable avant « : ; ! ? % » et à l'intérieur des guillemets, pour éviter
+ *  qu'un signe se retrouve seul en début de ligne. */
+const frenchSpacing = (s: string) => s.replace(/ ([:;!?%»])/g, "\u00a0$1").replace(/« /g, "«\u00a0");
+
+export const pick = (v: Localized | undefined | null, locale: Locale) => {
+  const own = v?.[locale];
+  const text = (own || v?.fr || "").trim();
+  return own && locale !== "fr" ? text : frenchSpacing(text);
+};
 
 const visible = <T extends { status: Status }>(items: T[]) =>
   items.filter((i) => showHidden || i.status === "published");

@@ -18,11 +18,10 @@ interface Props {
 const { site, locale, t, hasProjects = true } = Astro.props;
 const [first, ...rest] = site.name.split(" ");
 const portrait = site.portraitImg;
-import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <section id="top" data-section="" class={styles.hero} aria-labelledby="hero-title">
-  <p class={`credits ${styles.role}`}>{pick(site.role, locale)}</p>
+  <p class={styles.role}>{pick(site.role, locale)}</p>
 
   <h1 id="hero-title" class={styles.name}>
     {/* Un seul bloc de texte (pas deux <span> en display:block) : le navigateur le compte
@@ -33,7 +32,7 @@ import Arrow from "@/components/ui/Arrow.astro";
   </h1>
 
   {portrait ? (
-    <div class={`viewfinder ${styles.portrait}`}>
+    <div class={styles.portrait}>
       <Picture
         src={portrait}
         alt={pick(site.portraitAlt, locale)}
@@ -68,8 +67,4 @@ import Arrow from "@/components/ui/Arrow.astro";
       <figcaption class="credits">{site.quote.source}</figcaption>
     </figure>
   ) : null}
-
-  <a href="#after-hero" class={`credits ${styles.scroll}`}>
-    {t.scroll} <Arrow dir="down" />
-  </a>
 </section>

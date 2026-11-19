@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 19/11 (nettoyage)** : retirés — numéros et sur-titres de section (« 01 —— Portfolio »), repères de viseur, grain, halo de fond, indicateur « Défiler », carton « Fin ». L'ambre est réservé aux années des courts-métrages. Textes réécrits sans formules creuses ; rôles FR en casse de phrase ; espaces insécables françaises appliquées automatiquement par `pick()`.
+
 > **Mise à jour du 16/11 (session 5)** : polices → Fraunces (titres, + italique pour les titres de films), Archivo (texte), Archivo étroitisé (crédits) ; palette → vermillon pour l'action, ambre pour les repères ; motifs → repères de viseur, carton « Fin ». Les valeurs à jour sont dans `src/styles/tokens.css` ; le détail et les raisons dans DECISIONS.md 46–50. Le reste de ce document (règles de composition, interdits) reste valable.
 
 > Statut : **verrouillé** après le checkpoint Fable 2 (03:45).
