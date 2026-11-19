@@ -1,6 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import { Font } from "astro:assets";
+import { Font, getImage } from "astro:assets";
 import "@/styles/globals.css";
 import { getNavigation, getSite, img, pick } from "@/lib/content";
 import { href, ui, type Locale } from "@/lib/i18n";
@@ -25,6 +25,10 @@ const nav = await getNavigation(locale);
 const t = ui(locale);
 const introLogo = site.introEnabled ? img(site.introLogo) : null;
 const base = (site.url || "https://hugopezzo.fr").replace(/\/$/, "");
+// Fiche « Person » : une version légère du portrait (800 px), pas le fichier source.
+const personImage = site.portraitImg
+  ? await getImage({ src: site.portraitImg, width: 800, format: "jpg", quality: 80 })
+  : null;
 
 const person = {
   "@context": "https://schema.org",
@@ -32,7 +36,7 @@ const person = {
   name: site.name,
   jobTitle: pick(site.role, locale),
   url: `${base}${href(locale, "/") === "/" ? "" : href(locale, "/")}`,
-  image: site.portraitImg ? `${base}${site.portraitImg.src}` : undefined,
+  image: personImage ? `${base}${personImage.src}` : undefined,
   email: site.email ? `mailto:${site.email}` : undefined,
   sameAs: site.socials.map((s) => s.url).filter(Boolean),
 };
