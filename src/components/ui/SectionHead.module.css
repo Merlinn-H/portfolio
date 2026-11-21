@@ -2,9 +2,9 @@
   display: grid;
   justify-items: start;
   gap: var(--space-4);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-7);
 }
 .title {
-  font-size: var(--step-5);
+  font-size: var(--step-4);
   max-width: 8em; /* em, pas ch : stable quand la webfont remplace la police de secours (CLS) */
 }

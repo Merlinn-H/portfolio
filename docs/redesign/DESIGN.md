@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 21/11 (grille et rythme)** : une seule grille pour toutes les sections au-delà de 1024 px — libellés (dates, rôles, catégories, titres de jeux) en colonnes 1–3, texte à partir de la colonne 4. Toutes les sections ont le même espacement vertical (`--space-8` mobile, `--space-9` desktop ; la bande claire `--space-9` / `--space-10`). Hiérarchie : nom du hero > titres de section (`--step-4`) > noms de projets et postes (`--step-3`). Cibles tactiles ≥ 48 px partout.
+
 > **Mise à jour du 19/11 (clap)** : l'ident au logo 489 est remplacé par un clap de tournage (`src/components/layout/Intro.astro`) : ardoise « Prod. Hugo Pezzo · Scène 489 · Prise 01 · date du jour », le clap se ferme à 540 ms avec secousse, éclats rouges et flash, coupe à ~1,25 s. Une fois par session, passable au clic ou au clavier, jamais avec « réduire les animations ».
 
 > **Mise à jour du 19/11 (charte 489Productions)** : polices → Open Sans seule (gras 700 pour les titres, 400 texte, 600 capitales espacées) ; palette → noir `#121212` et blanc cassé `#f2f0ec` (au lieu du noir et du blanc purs de la charte), rouge charte `#c91517` pour les grands éléments, `#f0544b` pour le petit texte rouge sur fond sombre ; l'ambre disparaît. Sous le nom du hero, filet + capitales très espacées, comme « P R O D U C T I O N S » sous le logo.

@@ -1,11 +1,8 @@
-.section {
-  padding-block: var(--space-9);
-}
-.s {
-  padding-block: var(--space-8);
-}
+/* Un seul rythme vertical pour toutes les sections ; la bande claire garde un peu plus d'air à l'intérieur. */
+.section,
+.s,
 .l {
-  padding-block: var(--space-10);
+  padding-block: var(--space-8);
 }
 /* Carton inversé : rupture franche dans le rythme sombre */
 .light {
@@ -27,14 +24,16 @@
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
+.section.light {
+  padding-block: var(--space-9);
+}
 @media (min-width: 64rem) {
-  .section {
-    padding-block: var(--space-10);
-  }
-  .s {
+  .section,
+  .s,
+  .l {
     padding-block: var(--space-9);
   }
-  .l {
-    padding-block: var(--space-11);
+  .section.light {
+    padding-block: var(--space-10);
   }
 }

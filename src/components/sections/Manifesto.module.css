@@ -24,9 +24,9 @@
   }
   .lead {
     grid-column: 1 / 11;
-    font-size: var(--step-5);
+    font-size: var(--step-4);
   }
   .rest {
-    grid-column: 6 / 12;
+    grid-column: 4 / 10;
   }
 }

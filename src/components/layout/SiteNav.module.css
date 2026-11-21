@@ -23,6 +23,9 @@
   box-shadow: 0 0 0 var(--hairline) var(--line);
 }
 .brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
   font-family: var(--font-display);
   font-weight: var(--weight-display);
   font-size: var(--step-1);

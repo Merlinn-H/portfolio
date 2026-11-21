@@ -60,12 +60,14 @@
 .tagline {
   grid-column: 1 / -1;
   margin-top: var(--space-6);
-  max-width: 30ch;
   font-size: var(--step-1);
   line-height: var(--leading-snug);
   color: var(--fg-muted);
 }
 
+.tagline > p:first-child {
+  max-width: 30ch;
+}
 .actions {
   display: flex;
   flex-wrap: wrap;
