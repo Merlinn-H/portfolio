@@ -13,7 +13,7 @@
 }
 .title {
   font-size: var(--step-6);
-  line-height: 0.88;
+  line-height: 1;
 }
 .text {
   max-width: 32ch;

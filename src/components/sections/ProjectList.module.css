@@ -91,14 +91,32 @@
 }
 /* Photogramme du film (vignette) ; reste un cadre sombre si l'image n'est pas disponible */
 .shortThumb {
+  position: relative;
+  display: grid;
+  place-items: center;
   grid-column: 1;
   grid-row: 1 / span 3;
   align-self: start;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--bg-raised);
+  /* Bande de clap en haut, comme l'ardoise d'ouverture */
+  background:
+    repeating-linear-gradient(-55deg, var(--fg-subtle) 0 6px, transparent 6px 12px) top / 100% 8px no-repeat,
+    var(--bg-raised);
+}
+.shortCard {
+  padding: var(--space-3) var(--space-2) var(--space-1);
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-style: italic;
+  font-size: var(--step--2);
+  line-height: 1.2;
+  text-align: center;
+  color: var(--fg-muted);
 }
 .shortImg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 21/11 (pages secondaires)** : titres de page à `--step-5` avec interligne 1 (les jambages d'Open Sans ne touchent plus le filet) ; « Projet suivant » à `--step-4`, flèche toujours collée au dernier mot. Vignette de court-métrage : carton de secours (bande de clap + titre) sous l'image, visible si la miniature YouTube manque.
+
 > **Mise à jour du 21/11 (choix des éléments)** : dans Parcours, un poste dont la structure a aussi une page projet (POSTMERIDIAN, 489Productions) renvoie vers cette page au lieu de répéter sa description (le CV garde les descriptions). La citation 英雄本色 quitte le hero et ouvre la section Influences. Portrait en bandeau pleine largeur sur mobile. Influences : 4 films affichés (Time and Tide, Perfect Days et Le Cercle rouge passés en « Masqué » dans le CMS, réversible), sans défilement quand ils tiennent à l'écran.
 
 > **Mise à jour du 21/11 (grille et rythme)** : une seule grille pour toutes les sections au-delà de 1024 px — libellés (dates, rôles, catégories, titres de jeux) en colonnes 1–3, texte à partir de la colonne 4. Toutes les sections ont le même espacement vertical (`--space-8` mobile, `--space-9` desktop ; la bande claire `--space-9` / `--space-10`). Hiérarchie : nom du hero > titres de section (`--step-4`) > noms de projets et postes (`--step-3`). Cibles tactiles ≥ 48 px partout.

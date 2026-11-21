@@ -6,7 +6,7 @@
 .head {
   display: grid;
   gap: var(--space-5);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-7);
 }
 /* Une seule ligne : sinon le retour à la ligne change quand la webfont arrive (CLS). */
 .crumbs {
@@ -26,10 +26,10 @@
   min-height: var(--tap);
   margin-block: calc((var(--tap) - 1em) / -2);
 }
+/* Interligne 1 : avec Open Sans, les jambages (p, g) ne touchent plus le filet en dessous. */
 .title {
-  font-size: var(--step-6);
-  line-height: 0.88;
-  font-size: min(var(--step-6), 11vw);
+  line-height: 1;
+  font-size: min(var(--step-5), 12vw);
   max-width: 8em; /* em, pas ch : stable quand la webfont remplace la police de secours (CLS) */
 }
 .tagline {
@@ -172,7 +172,7 @@
 .next {
   display: grid;
   gap: var(--space-3);
-  margin-top: var(--space-10);
+  margin-top: var(--space-9);
   padding-top: var(--space-6);
   border-top: var(--hairline) solid var(--line-strong);
   color: var(--fg-muted);
@@ -180,10 +180,14 @@
 .nextTitle {
   font-family: var(--font-display);
   font-weight: var(--weight-display);
-  font-size: var(--step-5);
-  line-height: 0.95;
+  font-size: var(--step-4);
+  line-height: 1.05;
   color: var(--fg);
   transition: color var(--dur-2);
+}
+/* La flèche reste collée au dernier mot (jamais seule sur sa ligne). */
+.nextTail {
+  white-space: nowrap;
 }
 .next:hover .nextTitle {
   color: var(--accent);

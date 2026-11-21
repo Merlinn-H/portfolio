@@ -70,6 +70,8 @@ import { Image } from "astro:assets";
           <li class="reveal">
             <a href={href(locale, `/projets/${p.slug}`)} class={styles.shortLink}>
               <span class={styles.shortThumb} aria-hidden="true">
+                {/* Carton de secours sous l'image : visible si la miniature manque ou ne charge pas. */}
+                <span class={styles.shortCard}>{p.title}</span>
                 {p.coverImg ? (
                   <Image src={p.coverImg} alt="" widths={[160, 320]} sizes="10rem" class={styles.shortImg} />
                 ) : p.youtubeId ? (

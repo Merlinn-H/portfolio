@@ -157,7 +157,10 @@ import Arrow from "@/components/ui/Arrow.astro";
       <a class={styles.next} href={href(locale, `/projets/${next.slug}`)}>
         <span class="credits">{t.next}</span>
         <span class={styles.nextTitle}>
-          {next.title} <Arrow />
+          {next.title.split(" ").slice(0, -1).join(" ")}{" "}
+          <span class={styles.nextTail}>
+            {next.title.split(" ").at(-1)} <Arrow />
+          </span>
         </span>
       </a>
     ) : null}
