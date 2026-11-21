@@ -14,17 +14,29 @@ interface Props {
   games: Game[];
   locale: Locale;
   t: Dict;
+  /** Citation de cinéma (avec 英雄本色) en exergue de la section. */
+  quote?: { text?: string | null; source?: string | null; hanzi?: string | null } | null;
 }
-const { films, games, locale, t } = Astro.props;
+const { films, games, locale, t, quote } = Astro.props;
+import Hanzi from "@/components/ui/Hanzi.astro";
 ---
 
 <div class={styles.wrap}>
+  {quote?.text ? (
+    <figure class={styles.quote}>
+      {quote.hanzi ? <Hanzi text={quote.hanzi} label={quote.source ?? ""} class={styles.hanzi} /> : null}
+      <div class={styles.quoteBody}>
+        <blockquote lang="en">“{quote.text}”</blockquote>
+        {quote.source ? <figcaption class="credits">{quote.source}</figcaption> : null}
+      </div>
+    </figure>
+  ) : null}
   {films.length > 0 ? (
     <div>
       <h3 class={`credits ${styles.sub}`}>
         {t.films} <span>{films.length}</span>
       </h3>
-      <ul class={styles.films}>
+      <ul class={styles.films} data-count={films.length <= 4 ? "few" : "many"}>
         {films.map((f) => {
           const title = (locale === "en" && f.titleEn) || f.title;
           return (

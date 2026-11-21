@@ -5,6 +5,33 @@
 .wrap > * {
   min-width: 0;
 }
+
+/* Exergue : 英雄本色 dans la colonne des libellés, la réplique dans la colonne de texte. */
+.quote {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--space-5);
+  align-items: start;
+}
+.hanzi {
+  font-size: var(--step-3);
+  color: var(--red);
+}
+.quoteBody {
+  display: grid;
+  gap: var(--space-3);
+}
+.quote blockquote {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-style: italic;
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+  text-wrap: balance;
+}
+.quote figcaption {
+  color: var(--fg-subtle);
+}
 .sub {
   display: flex;
   gap: var(--space-3);
@@ -116,6 +143,23 @@
     grid-auto-columns: calc((100% - var(--gutter) * 2 - var(--space-5) * 3) / 4.4);
   }
   /* Même grille que Parcours : titre en colonnes 1–3, texte à partir de la 4e. */
+  .quote {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+  .hanzi {
+    grid-column: 1 / 4;
+  }
+  .quoteBody {
+    grid-column: 4 / 10;
+  }
+  /* Quatre films ou moins : ils tiennent tous à l'écran, pas de défilement ni de fondu. */
+  .films[data-count="few"] {
+    grid-auto-columns: calc((100% - var(--gutter) * 2 - var(--space-5) * 3) / 4);
+    padding-right: var(--gutter);
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow-x: visible;
+  }
   .game {
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: var(--space-5);

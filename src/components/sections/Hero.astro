@@ -1,6 +1,5 @@
 ---
 import { Picture } from "astro:assets";
-import Hanzi from "@/components/ui/Hanzi.astro";
 import type { getSite } from "@/lib/content";
 import { pick } from "@/lib/content";
 import type { Dict, Locale } from "@/lib/i18n";
@@ -39,7 +38,7 @@ const portrait = site.portraitImg;
         formats={["avif", "webp"]}
         widths={[384, 640, 960, 1280]}
         width={1280}
-        sizes="(min-width: 64rem) 36vw, (min-width: 40rem) 33vw, 50vw"
+        sizes="(min-width: 64rem) 36vw, (min-width: 40rem) 33vw, 100vw"
         quality={75}
         loading="eager"
         fetchpriority="high"
@@ -60,12 +59,4 @@ const portrait = site.portraitImg;
       </a>
     </p>
   </div>
-
-  {site.quote?.text ? (
-    <figure class={styles.quote}>
-      {site.quote.hanzi ? <Hanzi text={site.quote.hanzi} label={site.quote.source} class={styles.hanzi} /> : null}
-      <blockquote lang="en">“{site.quote.text}”</blockquote>
-      <figcaption class="credits">{site.quote.source}</figcaption>
-    </figure>
-  ) : null}
 </section>

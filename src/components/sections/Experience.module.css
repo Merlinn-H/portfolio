@@ -62,3 +62,13 @@
     grid-column: 4 / 12;
   }
 }
+.companyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  margin-block: calc((var(--tap) - 1.5em) / -2);
+}
+.companyLink:hover {
+  color: var(--accent);
+}

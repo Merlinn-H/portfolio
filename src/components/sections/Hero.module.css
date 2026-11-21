@@ -44,9 +44,9 @@
 /* Carré sur mobile : le nom reste l'élément le plus grand du premier écran, donc le LCP
    est le texte (peint immédiatement) et non l'image (qui demande un aller-retour réseau). */
 .portrait {
-  grid-column: 3 / -1;
+  grid-column: 1 / -1;
   margin-top: var(--space-6);
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
   background: var(--bg-raised);
 }
@@ -54,7 +54,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 100% 30%;
+  object-position: 50% 45%;
 }
 
 .tagline {
@@ -109,33 +109,6 @@
   box-shadow: none;
 }
 
-.quote {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: var(--space-4);
-  row-gap: var(--space-2);
-  align-items: start;
-  margin-top: var(--space-7);
-  max-width: 30rem;
-}
-.hanzi {
-  grid-row: 1 / span 2;
-  font-size: var(--step-2);
-}
-.quote blockquote,
-.quote figcaption {
-  text-wrap: balance;
-}
-.quote blockquote {
-  font-size: var(--step-0);
-  font-weight: 600;
-  line-height: var(--leading-snug);
-}
-.quote figcaption {
-  color: var(--fg-subtle);
-}
-
 /* Tablette : le portrait monte à côté du nom (plus de grand vide à gauche de l'image). */
 @media (min-width: 40rem) {
   .hero {
@@ -155,11 +128,11 @@
     margin-top: 0;
     aspect-ratio: 4 / 5;
   }
+  .portrait img {
+    object-position: 100% 30%;
+  }
   .tagline {
     grid-row: 3;
-  }
-  .quote {
-    grid-row: 4;
   }
 }
 
@@ -194,10 +167,5 @@
     grid-column: 1 / 6;
     grid-row: 3;
     align-self: end;
-  }
-  .quote {
-    grid-column: 9 / -1;
-    grid-row: 4;
-    margin-top: var(--space-6);
   }
 }

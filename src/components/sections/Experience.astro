@@ -11,8 +11,13 @@ interface Props {
   intro: string;
   locale: Locale;
   t: Dict;
+  /** Structures qui ont aussi une page projet (nom → lien) : on y renvoie au lieu de répéter leur description. */
+  projectLinks?: Record<string, string>;
 }
-const { items, intro, locale, t } = Astro.props;
+const { items, intro, locale, t, projectLinks = {} } = Astro.props;
+const key = (s: string) => s.toLowerCase().replace(/\s+/g, "");
+const linkFor = (company: string) => projectLinks[key(company)];
+import Arrow from "@/components/ui/Arrow.astro";
 ---
 
 <div class={styles.wrap}>
@@ -27,10 +32,18 @@ const { items, intro, locale, t } = Astro.props;
             <HiddenBadge show={x.status === "hidden"} label={t.hidden} />
           </h3>
           <p class={styles.company}>
-            {x.company}
+            {linkFor(x.company) ? (
+              <a href={linkFor(x.company)} class={`link ${styles.companyLink}`}>
+                {x.company} <Arrow />
+              </a>
+            ) : (
+              x.company
+            )}
             {x.location ? <span> · {x.location}</span> : null}
           </p>
-          {pick(x.description, locale) ? <p class={styles.desc}>{pick(x.description, locale)}</p> : null}
+          {!linkFor(x.company) && pick(x.description, locale) ? (
+            <p class={styles.desc}>{pick(x.description, locale)}</p>
+          ) : null}
         </div>
       </li>
     ))}

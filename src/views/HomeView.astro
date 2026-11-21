@@ -104,7 +104,17 @@ const visibleSections = sections
     {s.type === "experience" && (
       <Section id="experience" labelledBy={s.labelled} label={s.eyebrow}>
         <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
-        <Experience items={experiences} intro={s.intro} locale={locale} t={t} />
+        <Experience
+          items={experiences}
+          intro={s.intro}
+          locale={locale}
+          t={t}
+          projectLinks={Object.fromEntries(
+            projects
+              .filter((p) => p.category !== "short")
+              .map((p) => [p.title.toLowerCase().replace(/\s+/g, ""), href(locale, `/projets/${p.slug}`)]),
+          )}
+        />
       </Section>
     )}
     {s.type === "skills" && (
@@ -116,7 +126,7 @@ const visibleSections = sections
     {s.type === "influences" && (
       <Section id="influences" labelledBy={s.labelled} label={s.eyebrow}>
         <SectionHead id={s.type} title={s.title} hiddenLabel={s.hiddenLabel} />
-        <Influences films={films} games={games} locale={locale} t={t} />
+        <Influences films={films} games={games} locale={locale} t={t} quote={site.quote} />
       </Section>
     )}
     {s.type === "contact" && (

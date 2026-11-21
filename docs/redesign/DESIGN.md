@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 21/11 (choix des éléments)** : dans Parcours, un poste dont la structure a aussi une page projet (POSTMERIDIAN, 489Productions) renvoie vers cette page au lieu de répéter sa description (le CV garde les descriptions). La citation 英雄本色 quitte le hero et ouvre la section Influences. Portrait en bandeau pleine largeur sur mobile. Influences : 4 films affichés (Time and Tide, Perfect Days et Le Cercle rouge passés en « Masqué » dans le CMS, réversible), sans défilement quand ils tiennent à l'écran.
+
 > **Mise à jour du 21/11 (grille et rythme)** : une seule grille pour toutes les sections au-delà de 1024 px — libellés (dates, rôles, catégories, titres de jeux) en colonnes 1–3, texte à partir de la colonne 4. Toutes les sections ont le même espacement vertical (`--space-8` mobile, `--space-9` desktop ; la bande claire `--space-9` / `--space-10`). Hiérarchie : nom du hero > titres de section (`--step-4`) > noms de projets et postes (`--step-3`). Cibles tactiles ≥ 48 px partout.
 
 > **Mise à jour du 19/11 (clap)** : l'ident au logo 489 est remplacé par un clap de tournage (`src/components/layout/Intro.astro`) : ardoise « Prod. Hugo Pezzo · Scène 489 · Prise 01 · date du jour », le clap se ferme à 540 ms avec secousse, éclats rouges et flash, coupe à ~1,25 s. Une fois par session, passable au clic ou au clavier, jamais avec « réduire les animations ».
