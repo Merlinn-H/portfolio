@@ -7,60 +7,63 @@
   font-size: var(--step-1);
   line-height: var(--leading-body);
 }
+
+/* ---------- Liste d'équipe (feuille de service) ---------- */
+.sheet {
+  border: var(--hairline) solid var(--line-strong);
+}
+/* Bandeau d'en-tête inversé : seulement à partir de 64rem, quand les colonnes existent. */
+.head {
+  display: none;
+}
 .list {
   list-style: none;
   padding: 0;
+}
+/* Mobile : période, poste, puis « structure · lieu » sur une même ligne, puis description. */
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) 0;
+  padding: var(--space-5) var(--space-4);
+}
+.period,
+.title,
+.desc {
+  flex-basis: 100%;
+}
+.item + .item {
   border-top: var(--hairline) solid var(--line);
 }
-.item {
-  display: grid;
-  gap: var(--space-3);
-  padding-block: var(--space-6);
-  border-bottom: var(--hairline) solid var(--line);
-}
 .period {
-  color: var(--fg-subtle);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 .title {
-  font-size: var(--step-3);
-  line-height: 1;
+  font-size: var(--step-1);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
 }
 .company {
-  margin-top: var(--space-2);
   font-weight: 600;
 }
-.company span {
+.place {
+  color: var(--fg-muted);
+}
+.company:has(+ .place)::after {
+  content: "·";
+  margin-inline: var(--space-2);
   font-weight: 400;
   color: var(--fg-muted);
 }
 .desc {
-  margin-top: var(--space-3);
+  margin-top: var(--space-2);
   max-width: var(--measure);
+  font-size: var(--step--1);
   color: var(--fg-muted);
-}
-@media (min-width: 64rem) {
-  .wrap {
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--space-5);
-  }
-  .intro {
-    grid-column: 4 / 11;
-  }
-  .list {
-    grid-column: 1 / -1;
-  }
-  .item {
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--space-5);
-    padding-block: var(--space-7);
-  }
-  .period {
-    grid-column: 1 / 4;
-    padding-top: var(--space-2);
-  }
-  .body {
-    grid-column: 4 / 12;
-  }
 }
 .companyLink {
   display: inline-flex;
@@ -71,4 +74,58 @@
 }
 .companyLink:hover {
   color: var(--accent);
+}
+
+@media (min-width: 64rem) {
+  .wrap {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--space-5);
+  }
+  .intro {
+    grid-column: 4 / 11;
+  }
+  .sheet {
+    grid-column: 1 / -1;
+  }
+  /* Mêmes colonnes pour le bandeau et chaque ligne : période | poste | production | lieu */
+  .head,
+  .item {
+    grid-template-columns: 3fr 5fr 3fr 1.5fr;
+    column-gap: var(--space-5);
+    padding-inline: var(--space-5);
+  }
+  .head {
+    display: grid;
+    padding-block: var(--space-2);
+    background: var(--fg);
+    color: var(--bg);
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: var(--tracking-credits);
+    text-transform: uppercase;
+  }
+  .item {
+    display: grid;
+    align-items: baseline;
+    padding-block: var(--space-5);
+  }
+  .company::after {
+    content: none !important;
+  }
+  .period {
+    grid-column: 1;
+  }
+  .title {
+    grid-column: 2;
+  }
+  .company {
+    grid-column: 3;
+  }
+  .place {
+    grid-column: 4;
+  }
+  .desc {
+    grid-column: 2 / 4;
+    margin-top: 0;
+  }
 }

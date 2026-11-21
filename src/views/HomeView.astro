@@ -85,6 +85,9 @@ const visibleSections = sections
           locale={locale}
           t={t}
           hasProjects={sections.some((x) => x.type === "projects") && projects.length > 0}
+          companies={projects
+            .filter((p) => p.category !== "short")
+            .map((p) => ({ title: p.title, href: href(locale, `/projets/${p.slug}`) }))}
         />
         <span id="after-hero" />
       </>

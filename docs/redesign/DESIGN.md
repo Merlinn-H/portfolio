@@ -1,5 +1,7 @@
 # DESIGN — Direction artistique
 
+> **Mise à jour du 21/11 (feuille de service)** : sous le nom du hero, un en-tête de feuille de service (bandeau inversé « Feuille de service · N° 489 », puis Poste / Structures / Contact) remplace la ligne en capitales espacées. Le Parcours devient la liste d'équipe d'une feuille de service : bandeau Période / Poste / Production / Lieu, une ligne par poste, filets entre les lignes ; empilé sur mobile. Uniquement le contenu existant, rien d'inventé.
+
 > **Mise à jour du 21/11 (pages secondaires)** : titres de page à `--step-5` avec interligne 1 (les jambages d'Open Sans ne touchent plus le filet) ; « Projet suivant » à `--step-4`, flèche toujours collée au dernier mot. Vignette de court-métrage : carton de secours (bande de clap + titre) sous l'image, visible si la miniature YouTube manque.
 
 > **Mise à jour du 21/11 (choix des éléments)** : dans Parcours, un poste dont la structure a aussi une page projet (POSTMERIDIAN, 489Productions) renvoie vers cette page au lieu de répéter sa description (le CV garde les descriptions). La citation 英雄本色 quitte le hero et ouvre la section Influences. Portrait en bandeau pleine largeur sur mobile. Influences : 4 films affichés (Time and Tide, Perfect Days et Le Cercle rouge passés en « Masqué » dans le CMS, réversible), sans défilement quand ils tiennent à l'écran.

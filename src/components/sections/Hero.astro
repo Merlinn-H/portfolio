@@ -13,8 +13,10 @@ interface Props {
   t: Dict;
   /** La section Projets est-elle affichée ? (sinon pas de bouton vers elle) */
   hasProjects?: boolean;
+  /** Structures (projets hors courts-métrages) listées dans la feuille de service. */
+  companies?: { title: string; href: string }[];
 }
-const { site, locale, t, hasProjects = true } = Astro.props;
+const { site, locale, t, hasProjects = true, companies = [] } = Astro.props;
 const [first, ...rest] = site.name.split(" ");
 const portrait = site.portraitImg;
 ---
@@ -27,8 +29,44 @@ const portrait = site.portraitImg;
     <br />
     {rest.join(" ")}
   </h1>
-  {/* Filet + capitales très espacées sous le nom : la construction du logo 489Productions. */}
-  <p class={styles.role}>{pick(site.role, locale)}</p>
+  {/* En-tête de feuille de service : bandeau, puis lignes libellé / valeur, comme sur un vrai tournage. */}
+  <div class={styles.sheet}>
+    <p class={styles.sheetHead} aria-hidden="true">
+      <span>{t.callSheet}</span>
+      <span>N° 489</span>
+    </p>
+    <dl class={styles.sheetRows}>
+      <div>
+        <dt>{t.sheetRole}</dt>
+        <dd>{pick(site.role, locale)}</dd>
+      </div>
+      {companies.length > 0 && (
+        <div>
+          <dt>{t.sheetCompanies}</dt>
+          <dd>
+            {companies.map((c, i) => (
+              <>
+                {i > 0 && <span aria-hidden="true"> · </span>}
+                <a class="link" href={c.href}>
+                  {c.title}
+                </a>
+              </>
+            ))}
+          </dd>
+        </div>
+      )}
+      {site.email && (
+        <div>
+          <dt>{t.sheetContact}</dt>
+          <dd>
+            <a class="link" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
+          </dd>
+        </div>
+      )}
+    </dl>
+  </div>
 
   {portrait ? (
     <div class={styles.portrait}>

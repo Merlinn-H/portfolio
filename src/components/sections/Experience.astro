@@ -22,11 +22,18 @@ import Arrow from "@/components/ui/Arrow.astro";
 
 <div class={styles.wrap}>
   {intro ? <p class={`${styles.intro} reveal`}>{intro}</p> : null}
-  <ol class={styles.list}>
-    {items.map((x) => (
-      <li class={`${styles.item} reveal`}>
-        <p class={`credits ${styles.period}`}>{pick(x.period, locale)}</p>
-        <div class={styles.body}>
+  {/* Liste d'équipe de feuille de service : bandeau d'en-tête (visuel), puis une ligne par poste. */}
+  <div class={styles.sheet}>
+    <p class={styles.head} aria-hidden="true">
+      <span>{t.sheetPeriod}</span>
+      <span>{t.sheetRole}</span>
+      <span>{t.sheetProduction}</span>
+      <span>{t.sheetPlace}</span>
+    </p>
+    <ol class={styles.list}>
+      {items.map((x) => (
+        <li class={`${styles.item} reveal`}>
+          <p class={styles.period}>{pick(x.period, locale)}</p>
           <h3 class={styles.title}>
             {pick(x.title, locale)}
             <HiddenBadge show={x.status === "hidden"} label={t.hidden} />
@@ -39,13 +46,13 @@ import Arrow from "@/components/ui/Arrow.astro";
             ) : (
               x.company
             )}
-            {x.location ? <span> · {x.location}</span> : null}
           </p>
+          {x.location ? <p class={styles.place}>{x.location}</p> : null}
           {!linkFor(x.company) && pick(x.description, locale) ? (
             <p class={styles.desc}>{pick(x.description, locale)}</p>
           ) : null}
-        </div>
-      </li>
-    ))}
-  </ol>
+        </li>
+      ))}
+    </ol>
+  </div>
 </div>
